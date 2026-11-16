@@ -35,6 +35,7 @@ import {
   TableOfContentsWithManager,
 } from '~/ui/components/TableOfContents';
 import { A } from '~/ui/components/Text';
+import { TranslationNotice } from '~/ui/components/TranslationNotice';
 
 const { LATEST_VERSION } = versions;
 
@@ -388,6 +389,7 @@ export default function DocumentationPage({
             </A>{' '}
             or append .md to any documentation URL.
           </p>
+          <TranslationNotice />
           {version && version === 'unversioned' && (
             <InlineHelp type="default" size="sm" className="mb-5! inline-flex! w-full">
               This is documentation for the next SDK version.

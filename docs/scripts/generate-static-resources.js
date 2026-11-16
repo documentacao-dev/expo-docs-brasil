@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import navigation from '../constants/navigation.js';
 import * as versions from '../constants/versions.js';
+import { getTranslationStatus } from './translation-status.js';
 
 const basePath = path.join(import.meta.dirname, '../', 'public', 'static', 'constants');
 
@@ -22,3 +23,4 @@ function writeResource(filename, data) {
 
 writeResource('versions.json', versions);
 writeResource('navigation.json', navigation);
+writeResource('translation-status.json', getTranslationStatus());
