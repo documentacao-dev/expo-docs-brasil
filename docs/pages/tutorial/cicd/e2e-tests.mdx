@@ -11,7 +11,7 @@ import { Step } from '~/ui/components/Step';
 
 Fluxos de navegação quebrados e telas que travam costumam escapar da revisão de código, porque quem revisa não consegue rodar o app em cada pull request.
 
-## Objetivos de aprendizado
+## Objetivos de aprendizado \{#learning-outcomes}
 
 - Escrever arquivos de fluxo do [Maestro](https://maestro.mobile.dev/) para testes de navegação e de conteúdo de tela
 - Rodar testes E2E contra [development builds](/develop/development-builds/introduction/) Android e iOS em um workflow
@@ -19,19 +19,19 @@ Fluxos de navegação quebrados e telas que travam costumam escapar da revisão 
 
 > **important** O tipo de job Maestro no Expo Workflows está atualmente em [alfa](/more/release-statuses/#alpha).
 
-## Por que testes E2E são úteis?
+## Por que testes E2E são úteis? \{#why-are-e2e-tests-useful}
 
-O pipeline dos capítulos anteriores gera nosso projeto e entrega atualizações, com notificações no Slack. No entanto, um fluxo de navegação quebrado ou uma tela que trava ainda pode chegar à produção sem aviso. Os testes E2E ajudam a pegar esses problemas antes que cheguem lá, simulando interações reais do usuário e verificando se o app se comporta como esperado.
+O pipeline dos capítulos anteriores faz o build do nosso projeto e entrega atualizações, com notificações no Slack. No entanto, um fluxo de navegação quebrado ou uma tela que trava ainda pode chegar à produção sem aviso. Os testes E2E ajudam a pegar esses problemas antes que cheguem lá, simulando interações reais do usuário e verificando se o app se comporta como esperado.
 
 O [Maestro](https://maestro.mobile.dev/) roda fluxos automatizados contra um app compilado, em um Android Emulator ou em um iOS Simulator. Ele consegue tocar em botões, digitar texto, verificar o conteúdo da tela e navegar entre telas. O Expo Workflows roda esses fluxos na nuvem depois de gerar um APK para Android ou uma build de simulador para iOS.
 
-## Configure os testes E2E
+## Configure os testes E2E \{#set-up-e2e-tests}
 
 Para Android e iOS, precisamos adicionar um [perfil de build](/build/eas-json/) especial para os testes E2E. Esse perfil pula a configuração de credenciais no Android e permite rodar nossa build iOS dentro de um simulador.
 
 <Step label="1">
 
-### Adicione o perfil de build e2e-test
+### Adicione o perfil de build e2e-test \{#add-the-e2e-test-build-profile}
 
 Adicione um perfil `e2e-test` ao **eas.json**. Esse perfil cria um APK sem assinatura para Android e uma build de simulador para iOS:
 
@@ -58,7 +58,7 @@ Adicione um perfil `e2e-test` ao **eas.json**. Esse perfil cria um APK sem assin
 
 <Step label="2">
 
-### Adicione os arquivos de fluxo do Maestro
+### Adicione os arquivos de fluxo do Maestro \{#add-maestro-flow-files}
 
 Crie uma pasta **.maestro/** na raiz do projeto Expo e depois adicione os arquivos de teste a seguir.
 
@@ -83,11 +83,11 @@ appId: com.yourname.yourapp # Replace with your app's package name/bundle identi
 
 </Step>
 
-## Crie um workflow para os testes E2E
+## Crie um workflow para os testes E2E \{#create-a-workflow-for-e2e-tests}
 
 <Step label="1">
 
-### Crie um e2e-tests.yml
+### Crie um e2e-tests.yml \{#create-an-e2e-testsyml}
 
 Dentro de **.eas/workflows/**, adicione um arquivo novo chamado **e2e-tests.yml** com o código a seguir:
 
@@ -125,13 +125,13 @@ jobs:
 
 No workflow acima, há dois jobs de build, para Android e iOS: `build_android` e `build_ios`. Depois de cada build, um job Maestro correspondente (`test_android` ou `test_ios`) roda os testes dessa plataforma.
 
-Cada job Maestro referencia a build por meio de `build_id` e aponta para os arquivos de fluxo do Maestro por meio de `flow_path`.
+Cada job Maestro referencia a build com `build_id` e aponta para os arquivos de fluxo do Maestro com `flow_path`.
 
 </Step>
 
 <Step label="2">
 
-### Rode o workflow manualmente
+### Rode o workflow manualmente \{#run-the-workflow-manually}
 
 Use o comando `eas workflow:run` para rodar o workflow manualmente:
 
@@ -153,11 +153,11 @@ No painel da Expo, repare que as builds Android e iOS começam em paralelo. Quan
 
 </Step>
 
-## Dispare os testes E2E automaticamente
+## Dispare os testes E2E automaticamente \{#trigger-e2e-tests-automatically}
 
 Até agora rodamos o workflow manualmente. Podemos disparar os testes a partir de eventos do GitHub, para que rodem em todo pull request ou sob demanda com um label de pull request.
 
-### Rode em todo pull request
+### Rode em todo pull request \{#run-on-every-pull-request}
 
 Para rodar os testes E2E em todo pull request, adicione um gatilho `on.pull_request` ao workflow:
 
@@ -167,7 +167,7 @@ on:
     branches: ['*']
 ```
 
-### Rode sob demanda com um label
+### Rode sob demanda com um label \{#run-on-demand-with-a-label}
 
 Para rodar os testes E2E só quando necessário, use o gatilho [`on.pull_request_labeled`](/eas/workflows/syntax/#onpull_request_labeled). Ele aceita um parâmetro `labels`, e o workflow só roda quando alguém adiciona um desses labels a um pull request. Por exemplo, podemos usar o label `test` para disparar nosso workflow de testes E2E:
 
@@ -183,7 +183,7 @@ on:
   className="max-w-160"
 />
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/e2e-tests" />
 

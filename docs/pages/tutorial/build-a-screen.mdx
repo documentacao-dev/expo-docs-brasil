@@ -35,7 +35,7 @@ Depois que o usuário seleciona uma imagem, ele pode adicionar um adesivo a ela.
 
 <Step label="1">
 
-## Decomponha a tela
+## Decomponha a tela \{#break-down-the-screen}
 
 Antes de construir esta tela escrevendo código, vamos decompô-la em alguns elementos essenciais.
 
@@ -64,7 +64,7 @@ Agora que decompusemos a interface em partes menores, estamos prontos para come�
 
 <Step label="2">
 
-## Exiba a imagem
+## Exiba a imagem \{#display-the-image}
 
 Vamos usar a biblioteca `expo-image` para exibir a imagem no app. Ela fornece um componente `<Image>` multiplataforma para carregar e renderizar uma imagem. Ela já vem incluída no template padrão de projeto que estamos usando.
 
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 
 <Step label="3">
 
-## Divida os componentes em arquivos
+## Divida os componentes em arquivos \{#divide-components-into-files}
 
 Vamos dividir o código em vários arquivos conforme adicionarmos mais componentes a esta tela. Ao longo deste tutorial, vamos usar o diretório components para criar componentes personalizados.
 
@@ -208,7 +208,7 @@ O símbolo `@` é um [alias de caminho](/guides/typescript/#path-aliases-optiona
 
 <Step label="4">
 
-## Crie botões com Pressable
+## Crie botões com Pressable \{#create-buttons-using-pressable}
 
 O React Native inclui alguns componentes diferentes para tratar eventos de toque, mas o [`<Pressable>`](https://reactnative.dev/docs/pressable) é recomendado pela flexibilidade. Ele detecta toques simples e toques longos, dispara eventos separados quando o botão é pressionado e quando é solto, entre outros recursos.
 
@@ -317,7 +317,7 @@ O segundo botão, com o rótulo "Use this photo", se parece com o botão real do
 
 <Step label="5">
 
-## Aprimore o componente de botão reutilizável
+## Aprimore o componente de botão reutilizável \{#enhance-the-reusable-button-component}
 
 O botão "Choose a photo" precisa de um estilo diferente do botão "Use this photo". Vamos adicionar uma prop `theme` para aplicar a ele um tema `primary`. Esse botão também tem um ícone antes do rótulo. Vamos usar o componente `SymbolView` do [`expo-symbols`](/versions/latest/sdk/symbols/) para exibi-lo. No Android e na web, o `SymbolView` exibe um ícone do [Material Symbols](https://fonts.google.com/icons). No iOS, ele exibe um ícone do [SF Symbols](https://developer.apple.com/sf-symbols/). O template padrão já inclui o `expo-symbols`.
 
@@ -460,7 +460,7 @@ Vamos ver nosso app no Android, no iOS e na web:
 
 <Step label="6">
 
-## Use botões nativos com o Expo UI
+## Use botões nativos com o Expo UI \{#use-native-buttons-with-expo-ui}
 
 Nosso botão usa componentes do React Native, então ele tem a mesma aparência em todas as plataformas. O [Expo UI](/versions/latest/sdk/ui/) oferece componentes nativos: views do Jetpack Compose no Android e views do SwiftUI no iOS. O template padrão já inclui o Expo UI (`@expo/ui`). O Expo UI funciona no Expo Go.
 
@@ -634,7 +634,7 @@ Inicie o servidor de desenvolvimento de novo executando `npx expo start`. Vamos 
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/build-a-screen" />
 

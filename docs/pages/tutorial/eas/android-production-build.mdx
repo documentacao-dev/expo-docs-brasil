@@ -1,7 +1,7 @@
 ---
 title: Crie um build de produção para Android
 sidebar_title: Build de produção Android
-description: Saiba como criar um build de produção para Android e automatizar o processo de lançamento.
+description: Saiba como criar um build de produção para Android e automatizar o processo de release.
 hasVideoLink: true
 ---
 
@@ -13,19 +13,19 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-Neste capítulo, vamos criar a versão de produção do nosso app de exemplo e enviá-la para a Google Play Store. Também vamos explorar como automatizar a criação e o lançamento de novas versões do app.
+Neste capítulo, vamos criar a versão de produção do nosso app de exemplo e enviá-la para a Google Play Store. Também vamos explorar como automatizar a criação e o release de novas versões do app.
 
 <VideoBoxLink
   videoId="nxlt8uwqhpE"
   title="Assista: como criar e lançar um build de produção para Android"
-  description="Crie um build de produção para Android com o Expo Build, envie-o para a Google Play Store e automatize o processo de lançamento."
+  description="Crie um build de produção para Android com o Expo Build, envie-o para a Google Play Store e automatize o processo de release."
 />
 
 ---
 
 <Prerequisites>
   <Requirement title="Conta de desenvolvedor do Google Play">
-    É necessária uma conta paga de desenvolvedor do Google Play. Para detalhes sobre como criar uma,
+    É necessária uma conta paga de desenvolvedor do Google Play. Para saber como criar uma,
     acesse a [página de cadastro do Google Play](https://play.google.com/apps/publish/signup/).
   </Requirement>
   <Requirement title="Um perfil de build de produção no eas.json">
@@ -34,19 +34,19 @@ Neste capítulo, vamos criar a versão de produção do nosso app de exemplo e e
   </Requirement>
   <Requirement title="Chave de Conta de Serviço do Google (opcional)">
     Um e-mail e uma chave JSON de Conta de Serviço do Google são necessários para [automatizar o
-    processo de lançamento](#automated-release). Siga as instruções detalhadas em [criar uma chave
+    processo de release](#automated-release). Siga as instruções detalhadas em [criar uma chave
     de Conta de Serviço do Google ou baixá-la de uma conta existente](https://expo.fyi/creating-google-service-account)
     e depois volte para este guia.
   </Requirement>
 </Prerequisites>
 
-## Build de produção para Android
+## Build de produção para Android \{#production-build-for-android}
 
 Um [build de produção Android](/build/eas-json/#production-builds) tem o formato **.aab**, otimizado para distribuição na Google Play Store. Diferente dos builds **.apk**, arquivos **.aab** só podem ser distribuídos e instalados pela Google Play Store.
 
 <Step label="1">
 
-## Crie um build de produção
+## Crie um build de produção \{#create-a-production-build}
 
 Para criar um build de produção Android usando o perfil `production` padrão, abra o terminal e rode o comando a seguir. Como `production` está definido como perfil padrão no **eas.json**, não é preciso especificá-lo com a flag `--profile`.
 
@@ -58,9 +58,9 @@ O comando acima coloca o build na fila. Repare no painel da Expo que a coluna **
 
 <Step label="2">
 
-## Crie um app no Google Play Console
+## Crie um app no Google Play Console \{#create-an-app-on-the-google-play-console}
 
-> **info** Criar a primeira versão manualmente não é obrigatório: o `eas submit` pode criar a primeira versão do app diretamente. Neste tutorial, passamos pelo Play Console para nos familiarizar com como as versões funcionam.
+> **info** Criar o primeiro release manualmente não é obrigatório: o `eas submit` pode criar o primeiro release do app diretamente. Neste tutorial, passamos pelo Play Console para nos familiarizar com como as versões funcionam.
 
 Para enviar o app à Google Play Store pela primeira vez, precisamos:
 
@@ -85,7 +85,7 @@ Para enviar o app à Google Play Store pela primeira vez, precisamos:
 
 <Step label="3">
 
-## Publique uma versão de teste interno
+## Publique uma versão de teste interno \{#release-an-internal-testing-version}
 
 Depois que o app é criado no Google Play Console, somos redirecionados para a tela Dashboard do app. Precisamos preparar uma versão de teste interno do nosso app.
 
@@ -118,7 +118,7 @@ Depois que o app é criado no Google Play Console, somos redirecionados para a t
 
 <Step label="4">
 
-## Envie o binário do app
+## Envie o binário do app \{#upload-the-app-binary}
 
 Depois que o Expo Build criar o build de produção:
 
@@ -143,7 +143,7 @@ Depois que o Expo Build criar o build de produção:
 
 <Step label="5">
 
-## Compartilhe a versão de teste interno
+## Compartilhe a versão de teste interno \{#share-the-internal-release-version}
 
 Em **Track Summary**, vemos que a versão mais recente mostra um nome temporário para o app. Isso acontece porque nosso app ainda não foi analisado.
 
@@ -188,7 +188,7 @@ Em **Releases**, vemos que o app está disponível para testadores internos. Par
 
 > **info** **Dica**: Para publicar um app na Play Store, no painel do Google, conclua as etapas em **Set up your app**. Essas etapas são obrigatórias antes de lançar o app na Play Store pela primeira vez. Você vai precisar informar dados como o link de uma política de privacidade, o público-alvo, a segurança dos dados e outros.
 
-> **Complete app store listing**: Para preparar o app para a ficha na loja, veja [Criar recursos para a loja de apps](/guides/store-assets/) e aprenda a criar capturas de tela e prévias.
+> **Preencha a página do app na loja**: Para preparar o app para a ficha na loja, veja [Criar recursos para a loja de apps](/guides/store-assets/) e aprenda a criar capturas de tela e prévias.
 
 <Collapsible summary="Promovendo uma versão de teste">
 
@@ -203,11 +203,11 @@ Para promover nossa versão de teste interno para **alpha**, no Google Play Cons
 
 <Step label="6">
 
-## Adicione a chave de permissões da Conta de Serviço do Google
+## Adicione a chave de permissões da Conta de Serviço do Google \{#add-google-service-account-permissions-key}
 
 > **info** **Dica**: Antes de seguir os passos desta seção, veja as instruções do guia [criar uma chave de Conta de Serviço do Google ou baixá-la de uma conta existente](https://expo.fyi/creating-google-service-account).
 
-A partir de agora, podemos usar o [Expo Submit](/submit/android/) para automatizar os lançamentos e evitar o processo manual. Para isso, precisamos adicionar a chave da conta de serviço às credenciais do projeto.
+A partir de agora, podemos usar o [Expo Submit](/submit/android/) para automatizar os releases e evitar o processo manual. Para isso, precisamos adicionar a chave da conta de serviço às credenciais do projeto.
 
 Depois de seguir os passos do guia da Conta de Serviço do Google, podemos enviar a chave JSON baixada para o painel da Expo:
 
@@ -239,7 +239,7 @@ Depois de seguir os passos do guia da Conta de Serviço do Google, podemos envia
 
 <Step label="7">
 
-## Lançamento interno
+## Release interno \{#internal-release}
 
 Vamos definir a faixa (track) como `internal` no **eas.json**.
 
@@ -261,7 +261,7 @@ Vamos definir a faixa (track) como `internal` no **eas.json**.
 }
 ```
 
-No trecho acima, estamos adicionando a propriedade [`track`](/eas/json/#track) e definindo o valor dela como `internal`, que também é o valor padrão. Com esse valor, o comando `eas submit` envia nosso build de produção e o publica para teste interno na Google Play Store.
+No trecho acima, adicionamos a propriedade [`track`](/eas/json/#track) e definindo o valor dela como `internal`, que também é o valor padrão. Com esse valor, o comando `eas submit` envia nosso build de produção e o publica para teste interno na Google Play Store.
 
 - Agora rode o comando `eas submit` para publicar uma nova versão de teste interno:
 
@@ -270,7 +270,7 @@ No trecho acima, estamos adicionando a propriedade [`track`](/eas/json/#track) e
 - Esse comando vai criar automaticamente uma nova versão de teste interno no Google Play Console:
 
 <ContentSpotlight
-  alt="Versão de lançamento interno criada automaticamente no Google Play Console pelo Expo Submit"
+  alt="Release interno criado automaticamente no Google Play Console pelo Expo Submit"
   src="/static/images/tutorial/eas/play-store-18.png"
   className="max-w-[800px]"
 />
@@ -279,9 +279,9 @@ No trecho acima, estamos adicionando a propriedade [`track`](/eas/json/#track) e
 
 <Step label="8">
 
-## Lançamento de produção
+## Release de produção \{#production-release}
 
-Para lançar o app em produção:
+Para fazer o release do app em produção:
 
 - Altere o valor de `track` para `production` no **eas.json**:
 
@@ -300,7 +300,7 @@ Para lançar o app em produção:
 }
 ```
 
-- Também podemos usar o mesmo Expo Build que usamos para o lançamento de teste interno. Rode o comando `eas submit` para publicar na Play Store:
+- Também podemos usar o mesmo Expo Build que usamos para o release de teste interno. Rode o comando `eas submit` para publicar na Play Store:
 
 <Terminal cmd={['$ eas submit --platform android']} />
 
@@ -310,15 +310,15 @@ Para lançar o app em produção:
 
 <Step label="9">
 
-## Lançamento automatizado
+## Release automatizado \{#automated-release}
 
-Para os próximos lançamentos, podemos simplificar o processo combinando a criação do build e o envio para a Play Store em uma única etapa, usando a flag [`--auto-submit`](/build/automate-submissions/) com o `eas build`:
+Para os próximos releases, podemos simplificar o processo combinando a criação do build e o envio para a Play Store em uma única etapa, usando a flag [`--auto-submit`](/build/automate-submissions/) com o `eas build`:
 
 <Terminal cmd={['$ eas build --platform android --auto-submit']} />
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/android-production-build" />
 

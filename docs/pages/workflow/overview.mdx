@@ -13,7 +13,7 @@ import { Terminal } from '~/ui/components/Snippet';
 
 Se você é novo no Expo e no React Native ou já acompanha o ecossistema há algum tempo, este documento vai ajudar a entender melhor o processo de desenvolvimento de um app Expo. Ele vai ajudar você a formar um modelo mental do ciclo principal de desenvolvimento e de como as ferramentas do Expo se encaixam nele.
 
-## Conceitos-chave
+## Conceitos-chave \{#key-concepts}
 
 Os conceitos a seguir são importantes para entender, e recomendamos voltar a essas definições enquanto você lê o restante deste guia e também ao usar as ferramentas do Expo.
 
@@ -23,7 +23,7 @@ Este é um termo abreviado que usamos para descrever um _app React Native que us
 
 Dizemos "app Expo" porque _app React Native que usa ferramentas do Expo_ é extremamente inconveniente de digitar e falar em voz alta com frequência.
 
-<Collapsible summary={<>Is the development process different for an "Expo app" and a "React Native app that does <span><i>not</i></span> use Expo tools"?</>}>
+<Collapsible summary={<>O processo de desenvolvimento é diferente para um "app Expo" e para um "app React Native que <span><i>não</i></span> usa ferramentas do Expo"?</>}>
 
 O Expo oferece uma variedade de ferramentas e serviços que podem ser adotados de forma independente, então a resposta depende de quais ferramentas você escolhe usar. Para a maior parte do que o Expo oferece, não existe uma ferramenta do React Native fornecida pela Meta que seja comparável.
 
@@ -41,7 +41,7 @@ Os Serviços do Expo são um conjunto de serviços hospedados que você pode usa
 - Configurar automações em torno de todos esses processos
 - Colaborar com a sua equipe
 
-Os Serviços do Expo resolvem um conjunto de problemas que exigem recursos físicos, como servidores de aplicação e CDNs para servir atualizações over-the-air, e servidores físicos para rodar os builds. Os Serviços do Expo têm um [plano gratuito](https://expo.dev/pricing#get-started) generoso, que funciona para muitos projetos de estudantes e projetos pessoais.
+Os Serviços do Expo resolvem um conjunto de problemas que exigem recursos físicos, como servidores de app e CDNs para servir atualizações over-the-air, e servidores físicos para rodar os builds. Os Serviços do Expo têm um [plano gratuito](https://expo.dev/pricing#get-started) generoso, que funciona para muitos projetos de estudantes e projetos pessoais.
 
 Você não precisa usar o GitHub para usar o git, mas ele certamente ajuda em muitos casos. O mesmo vale para os Serviços do Expo e para o Expo.
 
@@ -73,7 +73,7 @@ No entanto, **o Expo Go é um playground limitado e não serve para criar projet
 
 <Collapsible summary="Development builds">
 
-Um development build é uma build de depuração do seu app que contém a biblioteca `expo-dev-client`. Ele ajuda você a iterar o mais rápido possível e oferece um ambiente de desenvolvimento mais flexível, confiável e completo do que o Expo Go. Você pode instalar qualquer biblioteca nativa e configurar ou aplicar alterações em um [projeto nativo](#android-and-ios-native-projects) usando a [config do app](/workflow/configuration/) ou criando um [config plugin](/config-plugins/introduction/). Você pode criar um development build [localmente](/guides/local-app-development/#local-builds-with-expo-dev-client) ou usar o [Expo Build](/develop/development-builds/introduction/?buildenv=build-with-expo-services#how-would-you-like-to-build-your-development-build) para criar um build na nuvem.
+Um development build é um build de debug do seu app que contém a biblioteca `expo-dev-client`. Ele ajuda você a iterar o mais rápido possível e oferece um ambiente de desenvolvimento mais flexível, confiável e completo do que o Expo Go. Você pode instalar qualquer biblioteca nativa e configurar ou aplicar alterações em um [projeto nativo](#android-and-ios-native-projects) usando a [app config](/workflow/configuration/) ou criando um [config plugin](/config-plugins/introduction/). Você pode criar um development build [localmente](/guides/local-app-development/#local-builds-with-expo-dev-client) ou usar o [Expo Build](/develop/development-builds/introduction/?buildenv=build-with-expo-services#how-would-you-like-to-build-your-development-build) para criar um build na nuvem.
 
 </Collapsible>
 
@@ -83,19 +83,19 @@ Apps React Native para plataformas móveis são formados por duas partes interli
 
 <Collapsible summary="1. O JavaScript do app">
 
-Aqui ficam os seus componentes React e a maior parte, se não toda, a lógica da sua aplicação. Ele tem mais ou menos o mesmo papel do JavaScript do app em sites React.
+Aqui ficam os seus componentes React e a maior parte, se não toda, a lógica do seu app. Ele tem mais ou menos o mesmo papel do JavaScript do app em sites React.
 
 </Collapsible>
 
 <Collapsible summary="2. Os projetos nativos">
 
-Os projetos do Android e do Xcode que empacotam o app JavaScript e servem como ponto de partida para o app JavaScript em cada plataforma. Eles também cuidam da renderização de componentes nativos e oferecem os meios para acessar funcionalidades específicas de cada plataforma e integrar com quaisquer bibliotecas nativas instaladas. A configuração do app, como o nome (como aparece na tela inicial), o ícone, as permissões necessárias, os domínios associados, as orientações suportadas e assim por diante, é definida no projeto nativo.
+Os projetos do Android e do Xcode que empacotam o app JavaScript e servem como ponto de partida para o app JavaScript em cada plataforma. Eles também cuidam da renderização de componentes nativos e oferecem os meios para acessar funcionalidades específicas de cada plataforma e integrar com quaisquer bibliotecas nativas instaladas. A configuração do app, como o nome (como aparece na tela inicial), o ícone, as permissões necessárias, os domínios associados, as orientações compatíveis e assim por diante, é definida no projeto nativo.
 
 </Collapsible>
 
-Como qualquer app mobile, o aplicativo distribuído aos usuários é criado compilando ("fazendo o build") o projeto do Android Studio ou do Xcode.
+Como qualquer app mobile, o app distribuído aos usuários é criado compilando ("fazendo o build") o projeto do Android Studio ou do Xcode.
 
-Quando você inicializa um novo app com `npx create-expo-app`, não verá nenhum diretório **android** ou **ios**. Você pode [gerar os projetos nativos rodando `npx expo prebuild`](/workflow/continuous-native-generation/), que inicializa os projetos nativos e depois aplica a config do app Expo do projeto (**app.json/app.config.js**) a eles.
+Quando você inicializa um novo app com `npx create-expo-app`, não verá nenhum diretório **android** ou **ios**. Você pode [gerar os projetos nativos rodando `npx expo prebuild`](/workflow/continuous-native-generation/), que inicializa os projetos nativos e depois aplica a app config Expo do projeto (**app.json/app.config.js**) a eles.
 
 Se você usa um fluxo de desenvolvimento na nuvem, pode nunca precisar rodar o prebuild nem instalar o Android Studio ou o Xcode na sua própria máquina (embora isso possa ser útil). Isso é explicado abaixo, em [fluxos de desenvolvimento na nuvem e local](#cloud-based-and-local-development-workflows).
 
@@ -145,7 +145,7 @@ Os três comandos a seguir resultam, mais ou menos, no mesmo projeto:
 
 A Geração Nativa Contínua (CNG) é um processo para criar um app Expo em que os seus [projetos nativos](#android-and-ios-native-projects) são gerados sob demanda a partir do **app.json** e do **package.json**, de forma parecida com a geração do **node_modules** a partir do **package.json**.
 
-Os diretórios do [projeto nativo](#android-and-ios-native-projects) (**android** e **ios**) são adicionados automaticamente ao seu **.gitignore** quando você cria um novo projeto, e você pode apagá-los a qualquer momento e gerá-los de novo a partir da config do app Expo com `npx expo prebuild` sempre que for necessário. Você pode nunca nem rodar o prebuild na sua própria máquina de desenvolvimento se usar um fluxo de desenvolvimento na nuvem.
+Os diretórios do [projeto nativo](#android-and-ios-native-projects) (**android** e **ios**) são adicionados automaticamente ao seu **.gitignore** quando você cria um novo projeto, e você pode apagá-los a qualquer momento e gerá-los de novo a partir da app config Expo com `npx expo prebuild` sempre que for necessário. Você pode nunca nem rodar o prebuild na sua própria máquina de desenvolvimento se usar um fluxo de desenvolvimento na nuvem.
 
 Usar o CNG pode tornar a atualização para novas versões do React Native bem mais fácil. Ele pode simplificar a manutenção do projeto e facilitar a configuração de recursos complexos, como [App Clips](https://github.com/bndkt/react-native-app-clip), [extensões de compartilhamento](https://github.com/timedtext/expo-config-plugin-ios-share-extension) e [relatórios de erro](https://github.com/getsentry/sentry-react-native). Tudo isso é possível graças aos [config plugins](/config-plugins/introduction/). Saiba mais sobre o [CNG](/workflow/continuous-native-generation/).
 
@@ -153,7 +153,7 @@ Usar o CNG pode tornar a atualização para novas versões do React Native bem m
 
 O CNG se mostrou útil para muitas equipes. No entanto, ele pode não ser a melhor opção para o seu projeto, e essa é uma forma perfeitamente razoável de usar as ferramentas do Expo em muitos casos.
 
-Você pode rodar `npx expo prebuild` no projeto e depois fazer alterações diretamente nos diretórios **android** e **ios**, em vez de usar a config do app Expo. Se decidir fazer isso, tenha em mente que você não poderá mais gerar os seus projetos de novo com o prebuild: rodar o prebuild depois de fazer alterações nativas diretamente vai sobrescrever todas essas modificações.
+Você pode rodar `npx expo prebuild` no projeto e depois fazer alterações diretamente nos diretórios **android** e **ios**, em vez de usar a app config Expo. Se decidir fazer isso, tenha em mente que você não poderá mais gerar os seus projetos de novo com o prebuild: rodar o prebuild depois de fazer alterações nativas diretamente vai sobrescrever todas essas modificações.
 
 Observe que você pode usar [config plugins](/config-plugins/introduction/) para modificar a configuração do projeto nativo sem precisar alterar os projetos nativos diretamente, e se decidir voltar ao CNG em algum momento.
 
@@ -161,7 +161,7 @@ Observe que você pode usar [config plugins](/config-plugins/introduction/) para
 
 <Collapsible summary="Como sei quando preciso rodar o prebuild de novo?">
 
-Se você adicionar uma nova dependência nativa ao projeto ou alterar a configuração do projeto na config do app Expo (**app.json/app.config.js**), pode rodar `npx expo prebuild --clean` para gerar de novo os diretórios do projeto nativo.
+Se você adicionar uma nova dependência nativa ao projeto ou alterar a configuração do projeto na app config Expo (**app.json/app.config.js**), pode rodar `npx expo prebuild --clean` para gerar de novo os diretórios do projeto nativo.
 
 Veja [Determinando a compatibilidade de bibliotecas de terceiros](/workflow/using-libraries/#determining-third-party-library-compatibility) para mais informações sobre como saber se uma nova dependência exige alterações no código nativo.
 
@@ -181,7 +181,7 @@ Saiba mais sobre os [fluxos na nuvem com o Expo Build](/build/introduction/) e s
 
 </Collapsible>
 
-## Inicialize e rode um projeto
+## Inicialize e rode um projeto \{#initialize-and-run-a-project}
 
 A forma mais fácil de [criar um novo projeto é com o `create-expo-app`](/get-started/create-a-project/). Depois de criar o projeto, você pode abri-lo imediatamente no Expo Go, no seu dispositivo físico ou em um emulador/simulador, se quiser experimentar ou criar um protótipo rápido.
 
@@ -201,7 +201,7 @@ Na maioria dos casos, você vai criar e usar um development build do seu projeto
   Icon={CodeSquare01Icon}
 />
 
-## O ciclo principal de desenvolvimento
+## O ciclo principal de desenvolvimento \{#the-core-development-loop}
 
 <Diagram
   source="/static/images/guides/core-development-loop-light.png"
@@ -218,7 +218,7 @@ O ciclo principal de desenvolvimento descrito no diagrama acima é um ciclo de q
 
 - #### Atualize a configuração do app
 
-  Isso envolve modificar a configuração do seu app usando o arquivo de config do app (**app.json** ou **app.config.js**). Inclui atualizar o nome, o ícone, a splash screen e outras propriedades do seu app. Nem todas essas mudanças afetam diretamente o projeto nativo. No entanto, se você fizer alterações que afetam os projetos nativos, pode usar a [config do app](/workflow/configuration/) para modificar a configuração do projeto nativo, ou criar ou usar um [config plugin](/config-plugins/introduction/). Veja a [referência da config do app](/versions/latest/config/app/) para a lista completa de propriedades disponíveis no arquivo de config do app.
+  Isso envolve modificar a configuração do seu app usando o arquivo de app config (**app.json** ou **app.config.js**). Inclui atualizar o nome, o ícone, a splash screen e outras propriedades do seu app. Nem todas essas mudanças afetam diretamente o projeto nativo. No entanto, se você fizer alterações que afetam os projetos nativos, pode usar a [app config](/workflow/configuration/) para modificar a configuração do projeto nativo, ou criar ou usar um [config plugin](/config-plugins/introduction/). Veja a [referência da app config](/versions/latest/config/app/) para a lista completa de propriedades disponíveis no arquivo de app config.
 
 - #### Escreva código nativo ou modifique a configuração do projeto nativo
 
@@ -226,7 +226,7 @@ O ciclo principal de desenvolvimento descrito no diagrama acima é um ciclo de q
 
 - #### Instale uma biblioteca que exige modificações no código nativo
 
-  Isso acontece quando uma biblioteca exige alterações na configuração do projeto de código nativo. Ou a biblioteca oferece um config plugin, ou indica os passos para atualizar a config do app. Assim como na atividade anterior, isso também exige que você crie um development build.
+  Isso acontece quando uma biblioteca exige alterações na configuração do projeto de código nativo. Ou a biblioteca oferece um config plugin, ou indica os passos para atualizar a app config. Assim como na atividade anterior, isso também exige que você crie um development build.
 
 Ao criar um [development build](#development-builds), você tem duas opções. Pode criar um build na nuvem usando o [Expo Build](/build/setup/) ou fazê-lo localmente. Se escolher fazer localmente, pode usar o [CNG](#continuous-native-generation-cng) e depois o [`npx expo prebuild --clean`](#how-do-i-know-when-i-need), ou pode criar um development build usando o [`npx expo run android|ios` ou o Android Studio e o Xcode](/guides/local-app-development/#local-app-compilation).
 
@@ -236,7 +236,7 @@ Durante o ciclo de desenvolvimento do seu app, você também pode [instalar vari
 
 Outra parte fundamental do ciclo de desenvolvimento é a depuração. Veja [Depurando problemas de runtime](/debugging/runtime-issues/) para mais informações sobre como depurar o seu app e conheça as diferentes [ferramentas de depuração](/debugging/tools/) disponíveis.
 
-## Compartilhe o app com testadores
+## Compartilhe o app com testadores \{#share-app-with-testers}
 
 O próximo passo no desenvolvimento de um app é compartilhá-lo com a sua equipe, com testadores beta ou rodá-lo em vários dispositivos de teste. Uma abordagem tradicional é enviar o binário do seu app para o Google Play Beta (Android) ou o TestFlight (iOS). Isso pode ser um trabalho demorado e se limita a apenas um build ativo por vez (por exemplo, no caso do TestFlight).
 
@@ -244,22 +244,22 @@ Se você usa o Expo Build, recomendamos seguir a [distribuição interna](/build
 
 Se você compilar o seu app localmente, pode criar [builds de produção localmente](/guides/local-app-production/).
 
-## Publique o app nas lojas
+## Publique o app nas lojas \{#release-app-to-stores}
 
-Para publicar o seu app nas lojas de aplicativos, você pode usar o [Expo Submit](/deploy/submit-to-app-stores/). Para mais informações sobre como usar o Expo Submit, veja [Envie para a Google Play Store](/submit/android/) e [Envie para a Apple App Store](/submit/ios/).
+Para publicar o seu app nas app stores, você pode usar o [Expo Submit](/deploy/submit-to-app-stores/). Para mais informações sobre como usar o Expo Submit, veja [Envie para a Google Play Store](/submit/android/) e [Envie para a Apple App Store](/submit/ios/).
 
-Para criar um build de produção localmente, veja o [guia](/guides/local-app-production/) sobre o assunto e depois siga o guia das lojas de aplicativos para enviar o seu app.
+Para criar um build de produção localmente, veja o [guia](/guides/local-app-production/) sobre o assunto e depois siga o guia das app stores para enviar o seu app.
 
-## Monitore o app em produção
+## Monitore o app em produção \{#monitor-app-in-production}
 
 Duas formas de monitorar o seu app em produção são os relatórios de falhas e as análises de uso. Os relatórios de falhas ajudam você a saber sobre exceções ou erros que os seus usuários encontram ao usar o app. Você pode usar o [Sentry](/guides/using-sentry/) ou o [BugSnag](https://docs.bugsnag.com/platforms/react-native/expo/) para ativar os relatórios de falhas.
 
 As análises de uso permitem acompanhar como os usuários interagem com o seu app. Veja a [visão geral de analytics](/guides/using-analytics/) para saber mais sobre os serviços disponíveis no ecossistema Expo e React Native.
 
-## Atualize o app
+## Atualize o app \{#update-the-app}
 
 A biblioteca `expo-updates` permite fazer atualizações instantâneas do JavaScript do seu app de forma programática, disponibilizando-as para o seu app em produção.
 
-Você pode usar o [Expo Updates](/eas-update/introduction/), que oferece suporte de primeira classe a atualizações instantâneas em um app React Native. Ele entrega as atualizações a partir da borda de uma CDN global e usa protocolos de rede modernos, como o HTTP/3, para os clientes que os suportam. Também foi [pensado para desenvolvedores](/eas-update/preview/) que usam o Expo Build. Você também pode usá-lo com os builds que criou [localmente](/eas-update/standalone-service/).
+Você pode usar o [Expo Updates](/eas-update/introduction/), que oferece suporte de primeira classe a atualizações instantâneas em um app React Native. Ele entrega as atualizações a partir da borda de uma CDN global e usa protocolos de rede modernos, como o HTTP/3, para os clientes compatíveis. Também foi [pensado para desenvolvedores](/eas-update/preview/) que usam o Expo Build. Você também pode usá-lo com os builds que criou [localmente](/eas-update/standalone-service/).
 
 {/* ia-translate: true */}

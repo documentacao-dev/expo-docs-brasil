@@ -169,7 +169,11 @@ def neutralizar_atributos(tag):
             continue
         inner = tag[ini + 1:fim].strip()
         if inner.startswith('<>') and inner.endswith('</>'):
-            elementos = ' '.join(e.group(0) for e in ELEMENTO_INLINE.finditer(inner[2:-3]))
+            # Código (<CODE>, <A ...>) conta inteiro; formatação (<span>, <i>, <b>, <em>,
+            # <strong>) é texto visível: conta só a tag, não o conteúdo.
+            elementos = ' '.join(
+                re.sub(r'>[^<]*<', '><', e.group(0)) if re.match(r'<(span|i|b|em|strong)\b', e.group(0)) else e.group(0)
+                for e in ELEMENTO_INLINE.finditer(inner[2:-3]))
             out.append(tag[pos:m.start()] + f'{m.group(1)}={{<>{elementos}</>}}')
             pos = fim + 1
     out.append(tag[pos:])
@@ -177,6 +181,7 @@ def neutralizar_atributos(tag):
     if tag.startswith('<FileTree'):
         # files={[['caminho', 'descrição visível'], ...]}: a descrição pode ser traduzida
         tag = re.sub(r"(\[\s*'[^']*'\s*,\s*)'[^']*'(\s*\])", r"\1''\2", tag)
+        tag = re.sub(r'(\[\s*\'[^\']*\'\s*,\s*)"[^"]*"(\s*\])', r"\1''\2", tag)
     return tag
 
 

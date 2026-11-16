@@ -24,7 +24,7 @@ Neste capítulo, vamos aprender a capturar uma tela usando uma biblioteca de ter
 
 <Step label="1">
 
-## Instale as bibliotecas
+## Instale as bibliotecas \{#install-libraries}
 
 Na web, o `react-native-view-shot` usa o `html2canvas-pro` para capturar a tela. Para instalar `react-native-view-shot`, `html2canvas-pro` e `expo-media-library`, execute os comandos a seguir:
 
@@ -41,7 +41,7 @@ Na web, o `react-native-view-shot` usa o `html2canvas-pro` para capturar a tela.
 
 <Step label="2">
 
-## Solicite permissões
+## Solicite permissões \{#prompt-for-permissions}
 
 Um app que acessa informações sensíveis, como a biblioteca de mídia do dispositivo, precisa pedir permissão para permitir ou negar o acesso. O hook [`usePermissions()`](/versions/latest/sdk/media-library/#usepermissionsoptions) do `expo-media-library` retorna a resposta de permissão `permissionResponse` e o método `requestPermission()` para pedir acesso. Nosso app só salva imagens na biblioteca de mídia, então vamos passar a opção `writeOnly: true` para pedir acesso de escrita sem acesso de leitura.
 
@@ -76,7 +76,7 @@ export default function Index() {
 
 <Step label="3">
 
-## Crie uma ref para salvar a view atual
+## Crie uma ref para salvar a view atual \{#create-a-ref-to-save-the-current-view}
 
 Vamos usar o `react-native-view-shot` para permitir que o usuário tire uma captura de tela dentro do app. Essa biblioteca captura a tela de uma `<View>` como imagem, usando o método `captureRef()`. Ele retorna a URI do arquivo de imagem capturado.
 
@@ -116,7 +116,7 @@ No trecho acima, a prop `collapsable` está definida como `false`. Isso permite 
 
 <Step label="4">
 
-## Capture a tela e salve-a
+## Capture a tela e salve-a \{#capture-a-screenshot-and-save-it}
 
 Podemos capturar a tela da view chamando o método `captureRef()` do `react-native-view-shot` dentro da função `onSaveImageAsync()`. Ele aceita um argumento opcional, no qual podemos passar a `width` e a `height` da área de captura. Podemos ler mais sobre as opções disponíveis na [documentação da biblioteca](https://github.com/gre/react-native-view-shot#capturerefview-options-lower-level-imperative-api).
 
@@ -275,7 +275,7 @@ Agora, escolha uma foto e adicione um adesivo no app. Depois, toque no botão **
 
 <Step label="5">
 
-## Salve a captura de tela na web
+## Salve a captura de tela na web \{#save-the-screenshot-on-the-web}
 
 O `react-native-view-shot` também consegue capturar a tela na web. No entanto, o `expo-media-library` funciona apenas no Android e no iOS. Na web, vamos baixar a captura como um arquivo de imagem.
 
@@ -456,7 +456,7 @@ Ao rodar o app em um navegador web, já podemos salvar uma captura de tela:
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/screenshot" />
 

@@ -16,7 +16,7 @@ A splash screen e o ícone do app são elementos fundamentais de um app mobile. 
 
 ---
 
-## Splash screen
+## Splash screen \{#splash-screen}
 
 A splash screen, também conhecida como launch screen, é a primeira tela que o usuário vê ao abrir o app. Ela continua visível enquanto o app carrega. Você também pode controlar quando a splash screen desaparece usando a [API SplashScreen](/versions/latest/sdk/splash-screen) nativa.
 
@@ -26,7 +26,7 @@ O [`expo-splash-screen`](/versions/latest/sdk/splash-screen) tem um [config plug
 
 <Step label="1">
 
-### Crie o ícone da splash screen
+### Crie o ícone da splash screen \{#create-a-splash-screen-icon}
 
 Para criar o ícone da splash screen, você pode usar este [template do Figma](https://www.figma.com/community/file/1637141012732584189). Ele traz um design mínimo para o ícone e imagens de splash para Android e iOS.
 
@@ -40,17 +40,17 @@ Para criar o ícone da splash screen, você pode usar este [template do Figma](h
 
 <Step label="2">
 
-### Exporte o ícone da splash como .png
+### Exporte o ícone da splash como .png \{#export-the-splash-icon-as-a-png}
 
 Depois de criar o ícone da splash screen, exporte-o como **.png** e salve-o no diretório **assets/images**. Por padrão, o Expo usa **splash-icon.png** como nome do arquivo. Se você decidir mudar o nome do arquivo da splash screen, use esse nome no próximo passo.
 
-> **Note:** **Atualmente, só imagens .png são aceitas** como ícone da splash screen em um projeto Expo. Se você usar outro formato de imagem, o production build do seu app vai falhar.
+> **Note:** **Por enquanto, só imagens .png são aceitas** como ícone da splash screen em um projeto Expo. Se você usar outro formato de imagem, o production build do seu app vai falhar.
 
 </Step>
 
 <Step label="3">
 
-### Configure o ícone da splash screen
+### Configure o ícone da splash screen \{#configure-the-splash-screen-icon}
 
 Abra o arquivo de app config e, em plugins, defina as seguintes propriedades:
 
@@ -96,7 +96,7 @@ Para testar a nova splash screen, faça o build do seu app para [distribuição 
 
 </Step>
 
-<Collapsible summary={<>Configuring <CODE>expo-splash-screen</CODE> properties separately for Android and iOS</>}>
+<Collapsible summary={<>Configurando as propriedades do <CODE>expo-splash-screen</CODE> separadamente para Android e iOS</>}>
 
 O [`expo-splash-screen`](/versions/latest/sdk/splash-screen) também aceita as propriedades `android` e `ios` para configurar a splash screen de uma plataforma específica. Veja o exemplo a seguir:
 
@@ -128,7 +128,7 @@ O [`expo-splash-screen`](/versions/latest/sdk/splash-screen) também aceita as p
 
 <Collapsible summary="Não está usando prebuild?">
 
-Se o seu app não usa o [Expo Prebuild](/more/glossary-of-terms/#prebuild) para gerar as pastas nativas **android** e **ios**, as mudanças no app config não terão efeito. Para mais informações, veja [como personalizar a configuração manualmente](https://github.com/expo/expo/tree/main/packages/expo-splash-screen#-installation-in-bare-react-native-projects).
+Se o app não usa o [Expo Prebuild](/more/glossary-of-terms/#prebuild) para gerar as pastas nativas **android** e **ios**, as mudanças no app config não terão efeito. Para mais informações, veja [como personalizar a configuração manualmente](https://github.com/expo/expo/tree/main/packages/expo-splash-screen#-installation-in-bare-react-native-projects).
 
 </Collapsible>
 
@@ -149,13 +149,13 @@ Veja o [guia da Apple sobre como testar launch screens](https://developer.apple.
 
 </Collapsible>
 
-## Ícone do app
+## Ícone do app \{#app-icon}
 
 O ícone do app é o que os usuários veem na tela inicial do dispositivo e nas lojas de apps. Android e iOS têm requisitos diferentes e rigorosos.
 
 <Step label="1">
 
-### Crie o ícone do app
+### Crie o ícone do app \{#create-an-app-icon}
 
 Para criar o ícone do app, você pode usar este [template do Figma](https://www.figma.com/community/file/1637141012732584189). Ele traz um design mínimo para o ícone e imagens de splash para Android e iOS.
 
@@ -163,7 +163,7 @@ Para criar o ícone do app, você pode usar este [template do Figma](https://www
 
 <Step label="2">
 
-### Exporte a imagem do ícone como .png
+### Exporte a imagem do ícone como .png \{#export-the-icon-image-as-a-png}
 
 Depois de criar o ícone do app, exporte-o como **.png** e salve-o no diretório **assets/images**. Por padrão, o Expo usa **icon.png** como nome do arquivo. Se você decidir usar outro nome, use esse nome no próximo passo.
 
@@ -171,7 +171,7 @@ Depois de criar o ícone do app, exporte-o como **.png** e salve-o no diretório
 
 <Step label="3">
 
-### Adicione o ícone no app config
+### Adicione o ícone no app config \{#add-the-icon-in-app-config}
 
 Abra o app config e adicione o caminho local como valor da propriedade [`icon`](/versions/latest/config/app/#icon) para apontar para o novo ícone do app:
 
@@ -183,24 +183,24 @@ Abra o app config e adicione o caminho local como valor da propriedade [`icon`](
 
 <Collapsible summary="Dicas de configuração personalizada para Android e iOS">
 
-#### Android
+#### Android \{#android}
 
 É possível personalizar ainda mais o ícone do Android usando a propriedade [`android.adaptiveIcon`](/versions/latest/config/app/#adaptiveicon), que sobrescreve as duas configurações mencionadas anteriormente.
 
 O Adaptive Icon do Android é formado por duas camadas separadas: uma imagem de foreground e uma cor ou imagem de background. Isso permite que o sistema aplique máscaras para deixar o ícone com formatos diferentes e também oferece suporte a efeitos visuais. A partir do Android 13, o sistema também aceita um ícone temático, que usa o papel de parede e o tema para definir as cores de acordo com o tema do dispositivo.
 
-O design que você fornecer deve seguir as [diretrizes de Adaptive Icon do Android](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive) para ícones de launcher. Você também deve:
+O design que você fornecer deve seguir as [diretrizes de Adaptive Icon do Android](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive) para ícones de launcher. Siga também estas orientações:
 
 - Use arquivos **.png**.
 - Use a propriedade `android.adaptiveIcon.foregroundImage` para indicar o caminho da imagem de foreground.
 - Use a propriedade `android.adaptiveIcon.monochromeImage` para indicar o caminho da imagem monocromática.
 - A cor de fundo padrão é branca. Para usar outra cor, use a propriedade `android.adaptiveIcon.backgroundColor`. Você também pode usar uma imagem de fundo com a propriedade `android.adaptiveIcon.backgroundImage`. Garanta que ela tenha as mesmas dimensões da imagem de foreground.
 
-Você também pode querer fornecer um ícone separado para dispositivos Android mais antigos que não aceitam Adaptive Icons. Para isso, use a propriedade `android.icon`. Esse ícone único deve combinar as camadas de foreground e background.
+Também é possível fornecer um ícone separado para dispositivos Android mais antigos que não aceitam Adaptive Icons. Para isso, use a propriedade `android.icon`. Esse ícone único deve combinar as camadas de foreground e background.
 
 > Veja as [boas práticas da Apple](https://developer.apple.com/design/human-interface-guidelines/app-icons/#Best-practices) para garantir que seu ícone tenha uma aparência profissional, como testar o ícone em diferentes papéis de parede e evitar texto ao lado do logotipo do produto. Forneça um ícone de pelo menos 512x512 pixels.
 
-#### iOS
+#### iOS \{#ios}
 
 <VideoBoxLink
   videoId="RZ_QMym3adw"
@@ -223,7 +223,7 @@ No iOS, o ícone do app deve seguir as [Apple Human Interface Guidelines](https:
 }
 ```
 
-Como alternativa, a abordagem anterior, de fornecer uma imagem, ainda é compatível. Você deve:
+Como alternativa, a abordagem anterior, de fornecer uma imagem, ainda é compatível. Siga estas orientações:
 
 - Use um arquivo **.png**.
 - 1024x1024 é um bom tamanho. Se você tem um projeto Expo criado com `npx create-expo-app`, o [Expo Build](/build/setup/) gera os outros tamanhos para você. No caso de um [projeto React Native existente](/bare/overview/), gere os ícones por conta própria. O maior tamanho que o Expo Build gera é 1024x1024.

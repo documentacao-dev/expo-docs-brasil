@@ -10,7 +10,7 @@ Um **asset estático** é um arquivo empacotado junto com o binário nativo do s
 
 Este guia mostra as diferentes formas de carregar e usar assets estáticos no seu projeto e também traz informações sobre como otimizar e reduzir o tamanho dos assets.
 
-## Servir um asset localmente
+## Servir um asset localmente \{#serve-an-asset-locally}
 
 Quando um asset está armazenado no sistema de arquivos do projeto, ele pode ser incorporado ao binário do app no momento do build ou carregado em tempo de execução. Você pode importá-lo como um módulo JavaScript usando as instruções `require` ou `import`.
 
@@ -24,11 +24,11 @@ No exemplo acima, o bundler lê os metadados da imagem importada e fornece autom
 
 Bibliotecas como `expo-image` e `expo-file-system` funcionam de forma parecida com o componente `<Image>` quando usadas com assets locais.
 
-### Como os assets locais são servidos
+### Como os assets locais são servidos \{#how-are-assets-served-locally}
 
 Os assets armazenados localmente são servidos via HTTP em desenvolvimento. Em apps de produção, eles são incluídos automaticamente no binário do app durante o build e servidos a partir do disco no dispositivo.
 
-### Carregar um asset no build com o plugin de config `expo-asset`
+### Carregar um asset no build com o plugin de config `expo-asset` \{#load-an-asset-at-build-time-with-expo-asset-config-plugin}
 
 Para carregar um asset no build, use o [plugin de config](/versions/latest/sdk/asset/#example-appjson-with-config-plugin) da biblioteca `expo-asset`. Esse plugin incorpora o arquivo do asset ao seu projeto nativo.
 
@@ -91,7 +91,7 @@ export default function HomeScreen() {
 
 > **info** O plugin de config `expo-asset` aceita diferentes formatos de arquivo. Para mais informações sobre esses formatos, veja a [referência da API de Assets](/versions/latest/sdk/asset/#configurable-properties). Se você não encontrar um formato de arquivo aceito pelo plugin de config, pode usar o hook [`useAssets`](#load-an-asset-at-runtime-with-useassets-hook) para carregar o asset em tempo de execução.
 
-### Carregar um asset em tempo de execução com o hook `useAssets`
+### Carregar um asset em tempo de execução com o hook `useAssets` \{#load-an-asset-at-runtime-with-useassets-hook}
 
 O hook `useAssets` da biblioteca `expo-asset` permite carregar assets de forma assíncrona. Ele baixa e armazena o asset localmente e, depois que o asset é carregado, retorna uma lista com as instâncias desse asset.
 
@@ -129,7 +129,7 @@ export default function HomeScreen() {
 
 </Step>
 
-## Servir um asset remotamente
+## Servir um asset remotamente \{#serve-an-asset-remotely}
 
 Quando um asset é servido remotamente, ele não é incluído no binário do app durante o build. Você pode usar a URL do recurso no seu projeto se ele estiver hospedado remotamente. Por exemplo, passe a URL para o componente `<Image>` para renderizar uma imagem remota:
 
@@ -148,11 +148,11 @@ Não há garantia de que imagens servidas remotamente por uma URL da web estejam
 
 Além disso, carregar assets remotamente exige que você informe os metadados do asset. No exemplo acima, como o bundler não consegue obter a largura e a altura da imagem, esses valores são passados explicitamente ao componente `<Image>`. Se você não fizer isso, a imagem assume o padrão de 0px por 0px.
 
-## Informações adicionais
+## Informações adicionais \{#additional-information}
 
-### Métodos de otimização manual
+### Métodos de otimização manual \{#manual-optimization-methods}
 
-#### Imagens
+#### Imagens \{#images}
 
 Você pode comprimir imagens com as ferramentas a seguir:
 
@@ -164,13 +164,13 @@ Alguns otimizadores de imagem são sem perda (lossless). Eles recodificam a imag
 
 Outros otimizadores de imagem são com perda (lossy). A imagem otimizada é diferente da original. Muitas vezes, os otimizadores com perda são mais eficientes, porque descartam informações visuais que reduzem o tamanho do arquivo, mas deixam a imagem praticamente idêntica para as pessoas. Ferramentas como o `imagemagick` podem usar algoritmos de comparação, como o [SSIM](https://en.wikipedia.org/wiki/Structural_similarity), para mostrar o quão parecidas duas imagens são. É bem comum que uma imagem otimizada com mais de 95% de semelhança com a original tenha bem menos de 95% do tamanho do arquivo original.
 
-#### Outros assets
+#### Outros assets \{#other-assets}
 
 Para assets como GIFs, vídeos ou outros assets que não são código nem imagem, cabe a você otimizar e reduzir o tamanho desses arquivos.
 
 > **Note**: GIFs são um formato muito ineficiente. Codecs de vídeo modernos conseguem arquivos bem menores e com melhor qualidade.
 
-### Fontes
+### Fontes \{#fonts}
 
 Veja [Adicione uma fonte personalizada](/develop/user-interface/fonts/#add-a-custom-font) para mais informações sobre como adicionar uma fonte personalizada ao seu app.
 

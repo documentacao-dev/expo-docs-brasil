@@ -22,7 +22,7 @@ import { CODE } from '~/ui/components/Text';
 
 Você também vai usar a biblioteca [`jest-expo`](https://github.com/expo/expo/tree/main/packages/jest-expo), um preset do Jest que faz o mock da parte nativa do Expo SDK e cuida da maior parte da configuração necessária no seu projeto Expo.
 
-## Instalação e configuração
+## Instalação e configuração \{#installation-and-configuration}
 
 Depois de criar o seu projeto Expo, siga as instruções abaixo para instalar e configurar o `jest-expo` no seu projeto:
 
@@ -163,7 +163,7 @@ O Jest tem muitas opções de configuração, mas a configuração acima deve co
 
 </Collapsible>
 
-## Instale a React Native Testing Library
+## Instale a React Native Testing Library \{#install-react-native-testing-library}
 
 A [React Native Testing Library (`@testing-library/react-native`)](https://callstack.github.io/react-native-testing-library/) é uma solução leve para testar componentes do React Native. Ela oferece funções utilitárias e funciona com o Jest.
 
@@ -201,7 +201,7 @@ Para instalá-la, execute o comando:
 
 > **warning** **[Descontinuado](/more/release-statuses/#deprecated):** o `@testing-library/react-native` substitui o `react-test-renderer`, que foi descontinuado porque não oferece suporte ao React 19 e versões superiores. Se você estiver usando o `react-test-renderer`, remova-o do seu projeto. Veja [a documentação do React para mais informações](https://react.dev/warnings/react-test-renderer).
 
-## Teste unitário
+## Teste unitário \{#unit-test}
 
 Um teste unitário verifica a menor unidade de código, geralmente uma função. Para escrever o seu primeiro teste unitário, veja o exemplo a seguir:
 
@@ -280,7 +280,7 @@ Você verá um teste passando.
 
 </Step>
 
-## Estruture os seus testes
+## Estruture os seus testes \{#structure-your-tests}
 
 Organizar os arquivos de teste é importante para facilitar a manutenção. Um padrão comum é criar um diretório **\_\_tests\_\_** e colocar todos os testes dentro dele.
 
@@ -307,7 +307,7 @@ Como alternativa, você pode ter vários subdiretórios **\_\_tests\_\_** para d
 
 Tudo depende de preferência, e cabe a você decidir como organizar o diretório do projeto.
 
-## Teste de snapshot
+## Teste de snapshot \{#snapshot-test}
 
 > **info** **Nota:** Para testes de UI, recomendamos testes end-to-end em vez de testes unitários de snapshot. Veja o guia [Testes E2E com Maestro](/eas/workflows/examples/e2e-tests/).
 
@@ -329,7 +329,7 @@ describe('<HomeScreen />', () => {
 
 Execute o comando `npm run test` e você verá um snapshot criado dentro do diretório **\_\_tests\_\_\\\_\_snapshots\_\_** e dois testes passando.
 
-## Relatórios de cobertura de código
+## Relatórios de cobertura de código \{#code-coverage-reports}
 
 Os relatórios de cobertura de código ajudam você a entender quanto do seu código está testado. Para ver o relatório de cobertura no seu projeto em formato HTML, no **package.json**, em `jest`, defina `collectCoverage` como true e use `collectCoverageFrom` para especificar a lista de arquivos a ignorar ao coletar a cobertura.
 
@@ -352,7 +352,7 @@ Execute `npm run test`. Um diretório **coverage** será criado no seu projeto. 
 
 > Normalmente, não recomendamos enviar o arquivo **index.html** para o git. Adicione `coverage/**/*` ao arquivo **.gitignore** para evitar que ele seja rastreado.
 
-## Fluxos do Jest (opcional)
+## Fluxos do Jest (opcional) \{#jest-flows-optional}
 
 Você também pode usar fluxos diferentes para executar os seus testes. Abaixo, alguns exemplos de scripts que você pode testar:
 
@@ -376,13 +376,13 @@ Você também pode usar fluxos diferentes para executar os seus testes. Abaixo, 
 
 Para mais informações, veja [Opções da CLI](https://jestjs.io/docs/en/cli) na documentação do Jest.
 
-## Migre os testes para o SDK 58
+## Migre os testes para o SDK 58 \{#migrate-tests-to-sdk-58}
 
 No SDK 58 e versões posteriores, o `jest-expo` exige o Jest 30. Ao atualizar um app existente, atualize o `jest` e o `@types/jest` junto com o `jest-expo`.
 
 Para os testes do Expo Router, atualize também o `@testing-library/react-native` para a versão 14 ou posterior e siga o [guia de migração dos testes do Router](/router/migrate/sdk-57-to-58/#update-router-tests).
 
-## Informações adicionais
+## Informações adicionais \{#additional-information}
 
 <BoxLink
   title="Documentação da React Native Testing Library"

@@ -15,22 +15,22 @@ import { Terminal, SnackInline } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 
-Android e iOS vêm com o seu próprio conjunto de fontes da plataforma. Para oferecer uma experiência consistente ao usuário e reforçar a identidade visual do seu app, você pode usar fontes personalizadas.
+Android e iOS vêm com um conjunto próprio de fontes da plataforma. Para oferecer uma experiência consistente ao usuário e reforçar a identidade visual do seu app, você pode usar fontes personalizadas.
 
 Este guia cobre as diferentes formas de adicionar e carregar uma fonte personalizada no projeto e também traz informações adicionais sobre fontes.
 
-## Adicione uma fonte personalizada
+## Adicione uma fonte personalizada \{#add-a-custom-font}
 
 Há duas formas de adicionar uma fonte personalizada ao projeto:
 
 - Adicione um arquivo de fonte nos seus assets locais. Por exemplo, um arquivo de fonte no diretório **assets/fonts**.
 - Instale um pacote de Google Font. Por exemplo, instalando o pacote [`@expo-google-fonts/inter`](https://www.npmjs.com/package/@expo-google-fonts/inter).
 
-### Formatos de fonte suportados
+### Formatos de fonte compatíveis \{#supported-font-formats}
 
 O Expo SDK oferece suporte oficial aos formatos de fonte OTF e TTF nas plataformas Android, iOS e web. Se a sua fonte estiver em outro formato, você precisa fazer uma configuração avançada para que esse formato funcione no projeto.
 
-### Fontes variáveis
+### Fontes variáveis \{#variable-fonts}
 
 Uma fonte variável reúne vários estilos em um único arquivo. Em vez de incluir um arquivo para cada peso, você inclui um arquivo só e escolhe o estilo com as props de estilo `fontWeight` e `fontStyle`. Tanto o [config plugin](#with-expo-font-config-plugin) quanto o [hook `useFonts`](#with-usefonts-hook) aceitam fontes variáveis.
 
@@ -47,11 +47,11 @@ No React Native 0.88 (Expo SDK 58) e versões mais recentes, você também pode 
 
 Inspecione os eixos e as instâncias nomeadas de um arquivo com uma ferramenta como o [fontTools](https://fonttools.readthedocs.io/). Se um estilo de que você precisa estiver fora de alcance em uma plataforma, use o fontTools para [extrair essa configuração de eixos](https://fonttools.readthedocs.io/en/latest/varLib/instancer.html) e salvá-la como um arquivo de fonte estático separado.
 
-### Como escolher entre OTF e TTF
+### Como escolher entre OTF e TTF \{#how-to-choose-between-otf-and-ttf}
 
 Se a fonte que você está usando tem versões OTF e TTF, prefira OTF. Os arquivos **.otf** são menores que os **.ttf**. Às vezes, o OTF também renderiza um pouco melhor em certos contextos.
 
-## Use um arquivo de fonte local
+## Use um arquivo de fonte local \{#use-a-local-font-file}
 
 Copie o arquivo para o diretório **assets/fonts** do seu projeto.
 
@@ -62,7 +62,7 @@ Há duas formas de usar o arquivo de fonte local no projeto:
 - Incorporar o arquivo de fonte com o [config plugin `expo-font`](/versions/latest/sdk/font/#configuration-in-app-config) (somente Android e iOS).
 - Carregar o arquivo de fonte com o hook [`useFonts`](/versions/latest/sdk/font/#usefonts) em tempo de execução (Android, iOS e web).
 
-### Com o config plugin `expo-font`
+### Com o config plugin `expo-font` \{#with-expo-font-config-plugin}
 
 O config plugin `expo-font` permite incorporar um ou mais arquivos de fonte no código nativo do projeto. Ele aceita `ttf` e `otf` para Android e iOS, e `woff` e `woff2` só no iOS.
 
@@ -168,7 +168,7 @@ Para uma [fonte variável](#variable-fonts) no Android, declare o caminho do arq
 }
 ```
 
-`style` seleciona o estilo que `fontStyle` corresponde, mas não inclina os glifos. Para obter um itálico a partir de um arquivo reto, defina um eixo de inclinação em `axes`, como `slnt` ou `ital`.
+`style` seleciona o estilo ao qual `fontStyle` corresponde, mas não inclina os glifos. Para obter um itálico a partir de um arquivo reto, defina um eixo de inclinação em `axes`, como `slnt` ou `ital`.
 
 `axes` aceita qualquer [eixo de variação](https://learn.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg) que a fonte declara, como `wdth` para um estilo condensado. As tags têm quatro caracteres e diferenciam maiúsculas de minúsculas. Os eixos registrados (`ital`, `opsz`, `slnt`, `wdth`, `wght`) são em minúsculas, e os eixos próprios de uma fonte são em maiúsculas, como `GRAD`. `weight` define `wght`, a menos que você sobrescreva isso em `axes`.
 
@@ -198,7 +198,7 @@ Você pode usar a fonte com `<Text>` especificando a prop de estilo `fontFamily`
 
 </ConfigReactNative>
 
-#### Como descobrir qual nome de família de fonte usar
+#### Como descobrir qual nome de família de fonte usar \{#how-to-determine-which-font-family-name-to-use}
 
 - Se você fornecer as fontes como um array de caminhos de arquivo (como descrito acima), no Android o nome do arquivo (sem a extensão) vira o nome da família da fonte. No iOS, o nome da família é lido do próprio arquivo de fonte. Recomendamos nomear o arquivo igual ao seu [nome PostScript](#what-is-postscript-name-of-a-font), para que o nome da família fique consistente nas duas plataformas.
 
@@ -219,7 +219,7 @@ _Captura de tela do app Font Book no macOS._
 
 </Collapsible>
 
-### Com o hook `useFonts`
+### Com o hook `useFonts` \{#with-usefonts-hook}
 
 O hook `useFonts`, da biblioteca `expo-font`, permite carregar o arquivo de fonte de forma assíncrona. Esse hook acompanha o estado de carregamento e carrega a fonte quando o app é inicializado.
 
@@ -285,7 +285,7 @@ export default function RootLayout() {
 
 <Step label="3">
 
-Use a fonte no `<Text>` usando a prop de estilo `fontFamily` em um componente React:
+Aplique a fonte ao `<Text>` com a prop de estilo `fontFamily` em um componente React:
 
 ```tsx
 <Text style={{ fontFamily: 'Inter-Black' }}>Inter Black</Text>
@@ -302,7 +302,7 @@ Se o arquivo que você mapeou for uma [fonte variável](#variable-fonts), escolh
 
 </Step>
 
-#### Carregando vários pesos e estilos de uma mesma família de fonte
+#### Carregando vários pesos e estilos de uma mesma família de fonte \{#loading-multiple-weights-and-styles-for-one-font-family}
 
 > **info** Carregar vários arquivos de fonte sob um mesmo nome de família está disponível a partir do SDK 58.
 
@@ -330,7 +330,7 @@ Depois, selecione um estilo com as props de estilo `fontWeight` e `fontStyle`:
 
 Declare todos os estilos de uma família em uma única chamada. Uma `fontFamily` é carregada uma vez, então uma chamada posterior de `loadAsync` ou `useFonts` para um nome que já foi carregado não adiciona estilos a ela. Isso vale também entre os dois estilos de chamada: depois de `useFonts({ Inter: require('./assets/fonts/Inter-Regular.otf') })`, passar um array para `Inter` não carrega mais nada.
 
-Declare `weight` e `style` em todos os estilos de uma família com vários estilos. A web precisa dos dois valores, e valores explícitos mantêm as três plataformas alinhadas. Um único arquivo de fonte variável é a exceção: deixe o `style` sem definir e deixe o `weight` sem definir ou declare um intervalo de pesos, como `'100 900'`. Assim, o Android instancia o eixo `wght` da fonte para cada `fontWeight`, em vez de fixá-la em um peso só.
+Declare `weight` e `style` em todos os estilos de uma família com vários estilos. A web precisa dos dois valores, e valores explícitos mantêm as três plataformas alinhadas. Um único arquivo de fonte variável é a exceção: não defina o `style` e não defina o `weight` ou declare um intervalo de pesos, como `'100 900'`. Assim, o Android instancia o eixo `wght` da fonte para cada `fontWeight`, em vez de fixá-la em um peso só.
 
 Notas por plataforma:
 
@@ -338,7 +338,7 @@ Notas por plataforma:
 - **iOS** combina os estilos pelos metadados de peso e estilo incorporados nos arquivos de fonte. Ele usa os valores `weight` e `style` declarados só para escolher o estilo padrão da família quando um arquivo não tem metadados legíveis.
 - **Web** gera uma regra CSS `@font-face` para cada estilo, com os valores `weight` e `style` declarados. O CSS não consegue ler os metadados dentro de um arquivo de fonte, então um estilo que não declara `style` é renderizado como reto. Dois estilos de uma mesma família que deixam os mesmos valores sem declarar geram a mesma regra CSS, e o navegador renderiza a última.
 
-## Use o Google Fonts
+## Use o Google Fonts \{#use-google-fonts}
 
 O Expo tem suporte de primeira classe a todas as fontes listadas no [Google Fonts](https://fonts.google.com/). Elas estão disponíveis pela biblioteca [`@expo-google-fonts`](https://github.com/expo/google-fonts). Com qualquer pacote de fonte dessa biblioteca, você integra rapidamente a fonte e as suas variações.
 
@@ -347,9 +347,9 @@ Há duas formas de usar uma Google Font no projeto:
 - Incorporar a fonte instalada com o [config plugin `expo-font`](/versions/latest/sdk/font/#configuration-in-app-config).
 - Carregar a fonte instalada com o hook [`useFonts`](/versions/latest/sdk/font/#usefonts) em tempo de execução, de forma assíncrona.
 
-### Com o config plugin `expo-font`
+### Com o config plugin `expo-font` \{#with-expo-font-config-plugin-1}
 
-> **Note:** Incorporar uma Google Font com o config plugin `expo-font` tem os mesmos benefícios e limitações de incorporar uma fonte personalizada própria. Veja [usando um arquivo de fonte local com o config plugin `expo-font`](#with-expo-font-config-plugin) para mais informações.
+> **Note:** Incorporar uma Google Font com o config plugin `expo-font` tem os mesmos benefícios e limitações de incorporar uma fonte personalizada por conta própria. Veja [usando um arquivo de fonte local com o config plugin `expo-font`](#with-expo-font-config-plugin) para mais informações.
 
 <Step label="1">
 
@@ -413,9 +413,9 @@ import { Platform } from 'react-native';
 
 </Step>
 
-### Com o hook `useFonts`
+### Com o hook `useFonts` \{#with-usefonts-hook-1}
 
-> **Note:** Carregar uma Google Font com o hook `useFonts` tem os mesmos benefícios e limitações de incorporar uma fonte personalizada própria. Veja [usando um arquivo de fonte local com o hook `useFonts`](#with-usefonts-hook) para mais informações.
+> **Note:** Carregar uma Google Font com o hook `useFonts` tem os mesmos benefícios e limitações de incorporar uma fonte personalizada por conta própria. Veja [usando um arquivo de fonte local com o hook `useFonts`](#with-usefonts-hook) para mais informações.
 
 Cada pacote de Google Fonts fornece o hook `useFonts` para carregar as fontes de forma assíncrona. Esse hook acompanha o estado de carregamento e carrega a fonte quando o app é inicializado. O pacote de fonte também importa o arquivo da fonte, então você não precisa importá-lo explicitamente.
 
@@ -483,7 +483,7 @@ export default function RootLayout() {
 
 <Step label="3">
 
-Use a fonte no `<Text>` usando a prop de estilo `fontFamily` em um componente React:
+Aplique a fonte ao `<Text>` com a prop de estilo `fontFamily` em um componente React:
 
 ```tsx
 <Text style={{ fontFamily: 'Inter_900Black' }}>Inter Black</Text>
@@ -491,14 +491,14 @@ Use a fonte no `<Text>` usando a prop de estilo `fontFamily` em um componente Re
 
 </Step>
 
-## Informações adicionais
+## Informações adicionais \{#additional-information}
 
-### Exemplo mínimo
+### Exemplo mínimo \{#minimal-example}
 
 <BoxLink
   title={
     <>
-      <CODE>expo-font</CODE> usage
+      Uso do <CODE>expo-font</CODE>
     </>
   }
   description="Veja a seção de uso na referência da API Expo Fonts para um exemplo mínimo de uso de uma fonte personalizada."
@@ -506,14 +506,14 @@ Use a fonte no `<Text>` usando a prop de estilo `fontFamily` em um componente Re
   Icon={DocsLogo}
 />
 
-### Além de OTF e TTF
+### Além de OTF e TTF \{#beyond-otf-and-ttf}
 
-Se a sua fonte estiver em um formato diferente de OTF ou TTF, você precisa [personalizar a configuração do Metro bundler para incluí-la como um asset extra](/guides/customizing-metro#adding-more-file-extensions-to-assetexts) para que ela funcione. Em alguns casos, renderizar um formato de fonte que a plataforma não suporta pode fazer o app travar.
+Se a sua fonte estiver em um formato diferente de OTF ou TTF, você precisa [personalizar a configuração do Metro bundler para incluí-la como um asset extra](/guides/customizing-metro#adding-more-file-extensions-to-assetexts) para que ela funcione. Em alguns casos, renderizar um formato de fonte que a plataforma não aceita pode fazer o app travar.
 
 Como referência, a tabela a seguir lista os formatos que funcionam em cada plataforma nativa:
 
-| Format | Android     | iOS         | Web         |
-| ------ | ----------- | ----------- | ----------- |
+| Formato | Android     | iOS         | Web         |
+| ------- | ----------- | ----------- | ----------- |
 | bdf    | <NoIcon />  | <NoIcon />  | <NoIcon />  |
 | dfont  | <YesIcon /> | <NoIcon />  | <NoIcon />  |
 | eot    | <NoIcon />  | <NoIcon />  | <YesIcon /> |
@@ -526,13 +526,13 @@ Como referência, a tabela a seguir lista os formatos que funcionam em cada plat
 | woff   | <NoIcon />  | <YesIcon /> | <YesIcon /> |
 | woff2  | <NoIcon />  | <YesIcon /> | <YesIcon /> |
 
-### Fontes nativas da plataforma
+### Fontes nativas da plataforma \{#platform-built-in-fonts}
 
 Se você não quiser usar uma fonte personalizada especificando um `fontFamily`, será usada a fonte padrão da plataforma. Cada plataforma tem um conjunto de fontes integradas. No Android, a fonte padrão é a Roboto. No iOS, é a SF Pro.
 
-A fonte padrão de uma plataforma costuma ser fácil de ler. Porém, não se surpreenda se a fonte padrão do sistema mudar para outra menos legível. Nesse caso, use a sua fonte personalizada para ter controle preciso sobre o que o usuário vê.
+A fonte padrão de uma plataforma costuma ser fácil de ler. Porém, não se surpreenda se a fonte padrão do sistema mudar para outra menos legível. Nesse caso, use uma fonte personalizada para ter controle preciso sobre o que o usuário vê.
 
-### Lidando com o carregamento inicial do `@expo/vector-icons`
+### Como lidar com o carregamento inicial do `@expo/vector-icons` \{#handle-expovector-icons-initial-load}
 
 Quando os ícones da biblioteca `@expo/vector-icons` são carregados pela primeira vez, eles aparecem como ícones invisíveis no app. Depois de carregados, ficam em cache para todos os usos seguintes do app. Para evitar mostrar ícones invisíveis no primeiro carregamento, faça o pré-carregamento durante a tela de carregamento inicial com o [`useFonts`](/versions/latest/sdk/font/#usefonts). Por exemplo:
 
@@ -562,9 +562,9 @@ Agora, você pode usar qualquer ícone da biblioteca `Ionicons` em um componente
   Icon={BookOpen02Icon}
 />
 
-### Carregando uma fonte remota diretamente da web
+### Carregando uma fonte remota diretamente da web \{#loading-a-remote-font-directly-from-the-web}
 
-> **warning** **Se você estiver carregando fontes remotas, garanta que elas são servidas de uma origem com CORS configurado corretamente**. Se isso não for feito, a fonte remota pode não carregar corretamente na plataforma web.
+> **warning** **Se você estiver carregando fontes remotas, garanta que elas sejam servidas de uma origem com CORS configurado corretamente**. Se você não fizer isso, a fonte remota pode não carregar corretamente na plataforma web.
 
 Carregar as fontes a partir de um asset local é a forma mais segura de carregar uma fonte no app. Quando as fontes são incluídas como assets locais, depois que você envia o app para as lojas, elas ficam empacotadas no download do app e estão disponíveis imediatamente. Assim, você não precisa se preocupar com CORS nem com outros possíveis problemas.
 

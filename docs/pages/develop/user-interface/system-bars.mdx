@@ -20,7 +20,7 @@ As barras do sistema são fundamentais para a experiência mobile, e entender co
   className="max-w-120"
 />
 
-## Como lidar com sobreposições usando áreas seguras
+## Como lidar com sobreposições usando áreas seguras \{#handling-overlaps-using-safe-areas}
 
 Parte do conteúdo do seu app pode aparecer por trás das barras do sistema. Para lidar com isso, você precisa posicionar o conteúdo corretamente, evitando a sobreposição e garantindo que os controles das barras do sistema continuem visíveis.
 
@@ -33,17 +33,17 @@ O guia a seguir mostra como usar o `SafeAreaView` ou um hook para aplicar os ins
   Icon={TerminalBrowserIcon}
 />
 
-### Áreas seguras e layout edge-to-edge no Android
+### Áreas seguras e layout edge-to-edge no Android \{#safe-areas-and-edge-to-edge-layout-on-android}
 
 Antes do [edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), era comum ter uma barra de status e uma barra de navegação translúcidas. Com essa abordagem, o conteúdo desenhado por trás dessas barras já ficava embaixo delas, e normalmente não era necessário considerar as áreas seguras.
 
 Agora, [com o edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), você precisa usar áreas seguras para garantir que o conteúdo não se sobreponha às barras do sistema.
 
-## Personalizar as barras do sistema
+## Personalizar as barras do sistema \{#customizing-system-bars}
 
 As barras do sistema podem ser personalizadas para combinar com o design do seu app e oferecer melhor visibilidade em diferentes cenários. Ao usar a Expo, há duas bibliotecas disponíveis para isso: `expo-status-bar` e `expo-navigation-bar` (somente Android).
 
-### Configuração da barra de status
+### Configuração da barra de status \{#status-bar-configuration}
 
 A barra de status aparece no topo da tela, tanto no Android quanto no iOS. Você pode personalizá-la usando o [`expo-status-bar`](/versions/latest/sdk/status-bar). Ele oferece um componente `StatusBar` que você pode usar para controlar a aparência da barra de status enquanto o app está em execução, pela propriedade [`style`](/versions/latest/sdk/status-bar/#style) ou pelo método [`setStatusBarStyle`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarstylestyle-animated):
 
@@ -64,7 +64,7 @@ export default function RootLayout() {
 
 Para controlar a visibilidade do `StatusBar`, você pode definir a propriedade [`hidden`](/versions/latest/sdk/status-bar/#hidden) como `true` ou usar o método [`setStatusBarHidden`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarhiddenhidden-animation).
 
-### Configuração da barra de navegação (somente Android)
+### Configuração da barra de navegação (somente Android) \{#navigation-bar-configuration-android-only}
 
 Em dispositivos Android, a barra de navegação aparece na parte inferior da tela. Você pode personalizá-la usando a biblioteca [`expo-navigation-bar`](/versions/latest/sdk/navigation-bar). Ela oferece um componente `NavigationBar` que você pode usar para definir o estilo da barra de navegação pelo método [`setStyle`](/versions/latest/sdk/navigation-bar/#navigationbarsetstylestyle):
 

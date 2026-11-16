@@ -5,44 +5,44 @@ description: Uma lista de erros comuns de desenvolvimento encontrados por quem u
 
 Esta página reúne uma lista de erros comuns entre quem desenvolve com o Expo. Para cada erro, o primeiro item explica por que ele acontece, e o segundo traz sugestões de depuração. Se você acha que há um erro que deveria estar aqui, sua contribuição é bem-vinda: [abra um PR](https://github.com/expo/expo/pulls)!
 
-### Metro bundler ECONNREFUSED 127.0.0.1:19001
+### Metro bundler ECONNREFUSED 127.0.0.1:19001 \{#metro-bundler-econnrefused-12700119001}
 
 - Um erro está impedindo a conexão com o servidor de desenvolvimento local.
 - Execute `rm -rf .expo` para limpar o estado local. Verifique se algum [firewall ou proxy](/troubleshooting/proxies/) está afetando a rede à qual você está conectado.
 
-### Module AppRegistry is not a registered callable module (calling runApplication)
+### Module AppRegistry is not a registered callable module (calling runApplication) \{#module-appregistry-is-not-a-registered-callable-module-calling-runapplication}
 
 - Um erro no seu código está impedindo que o bundle de JavaScript seja executado na inicialização.
 - Tente executar `npx expo start --no-dev --minify` para reproduzir localmente o bundle de JavaScript de produção. Se possível, conecte o dispositivo e acesse os logs dele pelo Android Studio ou pelo Xcode. Os logs do dispositivo trazem stack traces e informações bem mais detalhados. Verifique se há alterações ou erros na sua configuração do Babel. Em casos raros, esse problema pode ser causado por incompatibilidade entre o minificador de JavaScript do Metro e algum código do seu app.
 
-### npm ERR! No git binary found in \$PATH
+### npm ERR! No git binary found in \$PATH \{#npm-err-no-git-binary-found-in-path}
 
 - Ou o git não está instalado, ou não está configurado corretamente no seu `$PATH`.
 - [Instale o git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), caso ainda não tenha feito isso. Se já estiver instalado, veja como configurá-lo no `$PATH` de acordo com o seu sistema operacional.
 
-### XX.X.X is not a valid SDK version
+### XX.X.X is not a valid SDK version \{#xxxx-is-not-a-valid-sdk-version}
 
-- A versão do SDK que você está usando foi descontinuada e não é mais suportada.
+- A versão do SDK que você está usando foi descontinuada e não recebe mais suporte.
 - [Atualize seu projeto](/workflow/upgrading-expo-sdk-walkthrough) para uma versão de SDK suportada. Se você estiver usando uma versão suportada e vir essa mensagem, será preciso atualizar o app Expo Go.
 
-### Incompatibilidade de versão do React Native
+### Incompatibilidade de versão do React Native \{#react-native-version-mismatch}
 
 - O servidor de desenvolvimento em execução no terminal está empacotando uma versão do React Native diferente da do app no seu dispositivo ou simulador.
 - [Alinhe as versões do react-native](/troubleshooting/react-native-version-mismatch) conferindo as versões no **app.json** e no **package.json**.
 
-### Application has not been registered
+### Application has not been registered \{#application-has-not-been-registered}
 
 - Há uma divergência entre o AppKey registrado na parte nativa e na parte JS do seu app.
-- [Alinhe o seu AppKey](/troubleshooting/application-has-not-been-registered/) com o lado nativo do projeto.
+- [Alinhe o AppKey](/troubleshooting/application-has-not-been-registered/) com o lado nativo do projeto.
 
-### Filename longer than 260 characters
+### Filename longer than 260 characters \{#filename-longer-than-260-characters}
 
 - No Windows, o build nativo do Android falha porque o caminho de um arquivo gerado tem mais de 260 caracteres.
 - Siga os passos em [erro "Filename longer than 260 characters" no Windows](/troubleshooting/windows-long-paths/).
 
-### O app não se comporta como esperado
+### O app não se comporta como esperado \{#application-not-behaving-as-expected}
 
 - Os caches podem estar impedindo você de ver o estado atual do app.
-- Limpe todos os caches do projeto nos sistemas [Unix](/troubleshooting/clear-cache-macos-linux/) ou [Windows](/troubleshooting/clear-cache-windows/).
+- Limpe todos os caches do projeto nos sistemas [tipo Unix](/troubleshooting/clear-cache-macos-linux/) ou [Windows](/troubleshooting/clear-cache-windows/).
 
 {/* ia-translate: true */}

@@ -1,6 +1,6 @@
 ---
 title: Toques finais
-description: Neste capítulo, dirija seu agente de IA para polir a barra de status, a splash screen e o ícone do app, e depois dê os próximos passos como construtor.
+description: Neste capítulo, peça ao seu agente de IA para polir a barra de status, a splash screen e o ícone do app, e depois dê os próximos passos como construtor.
 ---
 
 import { Star06Icon } from '@expo/styleguide-icons/outline/Star06Icon';
@@ -10,11 +10,11 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 
-O app funciona. Agora faça ele parecer acabado. Neste capítulo, você vai polir os detalhes que os usuários notam sem perceber: a barra de status, a splash screen e o ícone do app.
+O app funciona. Agora faça-o parecer finalizado. Neste capítulo, você vai polir os detalhes que os usuários notam sem perceber: a barra de status, a splash screen e o ícone do app.
 
 <Step label="1">
 
-## Ajuste a barra de status
+## Ajuste a barra de status \{#fix-the-status-bar}
 
 Olhe o topo do seu app. Se o seu celular estiver no modo claro, o relógio e os ícones de bateria ficam escuros, o que dificulta a leitura sobre o fundo escuro. Cole o prompt a seguir no seu agente:
 
@@ -34,7 +34,7 @@ The phone's status bar (the clock and battery icons at the top of the screen) is
 
 <Step label="2">
 
-## Defina o ícone do app e a splash screen
+## Defina o ícone do app e a splash screen \{#set-the-app-icon-and-splash-screen}
 
 O pacote de recursos que você baixou antes inclui um ícone do app, as camadas do ícone adaptativo do Android e uma imagem de splash screen. Cole o prompt a seguir no seu agente:
 
@@ -44,15 +44,15 @@ Set the app's icon to assets/images/icon.png. In app.json, remove the "ios.icon"
 
 **O que você deve ver**: essas configurações ficam na configuração do app, então reinicie o servidor de desenvolvimento para aplicá-las: pressione <kbd>Ctrl</kbd> + <kbd>C</kbd> no terminal, rode `npx expo start` de novo e reabra o app pelo Expo Go.
 
-Um detalhe: você ainda não vai ver o ícone do seu app nem a sua splash screen. Você está rodando o projeto dentro do Expo Go, que é um app próprio, com ícone próprio. Seu ícone assume quando você cria uma build do app, e a splash screen aparece em uma build de preview ou de produção. Veja [Distribuição interna](/tutorial/eas/internal-distribution-builds/) quando estiver pronto para essa etapa.
+Um detalhe: você ainda não vai ver o ícone do app nem a splash screen. Você está rodando o projeto dentro do Expo Go, que é um app próprio, com ícone próprio. Seu ícone passa a valer quando você cria uma build do app, e a splash screen aparece em uma build de preview ou de produção. Veja [Distribuição interna](/tutorial/eas/internal-distribution-builds/) quando estiver pronto para essa etapa.
 
 </Step>
 
 > Se um resultado não bater com o que você esperava, diga ao agente o que você vê. A seção [Quando algo parece errado](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) tem o passo a passo.
 
-## Você criou um app
+## Você criou um app \{#you-built-an-app}
 
-Pare um instante para reconhecer o que aconteceu aqui: você montou um ambiente de desenvolvimento do zero e dirigiu um agente de IA para criar um app de verdade, com navegação, escolha de fotos, adesivos controlados por gestos e salvamento (para Android, iOS e web), sem escrever código.
+Pare um instante para reconhecer o que aconteceu aqui: você montou um ambiente de desenvolvimento do zero e comandou um agente de IA para criar um app de verdade, com navegação, escolha de fotos, adesivos controlados por gestos e salvamento (para Android, iOS e web), sem escrever código.
 
 Mais importante, você aprendeu o ciclo: pedir, construir, verificar e pedir de novo. Esse ciclo não termina com este tutorial. Experimente agora com as suas próprias ideias:
 
@@ -68,7 +68,7 @@ Add a share button that opens the system share sheet so I can send my creation t
 Fill in the About screen: explain what the app does and credit me as the builder.
 ```
 
-## Próximos passos
+## Próximos passos \{#next-steps}
 
 <BoxLink
   title="Expo Skills"
@@ -86,7 +86,7 @@ Fill in the About screen: explain what the app does and credit me as the builder
 
 Precisa de ajuda ou quer mostrar o que construiu? Entre na comunidade Expo no [Discord](https://chat.expo.dev/).
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker
   name="BUILD_WITH_AI"

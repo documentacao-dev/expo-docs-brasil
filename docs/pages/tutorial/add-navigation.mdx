@@ -20,7 +20,7 @@ Neste capítulo, vamos aprender os fundamentos do Expo Router para criar uma nav
   description="Configure o roteamento baseado em arquivos com o Expo Router, crie navegação em pilha entre telas e monte uma barra de abas inferior."
 />
 
-## Noções básicas do Expo Router
+## Noções básicas do Expo Router \{#expo-router-basics}
 
 O Expo Router é um framework de roteamento baseado em arquivos para apps React Native e web. Ele gerencia a navegação entre telas e usa os mesmos componentes em várias plataformas. Para começar, precisamos conhecer as seguintes convenções:
 
@@ -34,7 +34,7 @@ O Expo Router é um framework de roteamento baseado em arquivos para apps React 
 
 <Step label="1">
 
-## Adicionar uma nova tela à pilha
+## Adicionar uma nova tela à pilha \{#add-a-new-screen-to-the-stack}
 
 Vamos criar um novo arquivo chamado **about.tsx** dentro do diretório **src/app**. Ele exibe o nome da tela quando o usuário navega até a rota `/about`.
 
@@ -93,7 +93,7 @@ Um navegador de pilha (stack navigator) é a base para navegar entre diferentes 
 
 <Step label="2">
 
-## Navegar entre telas
+## Navegar entre telas \{#navigate-between-screens}
 
 Vamos usar o componente `Link` do Expo Router para navegar da rota `/index` até a rota `/about`. Ele é um componente React que renderiza um `<Text>` com uma prop `href` informada.
 
@@ -147,7 +147,7 @@ Vamos dar uma olhada nas mudanças no nosso app. Clique em `Link` para navegar a
 
 <Step label="3">
 
-## Adicionar uma rota de não encontrado
+## Adicionar uma rota de não encontrado \{#add-a-not-found-route}
 
 Quando uma rota não existe, o Expo Router exibe uma tela padrão para ela. Podemos usar a rota `+not-found` para substituir essa tela por uma tela de fallback personalizada no celular e na web. O Expo Router usa um arquivo especial, **+not-found.tsx**, para tratar esse caso.
 
@@ -201,7 +201,7 @@ Para testar, acesse a URL `http://localhost:8081/123` no navegador, já que é f
 
 <Step label="4">
 
-## Adicionar um navegador de abas inferior
+## Adicionar um navegador de abas inferior \{#add-a-bottom-tab-navigator}
 
 Neste ponto, a estrutura de arquivos do diretório **src/app** é a seguinte:
 
@@ -285,7 +285,7 @@ Vamos dar uma olhada no nosso app agora para ver a nova barra de abas inferior:
 
 <Step label="5">
 
-## Atualizar a aparência do navegador de abas inferior
+## Atualizar a aparência do navegador de abas inferior \{#update-bottom-tab-navigator-appearance}
 
 No momento, o navegador de abas inferior não combina com o estilo do nosso app. Por exemplo, as abas não exibem ícones, e as cores da barra de abas não combinam com a cor de fundo do app.
 
@@ -351,7 +351,7 @@ Nosso app agora tem um navegador de abas inferior personalizado:
 
 <Step label="6">
 
-## Atualizar as cores do ripple e do indicador no Android
+## Atualizar as cores do ripple e do indicador no Android \{#update-the-ripple-and-indicator-colors-for-android}
 
 No Android, a barra de abas ainda usa duas cores do tema padrão Material 3. Ao pressionar uma aba, aparece um efeito ripple. A aba ativa exibe um indicador atrás do seu ícone. Nenhuma dessas duas cores combina com a paleta do nosso app.
 
@@ -380,7 +380,7 @@ Agora, o ripple e o indicador usam o amarelo da aba ativa:
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/add-navigation" />
 

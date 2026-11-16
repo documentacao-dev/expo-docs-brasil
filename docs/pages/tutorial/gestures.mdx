@@ -26,7 +26,7 @@ Também vamos usar a biblioteca [Reanimated](https://docs.swmansion.com/react-na
 
 <Step label="1">
 
-## Adicione o GestureHandlerRootView
+## Adicione o GestureHandlerRootView \{#add-gesturehandlerrootview}
 
 Para que as interações por gestos funcionem no app, vamos renderizar o [`<GestureHandlerRootView>`](https://docs.swmansion.com/react-native-gesture-handler/docs/core-components/root-view) do `react-native-gesture-handler` na raiz do app. Os gestos são reconhecidos somente dentro dessa view. Em **src/app/\_layout.tsx**, envolva o `<Stack>` com `<GestureHandlerRootView>`:
 
@@ -58,7 +58,7 @@ Por padrão, o `<GestureHandlerRootView>` tem o estilo `flex: 1`, então ocupa t
 
 <Step label="2">
 
-## Use componentes animados
+## Use componentes animados \{#use-animated-components}
 
 Um componente `Animated` observa a prop `style` do componente e determina quais valores animar e quais atualizações aplicar para criar a animação. O Reanimated exporta componentes animados, como `<Animated.View>`, `<Animated.Text>` ou `<Animated.ScrollView>`. Vamos usar `<Animated.View>` para animar o adesivo de emoji.
 
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 
 <Step label="3">
 
-## Adicione um gesto de toque
+## Adicione um gesto de toque \{#add-a-tap-gesture}
 
 O React Native Gesture Handler permite adicionar comportamentos quando ele detecta uma entrada de toque, como um evento de toque duplo.
 
@@ -261,7 +261,7 @@ Vamos dar uma olhada no nosso app no Android, iOS e web:
 
 <Step label="4">
 
-## Adicione um gesto de arrastar
+## Adicione um gesto de arrastar \{#add-a-pan-gesture}
 
 Para reconhecer um gesto de arrastar no adesivo e acompanhar o movimento dele, vamos usar um gesto de arrastar (pan). O adesivo precisa permanecer dentro da imagem, então também vamos limitar a posição dele. No arquivo **src/components/emoji-sticker.tsx**:
 
@@ -372,7 +372,7 @@ Vamos dar uma olhada no nosso app no Android, iOS e web:
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/gestures" />
 

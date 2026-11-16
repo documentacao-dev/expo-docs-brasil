@@ -12,11 +12,11 @@ import { Collapsible } from '~/ui/components/Collapsible';
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 import { Terminal } from '~/ui/components/Snippet';
 
-Construir, testar e entregar um app Expo ou React Native raramente é um processo de um passo só. Cada mudança de código passa por um fluxo parecido: gerar builds para Android e iOS, rodar testes unitários e de ponta a ponta (E2E) e entregar o resultado para colegas de equipe, QA ou para as lojas de apps. Fazer isso a cada commit fica cansativo rápido, e é exatamente o tipo de trabalho que um pipeline de CI/CD deveria cuidar para nós.
+Construir, testar e entregar um app Expo ou React Native raramente é um processo de um passo só. Cada mudança de código passa por um fluxo parecido: gerar builds para Android e iOS, rodar testes unitários e de ponta a ponta (E2E) e entregar o resultado para colegas de equipe, QA ou para as lojas de apps. Fazer isso a cada commit fica cansativo rápido, e é exatamente o tipo de trabalho de que um pipeline de CI/CD deveria cuidar por nós.
 
 Ao final deste tutorial, cada push para o nosso projeto Expo vai gerar builds, rodar testes ou publicar automaticamente. O serviço que torna isso possível é o [Expo Workflows](/eas/workflows/introduction/), um serviço de Integração Contínua (CI) e Entrega Contínua (CD) dos Expo Services para apps Expo e React Native.
 
-Definimos um workflow em um arquivo [YAML](https://en.wikipedia.org/wiki/YAML) que fica na pasta **.eas/workflows/** na raiz do nosso projeto Expo. Veja um exemplo completo que gera uma build de desenvolvimento Android a cada push na branch `main` de um repositório do GitHub:
+Definimos um workflow em um arquivo [YAML](https://en.wikipedia.org/wiki/YAML) que fica na pasta **.eas/workflows/** na raiz do nosso projeto Expo. Veja um exemplo completo que gera uma development build para Android a cada push na branch `main` de um repositório do GitHub:
 
 ```yaml .eas/workflows/build.yml
 name: Build Android
@@ -35,21 +35,21 @@ jobs:
 
 Essas poucas linhas são o workflow inteiro, e o Expo Workflows cuida do resto. Usamos esse padrão ao longo de todo o tutorial.
 
-## Por que usar o Expo Workflows?
+## Por que usar o Expo Workflows? \{#why-use-expo-workflows}
 
 O Expo Workflows roda builds para Android, iOS e web, publica [atualizações OTA](/deploy/send-over-the-air-updates/), envia apps para as lojas e roda testes E2E com o Maestro, tudo definido em arquivos YAML como o exemplo acima. Como os jobs rodam em um ambiente gerenciado na nuvem, não há servidor de build para configurar ou manter.
 
 Podemos disparar workflows a partir de eventos do GitHub (push, pull request, tags ou labels), em um agendamento (cron) ou manualmente com o [EAS CLI](/eas/cli/).
 
-## Tópicos abordados
+## Tópicos abordados \{#topics-covered}
 
 O tutorial tem três partes:
 
-- **Desenvolvimento.** Crie jobs personalizados, automatize [development builds](/develop/development-builds/introduction/) com [fingerprinting](/tutorial/cicd/development-builds/) e publique [atualizações de preview de pull request](/tutorial/cicd/preview-builds/) para as partes interessadas.
-- **Testes e lançamento.** Rode testes E2E com o Maestro em um workflow e depois crie um workflow de produção que usa fingerprinting para escolher entre uma build nativa e uma atualização OTA.
+- **Desenvolvimento.** Crie jobs personalizados, automatize [development builds](/develop/development-builds/introduction/) com [fingerprinting](/tutorial/cicd/development-builds/) e publique [atualizações de preview de pull request (PR)](/tutorial/cicd/preview-builds/) para as partes interessadas.
+- **Testes e release.** Rode testes E2E com o Maestro em um workflow e depois crie um workflow de produção que usa fingerprinting para escolher entre uma build nativa e uma atualização OTA.
 - **Extensões.** Troque os gatilhos de produção de branches para tags de versão e faça o deploy de builds web com o [Expo Hosting](/eas/hosting/introduction/).
 
-## Conceitos que vale conhecer primeiro
+## Conceitos que vale conhecer primeiro \{#concepts-worth-knowing-first}
 
 > **info** **Dica:** já conhece o Expo Build e o Expo Update? Pule para a próxima seção.
 
@@ -59,11 +59,11 @@ Antes de criar nosso primeiro workflow, veja alguns conceitos que vale conhecer:
 
 Um app Expo pode ser entregue para três destinos. Qual deles, e qual serviço faz a entrega, depende do que mudou no código:
 
-| Destino            | Serviço                    | Quando usar                                                          |
-| ------------------ | -------------------------- | -------------------------------------------------------------------- |
-| Lojas de apps      | Expo Build e Expo Submit   | Novos lançamentos, mudanças em código nativo                         |
-| Dispositivos instalados | Expo Update           | Correções só em TypeScript/JavaScript, entregues pelo ar em segundos |
-| Web                | Expo Hosting               | App web junto com os lançamentos nativos                             |
+| Destino                 | Serviço                  | Quando usar                                                          |
+| ----------------------- | ------------------------ | -------------------------------------------------------------------- |
+| Lojas de apps           | Expo Build e Expo Submit | Novos releases, mudanças em código nativo                            |
+| Dispositivos instalados | Expo Update              | Correções só em TypeScript/JavaScript, entregues via OTA em segundos |
+| Web                     | Expo Hosting             | App web junto com os releases nativos                                |
 
 </Collapsible>
 
@@ -80,13 +80,13 @@ Assim como o Expo Build, o [Expo Update](/eas-update/introduction/) é um servi�
 <BuildsVsUpdates />
 
 - O Expo Build compila o código nativo em um binário completo do app. As builds levam mais tempo para rodar. Precisamos de uma nova build quando o código nativo do projeto muda, por exemplo ao adicionar uma biblioteca nativa, mudar permissões ou atualizar o Expo SDK.
-- O Expo Update entrega mudanças em TypeScript/JavaScript pelo ar para dispositivos que já têm uma build nativa compatível instalada. Se uma mudança exige código nativo, criamos e instalamos essa build antes de publicar uma atualização. Assim, cada atualização continua compatível com a build para a qual foi feita. Publicar a atualização em si leva segundos. Por exemplo, podemos publicar uma atualização para corrigir um bug de interface ou mudar o texto de um botão.
+- O Expo Update entrega mudanças em TypeScript/JavaScript via OTA para dispositivos que já têm uma build nativa compatível instalada. Se uma mudança exige código nativo, criamos e instalamos essa build antes de publicar uma atualização. Assim, cada atualização continua compatível com a build para a qual foi feita. Publicar a atualização em si leva segundos. Por exemplo, podemos publicar uma atualização para corrigir um bug de interface ou mudar o texto de um botão.
 
 Dependendo da mudança, usamos um serviço ou outro. O Expo Workflows conecta os dois, para que o pipeline decida quando gerar uma build e quando publicar uma atualização.
 
 </Collapsible>
 
-## Pré-requisitos
+## Pré-requisitos \{#prerequisites}
 
 > **info** **Dica:** já tem um projeto Expo configurado com Expo Build e Expo Update? Pule para o próximo capítulo.
 
@@ -156,7 +156,7 @@ Precisamos de um repositório do GitHub para o projeto. Podemos criar um reposit
 
 </Requirement>
 
-<Requirement title="Armazenar credenciais para o Expo Submit (opcional)">
+<Requirement title="Credenciais de envio para as lojas, para o Expo Submit (opcional)">
 
 Só é necessário se adicionarmos o envio automático para as lojas de apps como uma adaptação depois do Capítulo 5. Veja os guias da [Google Play Store](/submit/android/) e da [Apple App Store](/submit/ios/) para instruções sobre como configurar as credenciais do Expo Submit.
 
@@ -164,15 +164,15 @@ Só é necessário se adicionarmos o envio automático para as lojas de apps com
 
 </Prerequisites>
 
-## Vindo do GitHub Actions?
+## Vindo do GitHub Actions? \{#coming-from-github-actions}
 
 Os arquivos de workflow do Expo Workflows ficam na pasta **.eas/workflows/** na raiz de um projeto Expo, de forma parecida com os workflows do GitHub Actions em **.github/workflows/**. A sintaxe dos gatilhos (`on.push`, `on.pull_request` e assim por diante) também é bem parecida.
 
 A principal diferença são os jobs pré-empacotados: ao definir `type: build`, o Expo Workflows cuida do ambiente e dos artefatos da build, sem `runs-on` nem etapa de setup para escrever. Vemos isso ao longo do caminho.
 
-> **Note:** o Expo Workflows pode rodar junto com o GitHub Actions, e um job do GitHub Actions pode disparar um workflow com `eas workflow:run`. Veja [Como integrar o Expo Workflows com o GitHub Actions](https://expo.dev/blog/how-to-integrate-eas-workflows-with-github-actions) para mais informações.
+> **Nota:** o Expo Workflows pode rodar junto com o GitHub Actions, e um job do GitHub Actions pode disparar um workflow com `eas workflow:run`. Veja [Como integrar o Expo Workflows com o GitHub Actions](https://expo.dev/blog/how-to-integrate-eas-workflows-with-github-actions) para mais informações.
 
-## Próximo passo
+## Próximo passo \{#next-step}
 
 Com nosso projeto configurado, podemos ir para o primeiro capítulo e escrever nosso primeiro workflow.
 

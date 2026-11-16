@@ -11,7 +11,7 @@ import { SnackInline, Terminal } from '~/ui/components/Snippet';
 
 <ContentSpotlight file="guides/color-schemes.mp4" />
 
-## Configuração
+## Configuração \{#configuration}
 
 > **info** Para projetos Android e iOS, é preciso uma configuração adicional para alternar entre o modo claro e o modo escuro. Para a web, não é necessária nenhuma configuração adicional.
 
@@ -63,7 +63,7 @@ Você também pode usar o comando a seguir para verificar se o projeto está mal
 
 <Collapsible summary="Usando um projeto React Native existente?">
 
-### Android
+### Android \{#android}
 
 Garanta que a flag `uiMode` esteja presente na sua `MainActivity` (e em qualquer outra activity em que esse comportamento seja desejado) no **AndroidManifest.xml**:
 
@@ -92,13 +92,13 @@ public class MainActivity extends ReactActivity {
 }
 ```
 
-### iOS
+### iOS \{#ios}
 
 Você pode configurar os estilos disponíveis com a chave [`UIUserInterfaceStyle`](https://developer.apple.com/documentation/bundleresources/information_property_list/uiuserinterfacestyle) no **Info.plist** do seu app. Use `Automatic` para oferecer os modos claro e escuro.
 
 </Collapsible>
 
-### Estilos de aparência disponíveis
+### Estilos de aparência disponíveis \{#supported-appearance-styles}
 
 A propriedade `userInterfaceStyle` aceita os valores a seguir:
 
@@ -106,7 +106,7 @@ A propriedade `userInterfaceStyle` aceita os valores a seguir:
 - `light`: Restringe o app ao tema claro.
 - `dark`: Restringe o app ao tema escuro.
 
-## Detecte o esquema de cores
+## Detecte o esquema de cores \{#detect-the-color-scheme}
 
 Para detectar o esquema de cores no seu projeto, use `Appearance` ou `useColorScheme` do `react-native`:
 
@@ -130,9 +130,9 @@ function MyComponent() {
 
 Em alguns casos, pode ser útil obter o esquema de cores atual de forma imperativa com [`Appearance.getColorScheme()` ou ouvir as mudanças com `Appearance.addChangeListener()`](https://reactnative.dev/docs/appearance).
 
-## Informações adicionais
+## Informações adicionais \{#additional-information}
 
-### Exemplo mínimo
+### Exemplo mínimo \{#minimal-example}
 
 <SnackInline label="Exemplo de useColorScheme" dependencies={['expo-status-bar']}>
 
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-### Dicas
+### Dicas \{#tips}
 
 Enquanto desenvolve o projeto, você pode mudar a aparência do simulador ou do dispositivo usando os atalhos a seguir:
 

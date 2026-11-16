@@ -42,7 +42,7 @@ Cada variante precisa de um Android Application ID e de um iOS Bundle Identifier
 
 <Step label="1">
 
-## Adicione o app.config.js para a configuração dinâmica
+## Adicione o app.config.js para a configuração dinâmica \{#add-appconfigjs-for-dynamic-configuration}
 
 O **app.json** contém a configuração do app em um arquivo JSON. Ele é estático e não é ideal se quisermos usar [valores dinâmicos para certas propriedades](/workflow/configuration/#dynamic-configuration). Vamos adicionar Android Application IDs e iOS Bundle Identifiers diferentes para todos os perfis de build, com base em [variáveis de ambiente](/workflow/configuration/#switching-configuration-based-on-the-environment).
 
@@ -61,7 +61,7 @@ export default ({ config }) => ({
 
 <Step label="2">
 
-## Atualize os valores dinâmicos de acordo com o ambiente
+## Atualize os valores dinâmicos de acordo com o ambiente \{#update-dynamic-values-based-on-environment}
 
 Para identificar o tipo de build, vamos adicionar duas variáveis de ambiente chamadas `IS_DEV` e `IS_PREVIEW` para os perfis de build `development` e `preview` no **app.config.js**:
 
@@ -128,7 +128,7 @@ export default ({ config }) => ({
 
 <Step label="3">
 
-## Configure o eas.json
+## Configure o eas.json \{#configure-easjson}
 
 No **eas.json**, adicione a variável de ambiente `APP_VARIANT`:
 
@@ -168,7 +168,7 @@ Como nosso perfil de build `ios-simulator` estende `development`, essa configura
 
 <Step label="4">
 
-## Rode o servidor de desenvolvimento
+## Rode o servidor de desenvolvimento \{#run-development-server}
 
 > Depois que os builds forem concluídos, siga o mesmo procedimento dos capítulos anteriores para instalá-los em um dispositivo ou emulador/simulador.
 
@@ -207,7 +207,7 @@ Agora você pode continuar usando o **app.json** para valores estáticos e o **a
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/multiple-app-variants" />
 

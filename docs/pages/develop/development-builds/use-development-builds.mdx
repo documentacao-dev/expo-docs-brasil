@@ -9,7 +9,7 @@ import { Terminal } from '~/ui/components/Snippet';
 
 Normalmente, criar um build nativo do zero leva tanto tempo que você fica tentado a trocar de tarefa e perder o foco. Mas, com o development build instalado no seu aparelho ou em um emulador/simulador, você não precisa esperar pelo processo de build nativo até [alterar o código nativo](#rebuild-a-development-build) que sustenta o seu app.
 
-## Iniciar o servidor de desenvolvimento
+## Iniciar o servidor de desenvolvimento \{#start-the-development-server}
 
 Para começar a desenvolver, execute o comando a seguir para iniciar o servidor de desenvolvimento:
 
@@ -27,23 +27,23 @@ Para abrir o projeto dentro do seu development client:
 - Pressione as teclas <kbd>A</kbd> ou <kbd>I</kbd> para abrir seu projeto em um Android Emulator ou em um iOS Simulator.
 - Em um aparelho físico, escaneie o QR code com a câmera do sistema ou com um leitor de QR code para abrir o projeto no seu aparelho.
 
-## A tela do launcher
+## A tela do launcher \{#the-launcher-screen}
 
 Se você abrir o development build pela tela inicial do aparelho, verá a tela do launcher, parecida com esta:
 
 <ContentSpotlight
-  alt="A tela do launcher de um development build rodando em um iOS Simulator, mostrando a aba Home com um servidor de desenvolvimento na rede local e a aba Updates com atualizações publicadas com o Expo Update"
+  alt="A tela do launcher de um development build rodando em um iOS Simulator, mostrando a aba Home com um servidor de desenvolvimento na rede local e a aba Updates com updates publicados com o Expo Update"
   src="/static/images/dev-client/launcher-screen-simulator.webp"
   className="max-w-[480px]"
 />
 
 Se um bundler for detectado na sua rede local, ou se você tiver entrado em uma conta Expo tanto no Expo CLI quanto no seu development build, você pode se conectar diretamente por esta tela. Caso contrário, conecte-se escaneando o QR code exibido pelo Expo CLI.
 
-## Gerar novamente um development build
+## Refazer o build de um development build \{#rebuild-a-development-build}
 
-Se você adicionar ao projeto uma biblioteca com APIs de código nativo, por exemplo o [`expo-secure-store`](/versions/latest/sdk/securestore/), será preciso gerar o development client novamente. Isso acontece porque o código nativo da biblioteca não entra automaticamente no development client quando você a instala como dependência do projeto.
+Se você adicionar ao projeto uma biblioteca com APIs de código nativo, por exemplo o [`expo-secure-store`](/versions/latest/sdk/securestore/), será preciso refazer o build do development client. Isso acontece porque o código nativo da biblioteca não entra automaticamente no development client quando você a instala como dependência do projeto.
 
-## Depurar um development build
+## Depurar um development build \{#debug-a-development-build}
 
 Quando precisar, você acessa o menu pressionando <kbd>Cmd ⌘</kbd> + <kbd>D</kbd> ou <kbd>Ctrl</kbd> + <kbd>D</kbd> no Expo CLI, ou sacudindo o celular ou tablet. Ali você consegue acessar todas as funções do seu development build, qualquer recurso de depuração de que precisar, ou trocar para outra versão do seu app.
 

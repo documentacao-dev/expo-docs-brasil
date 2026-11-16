@@ -24,16 +24,16 @@ Neste capítulo, você vai instalar tudo o que precisa, partindo do zero. Este �
   <Requirement title="Um agente de IA e sua conta">
     Um agente de IA para programação e uma conta no serviço que você escolher.
   </Requirement>
-  <Requirement title="Cerca de 20 minutos">Só isso deve levar a configuração.</Requirement>
+  <Requirement title="Cerca de 20 minutos">A configuração não deve levar mais que isso.</Requirement>
 </Prerequisites>
 
 <Step label="1">
 
-## Abra um terminal
+## Abra um terminal \{#open-a-terminal}
 
 O terminal é o app onde você vai conversar com o seu agente de IA.
 
-- No macOS, abra o app **Terminal**. Você o encontra abrindo a Pesquisa Spotlight (<kbd>Cmd ⌘</kbd> + <kbd>Space</kbd>) e digitando "Terminal".
+- No macOS, abra o app **Terminal**, que já vem no sistema. Você o encontra abrindo a Pesquisa Spotlight (<kbd>Cmd ⌘</kbd> + <kbd>Space</kbd>) e digitando "Terminal".
 - No Windows, abra o **PowerShell** pelo menu Iniciar. Você vai digitar alguns comandos nele neste capítulo. Cada um já vem pronto para você copiar e colar.
 
 <ContentSpotlight
@@ -49,7 +49,7 @@ O terminal é o app onde você vai conversar com o seu agente de IA.
 
 <Step label="2">
 
-## Instale um agente de IA
+## Instale um agente de IA \{#install-an-ai-agent}
 
 Se você já usa um agente de IA para programação, pule para a próxima etapa. Caso contrário, escolha um abaixo. Este tutorial funciona igual com qualquer um deles.
 
@@ -91,7 +91,7 @@ Outros agentes também funcionam. Desde que seu agente consiga editar arquivos e
 
 <Step label="3">
 
-## Instale o Node.js
+## Instale o Node.js \{#install-nodejs}
 
 Vamos rodar seu primeiro prompt e instalar o Node.js.
 
@@ -113,15 +113,15 @@ Para confirmar que deu certo, execute o comando a seguir abrindo uma nova janela
 
 <Step label="4">
 
-## Instale o Expo Go e crie uma conta na Expo
+## Instale o Expo Go e crie uma conta na Expo \{#install-expo-go-and-create-an-expo-account}
 
-O Expo Go é um app gratuito que permite testar seu projeto no celular enquanto você constrói, sem precisar publicar nada em loja de apps. Toda vez que seu agente mudar o código, o app no seu celular atualiza em poucos segundos.
+O Expo Go é um app gratuito que permite testar seu projeto no celular enquanto você constrói, sem precisar publicar nada em uma store. Toda vez que seu agente mudar o código, o app no seu celular atualiza em poucos segundos.
 
 1. Instale o [Expo Go](https://expo.dev/go) pela Google Play Store ou pela Apple App Store no seu celular.
 2. Crie uma conta gratuita em [expo.dev/signup](https://expo.dev/signup) no seu computador.
 3. Abra o Expo Go no celular e entre com a mesma conta.
 
-Em um dispositivo iOS físico, o Expo Go só abre o seu projeto quando o Expo CLI está conectado à mesma conta. Conecte o Expo CLI agora:
+Em um dispositivo iOS físico, o Expo Go só abre o seu projeto quando o Expo CLI está conectado à mesma conta. Entre no Expo CLI agora:
 
 <Terminal cmd={['$ npx expo login']} />
 
@@ -129,9 +129,9 @@ Em um dispositivo iOS físico, o Expo Go só abre o seu projeto quando o Expo CL
 
 <Step label="5">
 
-## Ensine seu agente sobre o Expo
+## Ensine seu agente sobre o Expo \{#teach-your-agent-about-expo}
 
-Os Expo Skills são arquivos de instrução que ensinam agentes de IA a construir bons apps Expo: quais bibliotecas usar, como organizar as telas e como evitar erros comuns. Instalá-los é a coisa mais importante que você pode fazer para obter bons resultados do seu agente.
+As Expo Skills são arquivos de instrução que ensinam agentes de IA a construir bons apps Expo: quais bibliotecas usar, como organizar as telas e como evitar erros comuns. Instalá-las é a coisa mais importante que você pode fazer para obter bons resultados do seu agente.
 
 <Tabs>
 
@@ -159,7 +159,7 @@ Execute o comando a seguir no seu terminal:
 
 {/* vale off */}
 
-Depois, reabra o Cursor e confirme que as skills aparecem em **Configurações** > **Rules, Skills, Subagents** > **Skills**.
+Depois, reabra o Cursor e confirme que as skills aparecem em **Settings** > **Rules, Skills, Subagents** > **Skills**.
 
 {/* vale on */}
 
@@ -178,7 +178,7 @@ Depois, reabra o Cursor e confirme que as skills aparecem em **Configurações**
 
 <Step label="6">
 
-## Conecte o servidor MCP do Expo
+## Conecte o servidor MCP do Expo \{#connect-the-expo-mcp-server}
 
 O servidor MCP do Expo dá ao seu agente acesso direto às ferramentas do Expo: ele consegue ler a documentação mais recente, instalar os pacotes certos e inspecionar o seu projeto.
 
@@ -240,7 +240,7 @@ O servidor MCP também oferece recursos locais: com uma configuração extra, um
 
 <Step label="7">
 
-## Teste sua configuração
+## Teste sua configuração \{#test-your-setup}
 
 Vamos confirmar que tudo está conectado. Cole o prompt a seguir no seu agente:
 
@@ -252,7 +252,7 @@ Use the Expo MCP server to search the Expo documentation for "expo-image-picker"
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker
   name="BUILD_WITH_AI"

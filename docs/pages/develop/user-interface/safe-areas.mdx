@@ -17,7 +17,7 @@ Veja um exemplo de conteúdo de uma tela do app escondido pela barra de status n
   className="max-w-[480px]"
 />
 
-## Use a biblioteca `react-native-safe-area-context`
+## Use a biblioteca `react-native-safe-area-context` \{#use-react-native-safe-area-context-library}
 
 A [`react-native-safe-area-context`](https://github.com/AppAndFlow/react-native-safe-area-context) oferece uma API flexível para lidar com os insets da safe area dos dispositivos Android e iOS. Ela também traz o componente `SafeAreaView`, que você pode usar no lugar de um [`<View>`](https://reactnative.dev/docs/view) para considerar as safe areas automaticamente nos componentes de tela.
 
@@ -29,7 +29,7 @@ Usando a biblioteca, o resultado do exemplo anterior muda, pois o conteúdo pass
   className="max-w-[480px]"
 />
 
-### Instalação
+### Instalação \{#installation}
 
 Você pode pular a instalação do `react-native-safe-area-context` se criou o projeto com [o template padrão](/get-started/create-a-project/). Essa biblioteca é instalada como peer dependency da biblioteca Expo Router. Caso contrário, instale-a executando o comando a seguir:
 
@@ -42,7 +42,7 @@ Você pode pular a instalação do `react-native-safe-area-context` se criou o p
   }}
 />
 
-### Uso
+### Uso \{#usage}
 
 Você pode usar diretamente o [`SafeAreaView`](https://appandflow.github.io/react-native-safe-area-context/api/safe-area-view) para envolver o conteúdo do componente da tela. Ele é um `<View>` comum com os insets da safe area aplicados como padding ou margin extra.
 
@@ -78,7 +78,7 @@ export default function App() {
 
 </Collapsible>
 
-## Alternativa: hook `useSafeAreaInsets`
+## Alternativa: hook `useSafeAreaInsets` \{#alternate-usesafeareainsets-hook}
 
 Como alternativa ao `SafeAreaView`, você pode usar o hook [`useSafeAreaInsets`](https://appandflow.github.io/react-native-safe-area-context/api/use-safe-area-insets) no componente da tela. Ele dá acesso direto aos insets da safe area, permitindo aplicar padding em cada borda do `<View>` usando um inset desse hook.
 
@@ -110,9 +110,9 @@ O hook fornece os insets no seguinte objeto:
 }
 ```
 
-## Informações adicionais
+## Informações adicionais \{#additional-information}
 
-### Exemplo mínimo
+### Exemplo mínimo \{#minimal-example}
 
 Abaixo está um exemplo mínimo funcional que usa o hook `useSafeAreaInsets` para aplicar padding no topo de uma view.
 
@@ -142,15 +142,15 @@ export default function App() {
 
 </SnackInline>
 
-### Uso com React Navigation
+### Uso com React Navigation \{#usage-with-react-navigation}
 
 Por padrão, o React Navigation oferece suporte a safe areas e usa o `react-native-safe-area-context` como peer dependency. Para mais informações, veja a [documentação do React Navigation](https://reactnavigation.org/docs/handling-safe-area/).
 
-### Uso na web
+### Uso na web \{#usage-with-web}
 
 Na web, use os valores CSS `env(safe-area-inset-*)` para o espaçamento da safe area. O navegador aplica esses valores na renderização no cliente, na renderização no servidor e na geração estática. O espaçamento de safe area feito com CSS não exige a biblioteca `react-native-safe-area-context`.
 
-Com o Expo Router, crie o **src/safe-area.css** e importe-o no seu [layout raiz](/router/basics/navigation-layouts/#root-layout) já existente:
+Com o Expo Router, crie o **src/safe-area.css** e e importe-o no [layout raiz](/router/basics/navigation-layouts/#root-layout) que você já tem:
 
 ```tsx src/app/_layout.tsx
 import '../safe-area.css';

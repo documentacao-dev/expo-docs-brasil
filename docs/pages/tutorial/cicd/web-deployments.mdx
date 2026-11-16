@@ -1,7 +1,7 @@
 ---
 title: 'Publique apps web no Expo Hosting com Expo Workflows'
 sidebar_title: Deploys web
-description: Aprenda a publicar builds web no Expo Hosting junto com os releases de Android e iOS nos workflows do Expo Workflows que você já tem.
+description: Aprenda a publicar builds web no Expo Hosting junto com os releases de Android e iOS nos workflows existentes do Expo Workflows.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
@@ -11,24 +11,24 @@ import { Step } from '~/ui/components/Step';
 
 Os workflows dos capítulos anteriores cobrem Android e iOS. Vamos estendê-los para também publicar o build web no [Expo Hosting](/eas/hosting/introduction/), junto com o mesmo release.
 
-## O que você vai aprender
+## O que você vai aprender \{#learning-outcomes}
 
 - Configurar o projeto Expo para exportar um build web estático
 - Adicionar um job de deploy web ao **preview.yml** para gerar um build web que não é de produção
 - Adicionar um job de deploy web ao **production.yml** para gerar um build web de produção
 
-## Expo Hosting e o job deploy
+## Expo Hosting e o job deploy \{#expo-hosting-and-the-deploy-job}
 
 O **Expo Hosting** é um serviço para hospedar e publicar builds web de um app Expo. Cada deploy ganha uma URL própria e única, e um projeto tem uma única URL de produção, que serve o que publicamos por último em produção.
 
-O job pré-empacotado [`deploy`](/eas/workflows/pre-packaged-jobs/#deploy) do Expo Workflows roda a exportação web, envia a saída da etapa de exportação para o Expo Hosting e devolve a URL do deploy como saída do job. O job `deploy` tem dois parâmetros:
+O job pré-empacotado [`deploy`](/eas/workflows/pre-packaged-jobs/#deploy) do Expo Workflows roda a exportação web, envia a saída da etapa de exportação para o Expo Hosting e retorna a URL do deploy como saída do job. O job `deploy` tem dois parâmetros:
 
 | Parâmetro | Tipo    | Descrição                                                                                                    |
 | --------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `prod`    | boolean | Opcional. Se `true`, publica na URL de produção do projeto. Se omitido, publica como preview.                |
 | `alias`   | string  | Opcional. Dá um nome a uma URL de alias estável, como `awesome-project--staging.expo.app`.                   |
 
-## Configure o web.output para exportação estática
+## Configure o web.output para exportação estática \{#configure-weboutput-for-static-export}
 
 Antes de adicionar jobs de deploy web aos nossos workflows, precisamos configurar o projeto Expo para exportar um [build web estático](/router/web/static-rendering/). No **app.json**, defina o campo [`web.output`](/versions/latest/config/app/#web) como `static`:
 
@@ -43,17 +43,17 @@ Antes de adicionar jobs de deploy web aos nossos workflows, precisamos configura
 }
 ```
 
-`static` faz a Expo CLI produzir um diretório com arquivos HTML, JavaScript e assets estáticos que o Expo Hosting consegue servir. A Expo também oferece suporte às saídas `single` e `server`, mas `static` gera arquivos simples que qualquer host consegue servir, e isso é tudo o que precisamos aqui.
+`static` faz a Expo CLI produzir um diretório com arquivos HTML, JavaScript e assets estáticos que o Expo Hosting consegue servir. O Expo também aceita as saídas `single` e `server`, mas `static` gera arquivos simples que qualquer host consegue servir, e isso é tudo o que precisamos aqui.
 
 Depois de atualizar o **app.json** com a configuração acima, faça commit da mudança e envie para a branch `main` do repositório.
 
-## Adicione um deploy de preview web
+## Adicione um deploy de preview web \{#add-a-web-preview-deployment}
 
 Definir `prod: true` é a diferença entre um deploy de preview e um deploy de produção. Os previews ganham URLs únicas por deploy. Criamos um workflow de preview no [Capítulo 3, passo 1](/tutorial/cicd/preview-builds/#add-a-previewyml). Vamos adicionar um job `deploy_web` a esse workflow, para que, sempre que criarmos um novo preview build, ganhemos também um novo deploy web.
 
 <Step label="1">
 
-### Adicione um job deploy_web
+### Adicione um job deploy_web \{#add-a-deploy_web-job}
 
 Abra o **.eas/workflows/preview.yml** e adicione um job `deploy_web`. Esse novo job roda em paralelo com os jobs de build existentes, porque não tem nenhuma dependência em `needs`.
 
@@ -74,7 +74,7 @@ Sem o parâmetro `prod`, o deploy é feito como uma versão que não é de produ
 
 <Step label="2">
 
-### Envie a mudança do workflow para o repositório
+### Envie a mudança do workflow para o repositório \{#push-the-workflow-change-to-the-repository}
 
 Faça commit da mudança no **preview.yml** e envie para a branch `main` do repositório no GitHub. O Expo Workflows lê os arquivos de workflow da branch padrão, então é isso que faz a mudança valer.
 
@@ -93,7 +93,7 @@ Faça commit da mudança no **preview.yml** e envie para a branch `main` do repo
 
 <Step label="3">
 
-### Teste o workflow
+### Teste o workflow \{#test-the-workflow}
 
 Agora, rode manualmente o workflow de preview com o comando a seguir:
 
@@ -117,13 +117,13 @@ Em **Deploy web (preview)**, clique no link **View Deployment** para abrir o bui
 
 </Step>
 
-## Adicione um deploy web de produção
+## Adicione um deploy web de produção \{#add-a-web-production-deployment}
 
 O workflow de produção do [Capítulo 6, passo 1](/tutorial/cicd/tag-based-releases/#change-the-trigger) roda quando enviamos uma nova tag do Git, e ele gera ou atualiza o app nativo. Vamos adicionar um job `deploy_web` a esse workflow, para que lançar uma nova versão do app também atualize a versão web na URL de produção.
 
 <Step label="1">
 
-### Adicione um job deploy_web
+### Adicione um job deploy_web \{#add-a-deploy_web-job-1}
 
 Abra o **.eas/workflows/production.yml** e adicione um job `deploy_web`. Esse novo job roda em paralelo com os jobs de build existentes, porque não tem nenhuma dependência em `needs`.
 
@@ -150,7 +150,7 @@ No workflow acima, o padrão `['v*.*.*']` corresponde a versões semânticas est
 
 <Step label="2">
 
-### Crie uma tag para testar o workflow
+### Crie uma tag para testar o workflow \{#create-a-tag-to-test-the-workflow}
 
 Faça commit da mudança do workflow na branch `main` do repositório:
 
@@ -176,7 +176,7 @@ Agora, o workflow de produção roda no lançamento da tag `v0.2.0`. O job `depl
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/web-deployments" />
 

@@ -7,21 +7,21 @@ import { Terminal } from '~/ui/components/Snippet';
 
 Registrar informações em um app React Native funciona de forma parecida com o navegador. Você pode usar `console.log`, `console.warn` e `console.error`. Porém, às vezes, você quer se aprofundar para obter informações mais úteis sobre o que está acontecendo no app. Para isso, pode usar **logs nativos** e **logs do sistema**.
 
-## Logs do console
+## Logs do console \{#console-logs}
 
 Quando você executa `npx expo start` e conecta um dispositivo, os logs do console aparecem no processo do terminal. Esses logs são enviados do runtime para o Expo CLI por web sockets, ou seja, têm menor fidelidade do que conectar as ferramentas de desenvolvimento diretamente ao engine.
 
 Para ver logs de **alta fidelidade** e usar funções de log avançadas, como `console.table`, crie um development build com o [Hermes](/guides/using-hermes) e [conecte o inspector](/guides/using-hermes#javascript-debugger).
 
-### Ver logs do console no modo de produção
+### Ver logs do console no modo de produção \{#view-console-logs-in-production-mode}
 
 Quando você inicia o app com [`npx expo start --no-dev`](/workflow/development-mode/#production-mode), os logs do console não aparecem no terminal do Expo CLI. O código do runtime que encaminha os logs para o Expo CLI só roda no modo de desenvolvimento, e não é possível reativá-lo no modo de produção. Porém, o `console.log` continua escrevendo no log nativo do dispositivo. Para ver esses logs, use `adb logcat` no Android ou o app Console no iOS. Para o passo a passo, veja [Ver logs nativos](/debugging/runtime-issues/#viewing-native-logs).
 
-## Logs nativos
+## Logs nativos \{#native-logs}
 
 Você pode ver os logs nativos do runtime no Android Studio e no Xcode compilando o app nativo localmente. Para mais informações, veja [depuração nativa](/debugging/runtime-issues/#native-debugging).
 
-## Logs do sistema
+## Logs do sistema \{#system-logs}
 
 Embora normalmente não seja necessário, se você quiser ver os logs de tudo que acontece no dispositivo, inclusive os de outros apps e do sistema operacional, pode usar os comandos a seguir:
 

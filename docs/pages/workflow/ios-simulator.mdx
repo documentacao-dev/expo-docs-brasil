@@ -17,13 +17,13 @@ Desenvolver o seu app diretamente no computador pode ser mais conveniente do que
 
 Este guia explica como instalar o Simulador do iOS no seu Mac para desenvolver apps. Observe que o Simulador do iOS só pode ser instalado no macOS. Se você estiver desenvolvendo um app iOS em um computador com Windows ou Linux, precisará de um dispositivo iOS físico ou dos [Expo Simulators](/eas/simulators/introduction/).
 
-## Configurando o Xcode e o Watchman
+## Configurando o Xcode e o Watchman \{#setup-xcode-and-watchman}
 
 <XcodeInstructions />
 
 <Step label="4">
 
-### Teste
+### Experimente \{#try-it-out}
 
 Rode o seu app com `npx expo start` e pressione <kbd>I</kbd> na linha de comando.
 
@@ -41,7 +41,7 @@ Você também pode pressionar <kbd>Shift</kbd> + <kbd>I</kbd> na CLI do Expo par
 
 </Step>
 
-## Expo Orbit
+## Expo Orbit \{#expo-orbit}
 
 Você pode usar o app Expo Orbit, que permite iniciar builds e gerenciar simuladores com um clique a partir da barra de menus do macOS.
 
@@ -52,7 +52,7 @@ Você pode usar o app Expo Orbit, que permite iniciar builds e gerenciar simulad
   Icon={Cube01Icon}
 />
 
-## Limitações
+## Limitações \{#limitations}
 
 Embora o Simulador do iOS seja ótimo para o desenvolvimento rápido, ele tem algumas limitações. Listamos a seguir as principais diferenças que afetam as APIs do Expo. No entanto, consulte a [documentação da Apple](https://help.apple.com/simulator/mac/current/#/devb0244142d) para mais detalhes.
 
@@ -65,9 +65,9 @@ Os seguintes recursos de hardware não estão disponíveis no Simulador:
 
 O Simulador também suspende apps e processos em segundo plano no iOS 11 e versões posteriores.
 
-## Solução de problemas
+## Solução de problemas \{#troubleshooting}
 
-### A CLI parece travada ao abrir um Simulador
+### A CLI parece travada ao abrir um Simulador \{#the-cli-seems-to-be-stuck-when-opening-a-simulator}
 
 Às vezes, o Simulador do iOS não responde ao comando de abertura. Se parecer travado nesse prompt, inicie um simulador manualmente e rode o seu app de novo.
 
@@ -90,11 +90,11 @@ O Xcode 27 substitui o app Simulador pelo Device Hub. Rode `open -a DeviceHub` p
 
 Você pode rodar mais de um simulador ao mesmo tempo. A CLI do Expo sempre usa o simulador aberto mais recentemente.
 
-### O Simulador abriu, mas o app Expo Go não abre dentro dele
+### O Simulador abriu, mas o app Expo Go não abre dentro dele \{#simulator-opened-but-the-expo-go-app-isnt-opening-inside-of-it}
 
 Na primeira vez que você instalar o app no simulador, o iOS vai perguntar se você quer abrir o app Expo Go. Pode ser necessário interagir com o simulador (clicar em algum lugar, arrastar algo) para esse aviso aparecer e, então, pressionar **OK**.
 
-### Como instalo uma versão específica do Expo Go?
+### Como instalo uma versão específica do Expo Go? \{#how-do-i-install-a-specific-version-of-expo-go}
 
 Você pode criar um projeto com a versão desejada do SDK e abri-lo em um simulador para instalar a versão correspondente do Expo Go.
 
@@ -142,7 +142,7 @@ Como alternativa, você pode baixar uma versão específica do Expo Go com a [CL
   }}
 />
 
-### A CLI do Expo mostra uma mensagem de erro sobre o `xcrun`. O que faço?
+### A CLI do Expo mostra uma mensagem de erro sobre o `xcrun`. O que faço? \{#expo-cli-is-printing-an-error-message-about-xcrun-what-do-i-do}
 
 Para erros variados, tente o seguinte:
 

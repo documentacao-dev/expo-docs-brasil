@@ -1,7 +1,7 @@
 ---
 title: Crie um build de produção para iOS
 sidebar_title: Build de produção iOS
-description: Saiba como criar um build de produção para iOS e automatizar o processo de lançamento.
+description: Saiba como criar um build de produção para iOS e automatizar o processo de release.
 hasVideoLink: true
 ---
 
@@ -32,13 +32,13 @@ Neste capítulo, vamos criar a versão de produção do nosso app de exemplo e e
   </Requirement>
 </Prerequisites>
 
-## Build de produção para iOS
+## Build de produção para iOS \{#production-build-for-ios}
 
 Um [build de produção para iOS](/build/eas-json/#production-builds) é otimizado para o App Store Connect da Apple, que permite distribuir builds para testadores pelo TestFlight e para usuários finais pela App Store. Esse tipo de build não pode ser instalado diretamente em um simulador ou dispositivo e só pode ser distribuído pelo App Store Connect.
 
 <Step label="1">
 
-## Crie um perfil de provisionamento de distribuição
+## Crie um perfil de provisionamento de distribuição \{#create-a-distribution-provisioning-profile}
 
 Rode o comando `eas credentials` no terminal e depois responda aos prompts da EAS CLI da seguinte forma:
 
@@ -54,13 +54,13 @@ Rode o comando `eas credentials` no terminal e depois responda aos prompts da EA
 
 <Step label="2">
 
-## Crie um build de produção
+## Crie um build de produção \{#create-a-production-build}
 
 Para criar um build de produção para iOS usando o perfil `production` padrão, abra o terminal e rode o comando a seguir. Como `production` está definido como perfil padrão no **eas.json**, não é preciso especificá-lo com a flag `--profile`.
 
 <Terminal cmd={['$ eas build --platform ios']} />
 
-> **info** **Somente se este for o seu primeiro build iOS deste projeto:** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se o seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
+> **info** **Somente se este for o seu primeiro build iOS deste projeto:** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
 O comando coloca o build na fila. Repare, no painel da Expo, que a coluna **Version** mostra o número de build incrementado automaticamente entre parênteses, por exemplo, `1.0.0 (2)`.
 
@@ -68,7 +68,7 @@ O comando coloca o build na fila. Repare, no painel da Expo, que a coluna **Vers
 
 <Step label="3">
 
-## Envie o binário do app para a App Store
+## Envie o binário do app para a App Store \{#submit-the-app-binary-to-the-app-store}
 
 Para enviar o binário do app criado pelo nosso último Expo Build, rode o comando [`eas submit`](/submit/ios/):
 
@@ -85,7 +85,7 @@ Isso vai iniciar o processo de envio.
 
 <Step label="4">
 
-## Publique uma versão de teste interno
+## Publique uma versão de teste interno \{#release-an-internal-testing-version}
 
 Depois que o processo de envio terminar, precisamos fazer login na conta de desenvolvedor Apple pelo navegador.
 
@@ -123,7 +123,7 @@ Depois disso, o app vai ser baixado no nosso dispositivo para podermos testá-lo
 
 <Step label="5">
 
-## Envie o app para a App Store da Apple
+## Envie o app para a App Store da Apple \{#submit-the-app-to-the-apple-app-store}
 
 Para preparar nosso app para envio à App Store, vá para a aba **App Store**:
 
@@ -143,7 +143,7 @@ Para preparar nosso app para envio à App Store, vá para a aba **App Store**:
   className="max-w-[800px]"
 />
 
-> **Complete App Store listing**: Para preparar o app para a ficha na loja, veja [Criar recursos para a loja de apps](/guides/store-assets/) e aprenda a criar capturas de tela e prévias.
+> **Preencha a página do app na loja**: Para preparar o app para a ficha na loja, veja [Criar recursos para a loja de apps](/guides/store-assets/) e aprenda a criar capturas de tela e prévias.
 
 - Quando o app estiver pronto, clique em **Submit to App Review**. Depois disso, a Apple vai analisar nosso app e, se for aprovado, ele ficará disponível na App Store.
 
@@ -157,9 +157,9 @@ Para preparar nosso app para envio à App Store, vá para a aba **App Store**:
 
 <Step label="6">
 
-## Envios automatizados
+## Envios automatizados \{#automated-submissions}
 
-Para os próximos lançamentos, podemos simplificar o processo combinando a criação do build e o envio para a App Store em uma única etapa, usando a flag [`--auto-submit`](/build/automate-submissions/) com o `eas build`:
+Para os próximos releases, podemos simplificar o processo combinando a criação do build e o envio para a App Store em uma única etapa, usando a flag [`--auto-submit`](/build/automate-submissions/) com o `eas build`:
 
 <Terminal cmd={['$ eas build --platform ios --auto-submit']} />
 
@@ -167,7 +167,7 @@ Para os próximos lançamentos, podemos simplificar o processo combinando a cria
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/ios-production-build" />
 

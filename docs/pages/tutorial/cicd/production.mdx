@@ -1,7 +1,7 @@
 ---
 title: 'Automatize deploys de produção com Expo Workflows'
 sidebar_title: Deploys de produção
-description: Aprenda a automatizar builds de produção e atualizações over-the-air com Expo Workflows a partir de uma branch de release, para Android e iOS.
+description: Aprenda a automatizar builds de produção e updates over-the-air com Expo Workflows a partir de uma branch de release, para Android e iOS.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
@@ -13,10 +13,10 @@ import { Step } from '~/ui/components/Step';
 
 Refazer o build do app a cada mudança de produção é desperdício quando a maioria das mudanças é só em TypeScript/JavaScript.
 
-## O que você vai aprender
+## O que você vai aprender \{#learning-outcomes}
 
 - Disparar deploys de produção a partir de uma branch `release/*`, em vez de a cada push na `main`
-- Escolher entre um build nativo e uma [atualização OTA](/deploy/send-over-the-air-updates/) com base no fingerprint do projeto
+- Escolher entre um build nativo e um [update OTA](/deploy/send-over-the-air-updates/) com base no fingerprint do projeto
 - Automatizar o envio para as lojas de apps como uma etapa seguinte do workflow de produção
 
 <Prerequisites>
@@ -31,13 +31,13 @@ A [EAS CLI](/eas/cli/) pede para gerar as credenciais na primeira vez que dispar
 
 </Prerequisites>
 
-## Usando uma branch de release
+## Usando uma branch de release \{#using-a-release-branch}
 
-Antes, com os development builds, vimos que usar o trigger `on.push.branches` faz o workflow rodar a cada push na branch `main` especificada. Para deploys de produção, disparar um workflow a cada push na `main` significa que cada mudança mesclada vira um release novo. Os times costumam querer um processo de release deliberado, então usam uma branch ou tag de release.
+Antes, com os development builds, vimos que usar o trigger `on.push.branches` faz o workflow rodar a cada push na branch `main` especificada. Para deploys de produção, disparar um workflow a cada push na `main` significa que cada mudança com merge vira um release novo. Os times costumam querer um processo de release deliberado, então usam uma branch ou tag de release.
 
 Em uma estratégia com branch de release, normalmente especificamos a branch com um padrão como `release/*`, em que `*` é o nome da funcionalidade ou da versão. É isso que separa Integração Contínua (CI) de Entrega Contínua (CD). O CI roda a cada push na branch `main`, enquanto o CD roda em uma branch de release quando o time está pronto para publicar em produção.
 
-A tabela abaixo mostra como o trigger de cada workflow define a sua finalidade:
+A tabela abaixo mostra como o trigger de cada workflow define sua finalidade:
 
 | Arquivo do workflow              | Trigger                           | Perfil de build | Finalidade                                                                                                                                                   |
 | -------------------------------- | --------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -49,13 +49,13 @@ Os arquivos acima coexistem no repositório do GitHub do projeto sem nenhum conf
 
 <BuildOrUpdate />
 
-## O job `build` para builds de produção
+## O job `build` para builds de produção \{#the-build-job-type-for-production-builds}
 
 Vamos começar criando um workflow de produção. Ele usa o tipo de job `build` [pré-empacotado](/tutorial/cicd/first-workflow/#types-of-jobs-in-expo-workflows) do Expo Workflows e roda para Android e iOS.
 
 <Step label="1">
 
-### Adicione um production.yml
+### Adicione um production.yml \{#add-a-productionyml}
 
 Dentro de **.eas/workflows/**, crie um novo arquivo chamado **production.yml** que usa o perfil de build `production` do **eas.json**:
 
@@ -87,7 +87,7 @@ Isso cria um artefato **.aab** para Android e um artefato **.ipa** para iOS a ca
 
 <Step label="2">
 
-### Adicione fingerprints ao workflow
+### Adicione fingerprints ao workflow \{#add-fingerprints-to-the-workflow}
 
 Vamos adicionar um job [`fingerprint`](/eas/workflows/pre-packaged-jobs/#fingerprint) ao workflow para verificar se há mudanças no código nativo e atualizar os jobs `build_android` e `build_ios` existentes com base nisso. Também estamos adicionando jobs [`get-build`](/eas/workflows/pre-packaged-jobs/#get-build) para procurar builds existentes para Android e iOS.
 
@@ -155,11 +155,11 @@ O campo [`if`](/eas/workflows/syntax/#jobsjob_idif) usado nos jobs `build_androi
 
 <Step label="3">
 
-### Adicione jobs para atualizações
+### Adicione jobs de update \{#add-a-job-for-updates}
 
-Por enquanto, nosso workflow só cria builds de produção quando há mudanças no código nativo. Se houver apenas mudanças em arquivos TypeScript/JavaScript, queremos disparar uma atualização OTA em vez de um build nativo.
+Por enquanto, nosso workflow só cria builds de produção quando há mudanças no código nativo. Se houver apenas mudanças em arquivos TypeScript/JavaScript, queremos disparar um update OTA em vez de um build nativo.
 
-Vamos adicionar dois jobs, `update_android` e `update_ios`, que rodam quando não há mudanças no código nativo e usam o tipo de job `update` para disparar uma atualização OTA:
+Vamos adicionar dois jobs, `update_android` e `update_ios`, que rodam quando não há mudanças no código nativo e usam o tipo de job `update` para disparar um update OTA:
 
 ```yaml .eas/workflows/production.yml
 name: Deploy to production
@@ -197,13 +197,13 @@ jobs:
       platform: ios
 ```
 
-Nosso workflow só gera binários de app prontos para produção ou publica atualizações OTA. Automatizar o envio para as lojas é um próximo passo comum, discutido abaixo na seção [Automatize o envio para as lojas de apps](#automate-app-store-submissions).
+Nosso workflow só gera binários de app prontos para produção ou publica updates OTA. Automatizar o envio para as lojas é um próximo passo comum, discutido abaixo na seção [Automatize o envio para as lojas de apps](#automate-app-store-submissions).
 
 </Step>
 
 <Step label="4">
 
-### Crie uma branch de release e faça push das mudanças
+### Crie uma branch de release e faça push das mudanças \{#create-a-release-branch-and-push-changes}
 
 > **info** **Observação:** confirme que o arquivo do workflow já faz parte do repositório do GitHub e está disponível na branch `main` neste momento.
 
@@ -231,21 +231,21 @@ Agora, vamos fazer uma mudança só em TypeScript/JavaScript no projeto de exemp
   cmdCopy="git add . && git commit -m 'Update welcome text' && git push origin release/1.0.0"
 />
 
-Depois que o workflow rodar, observe no dashboard da Expo que o fingerprint bate com o build do último push. Os jobs `build` são pulados por completo, e os jobs `update` publicam uma atualização OTA.
+Depois que o workflow rodar, observe no dashboard da Expo que o fingerprint bate com o build do último push. Os jobs `build` são pulados por completo, e os jobs `update` publicam um update OTA.
 
 <ContentSpotlight
-  alt="Execução de produção do Expo Workflows reaproveitando builds nativos existentes pela correspondência do fingerprint e publicando atualizações over-the-air para Android e iOS."
+  alt="Execução de produção do Expo Workflows reaproveitando builds nativos existentes pela correspondência do fingerprint e publicando updates over-the-air para Android e iOS."
   src="/static/images/tutorial/cicd/eas-workflows-production-update-jobs.png"
   className="max-w-160"
 />
 
 </Step>
 
-## Automatize o envio para as lojas de apps
+## Automatize o envio para as lojas de apps \{#automate-app-store-submissions}
 
-O workflow que construímos neste capítulo só gera binários de app prontos para produção ou publica atualizações OTA para um app de produção já existente. [Automatizar o envio para as lojas](/build/automate-submissions/) é um próximo passo comum em um workflow de release de produção.
+O workflow que construímos neste capítulo só gera binários de app prontos para produção ou publica updates OTA para um app de produção já existente. [Automatizar o envio para as lojas](/build/automate-submissions/) é um próximo passo comum em um workflow de release de produção.
 
-O Expo Workflows oferece um job `submit` pré-empacotado para automatizar o envio para as lojas de apps. Ele exige que gerenciemos as credenciais das lojas com a EAS CLI. Também exige que cumpramos os requisitos das lojas, como enviar manualmente a primeira versão Android (**.aab**) para a Google Play Store. O iOS tem a sua própria inscrição no Apple Developer Program e as credenciais de assinatura para configurar.
+O Expo Workflows oferece um job `submit` pré-empacotado para automatizar o envio para as lojas de apps. Ele exige que gerenciemos as credenciais das lojas com a EAS CLI. Também exige que cumpramos os requisitos das lojas, como enviar manualmente a primeira versão Android (**.aab**) para a Google Play Store. O iOS tem sua própria inscrição no Apple Developer Program e as credenciais de assinatura para configurar.
 
 Quando os requisitos das lojas estiverem resolvidos, podemos adicionar ao nosso workflow dois novos jobs, `submit_android` e `submit_ios`, que rodam depois dos jobs `build`:
 
@@ -268,7 +268,7 @@ submit_ios:
 
 Os jobs `submit_android` e `submit_ios` acima exigem o parâmetro `build_id` para saber qual build enviar para as lojas. Eles só rodam quando os jobs `build_android` e `build_ios` rodam, ou seja, quando um build de produção novo é criado. Se houver apenas mudanças em arquivos TypeScript/JavaScript, os jobs `submit` também são pulados, já que nenhum build novo é criado.
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/production" />
 

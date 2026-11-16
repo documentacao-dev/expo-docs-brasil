@@ -21,11 +21,11 @@ Implementar autenticação envolve mais do que escrever código do lado do clien
 
 Existem vários tipos de métodos de autenticação. Alguns são simples e eficientes, enquanto outros oferecem uma experiência melhor para o usuário, mas exigem mais trabalho. Vamos ver as abordagens mais comuns e como implementá-las.
 
-## Fluxo de autenticação na navegação
+## Fluxo de autenticação na navegação \{#navigation-auth-flow}
 
 Vamos começar pelo básico: qualquer sistema de autenticação precisa separar **telas públicas** (como login ou cadastro) de **telas protegidas** (como início ou perfil). No nível da navegação, isso se resume a uma verificação simples: o usuário está autenticado?
 
-Para começar, você pode simular isso com um valor booleano fixo, como `isAuthenticated = true`, e montar a lógica de navegação em cima dele. Quando tudo estiver funcionando, você pode plugar o seu fluxo de autenticação real.
+Para começar, você pode simular isso com um valor booleano fixo, como `isAuthenticated = true`, e montar a lógica de navegação em cima dele. Quando tudo estiver funcionando, você pode conectar seu fluxo de autenticação real.
 
 <Collapsible summary="Usando o Expo Router">
 
@@ -49,13 +49,13 @@ Se você usa o React Navigation, ele oferece um [guia de fluxo de autenticação
 
 Tanto o Expo Router quanto o React Navigation oferecem ferramentas flexíveis para implementar navegação protegida com base no fato de o usuário estar logado.
 
-## E-mail e senha
+## E-mail e senha \{#email-and-password}
 
 E-mail e senha é uma opção popular para adicionar autenticação ao seu app.
 
 Para tornar esse fluxo fácil de usar, você também precisa implementar a recuperação e a redefinição de senha, para que usuários que perderam o acesso à conta possam recuperá-la.
 
-Se você quer uma solução mais rápida, vários serviços oferecem autenticação por e-mail e senha pronta, incluindo [Clerk](#clerk), [Supabase](#supabase), [Cognito](#cognito), [Firebase](#firebase-auth) e [Better Auth](#better-auth). A maioria tem planos gratuitos generosos, mas vale avaliar o preço se o seu app crescer rápido.
+Se você quer uma solução mais rápida, vários serviços oferecem autenticação por e-mail e senha pronta, incluindo [Clerk](#clerk), [Supabase](#supabase), [Cognito](#cognito), [Firebase](#firebase-auth) e [Better Auth](#better-auth). A maioria tem planos gratuitos generosos, mas vale avaliar o preço se seu app crescer rápido.
 
 A maior vantagem desses serviços é a facilidade de integração. Eles costumam oferecer documentação clara, kits iniciais e componentes prontos que economizam seu tempo.
 
@@ -74,7 +74,7 @@ Se você estiver construindo esse fluxo do zero, revise a [Authentication Cheat 
   Icon={GithubIcon}
 />
 
-## Login sem senha
+## Login sem senha \{#passwordless-login}
 
 O login sem senha elimina a necessidade de o usuário criar ou lembrar uma senha. Em vez disso, ele informa o e-mail ou o telefone no cadastro. Depois, seu app envia um [magic link](https://auth0.com/docs/authenticate/passwordless/authentication-methods/email-magic-link#classic-login-flow-with-magic-links) ou um [código de uso único (OTP)](https://en.wikipedia.org/wiki/One-time_password) para a caixa de entrada ou para o aparelho dele. Para a maioria dos usuários, a experiência é mais fluida e reduz o atrito no onboarding.
 
@@ -96,13 +96,13 @@ Uma alternativa aos magic links é enviar um código de uso único por e-mail ou
 
 Aqui não há deep linking. O usuário mantém o controle do fluxo e precisa voltar ao app por conta própria.
 
-Felizmente, as versões mais recentes do Android e do iOS detectam automaticamente códigos nas mensagens recebidas. Isso ativa sugestões de preenchimento automático acima do teclado, permitindo que o usuário digite o código com um único toque. Quando funciona, a experiência é perfeita.
+Felizmente, as versões mais recentes do Android e do iOS detectam automaticamente códigos nas mensagens recebidas. Isso ativa sugestões de preenchimento automático acima do teclado, permitindo que o usuário digite o código com um único toque. Quando funciona, a experiência é fluida.
 
 </Collapsible>
 
 > **info** Magic links e códigos são métodos de autenticação válidos para a revisão da Google Play Store e da Apple App Store. Você pode enviar o app com qualquer um desses métodos como única opção e ser aprovado, mesmo antes de adicionar logins sociais ou OAuth.
 
-## OAuth 2.0
+## OAuth 2.0 \{#oauth-20}
 
 Para permitir que seus usuários entrem com as contas que já têm em serviços como Google, Apple, GitHub e outros, você pode usar o OAuth 2.0.
 
@@ -112,19 +112,19 @@ O [OAuth 2.0](https://oauth.net/2) é um protocolo seguro e muito usado, que per
 
 Se você quer controle total ou quer entender como o OAuth funciona por dentro, as seções a seguir mostram como implementar um fluxo OAuth completo por conta própria, usando o Expo.
 
-### Como o OAuth funciona
+### Como o OAuth funciona \{#how-oauth-works}
 
-O OAuth funciona introduzindo um servidor de autorização que atua como um intermediário seguro. Em vez de entregar a senha ao seu app, o usuário entra por esse servidor e aprova o acesso a dados específicos (como nome ou e-mail). Então, o servidor emite um código temporário, que o seu app pode trocar por um token de acesso seguro.
+O OAuth funciona introduzindo um servidor de autorização que atua como um intermediário seguro. Em vez de entregar a senha ao seu app, o usuário entra por esse servidor e aprova o acesso a dados específicos (como nome ou e-mail). Então, o servidor emite um código temporário, que seu app pode trocar por um token de acesso seguro.
 
 <ContentSpotlight
-  alt="Diagrama do fluxo OAuth: o usuário entra no servidor de autorização, que devolve um código temporário que o app troca por um token de acesso."
+  alt="Diagrama do fluxo OAuth: o usuário entra no servidor de autorização, que retorna um código temporário que o app troca por um token de acesso."
   src="/static/images/develop/authentication/oauth-flow.avif"
   caption="Neste diagrama, 'client' se refere simplesmente ao app e não implica nenhum detalhe de implementação específico, como rodar em um servidor, computador, aparelho móvel ou outra plataforma."
 />
 
 Depois de entender esse padrão, você pode aplicá-lo a qualquer provedor. A configuração do Google, da Apple ou do GitHub segue os mesmos passos gerais.
 
-### OAuth personalizado com Expo API Routes
+### OAuth personalizado com Expo API Routes \{#custom-oauth-with-expo-api-routes}
 
 O diagrama anterior mostra uma visão geral do fluxo OAuth. No entanto, o método preferido para o cliente obter a autorização do usuário é usar um servidor de autorização como intermediário, exatamente o que você pode construir com as Expo API Routes.
 
@@ -143,10 +143,10 @@ Com o Expo, você implementa o fluxo OAuth inteiro diretamente no seu app usando
 
 <BoxLink title="Expo AuthSession" href="/versions/latest/sdk/auth-session" Icon={DocsLogo} />
 
-Alguns provedores oferecem APIs nativas para tratar o login diretamente no app. O Google oferece uma experiência nativa de Sign in with Google no Android. Se você busca uma implementação nativa, veja o [guia de autenticação com o Google](/guides/google-authentication). A Apple oferece o Sign in with Apple, que usa uma folha nativa e o Face ID no iOS. Você pode integrá-lo com uma das bibliotecas a seguir:
+Alguns provedores oferecem APIs nativas para tratar o login diretamente no app. O Google oferece uma experiência nativa de Sign in with Google no Android. Se você busca uma implementação nativa, veja o [guia de autenticação com o Google](/guides/google-authentication). A Apple oferece o Sign in with Apple, que usa um bottom sheet nativo e o Face ID no iOS. Você pode integrá-lo com uma das bibliotecas a seguir:
 
 - [`expo-apple-authentication`](/versions/latest/sdk/apple-authentication): uma biblioteca do SDK do Expo para Sign in with Apple no iOS.
-- [`expo-apple-sign-in`](https://exsi.smartsquad.io): uma biblioteca que adiciona o Sign in with Apple no Android e na web, usando o fluxo web da Apple, junto com a folha nativa no iOS. Ela exige um development build e o Expo SDK 58.
+- [`expo-apple-sign-in`](https://exsi.smartsquad.io): uma biblioteca que adiciona o Sign in with Apple no Android e na web, usando o fluxo web da Apple, junto com o bottom sheet nativo no iOS. Ela exige um development build e o Expo SDK 58.
 
 A configuração a seguir dá controle total sobre a experiência de login no Android, no iOS e na web.
 
@@ -154,9 +154,9 @@ A configuração a seguir dá controle total sobre a experiência de login no An
 
 As [Expo Router API Routes](/router/web/api-routes) permitem escrever lógica do lado do servidor diretamente dentro do seu app Expo. Você pode definir funções que tratam requisições como um backend Express ou Next.js, sem precisar de um servidor externo.
 
-Isso facilita tratar com segurança as partes sensíveis do fluxo de autenticação, como a [troca do código de autorização](https://www.oauth.com/oauth2-servers/pkce/authorization-code-exchange), diretamente no seu app. Como essas rotas rodam no servidor, você pode guardar segredos com segurança, emitir JWTs e validar tokens.
+Isso facilita tratar com segurança as partes sensíveis do fluxo de autenticação, como a [troca do código de autorização](https://www.oauth.com/oauth2-servers/pkce/authorization-code-exchange), diretamente no seu app. Como essas rotas rodam no servidor, você pode gerenciar segredos com segurança, emitir JWTs e validar tokens.
 
-> **info** Na prática, você está criando um servidor de autenticação personalizado e leve, restrito ao seu próprio app, tudo usando o seu projeto Expo.
+> **info** Na prática, você está criando um servidor de autenticação personalizado e leve, restrito ao seu próprio app, tudo dentro do seu projeto Expo.
 
 </Collapsible>
 
@@ -168,13 +168,13 @@ O [Expo AuthSession](/versions/latest/sdk/auth-session) é um pacote do lado do 
 
 </Collapsible>
 
-Essa configuração permite que você:
+Essa configuração permite:
 
 - Iniciar o fluxo de login usando o AuthSession
 - Receber o código de autorização na sua API Route
 - Trocar o código por um token com segurança
 - Gerar um JWT personalizado com a sua própria lógica
-- Devolver esse token ao cliente
+- Retornar esse token ao cliente
 - Armazenar sessões usando cookies (Web) ou JWTs (Nativo)
 - Publicar na hora usando o Expo Hosting (gratuito para começar)
 
@@ -223,7 +223,7 @@ A cada requisição, o token é enviado de volta ao servidor, onde você verific
 
 Esse modelo de sessão mantém seu backend sem estado, escalável e seguro, e funciona de forma consistente em todas as plataformas.
 
-Tudo isso é coberto pelos vídeos tutoriais linkados acima, incluindo:
+Tudo isso é coberto pelos vídeos tutoriais indicados acima, incluindo:
 
 - Gerar e verificar JWTs personalizados
 - Gerenciar o armazenamento de sessões com o Secure Store e cookies
@@ -231,7 +231,7 @@ Tudo isso é coberto pelos vídeos tutoriais linkados acima, incluindo:
 
 </Collapsible>
 
-## Soluções de autenticação
+## Soluções de autenticação \{#auth-solutions}
 
 Se você prefere não construir um sistema de autenticação completo do zero, vários serviços oferecem soluções prontas com suporte de primeira classe ao Expo. Estas são algumas das opções mais populares:
 
@@ -255,7 +255,7 @@ O [Supabase Auth](https://supabase.com/docs/guides/getting-started/tutorials/wit
 
 <Collapsible summary="Cognito">
 
-O [AWS Cognito](https://medium.com/@juliuscecilia33/aws-cognito-and-react-native-bf23ef7fea23) é a solução da Amazon para gerenciar user pools e identidade. Ele se conecta sem atrito a outros serviços da AWS e pode ser integrado a apps Expo usando o AWS Amplify. Exige mais configuração, mas escala bem.
+O [AWS Cognito](https://medium.com/@juliuscecilia33/aws-cognito-and-react-native-bf23ef7fea23) é a solução da Amazon para gerenciar user pools e identidade. Ele se integra bem a outros serviços da AWS e pode ser integrado a apps Expo usando o AWS Amplify. Exige mais configuração, mas escala bem.
 
 </Collapsible>
 
@@ -265,7 +265,7 @@ O [Firebase Authentication](https://rnfirebase.io/auth/usage) é a plataforma de
 
 </Collapsible>
 
-## Métodos modernos
+## Métodos modernos \{#modern-methods}
 
 Depois de ter um sistema de autenticação funcionando, você pode melhorar a experiência do usuário adicionando recursos opcionais, mas poderosos, como biometria e passkeys. Esses recursos trazem praticidade, confiança e rapidez aos seus fluxos de login.
 
@@ -286,11 +286,11 @@ As [passkeys](https://safety.google/authentication/passkey) são uma nova forma 
 As passkeys oferecem uma experiência fluida e segura, mas exigem que o usuário já esteja autenticado antes de cadastrar uma. Também exigem configuração extra se você não usar um provedor que cuide delas para você.
 
 - Suporte a passkeys no React Native: [`react-native-passkeys`](https://github.com/peterferguson/react-native-passkeys)
-- Suporte nativo a passkeys com o Clerk: [Clerk Passkeys for Expo](https://clerk.com/docs/references/expo/passkeys)
+- Suporte nativo a passkeys com o Clerk: [Passkeys do Clerk para Expo](https://clerk.com/docs/references/expo/passkeys)
 
 </Collapsible>
 
-## Recomendações
+## Recomendações \{#recommendations}
 
 Este guia cobre muito terreno, de fluxos básicos de e-mail e senha a implementações OAuth totalmente personalizadas, gerenciamento de sessões e métodos modernos como biometria e passkeys. Nem todos precisam ser implementados de uma vez.
 

@@ -24,7 +24,7 @@ Development builds para o iOS Simulator são gerados no formato **.app**, difere
 
 ---
 
-## Crie um perfil de build de simulador no eas.json
+## Crie um perfil de build de simulador no eas.json \{#create-a-simulator-build-profile-in-easjson}
 
 No **eas.json**, adicione um novo perfil de build chamado `ios-simulator` com a propriedade [`ios.simulator`](/eas/json/#simulator). Defina o valor dela como `true`:
 
@@ -61,11 +61,11 @@ Para um development build, é necessário definir as propriedades `developmentCl
 }
 ```
 
-## Development build para o iOS Simulator
+## Development build para o iOS Simulator \{#development-build-for-ios-simulator}
 
 <Step label="1">
 
-### Crie
+### Crie \{#create}
 
 Rode o comando `eas build` com `ios` como plataforma e `ios-simulator` como perfil de build:
 
@@ -74,7 +74,7 @@ Rode o comando `eas build` com `ios` como plataforma e `ios-simulator` como perf
 Esse comando nos faz as seguintes perguntas quando criamos o build pela primeira vez:
 
 - **What would you like your iOS bundle identifier to be?** Pressione <kbd>Return</kbd> para escolher o valor padrão sugerido nesta pergunta. Isso vai adicionar o [`ios.bundleIdentifier`](/versions/latest/config/app/#bundleidentifier) no **app.json**.
-- **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se o seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
+- **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
 Depois de responder às perguntas, o Expo Build entra na fila, e a EAS CLI fornece um link para ver os detalhes do build e acompanhar o progresso no painel da Expo:
 
@@ -104,7 +104,7 @@ Essa notação é definida como `host.owner.app-name`. Por exemplo, nosso app de
 
 <Step label="2">
 
-### Instale
+### Instale \{#install}
 
 No terminal, quando o build terminar, a EAS CLI nos pergunta se queremos rodar o build em um iOS Simulator. Pressione <kbd>Y</kbd>.
 
@@ -124,7 +124,7 @@ Você pode usar o [Expo Orbit](https://expo.dev/orbit) para instalar o developme
 
 <Step label="3">
 
-### Rode
+### Rode \{#run}
 
 Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diretório do projeto:
 
@@ -141,7 +141,7 @@ Pressione <kbd>I</kbd> na janela do terminal para abrir o projeto no iOS Simulat
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"

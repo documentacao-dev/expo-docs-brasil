@@ -15,7 +15,7 @@ Você pode adicionar código nativo personalizado usando uma ou as duas abordage
 - [Usando bibliotecas que incluem código nativo](#using-libraries-that-include-native-code)
 - [Escrevendo código nativo](#writing-native-code)
 
-## Usando bibliotecas que incluem código nativo
+## Usando bibliotecas que incluem código nativo \{#using-libraries-that-include-native-code}
 
 Desenvolvedores de Expo e React Native passam a maior parte do tempo escrevendo código JavaScript e usando APIs e componentes nativos disponibilizados por bibliotecas como [`expo-camera`](/versions/latest/sdk/camera/), [`react-native-safe-area-context`](/versions/latest/sdk/safe-area-context/) e o próprio `react-native`. Essas bibliotecas permitem que os desenvolvedores acessem e usem recursos do dispositivo a partir do código JavaScript. Elas também podem dar acesso a um SDK de serviço de terceiros implementado em código nativo (como o [`@sentry/react-native`](/guides/using-sentry/), que oferece bindings para o SDK nativo do Sentry no Android e no iOS).
 
@@ -25,12 +25,12 @@ Se você estiver usando o [Expo Go](https://expo.dev/go), [só pode acessar bibl
 
 </Collapsible>
 
-### Instalando bibliotecas com código nativo personalizado em development builds
+### Instalando bibliotecas com código nativo personalizado em development builds \{#installing-libraries-with-custom-native-code-in-development-builds}
 
 Ao usar [development builds](/develop/development-builds/introduction/), trabalhar com bibliotecas que têm código nativo personalizado é simples:
 
 - Instale a biblioteca com o npm, por exemplo: `npx expo install react-native-localize`
-- Se a biblioteca incluir um [config plugin](/config-plugins/introduction/), você pode especificar a configuração desejada na config do app.
+- Se a biblioteca incluir um [config plugin](/config-plugins/introduction/), você pode especificar a configuração desejada na app config.
 - Crie um novo development build ([localmente](/guides/local-app-development/) ou com o [Expo Build](/develop/development-builds/introduction/?buildenv=build-with-expo-services#how-would-you-like-to-build-your-development-build)).
 
 Agora você pode usar a biblioteca no código do seu app.
@@ -41,7 +41,7 @@ A [visão geral do desenvolvimento](/workflow/overview/) traz detalhes sobre os 
 
 </Collapsible>
 
-## Escrevendo código nativo
+## Escrevendo código nativo \{#writing-native-code}
 
 Use a [API de Módulos do Expo](/modules/overview/) para escrever código em Swift e Kotlin e adicionar novos recursos ao seu app com módulos e views nativos. Existem outras ferramentas que você pode usar para criar módulos nativos, mas acreditamos que usar a API de Módulos do Expo torna a criação e a manutenção de quase todos os tipos de módulos do React Native o mais simples possível. Achamos que a API de Módulos do Expo é a melhor escolha para a maioria dos desenvolvedores que criam módulos nativos para os seus apps.
 
@@ -57,7 +57,7 @@ Se você pretende escrever um módulo nativo principalmente em C++, talvez queir
 
 </Collapsible>
 
-### Usando a API de Módulos do Expo
+### Usando a API de Módulos do Expo \{#using-the-expo-modules-api}
 
 <BoxLink
   title="API de Módulos do Expo: visão geral"
@@ -80,7 +80,7 @@ Se você pretende escrever um módulo nativo principalmente em C++, talvez queir
   Icon={BookOpen02Icon}
 />
 
-### Criando um módulo local
+### Criando um módulo local \{#creating-a-local-module}
 
 Se você pretende usar o seu módulo nativo em um único app (você sempre pode mudar de ideia depois), recomendamos [usar um "módulo local" do Expo](/modules/get-started/#create-the-local-expo-module) para escrever código nativo personalizado. Os módulos locais do Expo funcionam de forma parecida com os [Módulos do Expo](/modules/overview) usados por desenvolvedores de bibliotecas e dentro do SDK do Expo, como o `expo-camera`, mas não são publicados no npm. Em vez disso, você os cria diretamente dentro do seu projeto.
 
@@ -95,11 +95,11 @@ Criar um módulo local gera a estrutura de um módulo em Swift e Kotlin dentro d
   }}
 />
 
-### Compartilhando um módulo com vários apps
+### Compartilhando um módulo com vários apps \{#sharing-a-module-with-multiple-apps}
 
 Se você pretende usar o seu módulo nativo em vários apps, use `npx create-expo-module@latest`, sem a flag `--local`, e [crie um módulo independente](/modules/use-standalone-expo-module-in-your-project/). Você pode publicar o seu pacote no npm ou colocá-lo em um diretório de pacotes do seu [monorepo](/guides/monorepos/) (se tiver um) para usá-lo de forma [parecida com os módulos locais](/modules/use-standalone-expo-module-in-your-project/).
 
-## Considerações ao usar a Geração Nativa Contínua (CNG)
+## Considerações ao usar a Geração Nativa Contínua (CNG) \{#considerations-when-using-continuous-native-generation-cng}
 
 As sugestões a seguir são mais importantes ao usar o [CNG](/workflow/continuous-native-generation/), mas são boas diretrizes mesmo que você não o utilize.
 

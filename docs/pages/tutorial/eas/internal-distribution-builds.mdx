@@ -24,11 +24,11 @@ Neste capítulo, vamos aprender a configurar [builds de distribuição interna](
 
 ---
 
-## Build de distribuição interna
+## Build de distribuição interna \{#internal-distribution-build}
 
-Os builds de distribuição interna são ideais para compartilhar atualizações com os membros da equipe, permitindo que partes interessadas técnicas e não técnicas deem feedback diretamente. Diferente dos development builds, eles não exigem um servidor de desenvolvimento rodando, o que simplifica o processo de teste.
+Os builds de distribuição interna são ideais para compartilhar updates com os membros da equipe, permitindo que partes interessadas técnicas e não técnicas deem feedback diretamente. Diferente dos development builds, eles não exigem um servidor de desenvolvimento rodando, o que simplifica o processo de teste.
 
-### Formas de distribuir um app internamente
+### Formas de distribuir um app internamente \{#ways-to-distribute-an-app-internally}
 
 Tanto o Google quanto a Apple oferecem mecanismos nativos para compartilhar apps internamente:
 
@@ -37,17 +37,17 @@ Tanto o Google quanto a Apple oferecem mecanismos nativos para compartilhar apps
 
 No entanto, esses dois métodos tradicionais têm limitações. Por exemplo, o TestFlight permite apenas um build ativo por vez.
 
-### Expo Build para uma distribuição mais rápida
+### Expo Build para uma distribuição mais rápida \{#expo-build-for-faster-distribution}
 
 O Expo Build acelera o processo. Ele cria links compartilháveis para os nossos builds e fornece instruções de uso. Ele tem uma configuração padrão pensada para facilitar a distribuição interna, oferecendo uma alternativa mais eficiente aos métodos tradicionais.
 
-## Crie um build de distribuição interna
+## Crie um build de distribuição interna \{#create-an-internal-distribution-build}
 
 Para criar e distribuir um build com o Expo Build, precisamos seguir estes passos:
 
 <Step label="1">
 
-### Configure o perfil de build preview
+### Configure o perfil de build preview \{#configure-preview-build-profile}
 
 Desde a configuração inicial no **eas.json**, já temos uma configuração padrão que inclui um perfil de build `preview`, pensado para a distribuição interna:
 
@@ -71,7 +71,7 @@ Como vimos nos capítulos anteriores, para builds que não são da loja de apps,
 
 <Step label="2">
 
-### Crie
+### Crie \{#create}
 
 Criar um build de distribuição interna exige [credenciais de assinatura do app](/app-signing/app-credentials/).
 
@@ -110,7 +110,7 @@ Apps assinados com um perfil de provisionamento ad hoc podem ser instalados por 
 
   > **info** **Dica**: Esse comando permite registrar um dispositivo a qualquer momento. No entanto, só os builds criados depois do registro vão funcionar no dispositivo recém-adicionado.
 
-  > **warning** **Em uma assinatura nova ou recém-renovada do Apple Developer Program, um dispositivo recém-registrado pode não ser instalável de imediato.** Registrar um dispositivo com a Expo não o registra na Apple. O dispositivo só é adicionado à Apple quando é incluído pela primeira vez em um build ou em uma reassinatura. Nesse tipo de assinatura, a Apple pode levar [de 24 a 72 horas](https://developer.apple.com/help/account/reference/device-registration-updates/) para processar o dispositivo antes que ele possa ser adicionado a um perfil de provisionamento. Se um build falhar logo depois de você registrar um dispositivo novo, aguarde a Apple concluir o processamento e rode o build de novo. Saiba mais sobre [gerenciar dispositivos](/build/internal-distribution/#managing-devices).
+  > **warning** **Em uma assinatura nova ou recém-renovada do Apple Developer Program, um dispositivo recém-registrado pode não ser instalável de imediato.** Registrar um dispositivo com a Expo não o registra na Apple. O dispositivo só é adicionado à Apple quando é incluído pela primeira vez em um build ou em uma reassinatura. Nesse tipo de assinatura, a Apple pode levar [até 24 a 72 horas](https://developer.apple.com/help/account/reference/device-registration-updates/) para processar o dispositivo antes que ele possa ser adicionado a um perfil de provisionamento. Se um build falhar logo depois de você registrar um dispositivo novo, aguarde a Apple concluir o processamento e rode o build de novo. Saiba mais sobre [gerenciar dispositivos](/build/internal-distribution/#managing-devices).
 
 - Para criar o build preview, precisamos usar o perfil `preview` com o comando `eas build`:
 
@@ -157,7 +157,7 @@ Se for o caso, confirme que seu **credentials.json** aponta para um perfil de pr
 
 <Step label="3">
 
-### Instale
+### Instale \{#install}
 
 Quando o build terminar, a seção Build artifact mostra que o build está concluído. Essa seção oferece os métodos disponíveis para rodar o build preview em um dispositivo Android ou iOS: o Expo Orbit e o botão Install.
 
@@ -185,7 +185,7 @@ Quando o build terminar, a seção Build artifact mostra que o build está concl
 
 <Step label="4">
 
-### Rode
+### Rode \{#run}
 
 Toque no ícone do app no seu dispositivo para iniciar o build preview. Não é preciso um servidor de desenvolvimento.
 
@@ -209,7 +209,7 @@ Como já configuramos várias variantes do app, podemos ver as variantes develop
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"

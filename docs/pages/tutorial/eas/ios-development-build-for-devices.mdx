@@ -38,7 +38,7 @@ Development builds para dispositivos iOS são gerados no formato **.ipa**, que �
   </Requirement>
 </Prerequisites>
 
-## Perfil de provisionamento
+## Perfil de provisionamento \{#provisioning-profile}
 
 Para iniciar o desenvolvimento em um dispositivo iOS, precisamos:
 
@@ -47,7 +47,7 @@ Para iniciar o desenvolvimento em um dispositivo iOS, precisamos:
 
 <Step label="1">
 
-### Registre um dispositivo iOS
+### Registre um dispositivo iOS \{#register-an-ios-device}
 
 Com a EAS CLI, rode o comando para registrar um novo dispositivo Apple:
 
@@ -65,7 +65,7 @@ Esse comando nos faz as seguintes perguntas:
 
 <Step label="2">
 
-### Baixe e instale o perfil
+### Baixe e instale o perfil \{#download-and-install-profile}
 
 No navegador de um dispositivo, abra o link fornecido na etapa anterior e toque no botão **Download Profile**.
 
@@ -95,11 +95,11 @@ Depois que o perfil de provisionamento é instalado, o dispositivo nos redirecio
 
 </Step>
 
-## Development build para dispositivo iOS
+## Development build para dispositivo iOS \{#development-build-for-ios-device}
 
 <Step label="1">
 
-### Crie
+### Crie \{#create}
 
 Para criar um development build em um dispositivo iOS, confirme que, no perfil `build.development`:
 
@@ -118,7 +118,7 @@ Esse comando nos faz as seguintes perguntas quando criamos o build pela primeira
 
 > **warning** **Em uma assinatura nova ou recém-renovada do Apple Developer Program, um dispositivo recém-registrado pode não ser instalável de imediato.** Registrar um dispositivo com a Expo não o registra na Apple. O dispositivo só é adicionado à Apple quando é incluído pela primeira vez em um build. Nesse tipo de assinatura, a Apple pode levar [de 24 a 72 horas](https://developer.apple.com/help/account/reference/device-registration-updates/) para processar o dispositivo antes que ele possa ser adicionado a um perfil de provisionamento. Por isso, um build pode falhar na primeira vez em que você incluir um dispositivo recém-registrado. Se isso acontecer, aguarde a Apple concluir o processamento e rode o build de novo.
 
-> **info** **Somente se você pulou o capítulo do [iOS Simulator](/tutorial/eas/ios-development-build-for-simulators/):** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se o seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
+> **info** **Somente se você pulou o capítulo do [iOS Simulator](/tutorial/eas/ios-development-build-for-simulators/):** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
 Depois de responder, o build entra na fila, e podemos acompanhar o progresso pelo link fornecido pela EAS CLI no painel da Expo:
 
@@ -148,7 +148,7 @@ Essa notação é definida como `host.owner.app-name`. Por exemplo, nosso app de
 
 <Step label="2">
 
-### Instale
+### Instale \{#install}
 
 Quando o build terminar, a seção Build artifact é atualizada, indicando que o build está concluído:
 
@@ -195,7 +195,7 @@ O botão **Install** na seção **Build artifact** gera um QR code para uma inst
 
 <Step label="3">
 
-### Rode
+### Rode \{#run}
 
 Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diretório do projeto:
 
@@ -216,7 +216,7 @@ Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diret
   className="max-w-[240px]"
 />
 
-- Use o recurso de sincronização de conta, garantindo que você esteja logado tanto na EAS CLI quanto no development build. Como já estamos logados na EAS CLI, o próximo passo é fazer login pela interface do seu development build.
+- Use o recurso de sincronização de conta, garantindo que você esteja logado tanto na EAS CLI quanto no development build. Como já estamos logados na EAS CLI, o próximo passo é fazer login pela interface do development build.
 
 <ContentSpotlight
   alt="Modal para fazer login na conta Expo no dispositivo iOS"
@@ -234,7 +234,7 @@ Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diret
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"

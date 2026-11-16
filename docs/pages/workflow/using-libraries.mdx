@@ -14,7 +14,7 @@ import { Terminal, SnackInline } from '~/ui/components/Snippet';
 
 Todo app vai inevitavelmente usar uma biblioteca de terceiros, por isso é importante entender como verificar se uma biblioteca é compatível com o seu projeto.
 
-## Bibliotecas centrais do React Native
+## Bibliotecas centrais do React Native \{#react-native-core-libraries}
 
 O React Native oferece um conjunto de primitivas integradas de que a maioria dos desenvolvedores vai precisar nos seus apps. Elas incluem componentes como `<ActivityIndicator>`, `<TextInput>`, `<Text>`, `<ScrollView>` e `<View>`. Eles estão listados em [Componentes e APIs principais](https://reactnative.dev/docs/components-and-apis) na documentação do React Native. Você também pode ver a [versão do React Native correspondente à sua versão do SDK do Expo](/versions/latest).
 
@@ -36,7 +36,7 @@ export default function App() {
 
 </SnackInline>
 
-## Bibliotecas do SDK do Expo
+## Bibliotecas do SDK do Expo \{#expo-sdk-libraries}
 
 O SDK do Expo continua de onde as bibliotecas centrais do React Native param. Ele oferece acesso a muitas funcionalidades do dispositivo e do sistema, como áudio, leitura de códigos de barras, câmera, calendário, contatos, vídeo e assim por diante. Também adiciona outras bibliotecas poderosas, como atualizações, mapas, ferramentas de autenticação OAuth e mais. Para mais informações, veja como decidimos [o que entra no SDK do Expo](https://expo.fyi/whats-in-the-sdk).
 
@@ -70,15 +70,15 @@ Em seguida, uma referência da API típica inclui:
 
 > **Note**: se você usa TypeScript, pode ver as informações incluídas na seção da API no seu editor de código compatível com TypeScript (como o VS Code), com preenchimento automático.
 
-## Bibliotecas de terceiros
+## Bibliotecas de terceiros \{#third-party-libraries}
 
-### Encontrando uma biblioteca de terceiros
+### Encontrando uma biblioteca de terceiros \{#finding-a-third-party-library}
 
 O [React Native Directory](https://reactnative.directory) é um banco de dados pesquisável de bibliotecas criado especificamente para o React Native. Se a biblioteca que você procura não for oferecida pelo React Native nem pelo SDK do Expo, este é o melhor lugar para começar a procurar uma biblioteca para o seu app.
 
 Depois do React Native Directory, o [registro do npm](https://www.npmjs.com/) é o próximo melhor lugar. O registro do npm é a fonte definitiva de bibliotecas JavaScript, mas nem todas as bibliotecas listadas nele são compatíveis com o React Native. O React Native é um entre muitos ambientes de programação JavaScript, incluindo Node.js, navegadores web, Electron e outros, e o npm inclui bibliotecas que funcionam em todos esses ambientes. Qualquer biblioteca compatível com o React Native é compatível com o projeto Expo quando você cria um [development build](/workflow/overview/#development-builds). No entanto, ela pode não ser compatível com o app [Expo Go](https://expo.dev/go).
 
-### Verificando a compatibilidade de uma biblioteca de terceiros
+### Verificando a compatibilidade de uma biblioteca de terceiros \{#determining-third-party-library-compatibility}
 
 Use [development builds](/workflow/overview/#development-builds) do Expo para criar apps com qualidade de produção. Eles incluem todo o código nativo de que o seu projeto precisa para rodar. É uma ótima forma de testar o seu app antes de publicá-lo na App Store ou no Google Play. Você também pode incluir bibliotecas que exigem configuração dos projetos nativos (diretórios **android** e **ios**).
 
@@ -93,7 +93,7 @@ Para saber se uma nova dependência altera os diretórios do projeto nativo, voc
 
 **Se você respondeu sim a qualquer uma dessas perguntas,** então deve [criar um development build](/develop/development-builds/introduction/) para usar a biblioteca no seu projeto.
 
-**Não está listada no diretório?** Você pode encontrar o projeto no GitHub. Uma forma simples de fazer isso é com `npx npm-home --github <nome-do-pacote>`. Por exemplo, para abrir a página do GitHub do `react-native-localize`, rode:
+**Não está listada no diretório?** Você pode encontrar o projeto no GitHub. Uma forma simples de fazer isso é com `npx npm-home --github <package-name>`. Por exemplo, para abrir a página do GitHub do `react-native-localize`, rode:
 
 <Terminal
   cmd={{
@@ -106,7 +106,7 @@ Para saber se uma nova dependência altera os diretórios do projeto nativo, voc
 
 > Se quiser ajuda para verificar a compatibilidade de uma biblioteca, [abra uma issue no repositório do React Native Directory](https://github.com/react-native-community/directory/issues/new/choose) e nos avise. Isso não ajuda só você: também ajuda outros desenvolvedores a terem uma resposta fácil no futuro!
 
-### Instalando uma biblioteca de terceiros
+### Instalando uma biblioteca de terceiros \{#installing-a-third-party-library}
 
 > Recomendamos sempre usar `npx expo install` em vez de `npm install` ou `yarn add` diretamente, porque isso permite que a [CLI do Expo](/more/expo-cli/) escolha uma versão compatível da biblioteca quando possível e também avise sobre incompatibilidades conhecidas.
 
@@ -149,7 +149,7 @@ Se o módulo não tiver suporte no [Expo Go](https://expo.dev/go), você pode cr
   Icon={CodeSquare01Icon}
 />
 
-### Excluindo uma biblioteca de terceiros das verificações de versão
+### Excluindo uma biblioteca de terceiros das verificações de versão \{#excluding-a-third-party-library-from-version-checks}
 
 Se você tiver uma versão específica de uma biblioteca de terceiros instalada e quiser que ela seja excluída das verificações de versão feitas pelo `npx expo install`, `npx expo-doctor` ou `npx expo start`, use a propriedade [`expo.install.exclude`](/versions/latest/config/package-json/#installexclude) no arquivo **package.json**.
 

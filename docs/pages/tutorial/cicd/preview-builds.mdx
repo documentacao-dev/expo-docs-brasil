@@ -13,11 +13,11 @@ import { Step } from '~/ui/components/Step';
 
 Compartilhar mudanças mobile em andamento com colegas de time e com quem revisa pull requests (PR) costuma exigir que eles façam checkout de uma branch e rodem um servidor de desenvolvimento localmente.
 
-## O que você vai aprender
+## O que você vai aprender \{#learning-outcomes}
 
 - Automatizar preview builds com fingerprint para distribuição interna
 - Enviar notificações no Slack quando um build terminar
-- Publicar uma [atualização OTA](/deploy/send-over-the-air-updates/) em cada pull request e comentar no PR com um link para testá-la
+- Publicar um [update OTA](/deploy/send-over-the-air-updates/) em cada pull request e comentar no PR com um link para testá-lo
 
 <Prerequisites>
 
@@ -48,7 +48,7 @@ O comando acima adiciona a URL de update e a runtime version ao **app.json**, e 
 
 <Requirement title="Preview build criado">
 
-Para receber as atualizações de preview de PR, quem revisa precisa de um preview build com `expo-updates` e o channel do Expo Update instalados no dispositivo. Para criar um:
+Para receber os updates de preview de PR, quem revisa precisa de um preview build com `expo-updates` e o channel do Expo Update instalados no dispositivo. Para criar um:
 
 <Terminal cmd={['$ eas build --profile preview --platform all']} />
 
@@ -58,7 +58,7 @@ Como o `expo-updates` é uma biblioteca nativa, esse build incorpora tanto o có
 
 </Prerequisites>
 
-## O job `build` para preview builds
+## O job `build` para preview builds \{#the-build-job-type-for-preview-builds}
 
 Os times usam preview builds para testes com stakeholders. Os membros instalam o build pela distribuição interna no dispositivo, emulador ou simulador. Eles não precisam rodar um servidor de desenvolvimento nem fazer checkout da branch para testar as mudanças.
 
@@ -68,7 +68,7 @@ Como nos [development builds](/tutorial/cicd/development-builds/#skip-unnecessar
 
 <Step label="1">
 
-### Adicione um preview.yml
+### Adicione um preview.yml \{#add-a-previewyml}
 
 Dentro de **.eas/workflows/**, vamos adicionar um novo arquivo chamado **preview.yml**. Este arquivo de workflow usa o perfil `preview`.
 
@@ -126,7 +126,7 @@ jobs:
 
 <Step label="2">
 
-### Rode o workflow
+### Rode o workflow \{#run-the-workflow}
 
 Rode o workflow manualmente com o comando a seguir:
 
@@ -142,7 +142,7 @@ No dashboard da Expo, veja que o workflow segue o mesmo padrão de fingerprint q
 
 </Step>
 
-## Notificações no Slack
+## Notificações no Slack \{#slack-notifications}
 
 > **info** Esta seção é opcional. Não usa Slack? Pule para a próxima seção, sobre previews de PR.
 
@@ -150,7 +150,7 @@ Muitos times usam o Slack para notificações de build, para que todos vejam o s
 
 <Step label="1">
 
-### Crie uma URL de webhook do Slack
+### Crie uma URL de webhook do Slack \{#create-a-slack-webhook-url}
 
 Para enviar mensagens do Expo Workflows para o nosso canal do Slack, precisamos de uma URL de webhook das configurações do Slack:
 
@@ -158,7 +158,7 @@ Para enviar mensagens do Expo Workflows para o nosso canal do Slack, precisamos 
 2. Em **Features**, selecione **Incoming Webhooks** e ative a opção.
 3. Clique em **Add New Webhook** e selecione o canal para publicar as notificações.
 4. Copie a URL do webhook. Ela tem este formato: `https://hooks.slack.com/services/TD000/B000/XXXXXXXXXX`
-5. Adicione a URL do webhook como uma variável de ambiente dos Serviços da Expo chamada `SLACK_WEBHOOK_URL`. Abra a página [Environment variables](https://expo.dev/accounts/[account]/projects/[project]/environment-variables) do nosso projeto no dashboard da Expo, crie a variável para o ambiente `preview` e defina a sua [visibilidade](/eas/environment-variables/#visibility-settings-for-environment-variables) como **secret**, já que só os servidores da Expo precisam lê-la. Como alternativa, crie-a com a [EAS CLI](/eas/environment-variables/manage/):
+5. Adicione a URL do webhook como uma variável de ambiente do Expo Services chamada `SLACK_WEBHOOK_URL`. Abra a página [Environment variables](https://expo.dev/accounts/[account]/projects/[project]/environment-variables) do nosso projeto no dashboard da Expo, crie a variável para o ambiente `preview` e defina a [visibilidade](/eas/environment-variables/#visibility-settings-for-environment-variables) como **secret**, já que só os servidores da Expo precisam lê-la. Como alternativa, crie-a com a [EAS CLI](/eas/environment-variables/manage/):
 
 <Terminal
   cmd={[
@@ -170,7 +170,7 @@ Para enviar mensagens do Expo Workflows para o nosso canal do Slack, precisamos 
 
 <Step label="2">
 
-### Adicione um job de notificação no Slack
+### Adicione um job de notificação no Slack \{#add-a-slack-notification-job}
 
 Vamos atualizar o **preview.yml** para adicionar um job `notify` depois dos jobs de build. O job `notify` usa os parâmetros `webhook_url` e `message`, ou um parâmetro `payload` para formatação rica com o [Slack Block Kit](https://docs.slack.dev/block-kit). O job lê a URL do webhook da [variável de ambiente `SLACK_WEBHOOK_URL` que criamos antes](#create-a-slack-webhook-url), pelo campo `environment`. Os jobs usam o ambiente `production` por padrão, então definir `environment: preview` aqui é o que disponibiliza a variável.
 
@@ -201,7 +201,7 @@ O campo `after` garante que a notificação saia quando os builds terminarem, in
 
 <Step label="3">
 
-### Rode o workflow
+### Rode o workflow \{#run-the-workflow-1}
 
 Rode o workflow manualmente com o comando a seguir:
 
@@ -225,21 +225,21 @@ Também podemos conferir no canal do Slack integrado ao app.
 
 </Step>
 
-## Previews de PR usando Expo Update
+## Previews de PR usando Expo Update \{#pr-previews-using-expo-update}
 
 Quem revisa um PR consegue ler o diff, mas não consegue ver as mudanças visualmente nem testá-las em um dispositivo.
 
 Times web resolvem isso com deploy previews. Quando alguém abre um pull request, um workflow de CI/CD gera um link de preview. Quem revisa abre o link e testa as mudanças sem fazer checkout da branch.
 
-Para mobile, podemos montar o equivalente usando o [Expo Update](/eas-update/introduction/). Ele entrega um bundle de JavaScript para dispositivos que já têm um build compatível instalado, pulando a etapa de compilação nativa. Para previews de PR, uma atualização é a escolha certa, porque quem revisa consegue abrir e testar rápido e depois deixar feedback no PR.
+Para mobile, podemos montar o equivalente usando o [Expo Update](/eas-update/introduction/). Ele entrega um bundle de JavaScript para dispositivos que já têm um build compatível instalado, pulando a etapa de compilação nativa. Para previews de PR, um update é a escolha certa, porque quem revisa consegue abrir e testar rápido e depois deixar feedback no PR.
 
-O Expo Workflows oferece para isso o job pré-empacotado [`github-comment`](/eas/workflows/pre-packaged-jobs/#github-comment). Ele publica um comentário no pull request depois que a atualização é publicada, dando a quem revisa um link ou QR code para abrir a atualização no dispositivo.
+O Expo Workflows oferece para isso o job pré-empacotado [`github-comment`](/eas/workflows/pre-packaged-jobs/#github-comment). Ele publica um comentário no pull request depois que o update é publicado, dando a quem revisa um link ou QR code para abrir o update no dispositivo.
 
 <Step label="1">
 
-### Crie um pr-preview.yml
+### Crie um pr-preview.yml \{#create-a-pr-previewyml}
 
-Dentro de **.eas/workflows/**, vamos adicionar um novo arquivo chamado **pr-preview.yml**. Este workflow roda quando um pull request é criado, usando o trigger `on.pull_request`. Ele só publica uma atualização com o job do tipo `update` e depois publica um comentário no PR com o link da atualização.
+Dentro de **.eas/workflows/**, vamos adicionar um novo arquivo chamado **pr-preview.yml**. Este workflow roda quando um pull request é criado, usando o trigger `on.pull_request`. Ele só publica um update com o job do tipo `update` e depois publica um comentário no PR com o link do update.
 
 ```yaml .eas/workflows/pr-preview.yml
 name: PR Preview
@@ -266,7 +266,7 @@ jobs:
 
 <Step label="2">
 
-### Teste com um pull request
+### Teste com um pull request \{#test-with-a-pull-request}
 
 Vamos testar o workflow criando um pull request no nosso repositório do GitHub. Um pull request exige uma branch separada da `main`. Rode o comando a seguir para criar uma nova branch e trocar para ela:
 
@@ -282,12 +282,12 @@ Agora, vamos fazer uma mudança visível no projeto Expo (por exemplo, trocar um
 Abra um pull request de `test-preview` para `main` no GitHub. O workflow roda automaticamente depois que criamos o pull request. No dashboard da Expo, podemos verificar se o job `publish_preview` roda primeiro e se o job `comment` roda depois que ele termina com sucesso.
 
 <ContentSpotlight
-  alt="Execução de preview de pull request do Expo Workflows mostrando o job publish_preview seguido pelo job comment, que publica o link da atualização no GitHub."
+  alt="Execução de preview de pull request do Expo Workflows mostrando o job publish_preview seguido pelo job comment, que publica o link do update no GitHub."
   src="/static/images/tutorial/cicd/eas-workflows-preview-pr-publish-comment.png"
   className="max-w-160"
 />
 
-No pull request do GitHub, deve aparecer um comentário com um link ou QR code para testar a atualização no dispositivo.
+No pull request do GitHub, deve aparecer um comentário com um link ou QR code para testar o update no dispositivo.
 
 <ContentSpotlight
   alt="Comentário no pull request do GitHub publicado pelo Expo Workflows, com link para um preview do Expo Update das mudanças propostas."
@@ -295,11 +295,11 @@ No pull request do GitHub, deve aparecer um comentário com um link ou QR code p
   className="max-w-160"
 />
 
-Usando o link ou o QR code do comentário, já podemos abrir a atualização no dispositivo ou no emulador/simulador e testar as mudanças.
+Usando o link ou o QR code do comentário, já podemos abrir o update no dispositivo ou no emulador/simulador e testar as mudanças.
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/preview-builds" />
 

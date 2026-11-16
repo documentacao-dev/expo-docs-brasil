@@ -7,21 +7,21 @@ description: Saiba mais sobre as diferentes ferramentas, workflows e extensões 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 
-Development builds permitem iterar rápido. Além disso, você pode ampliar os recursos do seu development build para oferecer uma melhor experiência de desenvolvimento ao trabalhar em equipe, ou personalizar o build de acordo com suas necessidades.
+Development builds permitem iterar rápido. Mas você pode ampliar os recursos do seu development build para oferecer uma melhor experiência de desenvolvimento ao trabalhar em equipe, ou personalizar o build de acordo com suas necessidades.
 
-## Ferramentas
+## Ferramentas \{#tools}
 
-### URLs de tunnel
+### URLs de tunnel \{#tunnel-urls}
 
 Às vezes, condições de rede restritivas dificultam a conexão com o servidor de desenvolvimento. O comando `npx expo start` expõe seu servidor de desenvolvimento em uma URL pública, acessível através de firewalls do mundo todo. Essa opção é útil quando você não consegue se conectar ao servidor de desenvolvimento pela opção LAN padrão ou quando quer receber feedback sobre sua implementação enquanto desenvolve.
 
 Para obter uma URL de tunnel, passe a [flag `--tunnel`](/more/expo-cli/#tunneling) para o `npx expo start` pela linha de comando.
 
-### Atualizações publicadas
+### Updates publicados \{#published-updates}
 
-O comando `eas update` do EAS CLI empacota o estado atual dos seus arquivos JavaScript e de assets em uma "atualização" otimizada. Essa atualização fica armazenada em um serviço de hospedagem da Expo. Um development build do seu app pode carregar atualizações publicadas sem precisar fazer checkout de um commit específico nem deixar uma máquina de desenvolvimento ligada.
+O comando `eas update` do EAS CLI empacota o estado atual dos seus arquivos JavaScript e de assets em um "update" otimizado. Esse update fica armazenado em um serviço de hospedagem da Expo. Um development build do seu app pode carregar updates publicados sem precisar fazer checkout de um commit específico nem deixar uma máquina de desenvolvimento ligada.
 
-### Informar a URL de uma atualização manualmente
+### Informar a URL de um update manualmente \{#manually-entering-an-updates-url}
 
 Quando um development build é aberto, ele mostra uma interface para carregar um servidor de desenvolvimento ou para "Enter URL manually" (informar a URL manualmente). Você pode informar manualmente uma URL que abre uma branch específica. A URL segue este padrão:
 
@@ -34,7 +34,7 @@ https://u.expo.dev/F767ADF57-B487-4D8F-9522-85549C39F43F?channel-name=main
 
 Para obter o ID do seu projeto, use a URL do campo [`expo.updates.url` da app config](/versions/latest/config/app/#url). Para ver a lista de canais, execute `eas channel:list`.
 
-### Deep linking para a URL de uma atualização
+### Deep linking para a URL de um update \{#deep-linking-to-an-updates-url}
 
 Você pode carregar seu app em um aparelho que tenha um development build compatível abrindo uma URL de inicialização com o parâmetro de query `__expo_url`. No SDK 58 e posteriores, a URL tem a seguinte forma:
 
@@ -45,7 +45,7 @@ Você pode carregar seu app em um aparelho que tenha um development build compat
 | parâmetro     | valor                                                                                                                                     |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `scheme`      | Esquema de URL do seu client (o padrão é `exp+{slug}`, em que o [`slug`](/versions/latest/config/app/#slug) é o valor definido na app config) |
-| `manifestUrl` | URL codificada de um manifesto de atualização a carregar. A URL será `https://u.expo.dev/[your-project-id]?channel-name=[channel-name]`         |
+| `manifestUrl` | URL codificada de um manifesto de update a carregar. A URL será `https://u.expo.dev/[your-project-id]?channel-name=[channel-name]`         |
 
 Exemplo:
 
@@ -59,7 +59,7 @@ No exemplo acima, o `scheme` é `exp+app-slug`, e o `manifestUrl` é um projeto 
 
 | parâmetro                      | valor                                                                                                   |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `__expo_url`                   | URL codificada do projeto ou do manifesto de atualização a carregar.                                    |
+| `__expo_url`                   | URL codificada do projeto ou do manifesto de update a carregar.                                    |
 | `__expo_disable_onboarding=1`  | Pula a tela de introdução que aparece na primeira abertura de um development build depois da instalação. |
 | `__expo_disable_fab=1`         | Oculta o botão Tools (o botão flutuante que abre o menu do desenvolvedor) nesta abertura.               |
 | `__expo_disable_auto_launch=1` | Impede que o menu do desenvolvedor abra quando o app inicia, nesta abertura.                            |
@@ -70,17 +70,17 @@ Os mesmos parâmetros funcionam em URLs de inicialização do Expo Go, por exemp
 
 > **info** O SDK 57 e anteriores aceitam apenas a forma antiga `{scheme}://expo-development-client/?url={manifestUrl}`. A forma antiga e seus parâmetros `disableOnboarding=1`, `disableFab=1` e `disableAutoLaunch=1`, colocados junto de `url`, continuam funcionando no SDK 58 e posteriores, em que o `npx expo start` gera a forma `__expo_url`.
 
-#### Usar URLs de inicialização em cenários de automação
+#### Usar URLs de inicialização em cenários de automação \{#using-launch-urls-in-automation-scenarios}
 
 Ao abrir um development build com automação, como em um workflow de CI/CD, em um teste end-to-end ou em um loop de agente, adicione `__expo_disable_onboarding=1`, `__expo_disable_fab=1` e `__expo_disable_auto_launch=1` à URL de inicialização. Defina `EXPO_NO_DEV_MENU=1` ao iniciar o Expo CLI para adicionar esses parâmetros a todas as URLs de inicialização, QR codes e redirecionamentos dessa sessão. O Expo CLI faz isso por padrão quando não é interativo, como em CI ou sem TTY. Defina `EXPO_NO_DEV_MENU=0` para desativar.
 
-#### Deep links específicos do app
+#### Deep links específicos do app \{#app-specific-deep-links}
 
 Ao testar deep links no seu development build, por exemplo ao navegar até uma tela específica de um app Expo Router ou ao testar o redirecionamento de volta ao app durante um fluxo de login OAuth, monte a URL exatamente como montaria para abrir um deep link em um build standalone do seu app (por exemplo, `myscheme://path/to/screen`).
 
 O projeto precisa já estar aberto no development build para que um deep link específico do app funcione. Abrir o development build a frio com um deep link específico do app não é possível no momento. Evite usar `expo-development-client` no caminho dos seus deep links específicos do app, pois é um caminho reservado usado para abrir uma URL atualizada.
 
-### QR codes
+### QR codes \{#qr-codes}
 
 Você pode usar nosso endpoint para gerar um QR code que um development build carrega facilmente.
 
@@ -89,7 +89,7 @@ Requisições enviadas para `https://qr.expo.dev/development-client` com parâme
 | parâmetro   | valor                                                                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `appScheme` | Esquema de deep link codificado em URL do seu development build (o padrão é `exp+{slug}`, em que o [`slug`](/versions/latest/config/app/#slug) é o valor definido na app config) |
-| `url`       | URL codificada de um manifesto de atualização a carregar. A URL será `https://u.expo.dev/[your-project-id]?channel-name=[channel-name]`                                        |
+| `url`       | URL codificada de um manifesto de update a carregar. A URL será `https://u.expo.dev/[your-project-id]?channel-name=[channel-name]`                                        |
 
 Exemplo:
 
@@ -99,21 +99,21 @@ https://qr.expo.dev/development-client?appScheme=exp%2Bapps-slug&url=https%3A%2F
 
 No exemplo acima, o `scheme` é `exp+app-slug`, e o `url` é um projeto com o ID `F767ADF57-B487-4D8F-9522-85549C39F43F` e o canal `main`.
 
-## Exemplos de workflows
+## Exemplos de workflows \{#example-workflows}
 
 Estes são alguns exemplos de workflows para ajudar sua equipe a aproveitar ao máximo o seu development build. Se você tiver outros que seriam úteis para outras equipes, [envie um PR](https://github.com/expo/expo/tree/main/CONTRIBUTING.md#-updating-documentation) para compartilhar seu conhecimento!
 
-### Prévias de PRs
+### Prévias de PRs \{#pr-previews}
 
 Você pode configurar seu processo de CI para publicar um Expo Update sempre que um pull request for atualizado e adicionar um QR code usado para ver a mudança em um development build compatível.
 
 Veja as [instruções para publicar prévias de apps em pull requests](/eas-update/github-actions/#publish-previews-on-pull-requests) para implementar esse workflow no seu projeto usando GitHub Actions, ou para usar como modelo no CI de sua escolha.
 
-## Extensões
+## Extensões \{#extensions}
 
 As extensões permitem ampliar seu development client com recursos adicionais.
 
-### Ampliando o menu do desenvolvedor
+### Ampliar o menu do desenvolvedor \{#extending-the-dev-menu}
 
 O menu do desenvolvedor pode ser ampliado com botões extras usando a API `registerDevMenuItems`:
 
@@ -140,7 +140,7 @@ Isso cria uma nova seção no menu do desenvolvedor com os botões que você reg
 
 > Chamadas seguintes de `registerDevMenuItems` substituem todas as entradas anteriores.
 
-### Expo Update
+### Expo Update \{#expo-update}
 
 <ContentSpotlight
   alt="Exemplo de lista do Expo Update que pode ser carregada no expo-dev-client."
@@ -148,7 +148,7 @@ Isso cria uma nova seção no menu do desenvolvedor com os botões que você reg
   className="max-w-[400px]"
 />
 
-A extensão Expo Update permite ver e carregar atualizações publicadas no seu development client. Para instalá-la, você vai precisar da publicação mais recente do `expo-updates`:
+A extensão Expo Update permite ver e carregar updates publicados no seu development client. Para instalá-la, você vai precisar da publicação mais recente do `expo-updates`:
 
 <Terminal
   cmd={{
@@ -159,13 +159,13 @@ A extensão Expo Update permite ver e carregar atualizações publicadas no seu 
   }}
 />
 
-#### Configurar o Expo Update
+#### Configurar o Expo Update \{#configure-expo-update}
 
 Se você ainda não configurou o Expo Update no seu projeto, veja [instruções adicionais de como fazer isso aqui.](/eas-update/getting-started/)
 
-Agora você pode ver e carregar atualizações do Expo Update no seu development build pelo painel `Extensions`.
+Agora você pode ver e carregar updates do Expo Update no seu development build pelo painel `Extensions`.
 
-## Defina o runtimeVersion na app config
+## Defina o runtimeVersion na app config \{#set-runtimeversion-in-app-config}
 
 Quando você cria um development build do seu projeto, você ganha um ambiente estável para carregar qualquer mudança no app definida em JavaScript ou outras mudanças relacionadas a assets. Outras mudanças no app, seja as definidas diretamente nos diretórios **android** e **ios**, seja as feitas por pacotes ou SDKs que você instalar, exigirão criar um novo build do seu development build.
 

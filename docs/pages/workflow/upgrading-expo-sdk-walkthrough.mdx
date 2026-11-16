@@ -14,19 +14,19 @@ Com o lançamento de um novo SDK, a versão mais recente passa a ter o status de
 
 Se você quiser instalar uma versão específica do Expo Go em um dispositivo Android, no Emulador Android ou no Simulador do iOS, acesse [expo.dev/go](https://expo.dev/go) ou use a [CLI `expo-go`](/develop/tools/#expo-go-cli). Veja [Solucione uma incompatibilidade de versão do Expo Go](/troubleshooting/expo-go-version-mismatch/) para mais informações.
 
-## Como atualizar para a versão mais recente do SDK
+## Como atualizar para a versão mais recente do SDK \{#how-to-upgrade-to-the-latest-sdk-version}
 
-### Atualize com um agente de IA de programação
+### Atualize com um agente de IA de programação \{#upgrade-with-an-ai-coding-agent}
 
 Se você usa um agente de IA de programação, instale as [Skills do Expo](/skills/) e use a skill [`expo-upgrade`](/skills/#available-expo-skills). A skill oferece diretrizes para atualizar as versões do SDK do Expo e corrigir problemas de dependências. Revise todas as alterações propostas e consulte o changelog do SDK para instruções específicas de cada versão.
 
 <RelatedSkills names={['expo-upgrade']} />
 
-### Atualize manualmente
+### Atualize manualmente \{#upgrade-manually}
 
 <Step label="1">
 
-#### Atualize o SDK do Expo
+#### Atualize o SDK do Expo \{#upgrade-the-expo-sdk}
 
 Instale a nova versão do pacote Expo:
 
@@ -45,7 +45,7 @@ Dependendo do SDK para o qual você está atualizando, substitua `expo@^58.0.0` 
 
 <Step label="2">
 
-#### Atualize as dependências
+#### Atualize as dependências \{#upgrade-dependencies}
 
 Atualize todas as dependências para que correspondam à versão do SDK instalada. Em seguida, rode o comando [`expo-doctor`](/develop/tools/#expo-doctor) para verificar problemas comuns.
 
@@ -58,7 +58,7 @@ Atualize todas as dependências para que correspondam à versão do SDK instalad
 
 <Step label="3">
 
-#### Atualize os projetos nativos
+#### Atualize os projetos nativos \{#update-native-projects}
 
 - **Se você usa a [Geração Nativa Contínua](/workflow/continuous-native-generation/)**: apague os diretórios **android** e **ios** caso você os tenha gerado para uma versão anterior do SDK no diretório do projeto local. Eles serão gerados de novo na próxima vez que você fizer um build, seja com `npx expo run:ios`, `npx expo prebuild` ou com o Expo Build.
 - **Se você não usa a [Geração Nativa Contínua](/workflow/continuous-native-generation/)**: rode `npx pod-install` se tiver um diretório **ios**. Aplique as alterações relevantes do [assistente de atualização de projetos nativos](/bare/upgrade/). Como alternativa, considere [adotar o prebuild](/guides/adopting-prebuild/) para facilitar as atualizações no futuro.
@@ -67,13 +67,13 @@ Atualize todas as dependências para que correspondam à versão do SDK instalad
 
 <Step label="4">
 
-#### Siga as notas de versão para outras instruções
+#### Siga as notas de versão para outras instruções \{#follow-the-release-notes-for-any-other-instructions}
 
 Leia os [changelogs do SDK](#sdk-changelogs) da versão para a qual você está atualizando. Eles trazem informações importantes sobre quebras de compatibilidade, descontinuações e outras mudanças que podem afetar o seu app. Consulte a seção "Upgrading your app" no final da página de notas de versão para instruções adicionais.
 
 </Step>
 
-## Changelogs do SDK
+## Changelogs do SDK \{#sdk-changelogs}
 
 Cada post de anúncio de versão do SDK contém informações sobre descontinuações, quebras de compatibilidade e tudo o mais que for específico daquela versão do SDK. Ao atualizar, não deixe de conferir esses posts para não perder nada.
 
@@ -82,7 +82,7 @@ Cada post de anúncio de versão do SDK contém informações sobre descontinua�
 - **SDK 56**: [Notas de versão](https://expo.dev/changelog/sdk-56)
 - **SDK 55**: [Notas de versão](https://expo.dev/changelog/sdk-55)
 
-### Changelogs de versões do SDK descontinuadas
+### Changelogs de versões do SDK descontinuadas \{#deprecated-sdk-version-changelogs}
 
 Os posts a seguir podem conter informações desatualizadas, mas continuam úteis como referência caso você esteja muito atrasado nas atualizações do SDK.
 

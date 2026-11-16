@@ -27,7 +27,7 @@ Vamos usar o [`expo-image-picker`](/versions/latest/sdk/imagepicker), uma biblio
 
 <Step label="1">
 
-## Instale o expo-image-picker
+## Instale o expo-image-picker \{#install-expo-image-picker}
 
 Para instalar a biblioteca `expo-image-picker`, pare o servidor de desenvolvimento pressionando <kbd>Ctrl</kbd> + <kbd>C</kbd> no terminal e execute o comando a seguir:
 
@@ -48,7 +48,7 @@ O comando [`npx expo install`](/more/expo-cli/#installation) instala a bibliotec
 
 <Step label="2">
 
-## Escolha uma imagem da biblioteca de mídia do dispositivo
+## Escolha uma imagem da biblioteca de mídia do dispositivo \{#pick-an-image-from-the-devices-media-library}
 
 `expo-image-picker` oferece o método `launchImageLibraryAsync()`, que abre a interface do sistema para selecionar uma imagem ou um vídeo da biblioteca de mídia do dispositivo. Vamos criar uma função que chama esse método e depois conectá-la ao botão principal do capítulo anterior.
 
@@ -93,7 +93,7 @@ Vamos entender o que o código acima faz:
 
 <Step label="3">
 
-## Conecte o botão ao seletor de imagens
+## Conecte o botão ao seletor de imagens \{#connect-the-button-to-the-image-picker}
 
 O componente `Button` do capítulo anterior já aceita uma prop `onPress`. Em **src/app/(tabs)/index.tsx**, passe a função `pickImageAsync()` para a prop `onPress` do primeiro `<Button>`:
 
@@ -239,7 +239,7 @@ Veja um exemplo do objeto `result` e das propriedades que ele contém:
 
 <Step label="4">
 
-## Use a imagem selecionada
+## Use a imagem selecionada \{#use-the-selected-image}
 
 O objeto `result` fornece o array `assets`, que contém o `uri` da imagem selecionada. Vamos pegar esse valor do seletor de imagens e usá-lo para exibir a imagem escolhida no app.
 
@@ -363,7 +363,7 @@ Vamos dar uma olhada no nosso app agora:
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/image-picker" />
 

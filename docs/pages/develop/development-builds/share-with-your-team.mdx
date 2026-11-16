@@ -13,7 +13,7 @@ import { CODE } from '~/ui/components/Text';
 
 Android e iOS oferecem formas de instalar um build do seu app diretamente nos aparelhos. Isso dá controle total sobre quais builds vão para cada aparelho, permitindo iterar rápido e ter vários builds do seu app disponíveis para revisão ao mesmo tempo. Você também pode compartilhá-lo com sua equipe ou rodá-lo em vários aparelhos de teste.
 
-## Compartilhe a URL
+## Compartilhe a URL \{#share-the-url}
 
 Quando um development build fica pronto, é gerada uma URL compartilhável para ele, com instruções de como colocá-lo para rodar. Você pode usar essa URL com um colega ou enviá-la ao seu aparelho de teste para instalar o build. A URL gerada é exclusiva desse build do seu projeto.
 
@@ -24,7 +24,7 @@ Quando um development build fica pronto, é gerada uma URL compartilhável para 
 
 > Se você registrar novos dispositivos iOS depois de criar um development build, será preciso criar um novo development build para instalá-lo neles. Para mais informações, veja a [distribuição interna](/build/internal-distribution/).
 
-### Use o painel do Expo
+### Use o painel do Expo \{#use-the-expo-dashboard}
 
 Você também pode direcionar seu colega para a página do build no painel do Expo. De lá, ele pode baixar o artefato do build diretamente no aparelho dele.
 
@@ -34,7 +34,7 @@ Você também pode direcionar seu colega para a página do build no painel do Ex
   className="max-w-[480px]"
 />
 
-### Use o EAS CLI
+### Use o EAS CLI \{#use-eas-cli}
 
 Seu colega também pode baixar e instalar o development build usando o EAS CLI. Ele precisa garantir que esteja conectado à conta Expo associada ao development build e depois pode executar o comando a seguir:
 
@@ -42,13 +42,13 @@ Seu colega também pode baixar e instalar o development build usando o EAS CLI. 
 
 Se o nome do perfil do development build for diferente de `development`, use esse nome no lugar, com `--profile`.
 
-### Instruções somente para iOS
+### Instruções somente para iOS \{#ios-only-instructions}
 
 > Se você estiver usando iOS 16 ou superior e ainda não tiver ativado o Modo Desenvolvedor, será preciso [ativá-lo](/guides/ios-developer-mode) antes de rodar seu build. (Isso não se aplica se você estiver usando provisionamento empresarial.)
 
 Você pode usar `eas build:resign` para assinar novamente um **.ipa** existente para iOS com um novo perfil de provisionamento ad hoc. Isso reduz o tempo ao distribuir com a equipe. Por exemplo, se você quiser adicionar um novo aparelho de teste a um build existente, pode usar esse comando para atualizar o perfil de provisionamento e incluir o aparelho, sem gerar o app inteiro do zero. Para mais informações, veja [Reassinar com novas credenciais](/app-signing/app-credentials/#re-signing-new-credentials).
 
-## Próximos passos
+## Próximos passos \{#next-steps}
 
 <BoxLink
   title="Instale várias variantes do app no mesmo aparelho"
@@ -64,7 +64,7 @@ Você pode usar `eas build:resign` para assinar novamente um **.ipa** existente 
 />
 
 <BoxLink
-  title="Compartilhando versões de pré-lançamento do seu app"
+  title="Compartilhar versões de pré-lançamento do seu app"
   description="Saiba mais sobre como compartilhar versões de pré-lançamento do seu app."
   href="/build/internal-distribution"
   Icon={Cube01Icon}

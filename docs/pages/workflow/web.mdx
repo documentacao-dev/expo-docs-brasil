@@ -47,7 +47,7 @@ O Expo tem suporte de primeira classe para criar sites full-stack com React. Os 
     }
     ```
 
-    O Expo oferece suporte completo à criação de componentes somente para web. Porém, você pode querer organizar o seu código para dar suporte melhor à criação simultânea para web e plataformas nativas. Saiba mais em [módulos específicos de plataforma](/router/advanced/platform-specific-modules).
+    O Expo oferece suporte completo à criação de componentes somente para web. Porém, talvez seja melhor organizar o código para oferecer um bom suporte à criação simultânea para web e plataformas nativas. Saiba mais em [módulos específicos de plataforma](/router/advanced/platform-specific-modules).
 
 </Tab>
 
@@ -57,9 +57,9 @@ Todas as bibliotecas do SDK do Expo são criadas para oferecer suporte a ambient
 
 Recursos de desenvolvimento como Fast Refresh, depuração, variáveis de ambiente e [bundling](/guides/customizing-metro) também são totalmente universais, o que proporciona uma experiência de desenvolvimento unificada. A CLI do Expo **otimiza automaticamente o código** para cada plataforma quando você faz o build para produção, usando técnicas como o [platform shaking](/guides/tree-shaking#platform-shaking).
 
-## Primeiros passos
+## Primeiros passos \{#getting-started}
 
-### Instale as dependências da web
+### Instale as dependências da web \{#install-web-dependencies}
 
 <Terminal
   cmd={{
@@ -70,9 +70,9 @@ Recursos de desenvolvimento como Fast Refresh, depuração, variáveis de ambien
   }}
 />
 
-<Collapsible summary={<>Not using the <CODE>expo</CODE> package in your app yet?</>}>
+<Collapsible summary={<>Ainda não usa o pacote <CODE>expo</CODE> no seu app?</>}>
 
-Se você ainda não adicionou o Expo ao seu app React Native, pode [instalar os módulos do Expo](/bare/installing-expo-modules/) (recomendado) ou apenas instalar o pacote `expo` e configurar o arquivo de entrada do app. Isso permitirá que você tenha como alvo a web, mas não incluirá suporte ao SDK do Expo.
+Se você ainda não adicionou o Expo ao seu app React Native, pode [instalar os módulos do Expo](/bare/installing-expo-modules/) (recomendado) ou apenas instalar o pacote `expo` e configurar o arquivo de entrada do app. Isso permite rodar o app na web, mas não inclui suporte ao SDK do Expo.
 
 1. Instale a [CLI do Expo](/more/expo-cli/) no seu projeto:
 
@@ -103,7 +103,7 @@ import App from './App';
 
 </Collapsible>
 
-### Inicie o servidor de desenvolvimento
+### Inicie o servidor de desenvolvimento \{#start-the-dev-server}
 
 Agora você pode iniciar o servidor de desenvolvimento e desenvolver no navegador com:
 
@@ -127,7 +127,7 @@ O app pode ser exportado como um site de produção com:
   }}
 />
 
-## Próximos passos
+## Próximos passos \{#next}
 
 <BoxLink
   title="Roteamento baseado em arquivos"

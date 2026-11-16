@@ -9,7 +9,7 @@ import { BoxLink } from '~/ui/components/BoxLink';
 
 Armazenar dados pode ser essencial para as funcionalidades do seu app mobile. Existem diferentes formas de salvar dados no seu projeto Expo, dependendo do tipo de dado que você quer guardar e dos requisitos de segurança do app. Esta página lista várias bibliotecas para ajudar você a decidir qual solução é a melhor para o seu projeto.
 
-## Expo SecureStore
+## Expo SecureStore \{#expo-securestore}
 
 O `expo-secure-store` oferece uma forma de criptografar e armazenar com segurança pares de chave-valor localmente no dispositivo. Ele é indicado para valores pequenos, como tokens, chaves e outros segredos.
 
@@ -20,7 +20,7 @@ O `expo-secure-store` oferece uma forma de criptografar e armazenar com seguran�
   imageUrl="/static/images/packages/expo-secure-store.png"
 />
 
-## Expo FileSystem
+## Expo FileSystem \{#expo-filesystem}
 
 O `expo-file-system` dá acesso a um sistema de arquivos armazenado localmente no dispositivo. No Expo Go, cada projeto tem um sistema de arquivos separado e não tem acesso aos arquivos de outros projetos Expo. No entanto, ele pode salvar no sistema de arquivos local conteúdos compartilhados por outros projetos e compartilhar arquivos locais com outros projetos. Ele também consegue enviar e baixar arquivos de URLs de rede.
 
@@ -31,7 +31,7 @@ O `expo-file-system` dá acesso a um sistema de arquivos armazenado localmente n
   imageUrl="/static/images/packages/expo-file-system.png"
 />
 
-## Expo SQLite
+## Expo SQLite \{#expo-sqlite}
 
 O pacote `expo-sqlite` dá ao seu app acesso a um banco de dados que pode ser consultado por meio de uma API parecida com a WebSQL. O banco é mantido entre as reinicializações do app. Você pode usá-lo para importar um banco de dados existente, abrir bancos, criar tabelas, inserir itens, consultar e exibir resultados e usar prepared statements.
 
@@ -42,7 +42,7 @@ O pacote `expo-sqlite` dá ao seu app acesso a um banco de dados que pode ser co
   imageUrl="/static/images/packages/expo-sqlite.png"
 />
 
-## Async Storage
+## Async Storage \{#async-storage}
 
 O [Async Storage](https://react-native-async-storage.github.io/2.0/Installation/#install) é um armazenamento assíncrono, sem criptografia e persistente de pares chave-valor para apps React Native. Ele tem uma API simples e é uma boa escolha para guardar pequenas quantidades de dados. Também é uma boa escolha para dados que não precisam de criptografia, como preferências do usuário ou o estado do app.
 
@@ -53,7 +53,7 @@ O [Async Storage](https://react-native-async-storage.github.io/2.0/Installation/
   Icon={Globe01Icon}
 />
 
-## Outras bibliotecas
+## Outras bibliotecas \{#other-libraries}
 
 Existem outras bibliotecas para armazenar dados com diferentes finalidades. Por exemplo, você pode não precisar de criptografia no seu projeto ou pode estar procurando uma solução mais rápida, parecida com o Async Storage.
 

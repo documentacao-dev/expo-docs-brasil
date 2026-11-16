@@ -12,7 +12,7 @@ import { Terminal, DiffBlock } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
 <Step label="1">
-## Iniciar o servidor de desenvolvimento
+## Iniciar o servidor de desenvolvimento \{#start-a-development-server}
 Para iniciar o servidor de desenvolvimento, execute o comando a seguir:
 
 <Terminal
@@ -27,19 +27,19 @@ Para iniciar o servidor de desenvolvimento, execute o comando a seguir:
 </Step>
 
 <Step label="2">
-## Abra o app no seu aparelho
+## Abra o app no seu aparelho \{#open-the-app-on-your-device}
 
 Depois de executar o comando acima, você verá um QR code no terminal. Escaneie esse QR code para abrir o app no seu aparelho.
 
 Se você estiver usando um Android Emulator ou um iOS Simulator, pressione <kbd>A</kbd> ou <kbd>I</kbd>, respectivamente, para abrir o app.
 
-> **info** **Usando o Expo Go em um dispositivo iOS físico?** O Expo Go só abre seu projeto quando o Expo CLI e o Expo Go estão conectados à mesma conta Expo. Execute `npx expo login` no seu computador e depois entre no Expo Go com a mesma conta. Veja [Configurar seu ambiente](/get-started/set-up-your-environment/?platform=ios&device=physical&mode=expo-go).
+> **info** **Usando o Expo Go em um aparelho iOS físico?** O Expo Go só abre seu projeto quando o Expo CLI e o Expo Go estão conectados à mesma conta Expo. Execute `npx expo login` no seu computador e depois entre no Expo Go com a mesma conta. Veja [Configurar seu ambiente](/get-started/set-up-your-environment/?platform=ios&device=physical&mode=expo-go).
 
 <Collapsible summary="Está com problemas?">
 
 Verifique se o computador e o aparelho estão na mesma rede Wi-Fi.
 
-Se aparecer um erro sobre contas em um dispositivo iOS físico, a mensagem indica o que corrigir. Para entrar no Expo CLI, execute `npx expo login` no seu computador. Para entrar no Expo Go, toque no ícone de conta no canto superior direito. Use a mesma conta nos dois, depois toque em **Try Again**. Veja [Login necessário no Expo Go](/troubleshooting/expo-go-sign-in-required/) para todas as mensagens.
+Se aparecer um erro sobre contas em um aparelho iOS físico, a mensagem indica o que corrigir. Para entrar no Expo CLI, execute `npx expo login` no seu computador. Para entrar no Expo Go, toque no ícone de conta no canto superior direito. Use a mesma conta nos dois, depois toque em **Try Again**. Veja [Login necessário no Expo Go](/troubleshooting/expo-go-sign-in-required/) para todas as mensagens.
 
 Se ainda não funcionar, pode ser por causa da configuração do roteador, o que é comum em redes públicas. Você pode contornar isso escolhendo o tipo de conexão **Tunnel** ao iniciar o servidor de desenvolvimento e escaneando o QR code de novo.
 
@@ -60,7 +60,7 @@ Se ainda não funcionar, pode ser por causa da configuração do roteador, o que
 
 <Step label="3">
 
-## Faça sua primeira mudança
+## Faça sua primeira mudança \{#make-your-first-change}
 
 Abra o arquivo **src/app/index.tsx** no seu editor de código e faça uma alteração.
 
@@ -87,7 +87,7 @@ O Expo Go já vem configurado para recarregar o app automaticamente sempre que u
 - Verifique se o [modo de desenvolvimento está ativado no Expo CLI](/workflow/development-mode#development-mode).
 - Feche o app Expo e abra-o de novo.
 - Com o app aberto de novo, sacuda o aparelho para abrir o menu do desenvolvedor. Pressione <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>.
-- Se o **Fast Refresh** estiver ativado, desative-o. Se aparecer **Disable Fast Refresh**, feche o menu do desenvolvedor. Depois, tente fazer outra alteração.
+- Se o **Fast Refresh** estiver ativado, alterne a opção. Se aparecer **Disable Fast Refresh**, feche o menu do desenvolvedor. Depois, tente fazer outra alteração.
 
   <ContentSpotlight
     alt="Menu do desenvolvedor no app Expo Go."
@@ -101,13 +101,13 @@ O Expo Go já vem configurado para recarregar o app automaticamente sempre que u
 
 ---
 
-## Estrutura de arquivos
+## Estrutura de arquivos \{#file-structure}
 
 Abaixo, você pode se familiarizar com a estrutura de arquivos do projeto padrão:
 
 <ProjectStructure />
 
-## Recursos
+## Recursos \{#features}
 
 O template do projeto padrão tem os seguintes recursos:
 

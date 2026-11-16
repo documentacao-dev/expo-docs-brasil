@@ -16,7 +16,7 @@ Refazer manualmente o development client a cada push para um repositório do Git
 
 Automatizar development builds na branch `main` mantém um build atualizado pronto para instalar. Podemos rodar `eas build:dev` para instalar o build compatível mais recente. Se o fingerprint do projeto bater com um build existente, o comando baixa esse build em vez de criar um novo.
 
-## O que você vai aprender
+## O que você vai aprender \{#learning-outcomes}
 
 - Automatizar [development builds](/develop/development-builds/introduction/) para Android e iOS com o tipo de job `build`
 - Usar os jobs `fingerprint` e `get-build` para pular o rebuild quando o código nativo não mudou
@@ -34,7 +34,7 @@ A EAS CLI pede para gerar as credenciais na primeira vez que disparamos um build
 
 </Prerequisites>
 
-## O job `build` para development builds
+## O job `build` para development builds \{#the-build-job-type-for-development-builds}
 
 O tipo de job `build` é um dos [jobs pré-empacotados](/tutorial/cicd/first-workflow/#types-of-jobs-in-expo-workflows) do Expo Workflows. Em vez de definir cada etapa do processo de build, usamos o job `build` para rodar um Expo Build para Android e iOS.
 
@@ -42,7 +42,7 @@ Neste capítulo, usamos o perfil de build `development` do nosso **eas.json**. U
 
 <Step label="1">
 
-### Adicione um build.yml
+### Adicione um build.yml \{#add-a-buildyml}
 
 Dentro de **.eas/workflows/**, adicione um novo arquivo chamado **build.yml**. Ele usa o job `build` com os parâmetros `profile` e `platform` para criar development builds para Android e iOS.
 
@@ -77,7 +77,7 @@ A chave `params` de cada job inclui:
 
 <Step label="2">
 
-### Rode o workflow manualmente
+### Rode o workflow manualmente \{#run-the-workflow-manually}
 
 Vamos rodar o workflow manualmente com o comando:
 
@@ -87,7 +87,7 @@ Vamos rodar o workflow manualmente com o comando:
 
 <Step label="3">
 
-### Verifique no dashboard da Expo
+### Verifique no dashboard da Expo \{#verify-on-the-expo-dashboard}
 
 No dashboard da Expo, veja que aparece "Triggered manually" na aba **Workflow graph**. Sempre que o **Trigger** mostrar **Manual**, significa que o workflow foi iniciado com o comando `eas workflow:run`.
 
@@ -111,7 +111,7 @@ Espere os dois builds terminarem antes de ir para o próximo passo. Quando termi
 
 </Step>
 
-## Pule builds desnecessários com fingerprints
+## Pule builds desnecessários com fingerprints \{#skip-unnecessary-builds-with-fingerprints}
 
 Quando o projeto tem só mudanças em TypeScript/JavaScript, o development build existente continua compatível, então não precisamos de um novo.
 
@@ -123,9 +123,9 @@ Vamos atualizar o **build.yml** passo a passo para detectar mudanças nativas e 
 
 <Step label="1">
 
-### Adicione um job de fingerprint
+### Adicione um job de fingerprint \{#add-a-fingerprint-job}
 
-O job pré-empacotado [`fingerprint`](/eas/workflows/pre-packaged-jobs/#fingerprint) gera um hash das características nativas do projeto e produz um hash de fingerprint para cada plataforma. O campo `environment` diz ao Expo Workflows qual [configuração de variáveis de ambiente](/eas/environment-variables/) usar. Note que `environment` e `profile` podem ter o mesmo nome, mas se referem a coisas diferentes. `profile` aponta para um perfil de build no **eas.json** (como fazer o build). `environment` aponta para variáveis de ambiente configuradas nos Serviços da Expo (quais valores injetar no momento do build).
+O job pré-empacotado [`fingerprint`](/eas/workflows/pre-packaged-jobs/#fingerprint) gera um hash das características nativas do projeto e produz um hash de fingerprint para cada plataforma. O campo `environment` diz ao Expo Workflows qual [configuração de variáveis de ambiente](/eas/environment-variables/) usar. `environment` e `profile` podem ter o mesmo nome, mas se referem a coisas diferentes. `profile` aponta para um perfil de build no **eas.json** (como fazer o build). `environment` aponta para variáveis de ambiente configuradas no Expo Services (quais valores injetar no momento do build).
 
 Atualize o **build.yml** para adicionar o job `fingerprint` antes dos jobs de build:
 
@@ -151,7 +151,7 @@ O job `fingerprint` produz duas saídas: `android_fingerprint_hash` e `ios_finge
 
 <Step label="2">
 
-### Adicione jobs get-build
+### Adicione jobs get-build \{#add-get-build-jobs}
 
 O job pré-empacotado [`get-build`](/eas/workflows/pre-packaged-jobs/#get-build) verifica se já existe um build para um determinado hash de fingerprint e perfil. Se houver um build correspondente, ele produz um `build_id`. Se não houver, o `build_id` fica vazio.
 
@@ -191,7 +191,7 @@ No workflow acima, os jobs `get-build` recebem o hash de fingerprint do job ante
 
 <Step label="3">
 
-### Adicione builds condicionais
+### Adicione builds condicionais \{#add-conditional-builds}
 
 O campo [`if`](/eas/workflows/syntax/#jobsjob_idif) controla se um job roda. A expressão `${{ !needs.get_android_build.outputs.build_id }}` significa: _rode um job somente se o `get-build` não encontrou um build correspondente_. O `!` é o operador de negação. Se já existir um build compatível para este fingerprint, o job de build é pulado.
 
@@ -233,7 +233,7 @@ jobs:
 
 <Step label="4">
 
-### Adicione um trigger e rode o workflow
+### Adicione um trigger e rode o workflow \{#add-a-trigger-and-run-the-workflow}
 
 Vamos adicionar o trigger `on.push` ao workflow para que ele rode automaticamente a cada push na `main`:
 
@@ -306,7 +306,7 @@ Puxamos as últimas mudanças da branch `main` e rodamos `npx expo start`. O dev
 
 </Step>
 
-## Jobs customizados para testes unitários
+## Jobs customizados para testes unitários \{#custom-jobs-for-unit-testing}
 
 > **info** Esta seção assume que o Jest está configurado no projeto. Para instruções de configuração, veja [Testes unitários com Jest](/develop/unit-testing/).
 
@@ -320,7 +320,7 @@ Com o **Expo Workflows**, podemos automatizar isso combinando um job customizado
 
 <Step label="1">
 
-### Adicione um job customizado para os testes unitários
+### Adicione um job customizado para os testes unitários \{#add-a-custom-job-for-unit-tests}
 
 No arquivo de workflow **build.yml**, vamos adicionar um job customizado que roda os testes unitários antes de os builds começarem:
 
@@ -369,7 +369,7 @@ Agora, o job `fingerprint` tem `needs: [run_tests]`, então ele só roda depois 
 
 <Step label="2">
 
-### Dispare o workflow
+### Dispare o workflow \{#trigger-the-workflow}
 
 Faça commit e push do workflow atualizado junto com o arquivo de teste para a `main`:
 
@@ -392,7 +392,7 @@ Depois de disparar o workflow, abra o dashboard da Expo e observe o fluxo dos jo
 
 </Step>
 
-## Resumo
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/development-builds" />
 

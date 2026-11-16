@@ -12,14 +12,14 @@ O Expo é um framework React Native que facilita o desenvolvimento de apps para 
 
 Também oferecemos os [Expo Services](https://expo.dev/services), um conjunto de serviços que complementam o framework Expo em cada etapa do processo de desenvolvimento.
 
-> **info** **Está começando em programação?** Você pode criar seu primeiro app Expo pedindo a um agente de IA de programação, em vez de escrever código. Siga o [tutorial Build with AI](/tutorial/build-with-ai/introduction/). Ele cobre a configuração do zero.
+> **info** **Está começando a programar?** Você pode criar seu primeiro app Expo pedindo a um agente de IA de programação, em vez de escrever código. Siga o [tutorial Build with AI](/tutorial/build-with-ai/introduction/). Ele cobre a configuração do zero.
 
-## Requisitos do sistema
+## Requisitos do sistema \{#system-requirements}
 
 - [Node.js (LTS)](https://nodejs.org/en/).
 - macOS, Windows (PowerShell e [WSL 2](https://expo.fyi/wsl)) e Linux são compatíveis.
 
-## Começar com o projeto padrão
+## Começar com o projeto padrão \{#start-with-a-default-project}
 
 Recomendamos começar com o projeto padrão criado pelo [`create-expo-app`](/more/create-expo/). O projeto padrão inclui código de exemplo para ajudar você a começar.
 
@@ -36,7 +36,7 @@ Para criar um novo projeto, execute o comando a seguir:
 
 > **info** Durante o período de transição do SDK 58, `create-expo-app@latest` sem a flag `--template` cria um projeto com SDK 57. Se você pretende usar o Expo Go em um aparelho físico, use um projeto SDK 57. Caso contrário, use `--template default@sdk-58` para criar um projeto SDK 58. Você também pode escolher outro template adicionando a [opção `--template`](/more/create-expo/#--template).
 
-## Começar a partir de um exemplo
+## Começar a partir de um exemplo \{#start-from-an-example}
 
 Em vez do projeto padrão, você pode começar a partir de um dos [exemplos do Expo](https://github.com/expo/examples). São apps pequenos, cada um demonstrando um recurso ou integração específica, como Expo Router, Expo Widgets ou uma tela de câmera.
 
@@ -64,7 +64,7 @@ Para criar um exemplo específico diretamente, informe o nome dele:
 
 > **info** Os demais guias desta seção **"Primeiros passos"** seguem o projeto padrão. Um app de exemplo pode ser organizado de outra forma, mas os conceitos são os mesmos.
 
-## Configurar um agente de IA
+## Configurar um agente de IA \{#set-up-an-ai-agent}
 
 Um projeto novo inclui o **AGENTS.md**, com o contexto do projeto para agentes de IA. Quando o Claude Code está instalado, o projeto também inclui o **.claude/settings.json**, que ativa o plugin do Expo. Claude Code e Codex têm um plugin oficial do Expo. Com um único comando, você instala as [Expo Skills](/skills/) e registra o [servidor Expo Model Context Protocol (MCP)](/mcp/):
 
@@ -74,7 +74,7 @@ Um projeto novo inclui o **AGENTS.md**, com o contexto do projeto para agentes d
 
 <Terminal cmd={['$ claude plugin install expo@claude-plugins-official']} />
 
-Depois, execute `/mcp` dentro da sua sessão do Claude Code para entrar na sua conta Expo.
+Depois, execute `/mcp` dentro da sessão do Claude Code para entrar na sua conta Expo.
 
 </Tab>
 
@@ -96,7 +96,7 @@ O plugin também instala a skill que ensina ao agente onde ficam os arquivos em 
 
 Para o Cursor e outros agentes, instale separadamente as [Expo Skills](/skills/) e o [servidor MCP do Expo](/mcp/). A visão geral [Agentes de IA e Expo](/agents/) explica a configuração de cada agente.
 
-## Próximo passo
+## Próximo passo \{#next-step}
 
 Você já tem um projeto. Agora é hora de configurar seu ambiente de desenvolvimento para começar a desenvolver.
 
