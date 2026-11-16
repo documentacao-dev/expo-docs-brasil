@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { isLocalStorageAvailable } from './sentry-utilities';
+import { isLocalStorageAvailable } from './utilities';
 
 type Args<T> = {
   name: string;

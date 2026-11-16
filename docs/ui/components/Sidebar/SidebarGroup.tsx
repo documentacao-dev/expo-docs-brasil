@@ -32,7 +32,6 @@ import {
   hasJapaneseTranslation,
 } from '~/common/i18n';
 import { isRouteActive } from '~/common/routes';
-import { reportEasTutorialCompleted } from '~/providers/Analytics';
 import { useTutorialChapterCompletion } from '~/providers/TutorialChapterCompletionProvider';
 import { NavigationRoute } from '~/types/common';
 import { HandWaveIcon } from '~/ui/components/CustomIcons/HandWaveIcon';
@@ -63,7 +62,6 @@ export const SidebarGroup = ({ route, parentRoute }: SidebarNodeProps) => {
     'Expo Services tutorial': {
       name: 'EAS_TUTORIAL',
       resetHref: '/tutorial/eas/introduction/',
-      onAllCompleted: reportEasTutorialCompleted,
     },
     'Expo tutorial': {
       name: 'GET_STARTED',

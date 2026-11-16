@@ -1,5 +1,4 @@
 import { Button } from '@expo/styleguide';
-import { captureMessage } from '@sentry/browser';
 import { useEffect, useState } from 'react';
 
 import { getRedirectPath } from '~/common/client-redirects';
@@ -23,7 +22,6 @@ const Error = () => {
     const { pathname, search } = window.location;
 
     if (search === REDIRECT_SUFFIX) {
-      captureMessage(`Redirect failed`);
       setRedirectFailed(true);
       return;
     }
@@ -37,11 +35,6 @@ const Error = () => {
 
     // We are confident now that we can render a not found error
     setNotFound(true);
-    captureMessage(`Page not found (404)`, {
-      extra: {
-        '404': pathname,
-      },
-    });
   }, []);
 
   useEffect(() => {

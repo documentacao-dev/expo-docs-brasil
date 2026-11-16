@@ -24,7 +24,6 @@ module.exports = {
     './scenes/**/*.{js,ts,jsx,tsx}',
     './node_modules/@expo/styleguide/dist/**/*.{js,ts,jsx,tsx}',
     './node_modules/@expo/styleguide-search-ui/dist/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@expo/styleguide-cookie-consent/dist/**/*.{js,ts,jsx,tsx}',
   ],
   ...getExpoTheme(
     {

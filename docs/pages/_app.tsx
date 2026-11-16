@@ -1,6 +1,5 @@
 import { ThemeProvider } from '@expo/styleguide';
 import { MDXProvider } from '@mdx-js/react';
-import * as Sentry from '@sentry/react';
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
 import { Inter, JetBrains_Mono } from 'next/font/google';
@@ -8,14 +7,10 @@ import { useRouter } from 'next/router';
 import { IntlProvider } from 'react-intl';
 
 import { getLocaleFromPath, messages } from '~/common/i18n';
-import { preprocessSentryError } from '~/common/sentry-utilities';
 import { useNProgress } from '~/common/useNProgress';
 import { DocumentationPageWrapper } from '~/components/DocumentationPageWrapper';
 import { buildWebsiteSchema } from '~/constants/structured-data';
-import { useAnalyticsPageTracking } from '~/providers/Analytics';
 import { CodeBlockSettingsProvider } from '~/providers/CodeBlockSettingsProvider';
-import { CometlyPixel } from '~/providers/CometlyPixel';
-import { ConsentProvider } from '~/providers/ConsentProvider';
 import { TutorialChapterCompletionProvider } from '~/providers/TutorialChapterCompletionProvider';
 import { ApiDataProvider } from '~/providers/api-data';
 import { HreflangAlternates } from '~/ui/components/HreflangAlternates';
@@ -28,8 +23,6 @@ import '@expo/styleguide-search-ui/dist/expo-search-ui.css';
 
 import '~/styles/global.css';
 
-const isDev = process.env.NODE_ENV === 'development';
-
 export const regularFont = Inter({
   display: 'swap',
   subsets: ['latin'],
@@ -39,38 +32,15 @@ export const monospaceFont = JetBrains_Mono({
   subsets: ['latin'],
 });
 
-Sentry.init({
-  dsn: 'https://1a2f5c8cec574bcea3971b74f91504d6@o30871.ingest.sentry.io/1526800',
-  beforeSend: preprocessSentryError,
-  environment: isDev ? 'development' : 'production',
-  denyUrls: [
-    /https:\/\/docs-expo-dev\.translate\.goog/,
-    /https:\/\/translated\.turbopages\.org/,
-    /https:\/\/docs\.expo\.dev\/index\.html/,
-    /https:\/\/expo\.nodejs\.cn/,
-  ],
-  integrations: [Sentry.browserTracingIntegration(), Sentry.extraErrorDataIntegration()],
-  tracesSampleRate: 0.00001,
-  replaysSessionSampleRate: 0.000005,
-  replaysOnErrorSampleRate: 0.002,
-});
-
-await import('@sentry/react').then(lazyLoadedSentry => {
-  Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
-});
-
 const rootMarkdownComponents = {
   ...markdownComponents,
   wrapper: DocumentationPageWrapper,
 };
 
-export { reportWebVitals } from '~/providers/Analytics';
-
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const locale = getLocaleFromPath(router.asPath);
   useNProgress();
-  useAnalyticsPageTracking();
   return (
     <>
       <StructuredData id="website" data={buildWebsiteSchema(locale)} />
@@ -96,21 +66,18 @@ export default function App({ Component, pageProps }: AppProps) {
       <IntlProvider locale={locale} messages={messages[locale]} defaultLocale="en">
         <MotionConfig reducedMotion="user">
           <ThemeProvider>
-            <ConsentProvider>
-              <CometlyPixel />
-              <TutorialChapterCompletionProvider>
-                <CodeBlockSettingsProvider>
-                  <MDXProvider components={rootMarkdownComponents}>
-                    <Tooltip.Provider>
-                      <ApiDataProvider data={pageProps.apiSectionData}>
-                        <Component {...pageProps} />
-                      </ApiDataProvider>
-                      <CodeSelectionCopy />
-                    </Tooltip.Provider>
-                  </MDXProvider>
-                </CodeBlockSettingsProvider>
-              </TutorialChapterCompletionProvider>
-            </ConsentProvider>
+            <TutorialChapterCompletionProvider>
+              <CodeBlockSettingsProvider>
+                <MDXProvider components={rootMarkdownComponents}>
+                  <Tooltip.Provider>
+                    <ApiDataProvider data={pageProps.apiSectionData}>
+                      <Component {...pageProps} />
+                    </ApiDataProvider>
+                    <CodeSelectionCopy />
+                  </Tooltip.Provider>
+                </MDXProvider>
+              </CodeBlockSettingsProvider>
+            </TutorialChapterCompletionProvider>
           </ThemeProvider>
         </MotionConfig>
       </IntlProvider>

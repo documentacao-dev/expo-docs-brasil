@@ -55,7 +55,7 @@ describe('Footer', () => {
 });
 
 describe('githubUrl', () => {
-  const EDIT_URL_PREFIX = 'https://github.com/expo/expo/edit/main/docs/pages';
+  const EDIT_URL_PREFIX = 'https://github.com/documentacao-dev/expo-docs-brasil/edit/main/docs/pages';
 
   test('non-versioned page', () => {
     expect(githubUrl('/guides')).toBe(EDIT_URL_PREFIX + '/guides.mdx');

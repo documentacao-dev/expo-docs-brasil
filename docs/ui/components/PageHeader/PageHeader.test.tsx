@@ -128,7 +128,7 @@ describe(PageHeader, () => {
     const linkElement = screen.getAllByRole('link', { hidden: false })[0];
 
     expect(linkElement.getAttribute('href')).toEqual(
-      'https://github.com/expo/expo/edit/main/docs/pages/router/reference/hooks.mdx'
+      'https://github.com/documentacao-dev/expo-docs-brasil/edit/main/docs/pages/router/reference/hooks.mdx'
     );
     expect(linkElement.getAttribute('aria-label')).toEqual('Edit content of this page on GitHub');
   });
