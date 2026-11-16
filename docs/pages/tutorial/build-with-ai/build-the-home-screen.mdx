@@ -1,6 +1,6 @@
 ---
-title: Build the home screen
-description: In this chapter, direct your AI agent to add tab navigation, the photo viewer, and an image picker.
+title: Monte a tela inicial
+description: Neste capítulo, dirija seu agente de IA para adicionar navegação por abas, o visualizador de fotos e um seletor de imagens.
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
@@ -8,22 +8,22 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 
-In this chapter, the app starts to look like StickerSmash: two navigation tabs, a photo viewer, and a button that opens your phone's photo library.
+Neste capítulo, o app começa a parecer com o StickerSmash: duas abas de navegação, um visualizador de fotos e um botão que abre a biblioteca de fotos do seu celular.
 
 <Step label="1">
 
-## Add navigation tabs
+## Adicione abas de navegação
 
-Most apps have more than one screen, with tabs along the bottom to switch between them. Paste the following prompt into your agent:
+A maioria dos apps tem mais de uma tela, com abas na parte de baixo para alternar entre elas. Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Add a tab bar to the app with two tabs: a Home tab showing the current home screen, and an About tab with a screen that says "About screen" for now. Use native tabs from Expo Router, so the tab bar looks native on each platform. Style everything with a dark theme: the color #25292e for the screen backgrounds and the tab bar, white text, and yellow (#ffd33d) as the color of the selected tab. Give each tab a fitting icon, such as a house for Home and an info circle for About, using SF Symbols on iOS and Material Symbols on Android.
 ```
 
-**What you should see**: a tab bar at the bottom of the app with Home and About tabs. The tab you're on is highlighted in yellow, and tapping the other one switches screens:
+**O que você deve ver**: uma barra de abas na parte de baixo do app, com as abas Home e About. A aba em que você está fica destacada em amarelo, e tocar na outra troca de tela:
 
 <ContentSpotlight
-  alt="App with a two-tab layout"
+  alt="App com layout de duas abas"
   src="/static/images/tutorial/add-navigation-tab-navigator-complete.webp"
   className="max-w-[720px]"
 />
@@ -32,24 +32,24 @@ Add a tab bar to the app with two tabs: a Home tab showing the current home scre
 
 <Step label="2">
 
-## Add the photo viewer
+## Adicione o visualizador de fotos
 
-Next, give the home screen its main content: a large photo and two buttons. We've prepared an asset pack with the placeholder photo and the emoji stickers you'll use later. Paste the following prompt into your agent:
+Em seguida, dê à tela inicial o conteúdo principal: uma foto grande e dois botões. Preparamos um pacote de recursos com a foto de exemplo e os adesivos de emoji que você vai usar mais tarde. Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Download the image assets for this app from https://docs.expo.dev/static/images/tutorial/sticker-smash-assets.zip and extract them into the assets/images folder, replacing any files with the same names. Then build out the Home screen: show the background-image.png photo large in the center of the screen with rounded corners, and below it two buttons stacked vertically: a prominent "Choose a photo" button with a yellow (#ffd33d) background, a dark label, and a small picture icon, and a plain "Use this photo" button with white text. Use native buttons from Expo UI (@expo/ui) on Android and iOS, and React Native components on the web. Use the expo-image library to display the image.
 ```
 
-<Collapsible summary="Prefer to download the assets yourself?">
+<Collapsible summary="Prefere baixar os recursos por conta própria?">
 
-If your agent can't download or extract the file, do it manually: download [sticker-smash-assets.zip](/static/images/tutorial/sticker-smash-assets.zip), unzip it, and copy the images into the **assets/images** folder inside your **StickerSmash** folder, replacing files with the same names. Then ask the agent to build the screen with the prompt above, minus its first sentence.
+Se o seu agente não conseguir baixar ou extrair o arquivo, faça manualmente: baixe o [sticker-smash-assets.zip](/static/images/tutorial/sticker-smash-assets.zip), descompacte e copie as imagens para a pasta **assets/images** dentro da sua pasta **StickerSmash**, substituindo os arquivos com o mesmo nome. Depois, peça ao agente para montar a tela com o prompt acima, sem a primeira frase.
 
 </Collapsible>
 
-**What you should see**: a photo of a corgi puppy filling most of the screen, with the two buttons below it:
+**O que você deve ver**: uma foto de um filhote de corgi ocupando a maior parte da tela, com os dois botões abaixo dela:
 
 <ContentSpotlight
-  alt="Home screen with the photo viewer and two buttons"
+  alt="Tela inicial com o visualizador de fotos e dois botões"
   src="/static/images/tutorial/build-a-screen-initial-layout.webp"
   className="max-w-[300px]"
 />
@@ -58,23 +58,25 @@ If your agent can't download or extract the file, do it manually: download [stic
 
 <Step label="3">
 
-## Pick a photo from your library
+## Escolha uma foto da sua biblioteca
 
-Time for the first real feature: choosing your own photo. Paste the following prompt into your agent:
+Chegou a hora do primeiro recurso de verdade: escolher a sua própria foto. Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Add the expo-image-picker library. When I tap "Choose a photo", open my phone's photo library so I can pick an image, and show the one I pick in place of the placeholder photo. If I cancel without picking anything, keep showing the current photo.
 ```
 
-**What you should see**: tapping **Choose a photo** opens your phone's photo library. The photo you pick replaces the placeholder photo.
+**O que você deve ver**: ao tocar em **Choose a photo**, a biblioteca de fotos do seu celular abre. A foto que você escolher substitui a foto de exemplo.
 
 </Step>
 
-> If a result doesn't match what you expected, tell the agent what you see. The [When something looks wrong](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) section from the previous chapter has the playbook.
+> Se um resultado não bater com o que você esperava, diga ao agente o que você vê. A seção [Quando algo parece errado](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) do capítulo anterior tem o passo a passo.
 
-## Summary
+## Resumo
 
 <ProgressTracker
   name="BUILD_WITH_AI"
   currentChapterSlug="/tutorial/build-with-ai/build-the-home-screen"
 />
+
+{/* ia-translate: true */}

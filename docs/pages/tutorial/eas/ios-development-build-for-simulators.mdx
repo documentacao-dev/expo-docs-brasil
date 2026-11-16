@@ -1,7 +1,7 @@
 ---
-title: Create and run a cloud build for iOS Simulator
-sidebar_title: iOS development build for simulators
-description: Learn how to configure a development build for iOS Simulators using Expo Build.
+title: Crie e rode um build na nuvem para o iOS Simulator
+sidebar_title: Development build iOS para simuladores
+description: Aprenda a configurar um development build para o iOS Simulator usando o Expo Build.
 hasVideoLink: true
 ---
 
@@ -12,21 +12,21 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll create a development build that can run on an iOS Simulator with Expo Build.
+Neste capítulo, vamos criar um development build que roda no iOS Simulator usando o Expo Build.
 
-Development builds for iOS Simulators are generated in the **.app** format which is different from iOS devices.
+Development builds para o iOS Simulator são gerados no formato **.app**, diferente dos dispositivos iOS.
 
 <VideoBoxLink
   videoId="SgL97PFZctg"
-  title="Watch: Creating a development build for iOS Simulator"
-  description="Learn how to create a simulator build profile in eas.json and run a development build on iOS Simulator."
+  title="Assista: como criar um development build para o iOS Simulator"
+  description="Aprenda a criar um perfil de build de simulador no eas.json e rodar um development build no iOS Simulator."
 />
 
 ---
 
-## Create a simulator build profile in eas.json
+## Crie um perfil de build de simulador no eas.json
 
-In **eas.json**, add a new build profile called `ios-simulator` with the [`ios.simulator`](/eas/json/#simulator) property. Set its value to `true`:
+No **eas.json**, adicione um novo perfil de build chamado `ios-simulator` com a propriedade [`ios.simulator`](/eas/json/#simulator). Defina o valor dela como `true`:
 
 {/* prettier-ignore */}
 ```json eas.json
@@ -46,7 +46,7 @@ In **eas.json**, add a new build profile called `ios-simulator` with the [`ios.s
 }
 ```
 
-For a development build, it's necessary to have the `developmentClient` and `distribution` properties defined in the profile. To avoid redundancy, we can extend the `development` profile properties:
+Para um development build, é necessário definir as propriedades `developmentClient` e `distribution` no perfil. Para evitar repetição, podemos estender as propriedades do perfil `development`:
 
 ```json eas.json
 {
@@ -61,42 +61,42 @@ For a development build, it's necessary to have the `developmentClient` and `dis
 }
 ```
 
-## Development build for iOS Simulator
+## Development build para o iOS Simulator
 
 <Step label="1">
 
-### Create
+### Crie
 
-Run the `eas build` command with `ios` as a platform and `ios-simulator` as the build profile:
+Rode o comando `eas build` com `ios` como plataforma e `ios-simulator` como perfil de build:
 
 <Terminal cmd={['$ eas build --platform ios --profile ios-simulator']} />
 
-This command prompts us with the following questions when we create the build for the first time:
+Esse comando nos faz as seguintes perguntas quando criamos o build pela primeira vez:
 
-- **What would you like your iOS bundle identifier to be?** Press <kbd>Return</kbd> to select the default value provided for this prompt. This will add [`ios.bundleIdentifier`](/versions/latest/config/app/#bundleidentifier) in **app.json**.
-- **iOS app only uses standard/exempt encryption?** Press <kbd>Y</kbd> to select the default value provided for this prompt. Since our app doesn't use non-exempt encryption, EAS CLI adds `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` to the [app config](/workflow/configuration/). This value manages the compliance check when you release your app to TestFlight or the App Store. If your own app uses non-exempt encryption, press <kbd>N</kbd> and confirm the follow-up prompt. EAS CLI then leaves the app config unchanged. You set the encryption status in App Store Connect.
+- **What would you like your iOS bundle identifier to be?** Pressione <kbd>Return</kbd> para escolher o valor padrão sugerido nesta pergunta. Isso vai adicionar o [`ios.bundleIdentifier`](/versions/latest/config/app/#bundleidentifier) no **app.json**.
+- **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se o seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
-After responding to the prompts, our Expo Build is queued, and the EAS CLI provides a link to view build details and track progress on the Expo dashboard:
+Depois de responder às perguntas, o Expo Build entra na fila, e a EAS CLI fornece um link para ver os detalhes do build e acompanhar o progresso no painel da Expo:
 
 <ContentSpotlight
-  alt="iOS Simulator build details page"
+  alt="Página de detalhes do build para o iOS Simulator"
   src="/static/images/tutorial/eas/ios-development-build-for-simulators-details.webp"
   className="max-w-[800px]"
 />
 
-<Collapsible summary="What does a build details page contain?">
+<Collapsible summary="O que a página de detalhes do build contém?">
 
-The build details page displays the build type, profile, environment, Expo SDK version, app version, and build number. It also displays the fingerprint, the last commit hash, and the identity of the developer or account owner who initiated the build.
+A página de detalhes do build mostra o tipo de build, o perfil, o ambiente, a versão do Expo SDK, a versão do app e o número do build. Ela também mostra o fingerprint, o hash do último commit e a identidade do dev ou do dono da conta que iniciou o build.
 
-In the above image, the current status of the **Build artifact** shows that the build is in progress. Upon completion, this section will offer an option to download the build. The **Logs** outlines every step taken during the iOS build process on Expo Build. For the sake of brevity, we won't explore each step in detail here. To learn more, see [iOS build process](/build-reference/ios-builds/).
+Na imagem acima, o status atual do **Build artifact** mostra que o build está em andamento. Ao terminar, essa seção vai oferecer a opção de baixar o build. Os **Logs** detalham cada etapa do processo de build iOS no Expo Build. Para não nos estendermos, não vamos explorar cada etapa aqui. Para saber mais, veja [processo de build iOS](/build-reference/ios-builds/).
 
 </Collapsible>
 
-<Collapsible summary="What is iOS bundle identifier?">
+<Collapsible summary="O que é o iOS bundle identifier?">
 
-The `ios.bundleIdentifier` is a unique name of our app. If we publish our app right now, the Apple App Store will use this property and its value to identify our app on the store.
+O `ios.bundleIdentifier` é um nome único do nosso app. Se publicarmos o app agora, a Apple App Store vai usar essa propriedade e o valor dela para identificar nosso app na loja.
 
-This notation is defined as `host.owner.app-name`. For example, our example app has `com.owner.stickersmash` where `com.owner` is the domain and `stickersmash` is our app name.
+Essa notação é definida como `host.owner.app-name`. Por exemplo, nosso app de exemplo tem `com.owner.stickersmash`, em que `com.owner` é o domínio e `stickersmash` é o nome do app.
 
 </Collapsible>
 
@@ -104,19 +104,19 @@ This notation is defined as `host.owner.app-name`. For example, our example app 
 
 <Step label="2">
 
-### Install
+### Instale
 
-In the terminal, once the build finishes, EAS CLI prompts us by asking whether we want to run the build on an iOS Simulator. Press <kbd>Y</kbd>.
+No terminal, quando o build terminar, a EAS CLI nos pergunta se queremos rodar o build em um iOS Simulator. Pressione <kbd>Y</kbd>.
 
 <ContentSpotlight
-  alt="EAS CLI automatically gives option to run a build on iOS Simulator"
+  alt="A EAS CLI oferece automaticamente a opção de rodar um build no iOS Simulator"
   src="/static/images/tutorial/eas/ios-development-build-for-simulators-cli.webp"
   className="max-w-[800px]"
 />
 
-<Collapsible summary="Alternate: Use Expo Orbit">
+<Collapsible summary="Alternativa: use o Expo Orbit">
 
-You can use [Expo Orbit](https://expo.dev/orbit) to install the development build. From **Build artifact** on the Expo dashboard, click **Open with Orbit** to install the development build on the iOS Simulator.
+Você pode usar o [Expo Orbit](https://expo.dev/orbit) para instalar o development build. Em **Build artifact** no painel da Expo, clique em **Open with Orbit** para instalar o development build no iOS Simulator.
 
 </Collapsible>
 
@@ -124,9 +124,9 @@ You can use [Expo Orbit](https://expo.dev/orbit) to install the development buil
 
 <Step label="3">
 
-### Run
+### Rode
 
-Start the development server by running the `npx expo start` command from the project directory:
+Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diretório do projeto:
 
 <Terminal
   cmd={{
@@ -137,13 +137,15 @@ Start the development server by running the `npx expo start` command from the pr
   }}
 />
 
-Press <kbd>I</kbd> in the terminal window to open the project on the iOS Simulator.
+Pressione <kbd>I</kbd> na janela do terminal para abrir o projeto no iOS Simulator.
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker
   name="EAS_TUTORIAL"
   currentChapterSlug="/tutorial/eas/ios-development-build-for-simulators"
 />
+
+{/* ia-translate: true */}

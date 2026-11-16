@@ -1,7 +1,7 @@
 ---
-title: Configure multiple app variants
-sidebar_title: Multiple app variants
-description: Learn how to configure dynamic app config to install multiple app variants on a single device.
+title: Configure variantes de app
+sidebar_title: Variantes de app
+description: Aprenda a configurar uma app config dinâmica para instalar várias variantes do app em um único dispositivo.
 hasVideoLink: true
 ---
 
@@ -11,17 +11,17 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll configure our project to run multiple build types (development, preview, production) on a single device simultaneously. This setup will allow us to test various stages of our app development without the need to uninstall and reinstall different versions.
+Neste capítulo, vamos configurar nosso projeto para rodar vários tipos de build (development, preview, production) ao mesmo tempo em um único dispositivo. Essa configuração nos permite testar diferentes etapas do desenvolvimento do app sem precisar desinstalar e reinstalar versões diferentes.
 
 <VideoBoxLink
   videoId="UtJJCAfrjIg"
-  title="Watch: How to configure multiple app variants"
-  description="Configure development, preview, and production app variants with unique bundle identifiers to run them side by side on one device."
+  title="Assista: como configurar variantes de app"
+  description="Configure variantes de app de development, preview e production com identificadores de bundle exclusivos para rodá-las lado a lado em um único dispositivo."
 />
 
 ---
 
-Each variant requires a unique Android Application ID and iOS Bundle Identifier to enable simultaneous installations on one device. Here's how the IDs are set up in our **app.json** file:
+Cada variante precisa de um Android Application ID e de um iOS Bundle Identifier exclusivos para permitir instalações simultâneas em um único dispositivo. Veja como os IDs são definidos no nosso arquivo **app.json**:
 
 ```json app.json
 {
@@ -42,12 +42,12 @@ Each variant requires a unique Android Application ID and iOS Bundle Identifier 
 
 <Step label="1">
 
-## Add app.config.js for dynamic configuration
+## Adicione o app.config.js para a configuração dinâmica
 
-**app.json** contains app-related configuration in a JSON file. It's static and isn't ideal if we want to use [dynamic values for certain properties](/workflow/configuration/#dynamic-configuration). We're going to add different Android Application IDs and iOS Bundle Identifiers for all build profiles based on [environment variables](/workflow/configuration/#switching-configuration-based-on-the-environment).
+O **app.json** contém a configuração do app em um arquivo JSON. Ele é estático e não é ideal se quisermos usar [valores dinâmicos para certas propriedades](/workflow/configuration/#dynamic-configuration). Vamos adicionar Android Application IDs e iOS Bundle Identifiers diferentes para todos os perfis de build, com base em [variáveis de ambiente](/workflow/configuration/#switching-configuration-based-on-the-environment).
 
-- In the root of your project, create a new file called **app.config.js**.
-- In **app.config.js**, export a default function that takes `config` as its argument. We'll then destructure the `config` to copy all existing properties from **app.json**.
+- Na raiz do projeto, crie um arquivo novo chamado **app.config.js**.
+- No **app.config.js**, exporte uma função padrão que recebe `config` como argumento. Depois, vamos desestruturar o `config` para copiar todas as propriedades existentes do **app.json**.
 
 ```js app.config.js
 export default ({ config }) => ({
@@ -61,16 +61,16 @@ export default ({ config }) => ({
 
 <Step label="2">
 
-## Update dynamic values based on environment
+## Atualize os valores dinâmicos de acordo com o ambiente
 
-To identify the build type, let's add two environment variables called `IS_DEV` and `IS_PREVIEW` for `development` and `preview` build profiles in **app.config.js**:
+Para identificar o tipo de build, vamos adicionar duas variáveis de ambiente chamadas `IS_DEV` e `IS_PREVIEW` para os perfis de build `development` e `preview` no **app.config.js**:
 
 ```js app.config.js
 const IS_DEV = process.env.APP_VARIANT === 'development';
 const IS_PREVIEW = process.env.APP_VARIANT === 'preview';
 ```
 
-Then, add two functions that dynamically change the app name, Android Application ID and iOS Bundle Identifier:
+Depois, adicione duas funções que alteram dinamicamente o nome do app, o Android Application ID e o iOS Bundle Identifier:
 
 ```js app.config.js
 const getUniqueIdentifier = () => {
@@ -98,7 +98,7 @@ const getAppName = () => {
 };
 ```
 
-We'll use `getAppName()` to assign dynamic `name` values for the app and `getUniqueIdentifier()` to differentiate `android.package` and `ios.bundleIdentifier` for development and preview builds:
+Vamos usar `getAppName()` para atribuir valores dinâmicos de `name` ao app e `getUniqueIdentifier()` para diferenciar `android.package` e `ios.bundleIdentifier` nos builds de development e preview:
 
 {/* prettier-ignore */}
 ```js app.config.js
@@ -128,9 +128,9 @@ export default ({ config }) => ({
 
 <Step label="3">
 
-## Configure eas.json
+## Configure o eas.json
 
-In **eas.json**, add the `APP_VARIANT` environment variable:
+No **eas.json**, adicione a variável de ambiente `APP_VARIANT`:
 
 {/* prettier-ignore */}
 ```json eas.json|collapseHeight=440
@@ -158,21 +158,21 @@ In **eas.json**, add the `APP_VARIANT` environment variable:
 }
 ```
 
-Running `eas build --profile development` will now set `APP_VARIANT` to `development`.
+Rodar `eas build --profile development` agora vai definir `APP_VARIANT` como `development`.
 
-> **Note**: Since we changed the Android Application ID and iOS Bundle Identifier, the EAS CLI will prompt us to generate a new Keystore for Android and a new provisioning profile for iOS. To learn more about what these steps include, see the previous chapter for more information.
+> **Note**: Como alteramos o Android Application ID e o iOS Bundle Identifier, a EAS CLI vai nos pedir para gerar uma nova Keystore para Android e um novo perfil de provisionamento para iOS. Para saber mais sobre o que essas etapas incluem, veja o capítulo anterior.
 
-Since our `ios-simulator` build profile extends `development`, this configuration is automatically applied for iOS Simulators.
+Como nosso perfil de build `ios-simulator` estende `development`, essa configuração é aplicada automaticamente para os iOS Simulators.
 
 </Step>
 
 <Step label="4">
 
-## Run development server
+## Rode o servidor de desenvolvimento
 
-> After builds are complete, follow the same procedure from previous chapters to install them on a device or emulator/simulator.
+> Depois que os builds forem concluídos, siga o mesmo procedimento dos capítulos anteriores para instalá-los em um dispositivo ou emulador/simulador.
 
-Since we're identifying our development build with the `APP_VARIANT` environment variable, we need to pass it to the command when starting the development server. To do this, add a `dev` script in the [`"scripts"`](https://docs.npmjs.com/cli/v10/using-npm/scripts) field of our project's **package.json**:
+Como identificamos nosso development build pela variável de ambiente `APP_VARIANT`, precisamos passá-la ao comando que inicia o servidor de desenvolvimento. Para isso, adicione um script `dev` no campo [`"scripts"`](https://docs.npmjs.com/cli/v10/using-npm/scripts) do **package.json** do projeto:
 
 ```json package.json
 {
@@ -182,7 +182,7 @@ Since we're identifying our development build with the `APP_VARIANT` environment
 }
 ```
 
-Run the `npm run dev` command to start the development server:
+Rode o comando `npm run dev` para iniciar o servidor de desenvolvimento:
 
 <Terminal
   cmd={{
@@ -193,20 +193,22 @@ Run the `npm run dev` command to start the development server:
   }}
 />
 
-This script will evaluate **app.config.js** locally and load the environment variable for the `development` profile.
+Esse script avalia o **app.config.js** localmente e carrega a variável de ambiente do perfil `development`.
 
-Now, our development build runs on both Android and iOS. It displays the modified app name from **app.config.js**. For example, the below development build is running on an iOS Simulator. See that the app name is **StickerSmash (Dev)**:
+Agora, nosso development build roda em Android e iOS. Ele exibe o nome do app modificado no **app.config.js**. Por exemplo, o development build abaixo está rodando em um iOS Simulator. Veja que o nome do app é **StickerSmash (Dev)**:
 
 <ContentSpotlight
-  alt="Development variant running on iOS Simulator."
+  alt="Variante de development rodando no iOS Simulator."
   src="/static/images/tutorial/eas/multiple-app-variants-dev-variant.webp"
   className="max-w-[240px]"
 />
 
-You can now continue using **app.json** for static values and use **app.config.js** for dynamic values.
+Agora você pode continuar usando o **app.json** para valores estáticos e o **app.config.js** para valores dinâmicos.
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/multiple-app-variants" />
+
+{/* ia-translate: true */}

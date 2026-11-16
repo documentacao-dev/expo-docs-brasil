@@ -94,7 +94,7 @@ Abra o **package.json**, adicione um script para executar os testes e adicione o
 
 <Step label="3">
 
-No **package.json**, adicione o `jest-expo` como preset para que a base da configuração do Jest seja criada:
+No **package.json**, adicione o `jest-expo` como preset para definir uma base para a configuração do Jest:
 
 ```json package.json
 {
@@ -106,7 +106,7 @@ No **package.json**, adicione o `jest-expo` como preset para que a base da confi
 
 </Step>
 
-<Collapsible summary={<>Additional configuration for using <CODE>transformIgnorePatterns</CODE></>}>
+<Collapsible summary={<>Configuração adicional para usar o <CODE>transformIgnorePatterns</CODE></>}>
 
 Você pode transpilar os node modules que o seu projeto usa configurando o [`transformIgnorePatterns`](https://jestjs.io/docs/configuration#transformignorepatterns-arraystring) no seu **package.json**. Essa propriedade recebe um padrão de regex como valor:
 
@@ -163,7 +163,7 @@ O Jest tem muitas opções de configuração, mas a configuração acima deve co
 
 </Collapsible>
 
-## Instale o React Native Testing Library
+## Instale a React Native Testing Library
 
 A [React Native Testing Library (`@testing-library/react-native`)](https://callstack.github.io/react-native-testing-library/) é uma solução leve para testar componentes do React Native. Ela oferece funções utilitárias e funciona com o Jest.
 

@@ -19,7 +19,7 @@ Neste capítulo, vamos criar um seletor de emoji com o componente [`BottomSheet`
 
 <VideoBoxLink
   videoId="HRAMzrBwVeo"
-  title="Assista: Criando um modal no seu app Expo universal"
+  title="Assista: Criando um modal em um app Expo universal"
   description="Crie um componente de modal usando a API Modal do React Native para exibir um seletor de emoji e tratar as interações do usuário."
 />
 
@@ -571,7 +571,7 @@ Vamos entender o que o código acima faz:
 - O componente `BottomSheet` vem de `@expo/ui`, que o template padrão já inclui. No Android, ele exibe uma bottom sheet do Material 3. No iOS, exibe uma sheet do SwiftUI. Na web, exibe uma folha na parte inferior da página.
 - Sua prop `isPresented` recebe o valor de `isVisible` e controla se a bottom sheet está aberta ou fechada.
 - Sua prop `onDismiss` chama `onClose` quando o usuário fecha a bottom sheet. O usuário pode arrastar a bottom sheet para baixo ou tocar fora dela. No Android, o botão voltar também a fecha. Na web, a tecla <kbd>Esc</kbd> também a fecha.
-- Sua prop `snapPoints` define as alturas em que a bottom sheet pode parar. O valor `'half'` a abre em cerca de metade da altura da tela.
+- Sua prop `snapPoints` define as alturas em que a bottom sheet pode parar. O valor `'half'` abre a bottom sheet em cerca de metade da altura da tela.
 - Sua prop `containerColor` define a cor de fundo da bottom sheet, para combinar com o fundo do app.
 - O componente `RNHostView` exibe views do React Native, como `<View>` e `<Text>`, dentro da bottom sheet.
 

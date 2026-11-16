@@ -1,28 +1,28 @@
 ---
-title: Add stickers
-description: In this chapter, direct your AI agent to add an emoji picker in a bottom sheet and make the sticker respond to drag and tap gestures.
+title: Adicione adesivos
+description: Neste capítulo, dirija seu agente de IA para adicionar um seletor de emoji em uma bottom sheet e fazer o adesivo responder a gestos de arrastar e tocar.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 
-In this chapter, the app earns its name: you'll pick an emoji from a sliding panel, smash it onto your photo, and move it around with your fingers.
+Neste capítulo, o app ganha o nome: você vai escolher um emoji em um painel deslizante, colocá-lo na foto e movê-lo com os dedos.
 
 <Step label="1">
 
-## Add the emoji picker
+## Adicione o seletor de emoji
 
-Once a photo is chosen, the app should switch from "picking a photo" mode to "decorating it" mode. Paste the following prompt into your agent:
+Quando uma foto for escolhida, o app deve sair do modo "escolher foto" e entrar no modo "decorar". Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 When a photo has been chosen (either picked from the library or by tapping "Use this photo"), replace the two buttons with a row of options: a "Reset" option on the left that brings back the original buttons, and a circular "+" button in the middle. Tapping "+" should open a bottom sheet titled "Choose a sticker", using the BottomSheet component from Expo UI (@expo/ui). The sheet shows the emoji images from the assets/images folder in a grid with three columns. When I tap an emoji, close the sheet and place that emoji on top of the photo as a sticker.
 ```
 
-**What you should see**: after choosing a photo, the buttons change to the new option row. Tapping **+** slides up a bottom sheet with a grid of emoji. Tapping one closes the sheet and the emoji appears on your photo:
+**O que você deve ver**: depois de escolher uma foto, os botões mudam para a nova linha de opções. Tocar em **+** faz subir uma bottom sheet com uma grade de emojis. Tocar em um deles fecha a sheet, e o emoji aparece na sua foto:
 
 <ContentSpotlight
-  alt="Bottom sheet with a grid of emoji on Android, iOS, and web"
+  alt="Bottom sheet com uma grade de emojis no Android, iOS e web"
   src="/static/images/tutorial/create-a-modal-emoji-list.webp"
   className="max-w-[720px]"
 />
@@ -31,22 +31,24 @@ When a photo has been chosen (either picked from the library or by tapping "Use 
 
 <Step label="2">
 
-## Move and resize the sticker
+## Mova e redimensione o adesivo
 
-A sticker stuck in one spot isn't much fun. Paste the following prompt into your agent:
+Um adesivo preso em um lugar só não é muito divertido. Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Make the sticker interactive using the react-native-gesture-handler and react-native-reanimated libraries: I want to drag the sticker around with my finger to place it anywhere on the photo, and double-tap it to double its size (double-tapping again should shrink it back). The movement and resizing should animate smoothly.
 ```
 
-**What you should see**: drag the emoji around the photo with your finger, and double-tap it to grow and shrink it.
+**O que você deve ver**: arraste o emoji pela foto com o dedo e dê um toque duplo nele para aumentar e diminuir.
 
-This step is a good reminder of your role: the agent can read its own code, but it can't feel a gesture. Only you can confirm that dragging feels right. If the sticker lags, jumps, or snaps back, describe exactly that to the agent.
+Esta etapa é um bom lembrete do seu papel: o agente consegue ler o próprio código, mas não consegue sentir um gesto. Só você pode confirmar se arrastar parece certo. Se o adesivo travar, pular ou voltar para o lugar, descreva exatamente isso para o agente.
 
 </Step>
 
-> If a result doesn't match what you expected, tell the agent what you see. The [When something looks wrong](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) section has the playbook.
+> Se um resultado não bater com o que você esperava, diga ao agente o que você vê. A seção [Quando algo parece errado](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) tem o passo a passo.
 
-## Summary
+## Resumo
 
 <ProgressTracker name="BUILD_WITH_AI" currentChapterSlug="/tutorial/build-with-ai/add-stickers" />
+
+{/* ia-translate: true */}

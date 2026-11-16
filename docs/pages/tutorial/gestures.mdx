@@ -263,7 +263,7 @@ Vamos dar uma olhada no nosso app no Android, iOS e web:
 
 ## Adicione um gesto de arrastar
 
-Para reconhecer um gesto de arrastar no adesivo e acompanhar o seu movimento, vamos usar um gesto de arrastar (pan). O adesivo precisa permanecer dentro da imagem, então também vamos limitar a sua posição. No arquivo **src/components/emoji-sticker.tsx**:
+Para reconhecer um gesto de arrastar no adesivo e acompanhar o movimento dele, vamos usar um gesto de arrastar (pan). O adesivo precisa permanecer dentro da imagem, então também vamos limitar a posição dele. No arquivo **src/components/emoji-sticker.tsx**:
 
 1. Crie dois novos valores compartilhados: `translateX` e `translateY`. Eles guardam a posição do adesivo. O valor inicial `0` mantém o adesivo no canto superior esquerdo da imagem.
 2. Crie um gesto `drag` com o hook `usePanGesture()`. O callback `onUpdate` é executado enquanto o dedo se move. As propriedades `changeX` e `changeY` do `event` guardam a mudança de posição desde o último evento.

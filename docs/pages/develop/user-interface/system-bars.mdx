@@ -1,6 +1,6 @@
 ---
 title: Barras do sistema
-description: Aprenda a lidar e a personalizar as barras do sistema para áreas seguras e layout edge-to-edge no seu projeto Expo.
+description: Aprenda a lidar com as barras do sistema e a personalizá-las para áreas seguras e layout edge-to-edge no seu projeto Expo.
 ---
 
 import { TerminalBrowserIcon } from '@expo/styleguide-icons/outline/TerminalBrowserIcon';
@@ -8,7 +8,7 @@ import { TerminalBrowserIcon } from '@expo/styleguide-icons/outline/TerminalBrow
 import { BoxLink } from '~/ui/components/BoxLink';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 
-As barras do sistema são os elementos da UI nas bordas da tela que exibem informações essenciais do dispositivo e controles de navegação. Dependendo do sistema operacional móvel, elas incluem a barra de status ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars) e [iOS](https://developer.apple.com/design/human-interface-guidelines/status-bars)), a barra de legendas ([somente Android](https://medium.com/androiddevelopers/insets-handling-tips-for-android-15s-edge-to-edge-enforcement-872774e8839b#:~:text=or%20SHORT_EDGES.-,Caption%20bars,-When%20your%20app)), a barra de navegação ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar) e [iOS](https://developer.apple.com/design/human-interface-guidelines/navigation-bars)) e o indicador de página inicial (somente iOS).
+As barras do sistema são os elementos da UI nas bordas da tela que exibem informações essenciais do dispositivo e controles de navegação. Dependendo do sistema operacional móvel, elas incluem a barra de status ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars) e [iOS](https://developer.apple.com/design/human-interface-guidelines/status-bars)), a barra de título ([somente Android](https://medium.com/androiddevelopers/insets-handling-tips-for-android-15s-edge-to-edge-enforcement-872774e8839b#:~:text=or%20SHORT_EDGES.-,Caption%20bars,-When%20your%20app)), a barra de navegação ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar) e [iOS](https://developer.apple.com/design/human-interface-guidelines/navigation-bars)) e o indicador de início (somente iOS).
 
 Esses componentes exibem informações do dispositivo, como nível da bateria, horário e alertas de notificação, e permitem interação direta com o dispositivo a partir de qualquer ponto da interface. Por exemplo, o usuário pode puxar a barra de status para acessar as configurações rápidas e as notificações, independentemente do app que estiver usando.
 
@@ -20,9 +20,9 @@ As barras do sistema são fundamentais para a experiência mobile, e entender co
   className="max-w-120"
 />
 
-## Lidando com sobreposições usando áreas seguras
+## Como lidar com sobreposições usando áreas seguras
 
-Parte do conteúdo do seu app pode ser desenhado por trás das barras do sistema. Para lidar com isso, você precisa posicionar o conteúdo corretamente, evitando a sobreposição e garantindo que os controles das barras do sistema continuem visíveis.
+Parte do conteúdo do seu app pode aparecer por trás das barras do sistema. Para lidar com isso, você precisa posicionar o conteúdo corretamente, evitando a sobreposição e garantindo que os controles das barras do sistema continuem visíveis.
 
 O guia a seguir mostra como usar o `SafeAreaView` ou um hook para aplicar os insets diretamente em cada borda da tela.
 
@@ -39,7 +39,7 @@ Antes do [edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-no
 
 Agora, [com o edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), você precisa usar áreas seguras para garantir que o conteúdo não se sobreponha às barras do sistema.
 
-## Personalizando as barras do sistema
+## Personalizar as barras do sistema
 
 As barras do sistema podem ser personalizadas para combinar com o design do seu app e oferecer melhor visibilidade em diferentes cenários. Ao usar a Expo, há duas bibliotecas disponíveis para isso: `expo-status-bar` e `expo-navigation-bar` (somente Android).
 
