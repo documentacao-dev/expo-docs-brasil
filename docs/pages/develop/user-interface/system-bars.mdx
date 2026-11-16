@@ -1,6 +1,6 @@
 ---
-title: System bars
-description: Learn how to handle and customize system bars for safe areas and edge-to-edge layout in your Expo project.
+title: Barras do sistema
+description: Aprenda a lidar com as barras do sistema e a personalizá-las para áreas seguras e layout edge-to-edge no seu projeto Expo.
 ---
 
 import { TerminalBrowserIcon } from '@expo/styleguide-icons/outline/TerminalBrowserIcon';
@@ -8,44 +8,44 @@ import { TerminalBrowserIcon } from '@expo/styleguide-icons/outline/TerminalBrow
 import { BoxLink } from '~/ui/components/BoxLink';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 
-System bars are the UI elements at the edges of the screen that provide essential device information and navigation controls. Depending on the mobile OS, they include the status bar ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars) and [iOS](https://developer.apple.com/design/human-interface-guidelines/status-bars)), caption bar ([Android](https://medium.com/androiddevelopers/insets-handling-tips-for-android-15s-edge-to-edge-enforcement-872774e8839b#:~:text=or%20SHORT_EDGES.-,Caption%20bars,-When%20your%20app) only), navigation bar ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar) and [iOS](https://developer.apple.com/design/human-interface-guidelines/navigation-bars)), and home indicator (iOS only).
+As barras do sistema são os elementos da UI nas bordas da tela que exibem informações essenciais do dispositivo e controles de navegação. Dependendo do sistema operacional móvel, elas incluem a barra de status ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars) e [iOS](https://developer.apple.com/design/human-interface-guidelines/status-bars)), a barra de título ([somente Android](https://medium.com/androiddevelopers/insets-handling-tips-for-android-15s-edge-to-edge-enforcement-872774e8839b#:~:text=or%20SHORT_EDGES.-,Caption%20bars,-When%20your%20app)), a barra de navegação ([Android](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar) e [iOS](https://developer.apple.com/design/human-interface-guidelines/navigation-bars)) e o indicador de início (somente iOS).
 
-These components are used to display device information such as battery level, time, notification alerts, and provide direct interaction with the device from anywhere in the device's interface. For example, an app user can pull down the status bar to access quick settings and notifications regardless of which app they're currently using.
+Esses componentes exibem informações do dispositivo, como nível da bateria, horário e alertas de notificação, e permitem interação direta com o dispositivo a partir de qualquer ponto da interface. Por exemplo, o usuário pode puxar a barra de status para acessar as configurações rápidas e as notificações, independentemente do app que estiver usando.
 
-System bars are fundamental to the mobile experience, and understanding how to work with them properly is important for creating your app.
+As barras do sistema são fundamentais para a experiência mobile, e entender como trabalhar bem com elas é importante na hora de criar o seu app.
 
 <ContentSpotlight
-  alt="System bars and navigation bars on Android and iOS."
+  alt="Barras do sistema e barras de navegação no Android e no iOS."
   src="/static/images/system-bars.webp"
   className="max-w-120"
 />
 
-## Handling overlaps using safe areas
+## Como lidar com sobreposições usando áreas seguras \{#handling-overlaps-using-safe-areas}
 
-Some of your app's content may draw behind the system bars. To handle this, you need to position your app's content correctly by avoiding the overlap and ensuring that the controls from the system bars are present.
+Parte do conteúdo do seu app pode aparecer por trás das barras do sistema. Para lidar com isso, você precisa posicionar o conteúdo corretamente, evitando a sobreposição e garantindo que os controles das barras do sistema continuem visíveis.
 
-The following guide walks you through how to use `SafeAreaView` or a hook to apply insets directly for each edge of the screen.
+O guia a seguir mostra como usar o `SafeAreaView` ou um hook para aplicar os insets diretamente em cada borda da tela.
 
 <BoxLink
-  title="Safe areas"
-  description=" Learn how to add safe areas for screen components inside your Expo project."
+  title="Áreas seguras"
+  description=" Aprenda a adicionar áreas seguras aos componentes de tela no seu projeto Expo."
   href="/develop/user-interface/safe-areas/"
   Icon={TerminalBrowserIcon}
 />
 
-### Safe areas and edge-to-edge layout on Android
+### Áreas seguras e layout edge-to-edge no Android \{#safe-areas-and-edge-to-edge-layout-on-android}
 
-Before [edge-to-edge on Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), it was common to have a translucent status bar and navigation bar. With this approach, the content drawn behind these bars was already underneath them, and it was typically not necessary to factor in safe areas.
+Antes do [edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), era comum ter uma barra de status e uma barra de navegação translúcidas. Com essa abordagem, o conteúdo desenhado por trás dessas barras já ficava embaixo delas, e normalmente não era necessário considerar as áreas seguras.
 
-Now, [with edge-to-edge on Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), you will need to use safe areas to ensure that content does not overlap with system bars.
+Agora, [com o edge-to-edge no Android](https://expo.dev/blog/edge-to-edge-display-now-streamlined-for-android), você precisa usar áreas seguras para garantir que o conteúdo não se sobreponha às barras do sistema.
 
-## Customizing system bars
+## Personalizar as barras do sistema \{#customizing-system-bars}
 
-System bars can be customized to match your app's design and provide better visibility in different scenarios. When using Expo, there are two libraries available for this: `expo-status-bar` and `expo-navigation-bar` (Android only).
+As barras do sistema podem ser personalizadas para combinar com o design do seu app e oferecer melhor visibilidade em diferentes cenários. Ao usar a Expo, há duas bibliotecas disponíveis para isso: `expo-status-bar` e `expo-navigation-bar` (somente Android).
 
-### Status bar configuration
+### Configuração da barra de status \{#status-bar-configuration}
 
-The status bar appears at the top of the screen on both Android and iOS. You can customize it using [`expo-status-bar`](/versions/latest/sdk/status-bar). It provides a `StatusBar` component that you can use to control the appearance of the status bar while your app is running using the [`style`](/versions/latest/sdk/status-bar/#style) property or the [`setStatusBarStyle`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarstylestyle-animated) method:
+A barra de status aparece no topo da tela, tanto no Android quanto no iOS. Você pode personalizá-la usando o [`expo-status-bar`](/versions/latest/sdk/status-bar). Ele oferece um componente `StatusBar` que você pode usar para controlar a aparência da barra de status enquanto o app está em execução, pela propriedade [`style`](/versions/latest/sdk/status-bar/#style) ou pelo método [`setStatusBarStyle`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarstylestyle-animated):
 
 ```tsx src/app/_layout.tsx
 import { StatusBar } from 'expo-status-bar';
@@ -60,13 +60,13 @@ export default function RootLayout() {
 }
 ```
 
-> **Note:** In Expo default template, the `style` property is set to `auto`. It automatically picks the appropriate style depending on the color scheme (light or dark mode) currently used by your app.
+> **Note:** No template padrão da Expo, a propriedade `style` vem definida como `auto`. Ela escolhe automaticamente o estilo adequado de acordo com o esquema de cores (modo claro ou escuro) que o app está usando no momento.
 
-To control the `StatusBar` visibility, you can set the [`hidden`](/versions/latest/sdk/status-bar/#hidden) property to `true` or use the [`setStatusBarHidden`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarhiddenhidden-animation) method.
+Para controlar a visibilidade do `StatusBar`, você pode definir a propriedade [`hidden`](/versions/latest/sdk/status-bar/#hidden) como `true` ou usar o método [`setStatusBarHidden`](/versions/latest/sdk/status-bar/#statusbarsetstatusbarhiddenhidden-animation).
 
-### Navigation bar configuration (Android only)
+### Configuração da barra de navegação (somente Android) \{#navigation-bar-configuration-android-only}
 
-On Android devices, the Navigation Bar appears at the bottom of the screen. You can customize it using the [`expo-navigation-bar`](/versions/latest/sdk/navigation-bar) library. It provides a `NavigationBar` component that you can use to set the style of the navigation bar using the [`setStyle`](/versions/latest/sdk/navigation-bar/#navigationbarsetstylestyle) method:
+Em dispositivos Android, a barra de navegação aparece na parte inferior da tela. Você pode personalizá-la usando a biblioteca [`expo-navigation-bar`](/versions/latest/sdk/navigation-bar). Ela oferece um componente `NavigationBar` que você pode usar para definir o estilo da barra de navegação pelo método [`setStyle`](/versions/latest/sdk/navigation-bar/#navigationbarsetstylestyle):
 
 ```tsx src/app/_layout.tsx
 import { NavigationBar } from 'expo-navigation-bar';
@@ -81,4 +81,6 @@ export default function RootLayout() {
 }
 ```
 
-To control the `NavigationBar` visibility, you can use the [`hidden`](/versions/latest/sdk/navigation-bar/#hidden) prop or the [`NavigationBar.setHidden`](/versions/latest/sdk/navigation-bar/#sethiddenhidden) method.
+Para controlar a visibilidade do `NavigationBar`, você pode usar a prop [`hidden`](/versions/latest/sdk/navigation-bar/#hidden) ou o método [`NavigationBar.setHidden`](/versions/latest/sdk/navigation-bar/#sethiddenhidden).
+
+{/* ia-translate: true */}

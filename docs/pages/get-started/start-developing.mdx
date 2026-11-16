@@ -1,6 +1,6 @@
 ---
-title: Start developing
-description: Make your first change to an Expo project and see it live on your device.
+title: Começar a desenvolver
+description: Faça sua primeira mudança em um projeto Expo e veja-a funcionando no seu aparelho.
 hideTOC: true
 ---
 
@@ -12,8 +12,8 @@ import { Terminal, DiffBlock } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
 <Step label="1">
-## Start a development server
-To start the development server, run the following command:
+## Iniciar o servidor de desenvolvimento \{#start-a-development-server}
+Para iniciar o servidor de desenvolvimento, execute o comando a seguir:
 
 <Terminal
   cmd={{
@@ -27,21 +27,21 @@ To start the development server, run the following command:
 </Step>
 
 <Step label="2">
-## Open the app on your device
+## Abra o app no seu aparelho \{#open-the-app-on-your-device}
 
-After running the command above, you will see a QR code in your terminal. Scan this QR code to open the app on your device.
+Depois de executar o comando acima, você verá um QR code no terminal. Escaneie esse QR code para abrir o app no seu aparelho.
 
-If you're using an Android Emulator or iOS Simulator, you can press <kbd>A</kbd> or <kbd>I</kbd> respectively to open the app.
+Se você estiver usando um Android Emulator ou um iOS Simulator, pressione <kbd>A</kbd> ou <kbd>I</kbd>, respectivamente, para abrir o app.
 
-> **info** **Using Expo Go on a physical iOS device?** Expo Go opens your project only when Expo CLI and Expo Go are signed in to the same Expo account. Run `npx expo login` on your computer, then sign in to Expo Go with the same account. See [Set up your environment](/get-started/set-up-your-environment/?platform=ios&device=physical&mode=expo-go).
+> **info** **Usando o Expo Go em um aparelho iOS físico?** O Expo Go só abre seu projeto quando o Expo CLI e o Expo Go estão conectados à mesma conta Expo. Execute `npx expo login` no seu computador e depois entre no Expo Go com a mesma conta. Veja [Configurar seu ambiente](/get-started/set-up-your-environment/?platform=ios&device=physical&mode=expo-go).
 
-<Collapsible summary="Having problems?">
+<Collapsible summary="Está com problemas?">
 
-Make sure you are on the same Wi-Fi network on your computer and your device.
+Verifique se o computador e o aparelho estão na mesma rede Wi-Fi.
 
-If you see an error about accounts on a physical iOS device, the message tells you what to fix. To sign in to Expo CLI, run `npx expo login` on your computer. To sign in to Expo Go, tap the account icon in the top-right corner. Use the same account for both, then press **Try Again**. See [Expo Go sign-in required](/troubleshooting/expo-go-sign-in-required/) for every message.
+Se aparecer um erro sobre contas em um aparelho iOS físico, a mensagem indica o que corrigir. Para entrar no Expo CLI, execute `npx expo login` no seu computador. Para entrar no Expo Go, toque no ícone de conta no canto superior direito. Use a mesma conta nos dois, depois toque em **Try Again**. Veja [Login necessário no Expo Go](/troubleshooting/expo-go-sign-in-required/) para todas as mensagens.
 
-If it still doesn't work, it may be due to the router configuration — this is common for public networks. You can work around this by choosing the **Tunnel** connection type when starting the development server, then scanning the QR code again.
+Se ainda não funcionar, pode ser por causa da configuração do roteador, o que é comum em redes públicas. Você pode contornar isso escolhendo o tipo de conexão **Tunnel** ao iniciar o servidor de desenvolvimento e escaneando o QR code de novo.
 
 <Terminal
   cmd={{
@@ -52,7 +52,7 @@ If it still doesn't work, it may be due to the router configuration — this is 
   }}
 />
 
-> Using the **Tunnel** connection type will make the app reloads considerably slower than on **LAN** or **Local**, so it's best to avoid tunnel when possible. You may want to install and use an emulator or simulator to speed up development if **Tunnel** is required to access your machine from another device on your network.
+> Usar o tipo de conexão **Tunnel** deixa os recarregamentos do app bem mais lentos do que em **LAN** ou **Local**, então evite o tunnel sempre que possível. Se for necessário usar o **Tunnel** para acessar seu computador a partir de outro aparelho da rede, talvez seja bom instalar e usar um emulador ou simulador para acelerar o desenvolvimento.
 
 </Collapsible>
 
@@ -60,9 +60,9 @@ If it still doesn't work, it may be due to the router configuration — this is 
 
 <Step label="3">
 
-## Make your first change
+## Faça sua primeira mudança \{#make-your-first-change}
 
-Open the **src/app/index.tsx** file in your code editor and make a change.
+Abra o arquivo **src/app/index.tsx** no seu editor de código e faça uma alteração.
 
 <DiffBlock
   raw={`diff --git a/src/app/index.tsx b/src/app/index.tsx
@@ -80,17 +80,17 @@ index 45cfa0e..4d1b384 100644
   `}
 />
 
-<Collapsible summary="Changes not showing up on your device?">
+<Collapsible summary="As mudanças não aparecem no seu aparelho?">
 
-Expo Go is configured by default to automatically reload the app whenever a file is changed, but let's make sure to go over the steps to enable it in case somehow things aren't working.
+O Expo Go já vem configurado para recarregar o app automaticamente sempre que um arquivo muda. Mesmo assim, vamos revisar os passos para ativar isso, caso algo não esteja funcionando.
 
-- Make sure you have the [development mode enabled in Expo CLI](/workflow/development-mode#development-mode).
-- Close the Expo app and reopen it.
-- Once the app is open again, shake your device to reveal the developer menu. Press <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>.
-- If you see **Fast Refresh** enabled, toggle it. If you see **Disable Fast Refresh**, dismiss the developer menu. Now try making another change.
+- Verifique se o [modo de desenvolvimento está ativado no Expo CLI](/workflow/development-mode#development-mode).
+- Feche o app Expo e abra-o de novo.
+- Com o app aberto de novo, sacuda o aparelho para abrir o menu do desenvolvedor. Pressione <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>.
+- Se o **Fast Refresh** estiver ativado, alterne a opção. Se aparecer **Disable Fast Refresh**, feche o menu do desenvolvedor. Depois, tente fazer outra alteração.
 
   <ContentSpotlight
-    alt="Developer menu in Expo Go app."
+    alt="Menu do desenvolvedor no app Expo Go."
     src="/static/images/get-started/developer-menu.webp"
     className="max-w-[540px]"
   />
@@ -101,14 +101,16 @@ Expo Go is configured by default to automatically reload the app whenever a file
 
 ---
 
-## File structure
+## Estrutura de arquivos \{#file-structure}
 
-Below, you can get familiar with the default project's file structure:
+Abaixo, você pode se familiarizar com a estrutura de arquivos do projeto padrão:
 
 <ProjectStructure />
 
-## Features
+## Recursos \{#features}
 
-The default project template has the following features:
+O template do projeto padrão tem os seguintes recursos:
 
 <TemplateFeatures />
+
+{/* ia-translate: true */}

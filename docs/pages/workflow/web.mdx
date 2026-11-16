@@ -1,7 +1,7 @@
 ---
-title: Develop websites with Expo
-sidebar_title: Develop websites
-description: Learn how to develop your app for the web so you can build a universal app.
+title: Desenvolva sites com o Expo
+sidebar_title: Desenvolva sites
+description: Saiba como desenvolver o seu app para a web para criar um app universal.
 hideTOC: true
 ---
 
@@ -15,13 +15,13 @@ import { DiffBlock, Terminal } from '~/ui/components/Snippet';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 import { CODE } from '~/ui/components/Text';
 
-Expo has first-class support for building full-stack websites with React. Expo websites can be [statically rendered](/router/web/static-rendering) for SEO and performance, or client-rendered for a more app-like experience in the browser.
+O Expo tem suporte de primeira classe para criar sites full-stack com React. Os sites Expo podem ser [renderizados estaticamente](/router/web/static-rendering) para SEO e desempenho, ou renderizados no cliente para uma experiência mais parecida com a de um app no navegador.
 
 <Tabs>
 
 <Tab label="Universal">
 
-    Render text on any platform with the `<Text>` component from [React Native for web](https://github.com/necolas/react-native-web).
+    Renderize texto em qualquer plataforma com o componente `<Text>` do [React Native for web](https://github.com/necolas/react-native-web).
 
     ```jsx app/index.js
     import { Text } from 'react-native';
@@ -31,15 +31,15 @@ Expo has first-class support for building full-stack websites with React. Expo w
     }
     ```
 
-    React Native for web (RNW) is a set of component libraries such as `<View>`, and `<Text>`, that wrap `react-dom` primitives such as `<div>`, `<p>`, and `<img>`. RNW is optional when developing for web since you can use React DOM directly, but we often recommended it when building across platforms as it maximizes code reuse.
+    O React Native for web (RNW) é um conjunto de bibliotecas de componentes, como `<View>` e `<Text>`, que envolvem primitivas do `react-dom`, como `<div>`, `<p>` e `<img>`. O RNW é opcional no desenvolvimento para web, já que você pode usar o React DOM diretamente, mas costumamos recomendá-lo ao criar para várias plataformas, pois ele maximiza o reaproveitamento de código.
 
-    > React Native for web is used to power the entire [X](https://x.com/) website.
+    > O React Native for web é usado para alimentar todo o site do [X](https://x.com/).
 
 </Tab>
 
-<Tab label="Web-only">
+<Tab label="Somente web">
 
-    Alternatively, you can write web-only React DOM components such as `<div>`, `<p>`, and so on, however, these components won't render on native platforms.
+    Como alternativa, você pode escrever componentes do React DOM somente para web, como `<div>`, `<p>` e assim por diante. No entanto, esses componentes não serão renderizados em plataformas nativas.
 
     ```jsx app/index.js
     export default function Page() {
@@ -47,19 +47,19 @@ Expo has first-class support for building full-stack websites with React. Expo w
     }
     ```
 
-    Building web-only components is fully supported by Expo, however, you may want to organize your code to better support building for both web and native platforms simultaneously. Learn more in [platform-specific modules](/router/advanced/platform-specific-modules).
+    O Expo oferece suporte completo à criação de componentes somente para web. Porém, talvez seja melhor organizar o código para oferecer um bom suporte à criação simultânea para web e plataformas nativas. Saiba mais em [módulos específicos de plataforma](/router/advanced/platform-specific-modules).
 
 </Tab>
 
 </Tabs>
 
-All of the libraries in the Expo SDK are built to support both browser and server rendering environments (when applicable). Libraries are also optimized for the individual platforms they target.
+Todas as bibliotecas do SDK do Expo são criadas para oferecer suporte a ambientes de renderização no navegador e no servidor (quando aplicável). As bibliotecas também são otimizadas para as plataformas individuais às quais se destinam.
 
-Development features like Fast Refresh, debugging, environment variables, and [bundling](/guides/customizing-metro) are also fully universal, enabling a unified developer experience. Expo CLI **automatically optimizes code** for individual platforms when you build for production, using techniques like [platform shaking](/guides/tree-shaking#platform-shaking).
+Recursos de desenvolvimento como Fast Refresh, depuração, variáveis de ambiente e [bundling](/guides/customizing-metro) também são totalmente universais, o que proporciona uma experiência de desenvolvimento unificada. A CLI do Expo **otimiza automaticamente o código** para cada plataforma quando você faz o build para produção, usando técnicas como o [platform shaking](/guides/tree-shaking#platform-shaking).
 
-## Getting started
+## Primeiros passos \{#getting-started}
 
-### Install web dependencies
+### Instale as dependências da web \{#install-web-dependencies}
 
 <Terminal
   cmd={{
@@ -70,11 +70,11 @@ Development features like Fast Refresh, debugging, environment variables, and [b
   }}
 />
 
-<Collapsible summary={<>Not using the <CODE>expo</CODE> package in your app yet?</>}>
+<Collapsible summary={<>Ainda não usa o pacote <CODE>expo</CODE> no seu app?</>}>
 
-If you haven't added Expo to your React Native app yet, you can either [install Expo modules](/bare/installing-expo-modules/) (recommended) or just install the `expo` package and configure the app entry file. This will allow you to target web, but it will not include support for the Expo SDK.
+Se você ainda não adicionou o Expo ao seu app React Native, pode [instalar os módulos do Expo](/bare/installing-expo-modules/) (recomendado) ou apenas instalar o pacote `expo` e configurar o arquivo de entrada do app. Isso permite rodar o app na web, mas não inclui suporte ao SDK do Expo.
 
-1. Install [Expo CLI](/more/expo-cli/) in your project:
+1. Instale a [CLI do Expo](/more/expo-cli/) no seu projeto:
 
 <Terminal
   cmd={{
@@ -85,7 +85,7 @@ If you haven't added Expo to your React Native app yet, you can either [install 
   }}
 />
 
-2. Modify the entry file to use [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent) instead of `AppRegistry.registerComponent`:
+2. Modifique o arquivo de entrada para usar o [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent) em vez de `AppRegistry.registerComponent`:
 
 <DiffBlock
   raw={`diff --git a/index.js b/index.js
@@ -103,9 +103,9 @@ import App from './App';
 
 </Collapsible>
 
-### Start the dev server
+### Inicie o servidor de desenvolvimento \{#start-the-dev-server}
 
-You can now start the dev server and develop in the browser with:
+Agora você pode iniciar o servidor de desenvolvimento e desenvolver no navegador com:
 
 <Terminal
   cmd={{
@@ -116,7 +116,7 @@ You can now start the dev server and develop in the browser with:
   }}
 />
 
-The app can be exported as a production website with:
+O app pode ser exportado como um site de produção com:
 
 <Terminal
   cmd={{
@@ -127,32 +127,34 @@ The app can be exported as a production website with:
   }}
 />
 
-## Next
+## Próximos passos \{#next}
 
 <BoxLink
-  title="File-based routing"
-  description="Build routes and navigation with Expo Router."
+  title="Roteamento baseado em arquivos"
+  description="Crie rotas e navegação com o Expo Router."
   href="/router/introduction"
   Icon={RouterLogo}
 />
 
 <BoxLink
-  title="Static rendering and SEO"
-  description="Render your website as static HTML with Expo Router to improve SEO and performance."
+  title="Renderização estática e SEO"
+  description="Renderize o seu site como HTML estático com o Expo Router para melhorar o SEO e o desempenho."
   href="/router/web/static-rendering"
   Icon={RouterLogo}
 />
 
 <BoxLink
-  title="Deploy instantly with Expo Hosting"
-  description="Expo Hosting is the best way to deploy your Expo Router and React Native web apps with support for custom domains, SSL, and more."
+  title="Faça o deploy instantaneamente com o Expo Hosting"
+  description="O Expo Hosting é a melhor forma de fazer o deploy dos seus apps Expo Router e React Native web, com suporte a domínios personalizados, SSL e mais."
   href="/eas/hosting/get-started"
   Icon={Cloud01Icon}
 />
 
 <BoxLink
-  title="Customizing the JavaScript bundler"
-  description="Customize Metro bundler for your project."
+  title="Personalizando o bundler JavaScript"
+  description="Personalize o Metro bundler para o seu projeto."
   href="/guides/customizing-metro"
   Icon={CodeSquare01Icon}
 />
+
+{/* ia-translate: true */}

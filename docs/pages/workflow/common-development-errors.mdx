@@ -1,46 +1,48 @@
 ---
-title: Common development errors
-description: A list of common development errors that are encountered by developers using Expo.
+title: Erros comuns de desenvolvimento
+description: Uma lista de erros comuns de desenvolvimento encontrados por quem usa o Expo.
 ---
 
-This page outlines a list of errors that are commonly encountered by developers using Expo. For each error, the first bullet provides an explanation for why the error occurs and the second bullet contains debugging suggestions. If there is an error you think belongs here, we welcome and encourage you to [create a PR](https://github.com/expo/expo/pulls)!
+Esta página reúne uma lista de erros comuns entre quem desenvolve com o Expo. Para cada erro, o primeiro item explica por que ele acontece, e o segundo traz sugestões de depuração. Se você acha que há um erro que deveria estar aqui, sua contribuição é bem-vinda: [abra um PR](https://github.com/expo/expo/pulls)!
 
-### Metro bundler ECONNREFUSED 127.0.0.1:19001
+### Metro bundler ECONNREFUSED 127.0.0.1:19001 \{#metro-bundler-econnrefused-12700119001}
 
-- An error is preventing the connection to your local development server.
-- Run `rm -rf .expo` to clear your local state. Check for firewalls or [proxies](/troubleshooting/proxies/) affecting the network you are currently connected to.
+- Um erro está impedindo a conexão com o servidor de desenvolvimento local.
+- Execute `rm -rf .expo` para limpar o estado local. Verifique se algum [firewall ou proxy](/troubleshooting/proxies/) está afetando a rede à qual você está conectado.
 
-### Module AppRegistry is not a registered callable module (calling runApplication)
+### Module AppRegistry is not a registered callable module (calling runApplication) \{#module-appregistry-is-not-a-registered-callable-module-calling-runapplication}
 
-- An error in your code is preventing the JavaScript bundle from being executed on startup.
-- Try running `npx expo start --no-dev --minify` to reproduce the production JS bundle locally. If possible, connect your device and access the device logs via Android Studio or Xcode. Device logs contain much more detailed stacktraces and information. Check to see if you have any changes or errors in your Babel configuration. In some rare cases, this issue could be caused by incompatibility between the Metro JavaScript minifier and certain code in your app.
+- Um erro no seu código está impedindo que o bundle de JavaScript seja executado na inicialização.
+- Tente executar `npx expo start --no-dev --minify` para reproduzir localmente o bundle de JavaScript de produção. Se possível, conecte o dispositivo e acesse os logs dele pelo Android Studio ou pelo Xcode. Os logs do dispositivo trazem stack traces e informações bem mais detalhados. Verifique se há alterações ou erros na sua configuração do Babel. Em casos raros, esse problema pode ser causado por incompatibilidade entre o minificador de JavaScript do Metro e algum código do seu app.
 
-### npm ERR! No git binary found in \$PATH
+### npm ERR! No git binary found in \$PATH \{#npm-err-no-git-binary-found-in-path}
 
-- Either you do not have git installed or it is not properly configured in your `$PATH`.
-- [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) if you have not already. Otherwise, check how to set it in your `$PATH` based on your OS.
+- Ou o git não está instalado, ou não está configurado corretamente no seu `$PATH`.
+- [Instale o git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), caso ainda não tenha feito isso. Se já estiver instalado, veja como configurá-lo no `$PATH` de acordo com o seu sistema operacional.
 
-### XX.X.X is not a valid SDK version
+### XX.X.X is not a valid SDK version \{#xxxx-is-not-a-valid-sdk-version}
 
-- The SDK version you are running has been deprecated and is no longer supported.
-- [Upgrade your project](/workflow/upgrading-expo-sdk-walkthrough) to a supported SDK version. If you are using a supported version and see this message, you'll need to update your Expo Go app.
+- A versão do SDK que você está usando foi descontinuada e não recebe mais suporte.
+- [Atualize seu projeto](/workflow/upgrading-expo-sdk-walkthrough) para uma versão de SDK suportada. Se você estiver usando uma versão suportada e vir essa mensagem, será preciso atualizar o app Expo Go.
 
-### React Native version mismatch
+### Incompatibilidade de versão do React Native \{#react-native-version-mismatch}
 
-- The development server running in your terminal is bundling a different version of React Native than the app in your device or simulator.
-- [Align your versions of react-native](/troubleshooting/react-native-version-mismatch) by checking the versions in your **app.json** and **package.json**
+- O servidor de desenvolvimento em execução no terminal está empacotando uma versão do React Native diferente da do app no seu dispositivo ou simulador.
+- [Alinhe as versões do react-native](/troubleshooting/react-native-version-mismatch) conferindo as versões no **app.json** e no **package.json**.
 
-### Application has not been registered
+### Application has not been registered \{#application-has-not-been-registered}
 
-- There is a mismatch between the AppKey registered in the native and JS portion of your app.
-- [Align your AppKey](/troubleshooting/application-has-not-been-registered/) with the native side of your project.
+- Há uma divergência entre o AppKey registrado na parte nativa e na parte JS do seu app.
+- [Alinhe o AppKey](/troubleshooting/application-has-not-been-registered/) com o lado nativo do projeto.
 
-### Filename longer than 260 characters
+### Filename longer than 260 characters \{#filename-longer-than-260-characters}
 
-- On Windows, the Android native build fails because a generated file path is longer than 260 characters.
-- Follow the steps in ["Filename longer than 260 characters" error on Windows](/troubleshooting/windows-long-paths/).
+- No Windows, o build nativo do Android falha porque o caminho de um arquivo gerado tem mais de 260 caracteres.
+- Siga os passos em [erro "Filename longer than 260 characters" no Windows](/troubleshooting/windows-long-paths/).
 
-### Application not behaving as expected
+### O app não se comporta como esperado \{#application-not-behaving-as-expected}
 
-- It is possible caches may be preventing you from seeing the current state of your application.
-- Clear all caches associated with your project in [Unix-like](/troubleshooting/clear-cache-macos-linux/) or [Windows](/troubleshooting/clear-cache-windows/) systems.
+- Os caches podem estar impedindo você de ver o estado atual do app.
+- Limpe todos os caches do projeto nos sistemas [tipo Unix](/troubleshooting/clear-cache-macos-linux/) ou [Windows](/troubleshooting/clear-cache-windows/).
+
+{/* ia-translate: true */}

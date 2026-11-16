@@ -1,7 +1,7 @@
 ---
-title: Configure a development build in cloud
-sidebar_title: Configure development build
-description: Learn how to configure a development build for a project using Expo Build.
+title: Configure um development build na nuvem
+sidebar_title: Configurar development build
+description: Aprenda a configurar um development build para um projeto usando o Expo Build.
 hasVideoLink: true
 ---
 
@@ -13,39 +13,39 @@ import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll set up and configure a development build with Expo Build for our example app.
+Neste capítulo, vamos configurar um development build com o Expo Build para o nosso app de exemplo.
 
 <VideoBoxLink
   videoId="uQCE9zl3dXU"
-  title="Watch: How to configure a development build"
-  description="Learn how to install expo-dev-client, configure build profiles in eas.json, and create your first development build with Expo Build."
+  title="Assista: como configurar um development build"
+  description="Aprenda a instalar o expo-dev-client, configurar perfis de build no eas.json e criar seu primeiro development build com o Expo Build."
 />
 
 ---
 
-## Understanding development builds
+## Entendendo development builds \{#understanding-development-builds}
 
-Let's start by learning about what are development builds and why we need them.
+Vamos começar entendendo o que são development builds e por que precisamos deles.
 
-A [development build](/develop/development-builds/introduction/) is a debug version of our project. It is optimized for quick iterations when creating an app. It contains the [`expo-dev-client`](/versions/latest/sdk/dev-client/) library, which provides a full development environment. This setup allows us to integrate any native library or change code inside the [native directories](/workflow/overview/#android-and-ios-native-projects) as required.
+Um [development build](/develop/development-builds/introduction/) é uma versão de debug do nosso projeto. Ele é otimizado para iterações rápidas durante a criação de um app. Ele contém a biblioteca [`expo-dev-client`](/versions/latest/sdk/dev-client/), que oferece um ambiente de desenvolvimento completo. Essa configuração nos permite integrar qualquer biblioteca nativa ou alterar o código dentro dos [diretórios nativos](/workflow/overview/#android-and-ios-native-projects), conforme a necessidade.
 
-### Key highlights
+### Principais diferenças \{#key-highlights}
 
-> **Note:** If you are familiar with [Expo Go](/get-started/set-up-your-environment/), think of a development build as a customizable version of Expo Go that is unique to the requirements of a project.
+> **Note:** Se você já conhece o [Expo Go](/get-started/set-up-your-environment/), pense em um development build como uma versão personalizável do Expo Go, feita para as necessidades específicas de um projeto.
 
-| Feature                           | Development builds                                                                                                                             | Expo Go                                                                                              |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Development phase**             | Offers web-like iteration speed for mobile app development.                                                                                    | Allows for quick iteration and testing of Expo SDK projects using the client app.                    |
-| **Collaboration**                 | Facilitates team testing with shared native runtime.                                                                                           | Easy project sharing via QR codes on a device.                                                       |
-| **Third-party libraries support** | Full support for any [third-party library](/workflow/using-libraries/#third-party-libraries), including those that require custom native code. | Limited to libraries within the Expo SDK, not suitable for custom native dependencies.               |
-| **Customization**                 | Extensive customization with [config plugins](/config-plugins/introduction/) and direct access to native code.                                 | Limited customization with a focus on Expo SDK capabilities without direct native code modification. |
-| **Intended use**                  | Ideal for full-fledged app development aimed at store deployment, offering a complete development environment and tools.                       | Ideal for learning, prototyping, and experimenting. Not recommended for production apps.             |
+| Recurso                           | Development builds                                                                                                                                                 | Expo Go                                                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Fase de desenvolvimento**       | Oferece a velocidade de iteração de um desenvolvimento web para apps mobile.                                                                                       | Permite iterar e testar rapidamente projetos com o Expo SDK usando o app cliente.                                             |
+| **Colaboração**                   | Facilita os testes em equipe com um runtime nativo compartilhado.                                                                                                  | Compartilhamento fácil de projetos por QR codes em um dispositivo.                                                            |
+| **Suporte a bibliotecas de terceiros** | Suporte completo a qualquer [biblioteca de terceiros](/workflow/using-libraries/#third-party-libraries), inclusive as que exigem código nativo personalizado. | Limitado às bibliotecas do Expo SDK, não é adequado para dependências nativas personalizadas.                                 |
+| **Personalização**                | Personalização extensa com [config plugins](/config-plugins/introduction/) e acesso direto ao código nativo.                                                        | Personalização limitada, com foco nos recursos do Expo SDK e sem modificação direta do código nativo.                         |
+| **Uso indicado**                  | Ideal para o desenvolvimento de apps completos voltados à publicação nas lojas, com um ambiente e ferramentas completos.                                           | Ideal para aprender, fazer protótipos e experimentar. Não é recomendado para apps em produção.                                |
 
 <Step label="1">
 
-## Install expo-dev-client library
+## Instale a biblioteca expo-dev-client \{#install-expo-dev-client-library}
 
-To initialize our project for a development build, let's [`cd`](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line#basic_built-in_terminal_commands) inside our project directory and run the following command to install the library:
+Para preparar nosso projeto para um development build, vamos [`cd`](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line#basic_built-in_terminal_commands) até o diretório do projeto e rodar o comando a seguir para instalar a biblioteca:
 
 <Terminal
   cmd={{
@@ -56,9 +56,9 @@ To initialize our project for a development build, let's [`cd`](https://develope
   }}
 />
 
-### Start the development server
+### Inicie o servidor de desenvolvimento \{#start-the-development-server}
 
-Run the `npx expo start` to start the [development server](/get-started/start-developing/#start-a-development-server):
+Rode `npx expo start` para iniciar o [servidor de desenvolvimento](/get-started/start-developing/#start-a-development-server):
 
 <Terminal
   cmd={{
@@ -69,30 +69,30 @@ Run the `npx expo start` to start the [development server](/get-started/start-de
   }}
 />
 
-This command starts the Metro bundler. In the terminal window, we see the QR code followed by `Metro:` and a manifest URL:
+Esse comando inicia o Metro bundler. Na janela do terminal, vemos o QR code seguido de `Metro:` e de uma URL de manifesto:
 
 <ContentSpotlight
-  alt="Running development server"
+  alt="Servidor de desenvolvimento em execução"
   src="/static/images/tutorial/eas/configure-development-build-development-server.webp"
   className="max-w-[600px]"
 />
 
-Let's notice the changes installing the `expo-dev-client` library:
+Vale notar as mudanças após instalar a biblioteca `expo-dev-client`:
 
-- The manifest URL contains `__expo_url` along with the app scheme
-- The development server now operates for a development build (instead of Expo Go).
+- A URL de manifesto contém `__expo_url` junto com o scheme do app.
+- O servidor de desenvolvimento agora funciona para um development build (em vez do Expo Go).
 
-Since we do not have a development build installed on one of our devices or an emulator/simulator, we can't run our project yet.
+Como não temos um development build instalado em nenhum dos nossos dispositivos ou em um emulador/simulador, ainda não podemos rodar o projeto.
 
 </Step>
 
 <Step label="2">
 
-## Initialize a development build
+## Inicialize um development build \{#initialize-a-development-build}
 
-### Install EAS CLI
+### Instale a EAS CLI \{#install-eas-cli}
 
-We need to install the EAS command-line interface (CLI) tool as a global dependency on our local machine. Run the following command:
+Precisamos instalar a ferramenta de interface de linha de comando (CLI) da EAS como dependência global na nossa máquina. Rode o comando a seguir:
 
 <Terminal
   cmd={{
@@ -103,25 +103,25 @@ We need to install the EAS command-line interface (CLI) tool as a global depende
   }}
 />
 
-### Log in or sign up for an Expo account
+### Entre ou crie uma conta Expo \{#log-in-or-sign-up-for-an-expo-account}
 
-> If you have an Expo account and are signed in using Expo CLI, skip this step. If you don't have an Expo account, [sign up here](https://expo.dev/signup) and proceed with the login command described below.
+> Se você já tem uma conta Expo e está logado pela Expo CLI, pule esta etapa. Se não tiver uma conta Expo, [crie uma aqui](https://expo.dev/signup) e siga para o comando de login descrito abaixo.
 
-To log in, run the following command:
+Para fazer login, rode o comando a seguir:
 
 <Terminal cmd={['$ eas login']} />
 
-This command asks for our Expo account email or username and password to complete the login.
+Esse comando pede o e-mail ou nome de usuário e a senha da nossa conta Expo para concluir o login.
 
-### Initialize and link the project to Expo Services
+### Inicialize e vincule o projeto ao Expo Services \{#initialize-and-link-the-project-to-expo-services}
 
-For any new project, the first step is to initialize and link it to the Expo servers. Run the following command:
+Para qualquer projeto novo, o primeiro passo é inicializá-lo e vinculá-lo aos servidores da Expo. Rode o comando a seguir:
 
 <Terminal cmd={['$ eas init']} />
 
-On running, this command:
+Ao rodar, esse comando:
 
-- Asks which account should own the project (when we have more than one) and if we want to create an Expo Services project:
+- Pergunta qual conta deve ser dona do projeto (quando temos mais de uma) e se queremos criar um projeto no Expo Services:
 
 <Terminal
   cmd={[
@@ -134,20 +134,20 @@ On running, this command:
   ]}
 />
 
-- Creates Expo Services project and provides a link to that project which we can open in the Expo dashboard:
+- Cria o projeto no Expo Services e fornece um link para ele, que podemos abrir no painel da Expo:
 
 <ContentSpotlight
-  alt="New project in Expo dashboard"
+  alt="Novo projeto no painel da Expo"
   src="/static/images/tutorial/eas/configure-development-build-new-project.webp"
 />
 
-- Generates a unique `projectId` and links this Expo Services project to the example app on our development machine.
-- Modifies **app.json** to include [`extra.eas.projectId`](/versions/latest/sdk/constants/#easconfig) with the unique ID created, and [`owner`](/versions/latest/config/app/#owner) with the name of the account that owns the project.
-- Uploads the `icon` from **app.json** as the project icon in the Expo dashboard, if the project does not have an icon yet.
+- Gera um `projectId` único e vincula esse projeto do Expo Services ao app de exemplo na nossa máquina de desenvolvimento.
+- Altera o **app.json** para incluir o [`extra.eas.projectId`](/versions/latest/sdk/constants/#easconfig) com o ID único criado e o [`owner`](/versions/latest/config/app/#owner) com o nome da conta dona do projeto.
+- Envia o `icon` do **app.json** como ícone do projeto no painel da Expo, caso o projeto ainda não tenha um ícone.
 
-<Collapsible summary={<>What is <CODE>projectId</CODE> in app.json?</>}>
+<Collapsible summary={<>O que é o <CODE>projectId</CODE> no app.json?</>}>
 
-When `eas init` runs, it associates a unique identifier for our project in **app.json** under `extra.eas.projectId`. The value of this property is used to identify our project on Expo servers.
+Quando o `eas init` roda, ele associa um identificador único ao nosso projeto no **app.json**, em `extra.eas.projectId`. O valor dessa propriedade é usado para identificar nosso projeto nos servidores da Expo.
 
 ```json
 {
@@ -165,16 +165,16 @@ When `eas init` runs, it associates a unique identifier for our project in **app
 
 <Step label="3">
 
-## Configure project for Expo Build
+## Configure o projeto para o Expo Build \{#configure-project-for-expo-build}
 
-To set up our project for Expo Build, run the following command:
+Para preparar nosso projeto para o Expo Build, rode o comando a seguir:
 
 <Terminal cmd={['$ eas build:configure']} />
 
-On running, this command:
+Ao rodar, esse comando:
 
-- Prompts to select a platform: **Android**, **iOS**, or **All**. Since we are creating Android and iOS apps, let's select **All**.
-- Creates **eas.json** in the root of our project's directory with the following configuration:
+- Pede para escolher uma plataforma: **Android**, **iOS** ou **All**. Como estamos criando apps para Android e iOS, vamos escolher **All**.
+- Cria o **eas.json** na raiz do diretório do projeto com a seguinte configuração:
 
 ```json eas.json
 {
@@ -200,29 +200,31 @@ On running, this command:
 }
 ```
 
-This is the default configuration for **eas.json** in a new project. It does two things:
+Esta é a configuração padrão do **eas.json** em um projeto novo. Ela faz duas coisas:
 
-- Defines the current EAS CLI version.
-- Adds three [build profiles](/build/eas-json/#build-profiles): `development`, `preview`, and `production`.
+- Define a versão atual da EAS CLI.
+- Adiciona três [perfis de build](/build/eas-json/#build-profiles): `development`, `preview` e `production`.
 
 </Step>
 
-<Collapsible summary="Explore development profile further">
+<Collapsible summary="Explore melhor o perfil development">
 
-**eas.json** is a collection of different build profiles. Each profile is tailored with distinct configurations to produce specific build types. These profiles can also include platform-specific settings for Android or iOS.
+O **eas.json** é um conjunto de diferentes perfis de build. Cada perfil é ajustado com configurações distintas para gerar tipos específicos de build. Esses perfis também podem incluir configurações específicas de plataforma, para Android ou iOS.
 
-Currently, our focus is on the `development` profile, which includes the following configuration:
+Por enquanto, nosso foco é o perfil `development`, que inclui a seguinte configuração:
 
-- [`developmentClient`](/eas/json/#developmentclient): Enabled (`true`) for creating a debug build. It loads the app using the `expo-dev-client` library, which provides development tools and generates a build artifact for device or emulator/simulator installation and allows using the app for local development as it supports updating the JavaScript on the fly.
-- [`distribution`](/eas/json/#distribution): Configured as `internal` to indicate that we want to share the build internally (instead of uploading it on app stores).
+- [`developmentClient`](/eas/json/#developmentclient): habilitado (`true`) para criar um build de debug. Ele carrega o app usando a biblioteca `expo-dev-client`, que oferece ferramentas de desenvolvimento e gera um artefato de build para instalação em dispositivo ou emulador/simulador. Também permite usar o app no desenvolvimento local, já que dá para atualizar o JavaScript em tempo real.
+- [`distribution`](/eas/json/#distribution): configurado como `internal` para indicar que queremos compartilhar o build internamente (em vez de enviá-lo às lojas de apps).
 
-> **Note**: Builds offer extensive customization options, including platform-specific settings and the ability to extend configurations across different build profiles. Learn more about [customizing build profiles](/build/eas-json/#build-profiles).
+> **Note**: Os builds oferecem muitas opções de personalização, incluindo configurações específicas de plataforma e a possibilidade de estender configurações entre diferentes perfis de build. Saiba mais sobre [como personalizar perfis de build](/build/eas-json/#build-profiles).
 
 </Collapsible>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"
   currentChapterSlug="/tutorial/eas/configure-development-build"
 />
+
+{/* ia-translate: true */}

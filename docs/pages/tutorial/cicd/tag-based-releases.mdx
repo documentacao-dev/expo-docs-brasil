@@ -1,7 +1,7 @@
 ---
-title: 'Using Git tags to trigger production deployments'
-sidebar_title: Tag-based releases
-description: Learn how to trigger production deployments from Git tags on Expo Workflows.
+title: 'Use tags do Git para disparar deploys de produção'
+sidebar_title: Releases com tags
+description: Aprenda a disparar deploys de produção a partir de tags do Git no Expo Workflows.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
@@ -10,35 +10,35 @@ import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-Pushing to a release branch runs the production workflow on every commit, even ones we never meant as a release.
+Fazer push para uma branch de release roda o workflow de produção a cada commit, até nos que nunca tivemos a intenção de publicar como release.
 
-## Learning outcomes
+## O que você vai aprender \{#learning-outcomes}
 
-- Switch the production workflow trigger from a `release/*` branch to a Git tag matching `v*.*.*`
-- Cut a release by pushing a tag from `main` and watch the workflow run on the Expo dashboard
-- Exclude pre-release tags like `v1.0.0-rc.1` from production and run release candidates in a separate workflow
+- Trocar o trigger do workflow de produção, de uma branch `release/*`, para uma tag do Git que corresponda a `v*.*.*`
+- Criar um release fazendo push de uma tag a partir da `main` e acompanhar a execução do workflow no dashboard da Expo
+- Excluir tags de pre-release, como `v1.0.0-rc.1`, da produção e rodar release candidates em um workflow separado
 
-## Tags as release events
+## Tags como eventos de release \{#tags-as-release-events}
 
-Expo Workflows supports tag-based triggers through [`on.push`](/eas/workflows/syntax/#onpush) with a `tags` list. The workflow runs only when a tag matching a glob pattern is pushed to the remote. A Git tag is a one-time event tied to a specific commit and version, unlike a branch that can be updated over time. That makes tags well-suited for marking releases.
+O Expo Workflows aceita triggers baseados em tags pelo [`on.push`](/eas/workflows/syntax/#onpush), com uma lista `tags`. O workflow só roda quando uma tag que corresponde a um padrão glob é enviada para o remoto. Uma tag do Git é um evento único, ligado a um commit e a uma versão específicos, diferentemente de uma branch, que pode ser atualizada com o tempo. Por isso, tags são ótimas para marcar releases.
 
-A tag-based release workflow fits teams that:
+Um workflow de release baseado em tags serve bem para times que:
 
-- Want the version number in Git to match the version they ship to app users
-- Release from `main` directly rather than maintaining long-lived release branches
-- Want a clear audit trail of every release commit by version
+- Querem que o número da versão no Git seja o mesmo que a versão enviada aos usuários do app
+- Publicam direto a partir da `main`, sem manter branches de release de longa duração
+- Querem um histórico claro de cada commit de release, por versão
 
 <BranchVsTagTrigger />
 
-## Switch production.yml to a tag trigger
+## Troque o production.yml para um trigger de tag \{#switch-productionyml-to-a-tag-trigger}
 
-Open the **.eas/workflows/production.yml** workflow from the [previous chapter](/tutorial/cicd/production/) and replace the `on.push.branches` trigger with `on.push.tags`. Everything else inside the workflow stays the same.
+Abra o workflow **.eas/workflows/production.yml** do [capítulo anterior](/tutorial/cicd/production/) e substitua o trigger `on.push.branches` por `on.push.tags`. O restante do workflow continua igual.
 
 <Step label="1">
 
-### Change the trigger
+### Troque o trigger \{#change-the-trigger}
 
-Replace the `branches` trigger with a `tags` trigger. The `tags` glob matches tags like `v1.0.0`, `v2.3.7`, and `v10.0.0-beta.1`.
+Substitua o trigger `branches` por um trigger `tags`. O glob `tags` corresponde a tags como `v1.0.0`, `v2.3.7` e `v10.0.0-beta.1`.
 
 ```yaml .eas/workflows/production.yml
 name: Deploy to production
@@ -102,20 +102,20 @@ jobs:
       platform: ios
 ```
 
-For tags to trigger the workflow, we need to pick a pattern that matches our team's flow. Common patterns include:
+Para que as tags disparem o workflow, precisamos escolher um padrão que combine com o fluxo do nosso time. Padrões comuns incluem:
 
-- `['v*']` matches any tag that starts with `v`
-- `['v*.*.*']` matches strict three-part semantic versions (recommended)
+- `['v*']` corresponde a qualquer tag que comece com `v`
+- `['v*.*.*']` corresponde a versões semânticas estritas, com três partes (recomendado)
 
-We don't need to change any other jobs. The `fingerprint`, `get-build`, `build`, and `update` jobs work identically because they operate on the commit.
+Não precisamos mudar nenhum outro job. Os jobs `fingerprint`, `get-build`, `build` e `update` funcionam do mesmo jeito, porque operam sobre o commit.
 
 </Step>
 
 <Step label="2">
 
-### Commit and push the workflow change
+### Faça commit e push da mudança do workflow \{#commit-and-push-the-workflow-change}
 
-Commit the change to **production.yml** and push it to `main`. This doesn't trigger the workflow because we switched from a branch trigger to a tag trigger.
+Faça commit da mudança no **production.yml** e envie para a `main`. Isso não dispara o workflow, porque trocamos um trigger de branch por um trigger de tag.
 
 <Terminal
   cmd={[
@@ -132,11 +132,11 @@ Commit the change to **production.yml** and push it to `main`. This doesn't trig
 
 <Step label="3">
 
-### Create a tag to test the workflow
+### Crie uma tag para testar o workflow \{#create-a-tag-to-test-the-workflow}
 
-To run the workflow, we need to push a tag that matches the glob pattern defined in **production.yml**.
+Para rodar o workflow, precisamos enviar uma tag que corresponda ao padrão glob definido no **production.yml**.
 
-Make a TypeScript/JavaScript change in our example project, commit it, and push a new tag:
+Faça uma mudança em TypeScript/JavaScript no nosso projeto de exemplo, faça commit dela e envie uma nova tag:
 
 <Terminal
   cmd={[
@@ -151,27 +151,27 @@ Make a TypeScript/JavaScript change in our example project, commit it, and push 
   cmdCopy="git add . && git commit -m 'Fix welcome copy' && git tag v0.1.0 && git push origin main --tags"
 />
 
-The workflow triggers on the `v0.1.0` tag. Open the Expo dashboard, and under **Workflows**, notice "Deploy to production" running with `refs/tags/v0.1.0` as its branch:
+O workflow é disparado pela tag `v0.1.0`. Abra o dashboard da Expo e, em **Workflows**, veja "Deploy to production" rodando com `refs/tags/v0.1.0` como sua branch:
 
 <ContentSpotlight
-  alt="Expo Workflows dashboard showing a tag-triggered production workflow run with fingerprint, get-build, and update jobs for Android and iOS."
+  alt="Dashboard do Expo Workflows mostrando uma execução de produção disparada por tag, com jobs de fingerprint, get-build e update para Android e iOS."
   src="/static/images/tutorial/cicd/eas-workflows-tag-based-production-run.webp"
   className="max-w-160"
 />
 
-Since this is the first production run with the fingerprint generated for a tag-based release, the `build` jobs run for both Android and iOS. Subsequent tags that point to TypeScript/JavaScript changes skip the build jobs and go straight to `update` jobs.
+Como esta é a primeira execução de produção com o fingerprint gerado para um release baseado em tag, os jobs `build` rodam para Android e iOS. As próximas tags que apontam para mudanças em TypeScript/JavaScript pulam os jobs de build e vão direto para os jobs `update`.
 
 <ContentSpotlight
-  alt="Expo Workflows dashboard showing parallel Android and iOS production build jobs for a v0.1.0 tag release."
+  alt="Dashboard do Expo Workflows mostrando os jobs de build de produção de Android e iOS em paralelo para o release da tag v0.1.0."
   src="/static/images/tutorial/cicd/eas-workflows-tag-based-build-android-ios.png"
   className="max-w-160"
 />
 
 </Step>
 
-## Pre-release tags for release candidates
+## Tags de pre-release para release candidates \{#pre-release-tags-for-release-candidates}
 
-The `v*.*.*` glob also matches pre-release tags like `v1.0.0-rc.1`, which would ship a release candidate to app users. To keep release candidates out of production, exclude them from the production workflow's trigger:
+O glob `v*.*.*` também corresponde a tags de pre-release, como `v1.0.0-rc.1`, que enviariam um release candidate aos usuários do app. Para manter os release candidates fora da produção, exclua-os do trigger do workflow de produção:
 
 ```yaml .eas/workflows/production.yml
 on:
@@ -179,8 +179,10 @@ on:
     tags: ['v*.*.*', '!v*.*.*-rc.*']
 ```
 
-To exercise a release candidate before the real release, create a separate workflow that matches only pre-release tags (`tags: ['v*.*.*-rc.*']`) and reuses the `fingerprint`, `get-build`, and `build` jobs without the `update` and `submit` jobs. The same pipeline runs, and nothing reaches app users.
+Para testar um release candidate antes do lançamento de verdade, crie um workflow separado que corresponda só a tags de pre-release (`tags: ['v*.*.*-rc.*']`) e reutilize os jobs `fingerprint`, `get-build` e `build`, sem os jobs `update` e `submit`. O mesmo pipeline roda, e nada chega aos usuários do app.
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/tag-based-releases" />
+
+{/* ia-translate: true */}

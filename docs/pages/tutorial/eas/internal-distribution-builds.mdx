@@ -1,7 +1,7 @@
 ---
-title: Create and share internal distribution build
-sidebar_title: Internal distribution build
-description: Learn about internal distribution builds, why we need them, and how to create them.
+title: Crie e compartilhe um build de distribuição interna
+sidebar_title: Build de distribuição interna
+description: Saiba o que são os builds de distribuição interna, por que precisamos deles e como criá-los.
 hasVideoLink: true
 ---
 
@@ -14,42 +14,42 @@ import { Tabs, Tab } from '~/ui/components/Tabs';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll learn how to set up [internal distribution builds](/build/internal-distribution/#using-internal-distribution).
+Neste capítulo, vamos aprender a configurar [builds de distribuição interna](/build/internal-distribution/#using-internal-distribution).
 
 <VideoBoxLink
   videoId="1fQuGLHxWks"
-  title="Watch: How to create and share an internal distribution build"
-  description="Create an internal distribution build with Expo Build and share it directly with your team for testing."
+  title="Assista: como criar e compartilhar um build de distribuição interna"
+  description="Crie um build de distribuição interna com o Expo Build e compartilhe-o diretamente com sua equipe para testes."
 />
 
 ---
 
-## Internal distribution build
+## Build de distribuição interna \{#internal-distribution-build}
 
-Internal distribution builds are ideal for sharing updates with team members, allowing both technical and non-technical stakeholders to provide feedback directly. Unlike development builds, these do not require running a development server, simplifying the testing process.
+Os builds de distribuição interna são ideais para compartilhar updates com os membros da equipe, permitindo que partes interessadas técnicas e não técnicas deem feedback diretamente. Diferente dos development builds, eles não exigem um servidor de desenvolvimento rodando, o que simplifica o processo de teste.
 
-### Ways to distribute an app internally
+### Formas de distribuir um app internamente \{#ways-to-distribute-an-app-internally}
 
-Both Google and Apple provide built-in mechanisms for sharing apps internally:
+Tanto o Google quanto a Apple oferecem mecanismos nativos para compartilhar apps internamente:
 
-- **Android**: Using Google Play beta
-- **iOS**: Using TestFlight
+- **Android**: usando o beta do Google Play
+- **iOS**: usando o TestFlight
 
-However, both of these traditional methods have their limitations. For example, TestFlight limits to one active build at a time.
+No entanto, esses dois métodos tradicionais têm limitações. Por exemplo, o TestFlight permite apenas um build ativo por vez.
 
-### Expo Build for faster distribution
+### Expo Build para uma distribuição mais rápida \{#expo-build-for-faster-distribution}
 
-Expo Build speeds up the process. It creates shareable links for our builds and provides instructions on using them. It has a default configuration designed to facilitate internal distribution, offering a more efficient alternative to traditional methods.
+O Expo Build acelera o processo. Ele cria links compartilháveis para os nossos builds e fornece instruções de uso. Ele tem uma configuração padrão pensada para facilitar a distribuição interna, oferecendo uma alternativa mais eficiente aos métodos tradicionais.
 
-## Create an internal distribution build
+## Crie um build de distribuição interna \{#create-an-internal-distribution-build}
 
-To create and distribute a build with Expo Build, we need to follow these steps:
+Para criar e distribuir um build com o Expo Build, precisamos seguir estes passos:
 
 <Step label="1">
 
-### Configure preview build profile
+### Configure o perfil de build preview \{#configure-preview-build-profile}
 
-From our initial setup in **eas.json**, we already have a default configuration that includes a `preview` build profile designed for internal distribution:
+Desde a configuração inicial no **eas.json**, já temos uma configuração padrão que inclui um perfil de build `preview`, pensado para a distribuição interna:
 
 ```json eas.json
 {
@@ -63,35 +63,35 @@ From our initial setup in **eas.json**, we already have a default configuration 
 }
 ```
 
-This is all we need to create our first internal distribution build. The `preview` build profile from the above snippet has a `distribution` property whose value is set to `internal`. This value allows us to share our build URLs with anyone so they can install it on their device and do not require a development server to run the app.
+Isso é tudo que precisamos para criar nosso primeiro build de distribuição interna. O perfil de build `preview` do trecho acima tem a propriedade `distribution` com o valor `internal`. Esse valor nos permite compartilhar as URLs do build com qualquer pessoa, para que ela instale o app no próprio dispositivo sem precisar de um servidor de desenvolvimento para rodá-lo.
 
-As discussed in the previous chapters, for non-app store builds, Android requires **.apk** and iOS needs **.ipa** formats. This applies to internal distribution builds as well. The `distribution` when set to `internal`, automatically creates the app binary in these file formats for devices.
+Como vimos nos capítulos anteriores, para builds que não são da loja de apps, o Android exige o formato **.apk** e o iOS exige o formato **.ipa**. Isso também vale para os builds de distribuição interna. Quando `distribution` está definido como `internal`, o Expo Build cria automaticamente o binário do app nesses formatos para os dispositivos.
 
 </Step>
 
 <Step label="2">
 
-### Create
+### Crie \{#create}
 
-Creating an internal distribution build requires [app signing credentials](/app-signing/app-credentials/).
+Criar um build de distribuição interna exige [credenciais de assinatura do app](/app-signing/app-credentials/).
 
-Android app signing is non-restrictive and allows installing any compatible **.apk** file.
+A assinatura de apps no Android não é restritiva e permite instalar qualquer arquivo **.apk** compatível.
 
-On the other hand, Apple has stricter rules for app distribution on iOS devices. We need an ad hoc provisioning profile that explicitly lists the devices allowed to run the app. Some organizations whose apps meet specific requirements may be able to use the [Apple Developer Enterprise Program](https://developer.apple.com/programs/enterprise/) to distribute apps internally to a larger audience.
+Já a Apple tem regras mais rígidas para distribuição de apps em dispositivos iOS. Precisamos de um perfil de provisionamento ad hoc que liste explicitamente os dispositivos autorizados a rodar o app. Algumas organizações cujos apps atendem a requisitos específicos podem usar o [Apple Developer Enterprise Program](https://developer.apple.com/programs/enterprise/) para distribuir apps internamente para um público maior.
 
 <Tabs>
 
 <Tab label="Android">
 
-- Use the `preview` profile to initiate an Android build:
+- Use o perfil `preview` para iniciar um build Android:
 
 <Terminal cmd={['$ eas build --platform android --profile preview']} />
 
-- Since our preview build uses its own Android Application ID from the previous chapter, EAS CLI prompts us to **Generate a new Android Keystore**. Press <kbd>Y</kbd>.
-- This command triggers the Expo Build, and on the Expo dashboard, we can see the build's progress:
+- Como nosso build preview usa seu próprio Android Application ID, do capítulo anterior, a EAS CLI nos pede para **Generate a new Android Keystore**. Pressione <kbd>Y</kbd>.
+- Esse comando dispara o Expo Build, e no painel da Expo podemos acompanhar o progresso do build:
 
 <ContentSpotlight
-  alt="Android preview build details and progress in Expo dashboard"
+  alt="Detalhes e progresso do build preview Android no painel da Expo"
   src="/static/images/tutorial/eas/internal-distribution-builds-android-preview-build.webp"
   className="max-w-[800px]"
 />
@@ -100,52 +100,52 @@ On the other hand, Apple has stricter rules for app distribution on iOS devices.
 
 <Tab label="iOS">
 
-Apps signed with an ad hoc provisioning profile can be installed by an iOS device whose UDID is registered with the provisioning profile.
+Apps assinados com um perfil de provisionamento ad hoc podem ser instalados por um dispositivo iOS cujo UDID esteja registrado no perfil de provisionamento.
 
-- To register more devices, use `eas device:create`. This command registers an iOS device and gives us a URL or QR code to share for device registration:
+- Para registrar mais dispositivos, use `eas device:create`. Esse comando registra um dispositivo iOS e nos dá uma URL ou QR code para compartilhar e registrar o dispositivo:
 
 <Terminal cmd={['$ eas device:create']} />
 
-- This command registers an iOS device for app installation, generating a shareable URL (or QR code) for device registration.
+- Esse comando registra um dispositivo iOS para a instalação do app, gerando uma URL (ou QR code) compartilhável para o registro do dispositivo.
 
-  > **info** **Tip**: This command enables device registration at any time. However, only builds created post-registration will work on the newly added device.
+  > **info** **Dica**: Esse comando permite registrar um dispositivo a qualquer momento. No entanto, só os builds criados depois do registro vão funcionar no dispositivo recém-adicionado.
 
-  > **warning** **On a new or recently renewed Apple Developer Program membership, a newly registered device may not be immediately installable.** Registering a device with Expo does not register it with Apple. The device is added to Apple only when it's first included in a build or re-sign. For such a membership, Apple can then take [up to 24–72 hours](https://developer.apple.com/help/account/reference/device-registration-updates/) to finish processing the device before it can be added to a provisioning profile. If a build fails right after you register a new device, wait for Apple to finish processing and then run the build again. Learn more about [managing devices](/build/internal-distribution/#managing-devices).
+  > **warning** **Em uma assinatura nova ou recém-renovada do Apple Developer Program, um dispositivo recém-registrado pode não ser instalável de imediato.** Registrar um dispositivo com a Expo não o registra na Apple. O dispositivo só é adicionado à Apple quando é incluído pela primeira vez em um build ou em uma reassinatura. Nesse tipo de assinatura, a Apple pode levar [até 24 a 72 horas](https://developer.apple.com/help/account/reference/device-registration-updates/) para processar o dispositivo antes que ele possa ser adicionado a um perfil de provisionamento. Se um build falhar logo depois de você registrar um dispositivo novo, aguarde a Apple concluir o processamento e rode o build de novo. Saiba mais sobre [gerenciar dispositivos](/build/internal-distribution/#managing-devices).
 
-- To create the preview build, we need to use the `preview` profile with the `eas build` command:
+- Para criar o build preview, precisamos usar o perfil `preview` com o comando `eas build`:
 
 <Terminal cmd={['$ eas build --platform ios --profile preview']} />
 
-- This command triggers the Expo Build, and on the Expo dashboard, we can see the build's progress:
+- Esse comando dispara o Expo Build, e no painel da Expo podemos acompanhar o progresso do build:
 
 <ContentSpotlight
-  alt="iOS preview build details and progress in Expo dashboard"
+  alt="Detalhes e progresso do build preview iOS no painel da Expo"
   src="/static/images/tutorial/eas/internal-distribution-builds-ios-preview-build.webp"
   className="max-w-[800px]"
 />
 
-<Collapsible summary={<>Alternative method to register devices using <CODE>eas build:resign</CODE></>}>
+<Collapsible summary={<>Método alternativo para registrar dispositivos usando <CODE>eas build:resign</CODE></>}>
 
-[`eas build:resign`](/app-signing/app-credentials/#re-signing-new-credentials) command can be used to re-sign an existing iOS **.ipa** with a new ad hoc provisioning profile, eliminating the need for a full rebuild.
-
-</Collapsible>
-
-<Collapsible summary="Are you setting up enterprise provisioning?">
-
-Apple Enterprise Program membership costs $299 USD per year and [not all organizations will be eligible](https://developer.apple.com/programs/enterprise/), so you will likely be using ad hoc provisioning, which works with any normal paid Apple Developer account.
-
-If you have an [Apple Developer Enterprise Program membership](https://developer.apple.com/programs/enterprise/) users can install your app to their device without pre-registering their UDID. They just need to install the profile to their device and they can then access existing builds. You will need to sign in using your Apple Developer Enterprise account during the `eas build` process to set up the correct provisioning.
-
-If you distribute your app both through enterprise provisioning and the App Store, you will need to have a distinct bundle identifier for each context. We recommend either:
-
-- In projects generated with Expo CLI, use [**app.config.js** to dynamically switch identifiers](/tutorial/eas/multiple-app-variants/).
-- In [existing React Native projects](/bare/overview/), create a separate `scheme` for each bundle identifier and specify the scheme name in separate build profiles.
+O comando [`eas build:resign`](/app-signing/app-credentials/#re-signing-new-credentials) pode ser usado para reassinar um **.ipa** iOS existente com um novo perfil de provisionamento ad hoc, sem precisar de um build completo.
 
 </Collapsible>
 
-<Collapsible summary="Are you using manual local credentials?">
+<Collapsible summary="Você está configurando o provisionamento empresarial?">
 
-If so, make sure to point your **credentials.json** to an ad hoc or enterprise provisioning profile that you generate through the Apple Developer Portal (either update an existing **credentials.json** used for another type of distribution or replace it with a new one that points to the appropriate provisioning profile). Beware that EAS CLI does only a limited validation of your local credentials, and you will have to handle device UDID registration manually. Read more about [using local credentials](/app-signing/local-credentials).
+A assinatura do Apple Enterprise Program custa US$ 299 por ano, e [nem todas as organizações são elegíveis](https://developer.apple.com/programs/enterprise/). Por isso, você provavelmente vai usar o provisionamento ad hoc, que funciona com qualquer conta paga normal do Apple Developer.
+
+Se você tiver uma [assinatura do Apple Developer Enterprise Program](https://developer.apple.com/programs/enterprise/), os usuários podem instalar seu app no dispositivo deles sem pré-registrar o UDID. Eles só precisam instalar o perfil no dispositivo e, então, podem acessar os builds existentes. Você vai precisar entrar com sua conta Apple Developer Enterprise durante o processo do `eas build` para configurar o provisionamento correto.
+
+Se você distribuir seu app tanto pelo provisionamento empresarial quanto pela App Store, vai precisar de um bundle identifier distinto para cada contexto. Recomendamos uma destas opções:
+
+- Em projetos gerados com a Expo CLI, use o [**app.config.js** para alternar identificadores dinamicamente](/tutorial/eas/multiple-app-variants/).
+- Em [projetos React Native existentes](/bare/overview/), crie um `scheme` separado para cada bundle identifier e especifique o nome do scheme em perfis de build separados.
+
+</Collapsible>
+
+<Collapsible summary="Você está usando credenciais locais manuais?">
+
+Se for o caso, confirme que seu **credentials.json** aponta para um perfil de provisionamento ad hoc ou empresarial que você gerou pelo Apple Developer Portal (atualize um **credentials.json** existente usado para outro tipo de distribuição ou substitua-o por um novo que aponte para o perfil de provisionamento certo). Atenção: a EAS CLI faz apenas uma validação limitada das suas credenciais locais, e você vai precisar cuidar do registro dos UDIDs dos dispositivos manualmente. Leia mais sobre [usar credenciais locais](/app-signing/local-credentials).
 
 </Collapsible>
 
@@ -157,24 +157,24 @@ If so, make sure to point your **credentials.json** to an ad hoc or enterprise p
 
 <Step label="3">
 
-### Install
+### Instale \{#install}
 
-Once the build finishes, the Build artifact section shows that the build is complete. This section provides the methods available for running the preview build on an Android or iOS device: Expo Orbit and the Install button.
+Quando o build terminar, a seção Build artifact mostra que o build está concluído. Essa seção oferece os métodos disponíveis para rodar o build preview em um dispositivo Android ou iOS: o Expo Orbit e o botão Install.
 
-- Open the build's detail page. If you are sharing the build with someone else, you can send them the link to the build. They'll be able to open the build's detail page or build artifact details which include Expo Orbit.
-- Connect the Android or iOS device to your machine using USB.
-- Open the Orbit menu bar app.
-- Select the **Device** in the Orbit app.
-- Under **Build artifact**, click the **Open with Orbit**.
+- Abra a página de detalhes do build. Se estiver compartilhando o build com alguém, você pode enviar o link do build para essa pessoa. Ela vai conseguir abrir a página de detalhes do build ou os detalhes do artefato, que incluem o Expo Orbit.
+- Conecte o dispositivo Android ou iOS à sua máquina por USB.
+- Abra o app de barra de menus Orbit.
+- Selecione o **Device** no app Orbit.
+- Em **Build artifact**, clique em **Open with Orbit**.
 
-<Collapsible summary="Alternate: Use Install and QR code">
+<Collapsible summary="Alternativa: use Install e o QR code">
 
-- Open the build's detail page. If you are sharing the build with someone else, you can send them the link to the build page. They'll be able to open it and see build artifact details which includes Expo Orbit.
-- Click **Install** under the Build artifact section to display the **Install on a test device** popup.
-- Copy the link from **Send a link to a device** section and send it to the test device.
+- Abra a página de detalhes do build. Se estiver compartilhando o build com alguém, você pode enviar o link da página do build. Ela vai conseguir abri-la e ver os detalhes do artefato, que incluem o Expo Orbit.
+- Clique em **Install** na seção Build artifact para exibir o pop-up **Install on a test device**.
+- Copie o link da seção **Send a link to a device** e envie-o para o dispositivo de teste.
 
 <ContentSpotlight
-  alt="Install on a test device popup with a QR code and an install link in Expo dashboard"
+  alt="Pop-up Install on a test device com QR code e link de instalação no painel da Expo"
   src="/static/images/tutorial/eas/android-development-build-qr-code.webp"
   className="max-w-[450px]"
 />
@@ -185,33 +185,35 @@ Once the build finishes, the Build artifact section shows that the build is comp
 
 <Step label="4">
 
-### Run
+### Rode \{#run}
 
-Tap the app icon on your device to start the preview build. There is no need for a development server.
+Toque no ícone do app no seu dispositivo para iniciar o build preview. Não é preciso um servidor de desenvolvimento.
 
-Since we have already set up multiple app variants, we can see both the development and preview variants installed separately on our devices. For example:
+Como já configuramos várias variantes do app, podemos ver as variantes development e preview instaladas separadamente nos nossos dispositivos. Por exemplo:
 
-- On Android:
+- No Android:
 
 <ContentSpotlight
-  alt="Development and preview variants installed on an Android device"
+  alt="Variantes development e preview instaladas em um dispositivo Android"
   src="/static/images/tutorial/eas/android-multi-variants-installed.png"
   className="max-w-[270px]"
 />
 
-- On iOS:
+- No iOS:
 
 <ContentSpotlight
-  alt="Development and preview variants installed on an iOS device"
+  alt="Variantes development e preview instaladas em um dispositivo iOS"
   src="/static/images/tutorial/eas/ios-multi-variants-installed.webp"
   className="max-w-[250px]"
 />
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"
   currentChapterSlug="/tutorial/eas/internal-distribution-builds"
 />
+
+{/* ia-translate: true */}

@@ -1,53 +1,55 @@
 ---
-title: Save your creation
-description: In this chapter, direct your AI agent to save the decorated photo to your phone, and optionally make it work in the browser too.
+title: Salve sua criação
+description: Neste capítulo, peça ao seu agente de IA para salvar a foto decorada no seu celular e, opcionalmente, fazê-la funcionar também no navegador.
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
 import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 
-In this chapter, you'll add the final core feature: saving the photo, sticker and all, to your phone's photo library.
+Neste capítulo, você vai adicionar o último recurso central: salvar a foto, com o adesivo e tudo, na biblioteca de fotos do seu celular.
 
 <Step label="1">
 
-## Save to your photo library
+## Salve na biblioteca de fotos \{#save-to-your-photo-library}
 
-Paste the following prompt into your agent:
+Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Add a "Save" option to the row of options, with a download icon. When I tap it, capture just the photo with the sticker on it (not the whole screen) using the react-native-view-shot library, and save the result to my phone's photo library using the Asset.create() method from the expo-media-library library. Ask for permission to add photos the first time if needed, and show an alert confirming that the image was saved.
 ```
 
-**What you should see**: the first time you tap **Save**, your phone can ask for permission to add photos. Tap **Allow**, and the app shows a confirmation. Open your phone's photo gallery: your photo is there with the sticker baked in, ready to share anywhere.
+**O que você deve ver**: na primeira vez que tocar em **Save**, seu celular pode pedir permissão para adicionar fotos. Toque em **Allow**, e o app mostra uma confirmação. Abra a galeria de fotos do celular: sua foto está lá, com o adesivo incorporado, pronta para compartilhar onde quiser.
 
 </Step>
 
 <Step label="2">
 
-## Make it work on the web (optional)
+## Faça funcionar na web (opcional) \{#make-it-work-on-the-web-optional}
 
-Your app isn't only a phone app. The same project runs in a web browser. In the terminal window running the development server, press <kbd>W</kbd> and the app opens in your browser. Everything works, except **Save**: web browsers don't give apps access to a photo library, so the app can't save the image there.
+Seu app não é só um app de celular. O mesmo projeto roda em um navegador. Na janela do terminal que está rodando o servidor de desenvolvimento, pressione <kbd>W</kbd> e o app abre no navegador. Tudo funciona, exceto **Save**: navegadores não dão aos apps acesso à biblioteca de fotos, então o app não consegue salvar a imagem ali.
 
-<Collapsible summary="Want to fix the Save option on the web?">
+<Collapsible summary="Quer corrigir a opção Save na web?">
 
-Paste the following prompt into your agent:
+Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Make the Save option also work when the app runs in a web browser. When the platform is web, capture the image with the react-native-view-shot library as a data URI, and download it as a JPEG file instead of saving it to the photo library.
 ```
 
-**What you should see**: in the browser, pick a photo, add a sticker, and click **Save**. The image downloads as a file. This is how platform differences are handled in Expo apps: one app, with small platform-specific branches where needed.
+**O que você deve ver**: no navegador, escolha uma foto, adicione um adesivo e clique em **Save**. A imagem é baixada como arquivo. É assim que as diferenças entre plataformas são tratadas em apps Expo: um único app, com pequenos trechos específicos de plataforma quando necessário.
 
 </Collapsible>
 
 </Step>
 
-> If a result doesn't match what you expected, tell the agent what you see. The [When something looks wrong](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) section has the playbook.
+> Se um resultado não bater com o que você esperava, diga ao agente o que você vê. A seção [Quando algo parece errado](/tutorial/build-with-ai/create-your-first-app/#when-something-looks-wrong) tem o passo a passo.
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker
   name="BUILD_WITH_AI"
   currentChapterSlug="/tutorial/build-with-ai/save-your-creation"
 />
+
+{/* ia-translate: true */}

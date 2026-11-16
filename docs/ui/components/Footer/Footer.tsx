@@ -1,16 +1,13 @@
 import { LinkBase, mergeClasses } from '@expo/styleguide';
-import { PrivacyChoicesButton } from '@expo/styleguide-cookie-consent';
 import { ArrowLeftIcon } from '@expo/styleguide-icons/outline/ArrowLeftIcon';
 import { ArrowRightIcon } from '@expo/styleguide-icons/outline/ArrowRightIcon';
 import { useRouter } from 'next/compat/router';
 import { useIntl } from 'react-intl';
 
 import { NavigationRouteWithSection } from '~/types/common';
-import { NewsletterSignUp } from '~/ui/components/Footer/NewsletterSignUp';
-import { P, FOOTNOTE, UL, LI } from '~/ui/components/Text';
+import { A, P, FOOTNOTE, UL, LI } from '~/ui/components/Text';
 
 import { ForumsLink, EditPageLink, IssuesLink, LlmsTxtLink, ShareFeedbackLink } from './Links';
-import { PageVote } from './PageVote';
 
 type Props = {
   title?: string;
@@ -96,7 +93,6 @@ export const Footer = ({
       )}
       <div className={mergeClasses('flex flex-row justify-between gap-4', 'max-md:flex-col')}>
         <div>
-          <PageVote />
           <UL className="mt-0! ml-0! flex-1 list-none!">
             <ShareFeedbackLink pathname={router?.pathname} />
             {title && <ForumsLink isAPIPage={isAPIPage} title={title} />}
@@ -117,9 +113,18 @@ export const Footer = ({
             )}
           </UL>
         </div>
-        <NewsletterSignUp />
       </div>
-      <PrivacyChoicesButton fallbackHref="https://expo.dev/privacy/cookies" />
+      <FOOTNOTE theme="secondary" className="max-w-3xl">
+        Tradução comunitária da documentação do Expo, licenciada sob MIT. Original em{' '}
+        <A openInNewTab href="https://docs.expo.dev">
+          docs.expo.dev
+        </A>
+        . Parte do{' '}
+        <A openInNewTab href="https://documentacao.dev">
+          documentacao.dev
+        </A>
+        .
+      </FOOTNOTE>
     </footer>
   );
 };

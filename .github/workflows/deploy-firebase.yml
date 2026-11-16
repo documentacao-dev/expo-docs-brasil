@@ -1,0 +1,48 @@
+name: Deploy expo.documentacao.dev
+
+# Build do site (Next.js export em docs/out) e deploy no site Firebase
+# expo-documentacao (projeto transliteradu).
+# Precisa do secret FIREBASE_SERVICE_ACCOUNT.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Conferir traduções
+        run: python3 tool/traducao/verificar.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Instalar pnpm
+        run: npm i -g pnpm@12.2.1
+      - name: Instalar dependências
+        working-directory: docs
+        run: pnpm install --frozen-lockfile
+      - name: Build do site
+        working-directory: docs
+        run: pnpm export
+      - name: Podar versões antigas da SDK (deploy menor)
+        working-directory: docs
+        run: pnpm prune-export-versions
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: transliteradu
+          channelId: live

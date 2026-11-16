@@ -1,7 +1,7 @@
 ---
-title: Manage different app versions
-sidebar_title: Manage app versions
-description: Learn about developer-facing and user-facing app versions and how Expo Build automatically manages developer-facing versions.
+title: Gerencie diferentes versões do app
+sidebar_title: Gerenciar versões do app
+description: Saiba o que são as versões do app voltadas ao desenvolvedor e ao usuário, e como o Expo Build gerencia automaticamente as versões voltadas ao desenvolvedor.
 hasVideoLink: true
 ---
 
@@ -10,26 +10,26 @@ import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Terminal } from '~/ui/components/Snippet';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll learn how Expo Build automatically manages the developer-facing app version for Android and iOS. Learning about it will be useful before we dive into production build in the next two chapters.
+Neste capítulo, vamos aprender como o Expo Build gerencia automaticamente a versão do app voltada ao desenvolvedor, para Android e iOS. Entender isso vai ser útil antes de partirmos para o build de produção nos dois próximos capítulos.
 
 <VideoBoxLink
   videoId="C8x4N9UmzS8"
-  title="Watch: Automating app version code"
-  description="Understand developer-facing and user-facing app versions and how Expo Build automates version management for you."
+  title="Assista: automatizando o version code do app"
+  description="Entenda as versões do app voltadas ao desenvolvedor e ao usuário e como o Expo Build automatiza o gerenciamento de versões para você."
 />
 
 ---
 
-## Understanding developer-facing and user-facing app versions
+## Como funcionam as versões do app voltadas ao desenvolvedor e ao usuário \{#understanding-developer-facing-and-user-facing-app-versions}
 
-An app version is composed of two values:
+A versão de um app é composta por dois valores:
 
-- Developer-facing value: Represented by [`versionCode`](/versions/latest/config/app/#versioncode) for Android and [`buildNumber`](/versions/latest/config/app/#buildnumber) for iOS.
-- User-facing value: Represented by [`version`](/versions/latest/config/app/#version) in [app config](/workflow/configuration/).
+- Valor voltado ao desenvolvedor: representado pelo [`versionCode`](/versions/latest/config/app/#versioncode) no Android e pelo [`buildNumber`](/versions/latest/config/app/#buildnumber) no iOS.
+- Valor voltado ao usuário: representado pela [`version`](/versions/latest/config/app/#version) na [configuração do app](/workflow/configuration/).
 
-Both Google Play Store and Apple App Store rely on developer-facing values to identify each unique build. For example, if we upload an app with the app version `1.0.0 (1)` (which is a combination of user-facing and developer-facing values), we cannot submit another build to the app stores with the same app version. Submitting builds with duplicate app version numbers results in a failed submission.
+Tanto a Google Play Store quanto a Apple App Store usam os valores voltados ao desenvolvedor para identificar cada build único. Por exemplo, se enviarmos um app com a versão `1.0.0 (1)` (que é a combinação dos valores voltados ao usuário e ao desenvolvedor), não podemos enviar outro build às lojas com a mesma versão do app. Enviar builds com números de versão duplicados faz o envio falhar.
 
-An example demonstration of manually managing developer-facing values is shown below by `android.versionCode` and `ios.buildNumber` in **app.config.js**. **We don't have to add or manage these values manually since Expo Build automates this for us**.
+Um exemplo de como gerenciar manualmente os valores voltados ao desenvolvedor aparece abaixo, em `android.versionCode` e `ios.buildNumber` no **app.config.js**. **Não precisamos adicionar nem gerenciar esses valores manualmente, porque o Expo Build automatiza isso para nós**.
 
 ```js app.config.js
 {
@@ -44,18 +44,18 @@ An example demonstration of manually managing developer-facing values is shown b
 }
 ```
 
-> **info** Expo Build does not handle the [user-facing version number](/build-reference/app-versions/#user-facing-version). Instead, we update the `version` property in app config before we create a production build.
+> **info** O Expo Build não cuida do [número de versão voltado ao usuário](/build-reference/app-versions/#user-facing-version). Em vez disso, atualizamos a propriedade `version` na configuração do app antes de criar um build de produção.
 
-## Automatic app version management with Expo Build
+## Gerenciamento automático de versões do app com o Expo Build \{#automatic-app-version-management-with-expo-build}
 
-By default, Expo Build assists in automating developer-facing values. It utilizes the [remote version source](/build-reference/app-versions/#remote-version-source) to automatically increment developer-facing values whenever a new production release is made.
+Por padrão, o Expo Build ajuda a automatizar os valores voltados ao desenvolvedor. Ele usa a [fonte de versão remota](/build-reference/app-versions/#remote-version-source) para incrementar automaticamente esses valores sempre que uma nova versão de produção é criada.
 
-When we configured the project with the `eas build:configure` command, the EAS CLI automatically added the following properties in **eas.json**:
+Quando configuramos o projeto com o comando `eas build:configure`, a EAS CLI adicionou automaticamente as seguintes propriedades no **eas.json**:
 
-- `cli.appVersionSource` which is set to `remote`
-- [`build.production.autoIncrement`](/eas/json/#autoincrement-1) which is set to `true`
+- `cli.appVersionSource`, definida como `remote`
+- [`build.production.autoIncrement`](/eas/json/#autoincrement-1), definida como `true`
 
-You can view them in your project's **eas.json**:
+Você pode vê-las no **eas.json** do projeto:
 
 {/* prettier-ignore */}
 ```json eas.json
@@ -77,24 +77,26 @@ You can view them in your project's **eas.json**:
 }
 ```
 
-When we create a new production build in the next two chapters, the `versionCode` for Android and `buildNumber` for iOS will increment automatically.
+Quando criarmos um novo build de produção nos dois próximos capítulos, o `versionCode` no Android e o `buildNumber` no iOS vão ser incrementados automaticamente.
 
-<Collapsible summary="Syncing developer-facing app versions for already published apps to Expo Services">
+<Collapsible summary="Sincronizando as versões voltadas ao desenvolvedor de apps já publicados no Expo Services">
 
-If your app is already published in the app stores, the developer-facing app versions are already set. When migrating this app to use Expo Build, follow the steps below to sync those app versions:
+Se o seu app já está publicado nas lojas, as versões voltadas ao desenvolvedor já estão definidas. Ao migrar esse app para usar o Expo Build, siga os passos abaixo para sincronizar essas versões:
 
-- In the terminal window, run the `eas build:version:set` command:
+- Na janela do terminal, rode o comando `eas build:version:set`:
 
 <Terminal cmd={['$ eas build:version:set']} />
 
-- Select the platform (Android or iOS) when prompted.
-- When prompted **Do you want to set app version source to remote now?**, select **yes**. This will set the `cli.appVersionSource` to `remote` in **eas.json**.
-- When prompted **What version would you like to initialize it with?**, enter the last version number that you have set in the app stores.
+- Selecione a plataforma (Android ou iOS) quando solicitado.
+- Quando aparecer a pergunta **Do you want to set app version source to remote now?**, selecione **yes**. Isso vai definir `cli.appVersionSource` como `remote` no **eas.json**.
+- Quando aparecer a pergunta **What version would you like to initialize it with?**, digite o último número de versão que você definiu nas lojas de apps.
 
-After these steps, the app versions will be synced to Expo Build remotely. You can set `build.production.autoIncrement` to `true` in **eas.json**. When you create a new production build, the `versionCode` and `buildNumber` will be automatically incremented from now on.
+Depois desses passos, as versões do app vão estar sincronizadas remotamente com o Expo Build. Você pode definir `build.production.autoIncrement` como `true` no **eas.json**. A partir daí, quando você criar um novo build de produção, o `versionCode` e o `buildNumber` serão incrementados automaticamente.
 
 </Collapsible>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/manage-app-versions" />
+
+{/* ia-translate: true */}

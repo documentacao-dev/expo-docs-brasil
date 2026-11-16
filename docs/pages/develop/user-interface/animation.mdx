@@ -1,15 +1,15 @@
 ---
-title: Animation
-description: Learn how to integrate React Native animations and use it in your Expo project.
+title: Animação
+description: Aprenda a integrar as animações do React Native e a usá-las no seu projeto Expo.
 ---
 
 import { Terminal, SnackInline } from '~/ui/components/Snippet';
 
-Animations are a great way to enhance and provide a better user experience. In your Expo projects, you can use the [Animated API](https://reactnative.dev/docs/next/animations) from React Native. However, if you want to use more advanced animations with better performance, you can use the [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/) library. It provides an API that simplifies the process of creating smooth, powerful, and maintainable animations.
+Animações são uma ótima forma de melhorar e oferecer uma experiência melhor ao usuário. No seu projeto Expo, você pode usar a [Animated API](https://reactnative.dev/docs/next/animations) do React Native. Porém, se você quiser animações mais avançadas e com melhor desempenho, pode usar a biblioteca [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/). Ela oferece uma API que simplifica a criação de animações fluidas, poderosas e fáceis de manter.
 
-## Installation
+## Instalação \{#installation}
 
-You can skip installing `react-native-reanimated` if you have created a project using [the default template](/get-started/create-a-project/). This library is already installed. Otherwise, install it by running the following command:
+Você pode pular a instalação do `react-native-reanimated` se criou o projeto com [o template padrão](/get-started/create-a-project/). Essa biblioteca já vem instalada. Caso contrário, instale-a executando o comando a seguir:
 
 <Terminal
   cmd={{
@@ -20,13 +20,13 @@ You can skip installing `react-native-reanimated` if you have created a project 
   }}
 />
 
-## Usage
+## Uso \{#usage}
 
-### Minimal example
+### Exemplo mínimo \{#minimal-example}
 
-The following example shows how to use the `react-native-reanimated` library to create a simple animation. For more information on the API and advanced usage, see [`react-native-reanimated` documentation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/your-first-animation).
+O exemplo a seguir mostra como usar a biblioteca `react-native-reanimated` para criar uma animação simples. Para mais informações sobre a API e o uso avançado, veja a [documentação do `react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/your-first-animation).
 
-<SnackInline label="Using react-native-reanimated" dependencies={['react-native-reanimated']}>
+<SnackInline label="Usando react-native-reanimated" dependencies={['react-native-reanimated']}>
 
 ```tsx
 import Animated, {
@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-## Other animation libraries
+## Outras bibliotecas de animação \{#other-animation-libraries}
 
-You can use other animation packages such as [Moti](https://moti.fyi/) in your Expo project. It works on Android, iOS, and web.
+Você pode usar outros pacotes de animação, como o [Moti](https://moti.fyi/), no seu projeto Expo. Ele funciona no Android, no iOS e na web.
+
+{/* ia-translate: true */}

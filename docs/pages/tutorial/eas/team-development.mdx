@@ -1,7 +1,7 @@
 ---
-title: Share previews with your team
-sidebar_title: Share previews
-description: Learn how to use Expo Update to send OTA updates and share previews with a team.
+title: Compartilhe prévias com sua equipe
+sidebar_title: Compartilhe prévias
+description: Aprenda a usar o Expo Update para enviar updates OTA e compartilhar prévias com a equipe.
 hasVideoLink: true
 ---
 
@@ -12,23 +12,23 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-Updates generally fix small bugs and push small changes in between app store releases. They allow updating the non-native parts of our example app, such as JavaScript code, styling, and images.
+Updates geralmente corrigem pequenos bugs e enviam pequenas mudanças entre as publicações nas lojas de apps. Eles permitem atualizar as partes não nativas do nosso app de exemplo, como código JavaScript, estilos e imagens.
 
-In this chapter, we'll use [Expo Update](/eas-update/introduction/) to share changes with our team. This will help [us and our team quickly share previews](/review/overview/) of the change.
+Neste capítulo, vamos usar o [Expo Update](/eas-update/introduction/) para compartilhar alterações com nossa equipe. Isso vai ajudar [nós e a equipe a compartilhar prévias](/review/overview/) da mudança com rapidez.
 
 <VideoBoxLink
   videoId="vPKh-tNm-yI"
-  title="Watch: How to share previews with your team"
-  description="Set up Expo Update to share preview versions of your app with your team between app store releases."
+  title="Assista: como compartilhar prévias com sua equipe"
+  description="Configure o Expo Update para compartilhar versões de prévia do seu app com a equipe entre as publicações nas lojas."
 />
 
 ---
 
 <Step label="1">
 
-## Install expo-updates library
+## Instale a biblioteca expo-updates \{#install-expo-updates-library}
 
-To initialize our project and send an update, we need to use the [`expo-updates`](/versions/latest/sdk/updates/) library. Run the following command to install it:
+Para inicializar nosso projeto e enviar um update, precisamos usar a biblioteca [`expo-updates`](/versions/latest/sdk/updates/). Rode o comando a seguir para instalá-la:
 
 <Terminal
   cmd={{
@@ -43,13 +43,13 @@ To initialize our project and send an update, we need to use the [`expo-updates`
 
 <Step label="2">
 
-## Configure Expo Update
+## Configure o Expo Update \{#configure-expo-update}
 
-To initialize our project with Expo Update, run the following command:
+Para inicializar nosso projeto com o Expo Update, rode o comando a seguir:
 
 <Terminal cmd={['$ eas update:configure']} />
 
-This command adds the [`updates`](/versions/latest/config/app/#updates) and [`runtimeVersion`](/eas-update/runtime-versions/#setting-runtimeversion) properties to **app.json**, which our **app.config.js** reads through `config`. It also adds a [`channel`](/eas/json/#channel) to every build profile in **eas.json**:
+Esse comando adiciona as propriedades [`updates`](/versions/latest/config/app/#updates) e [`runtimeVersion`](/eas-update/runtime-versions/#setting-runtimeversion) no **app.json**, que o nosso **app.config.js** lê por meio de `config`. Ele também adiciona um [`channel`](/eas/json/#channel) a cada perfil de build no **eas.json**:
 
 {/* prettier-ignore */}
 ```json eas.json
@@ -81,17 +81,17 @@ This command adds the [`updates`](/versions/latest/config/app/#updates) and [`ru
 }
 ```
 
-> **info** Our `ios-simulator` profile extends the `development` profile, so a separate `channel` for it doesn't make sense. We can safely remove `ios-simulator.channel` from **eas.json**.
+> **info** Nosso perfil `ios-simulator` estende o perfil `development`, então não faz sentido ter um `channel` separado para ele. Podemos remover com segurança o `ios-simulator.channel` do **eas.json**.
 
-<Collapsible summary="What if app.config.js doesn't read from app.json?">
+<Collapsible summary="E se o app.config.js não ler o app.json?">
 
-If your **app.config.js** doesn't use the `config` values from **app.json**, EAS CLI can't add the `updates` and `runtimeVersion` properties for you. Instead, it prints their values to add to **app.config.js** manually. After you add them, run `eas update:configure` again to finish the setup.
+Se seu **app.config.js** não usar os valores de `config` do **app.json**, a EAS CLI não consegue adicionar as propriedades `updates` e `runtimeVersion` para você. Em vez disso, ela imprime os valores para você adicioná-los manualmente ao **app.config.js**. Depois de adicioná-los, rode `eas update:configure` de novo para concluir a configuração.
 
 </Collapsible>
 
-<Collapsible summary="What is a channel?">
+<Collapsible summary="O que é um channel?">
 
-[Channels](/eas-update/how-it-works/#conceptual-overview) are used to group builds together. If we have an Android and iOS build, both on the app store, we can give them both a channel of production. Later, we can tell Expo Update to target the production channel, so our update will affect all builds with a production channel.
+[Channels](/eas-update/how-it-works/#conceptual-overview) são usados para agrupar builds. Se tivermos um build Android e um iOS, ambos publicados nas lojas, podemos dar aos dois um channel production. Depois, podemos dizer ao Expo Update para apontar para o channel production, e o update vai afetar todos os builds com esse channel.
 
 </Collapsible>
 
@@ -99,25 +99,25 @@ If your **app.config.js** doesn't use the `config` values from **app.json**, EAS
 
 <Step label="3">
 
-## Create a development build
+## Crie um development build \{#create-a-development-build}
 
-We need to create a new development build since our last build doesn't contain the `expo-updates` library. Run the following command:
+Precisamos criar um novo development build, já que o último build não contém a biblioteca `expo-updates`. Rode o comando a seguir:
 
 <Terminal cmd={['$ eas build --platform android --profile development']} />
 
-> We are using a development build for Android devices to demonstrate updates. However, we can use `--platform all` or `--platform ios` to create a build for both platforms or just for iOS.
+> Estamos usando um development build para dispositivos Android para demonstrar os updates. No entanto, podemos usar `--platform all` ou `--platform ios` para criar um build para as duas plataformas ou só para iOS.
 
-After the new version of the development build is created, make sure to install it on a device.
+Depois que a nova versão do development build for criada, instale-a em um dispositivo.
 
 </Step>
 
 <Step label="4">
 
-## Modify the JavaScript code of the app
+## Modifique o código JavaScript do app \{#modify-the-javascript-code-of-the-app}
 
-Let's modify our example app's JavaScript code. If you are not using [Sticker Smash app](/tutorial/eas/introduction/#prerequisites), you can modify any piece of your code to see the changes in the app.
+Vamos modificar o código JavaScript do nosso app de exemplo. Se você não estiver usando o [app Sticker Smash](/tutorial/eas/introduction/#prerequisites), pode modificar qualquer parte do seu código para ver as mudanças no app.
 
-We'll modify the text of the first button in our example app that says **Choose a photo** to **Select a photo**.
+Vamos alterar o texto do primeiro botão do nosso app de exemplo, que diz **Choose a photo**, para **Select a photo**.
 
 ```tsx src/app/(tabs)/index.tsx
 <Button theme="primary" label="Select a photo" onPress={pickImageAsync} />
@@ -127,27 +127,27 @@ We'll modify the text of the first button in our example app that says **Choose 
 
 <Step label="5">
 
-## Publish an update
+## Publique um update \{#publish-an-update}
 
-Instead of creating a new build to share this change with our team for testing, let's publish an update:
+Em vez de criar um novo build para compartilhar essa mudança com a equipe para testes, vamos publicar um update:
 
 <Terminal cmd={['$ eas update --channel development --message "Change first button label"']} />
 
-In the command above, we used the `development` channel. Every update is associated with a [channel name](/eas-update/how-it-works/#publishing-an-update). It is similar to every commit that we make with git, which is associated with a git branch.
+No comando acima, usamos o channel `development`. Todo update está associado a um [nome de channel](/eas-update/how-it-works/#publishing-an-update). É parecido com cada commit que fazemos com o git, que está associado a uma branch do git.
 
-So, we use the `development` channel in our build profile and publish an update to it. This tells Expo Update to deliver the update to builds with the `development` channel. When we make an Expo Update channel, Expo Update automatically maps it to a branch with the same name.
+Então, usamos o channel `development` no nosso perfil de build e publicamos um update nele. Isso diz ao Expo Update para entregar o update aos builds com o channel `development`. Quando criamos um channel do Expo Update, ele associa automaticamente o channel a uma branch com o mesmo nome.
 
-After publishing the update, the CLI prints information about it.
+Depois de publicar o update, a CLI imprime as informações dele.
 
 <ContentSpotlight
-  alt="Expo Update published successfully with CLI output"
+  alt="Expo Update publicado com sucesso, com a saída da CLI"
   src="/static/images/tutorial/eas/team-development-update-cli.webp"
 />
 
-Click the **Expo dashboard** link to see the update under **Over-the-air updates** > **Update groups**:
+Clique no link do **Expo dashboard** para ver o update em **Over-the-air updates** > **Update groups**:
 
 <ContentSpotlight
-  alt="Expo dashboard shows the latest published update for the development build"
+  alt="Painel da Expo mostra o update mais recente publicado para o development build"
   src="/static/images/tutorial/eas/team-development-update-group.webp"
   className="max-w-[800px]"
 />
@@ -156,34 +156,36 @@ Click the **Expo dashboard** link to see the update under **Over-the-air updates
 
 <Step label="6">
 
-## Preview the update live in a development build
+## Veja o update ao vivo em um development build \{#preview-the-update-live-in-a-development-build}
 
-To preview the live update in a development build:
+Para ver o update ao vivo em um development build:
 
-- Log in to your Expo account within the development build.
-- Open the **Updates** tab.
-- On Android, tap the **Branch: development** card, and then tap the update. On iOS, tap **Open** next to the update with **Branch: development**.
+- Faça login na sua conta Expo dentro do development build.
+- Abra a aba **Updates**.
+- No Android, toque no card **Branch: development** e depois toque no update. No iOS, toque em **Open** ao lado do update com **Branch: development**.
 
 </Step>
 
 <Step label="7">
 
-## Sharing changes with preview or production builds
+## Compartilhe mudanças com builds de prévia ou de produção \{#sharing-changes-with-preview-or-production-builds}
 
-Updates for non-development builds (preview or production) are automatically downloaded to the device when the app starts up and makes a request for any new updates.
+Os updates para builds que não são de desenvolvimento (prévia ou produção) são baixados automaticamente no dispositivo quando o app inicia e pede updates novos.
 
-Any team member running the preview or production build will receive the update with the changes we push to those specific branches.
+Qualquer membro da equipe que rodar o build de prévia ou de produção vai receber o update com as mudanças que enviarmos para essas branches específicas.
 
-For example, for a `preview` build, we can run:
+Por exemplo, para um build `preview`, podemos rodar:
 
 <Terminal cmd={['$ eas update --channel preview --message "Change first button label"']} />
 
-Here is an example where we've published an update for the `preview` build. To test the update, force close and reopen the app twice to download and view the changes:
+Aqui está um exemplo em que publicamos um update para o build `preview`. Para testar o update, feche o app à força e abra-o de novo duas vezes para baixar e ver as mudanças:
 
 <ContentSpotlight file="tutorial/eas/running-update-on-dev.mp4" />
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/team-development" />
+
+{/* ia-translate: true */}

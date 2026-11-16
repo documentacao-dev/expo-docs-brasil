@@ -1,7 +1,7 @@
 ---
-title: Create a production build for iOS
-sidebar_title: iOS production build
-description: Learn about the process of creating a production build for iOS and automating the release process.
+title: Crie um build de produção para iOS
+sidebar_title: Build de produção iOS
+description: Saiba como criar um build de produção para iOS e automatizar o processo de release.
 hasVideoLink: true
 ---
 
@@ -12,143 +12,143 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll create our example app's production version and submit it for testing using TestFlight. After that, we'll submit them for App Store review to get it on the App Store.
+Neste capítulo, vamos criar a versão de produção do nosso app de exemplo e enviá-la para teste usando o TestFlight. Depois, vamos enviá-la para a análise da App Store para publicá-la na App Store.
 
 <VideoBoxLink
   videoId="VZL_e0cEwo8"
-  title="Watch: Creating and releasing a production build for iOS"
-  description="Create a production build for iOS with Expo Build, test it using TestFlight, and submit it to the App Store."
+  title="Assista: como criar e lançar um build de produção para iOS"
+  description="Crie um build de produção para iOS com o Expo Build, teste-o usando o TestFlight e envie-o para a App Store."
 />
 
 ---
 
 <Prerequisites>
-  <Requirement title="Apple Developer account">
-    To create one, see the [Apple Developer Portal](https://developer.apple.com/account/).
+  <Requirement title="Conta de desenvolvedor Apple">
+    Para criar uma, veja o [Apple Developer Portal](https://developer.apple.com/account/).
   </Requirement>
-  <Requirement title="A production build profile in eas.json">
-    Ensure that a `production` build profile is present in your **eas.json**, which is added by
-    default.
+  <Requirement title="Um perfil de build de produção no eas.json">
+    Confirme que um perfil de build `production` está presente no seu **eas.json**, o que já vem
+    por padrão.
   </Requirement>
 </Prerequisites>
 
-## Production build for iOS
+## Build de produção para iOS \{#production-build-for-ios}
 
-A [production iOS build](/build/eas-json/#production-builds) is optimized for Apple's App Store Connect, which allows distributing builds to testers with TestFlight and public end users through the App Store. This build type cannot be side-loaded on a simulator or device and can only be distributed through App Store Connect.
+Um [build de produção para iOS](/build/eas-json/#production-builds) é otimizado para o App Store Connect da Apple, que permite distribuir builds para testadores pelo TestFlight e para usuários finais pela App Store. Esse tipo de build não pode ser instalado diretamente em um simulador ou dispositivo e só pode ser distribuído pelo App Store Connect.
 
 <Step label="1">
 
-## Create a distribution provisioning profile
+## Crie um perfil de provisionamento de distribuição \{#create-a-distribution-provisioning-profile}
 
-Run the `eas credentials` command in the terminal and then answer the following prompts by EAS CLI:
+Rode o comando `eas credentials` no terminal e depois responda aos prompts da EAS CLI da seguinte forma:
 
 - **Select platform** iOS.
-- **Which build profile do you want to configure?** Select production.
-- **Do you want to log in to your Apple account?** Press <kbd>Y</kbd>. This will log in to our Apple Developer account.
-- **What do you want to do?** Select **Build Credentials** and choose **All: Set up all the required credentials to build your project**.
-- Now, it will prompt whether we want to re-use the previous Distribution Certificate. Press <kbd>Y</kbd>.
-- **Generate a new Apple Provisioning Profile?** Press <kbd>Y</kbd>. This will be the provisioning profile for the production app.
-- After EAS CLI sets up the credentials, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to exit the EAS CLI.
+- **Which build profile do you want to configure?** Selecione production.
+- **Do you want to log in to your Apple account?** Pressione <kbd>Y</kbd>. Isso faz login na nossa conta de desenvolvedor Apple.
+- **What do you want to do?** Selecione **Build Credentials** e escolha **All: Set up all the required credentials to build your project**.
+- Depois, ele pergunta se queremos reutilizar o Distribution Certificate anterior. Pressione <kbd>Y</kbd>.
+- **Generate a new Apple Provisioning Profile?** Pressione <kbd>Y</kbd>. Esse será o perfil de provisionamento do app de produção.
+- Depois que a EAS CLI configurar as credenciais, pressione <kbd>Ctrl</kbd> + <kbd>C</kbd> para sair da EAS CLI.
 
 </Step>
 
 <Step label="2">
 
-## Create a production build
+## Crie um build de produção \{#create-a-production-build}
 
-To create an iOS production build using the default `production` profile, open your terminal and execute the following command. Since `production` is set as the default profile in **eas.json**, there is no need to specify it explicitly with the `--profile` flag.
+Para criar um build de produção para iOS usando o perfil `production` padrão, abra o terminal e rode o comando a seguir. Como `production` está definido como perfil padrão no **eas.json**, não é preciso especificá-lo com a flag `--profile`.
 
 <Terminal cmd={['$ eas build --platform ios']} />
 
-> **info** **Only if this is your first iOS build for this project:** EAS CLI asks **iOS app only uses standard/exempt encryption?** Press <kbd>Y</kbd> to select the default value provided for this prompt. Since our app doesn't use non-exempt encryption, EAS CLI adds `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` to the [app config](/workflow/configuration/). This value manages the compliance check when you release your app to TestFlight or the App Store. If your own app uses non-exempt encryption, press <kbd>N</kbd> and confirm the follow-up prompt. EAS CLI then leaves the app config unchanged. You set the encryption status in App Store Connect.
+> **info** **Somente se este for o seu primeiro build iOS deste projeto:** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
-The command queues the build. Notice on the Expo dashboard that the **Version** column shows the auto-incremented build number in parentheses, for example, `1.0.0 (2)`.
+O comando coloca o build na fila. Repare, no painel da Expo, que a coluna **Version** mostra o número de build incrementado automaticamente entre parênteses, por exemplo, `1.0.0 (2)`.
 
 </Step>
 
 <Step label="3">
 
-## Submit the app binary to the App Store
+## Envie o binário do app para a App Store \{#submit-the-app-binary-to-the-app-store}
 
-To submit the app binary created from our latest Expo Build, run the [`eas submit`](/submit/ios/) command:
+Para enviar o binário do app criado pelo nosso último Expo Build, rode o comando [`eas submit`](/submit/ios/):
 
 <Terminal cmd={['$ eas submit --platform ios']} />
 
-After running this command, we need to:
+Depois de rodar esse comando, precisamos:
 
-- **Select a build from EAS.** Let's select the latest build ID.
-- **Follow the prompt to log in to our Apple account.** When it asks for **Reuse this App Store Connect API Key?** Press <kbd>Y</kbd>.
+- **Select a build from EAS.** Vamos selecionar o ID do build mais recente.
+- **Siga o prompt para fazer login na nossa conta Apple.** Quando ele perguntar **Reuse this App Store Connect API Key?**, pressione <kbd>Y</kbd>.
 
-This will trigger the submission process.
+Isso vai iniciar o processo de envio.
 
 </Step>
 
 <Step label="4">
 
-## Release an internal testing version
+## Publique uma versão de teste interno \{#release-an-internal-testing-version}
 
-After the submission process is complete, we'll need to log in to the Apple Developer account from the web browser.
+Depois que o processo de envio terminar, precisamos fazer login na conta de desenvolvedor Apple pelo navegador.
 
-- Click **[Apps](https://appstoreconnect.apple.com/apps),** and see the app icon.
-- Click the app name, and from the navigation tab menu, click **TestFlight**. If the build was just submitted, it may take a few minutes for Apple to process the build before it is available to distribute with TestFlight.
-- In App Store Connect, under **Internal Testing**, and create a test group. This will allow us to invite test users.
+- Clique em **[Apps](https://appstoreconnect.apple.com/apps)** e localize o ícone do app.
+- Clique no nome do app e, na barra de navegação, clique em **TestFlight**. Se o build acabou de ser enviado, pode levar alguns minutos para a Apple processá-lo antes que ele esteja disponível para distribuição pelo TestFlight.
+- No App Store Connect, em **Internal Testing**, crie um grupo de teste. Isso vai nos permitir convidar usuários de teste.
 
 <ContentSpotlight
-  alt="Create a test user group in App Store Connect"
+  alt="Criar um grupo de usuários de teste no App Store Connect"
   src="/static/images/tutorial/eas/app-store-01.webp"
   className="max-w-[800px]"
 />
 
-- Once the group is created, an email will be sent to all the test users.
+- Quando o grupo for criado, um e-mail será enviado a todos os usuários de teste.
 
 <ContentSpotlight
-  alt="Email sent to test users for internal testing"
+  alt="E-mail enviado aos usuários de teste para o teste interno"
   src="/static/images/tutorial/eas/app-store-02.jpg"
   className="max-w-[240px]"
 />
 
-- In the email, click **View in TestFlight,** accept the invite, and then tap **Install**.
+- No e-mail, clique em **View in TestFlight**, aceite o convite e toque em **Install**.
 
 <ContentSpotlight
-  alt="TestFlight app showing the app to install"
+  alt="App TestFlight mostrando o app para instalar"
   src="/static/images/tutorial/eas/app-store-03.jpg"
   className="max-w-[240px]"
 />
 
-After that, the app will download on our device so that we can test it.
+Depois disso, o app vai ser baixado no nosso dispositivo para podermos testá-lo.
 
-> **info** Similar to internal testing, we can also create a group for inviting external testers using TestFlight. Where internal testing has a limit of 100 users, TestFlight allows sharing a test release version externally with up to 10,000 testers and provides a publicly shareable link. For step-by-step instructions, see [Distribute an iOS app with TestFlight](/submit/testflight/).
+> **info** Assim como no teste interno, também podemos criar um grupo para convidar testadores externos pelo TestFlight. Enquanto o teste interno tem um limite de 100 usuários, o TestFlight permite compartilhar uma versão de teste com até 10.000 testadores externos e oferece um link público para compartilhar. Para instruções passo a passo, veja [Distribuir um app iOS com o TestFlight](/submit/testflight/).
 
 </Step>
 
 <Step label="5">
 
-## Submit the app to the Apple App Store
+## Envie o app para a App Store da Apple \{#submit-the-app-to-the-apple-app-store}
 
-To prepare our app for App Store submission, go to the **App Store** tab:
+Para preparar nosso app para envio à App Store, vá para a aba **App Store**:
 
-- Provide metadata details, provide screenshots as per Apple's guidelines and also fill details under **General**.
+- Preencha os metadados, forneça as capturas de tela de acordo com as diretrizes da Apple e também preencha os detalhes em **General**.
 
 <ContentSpotlight
-  alt="App Store Connect showing the app details and screenshots"
+  alt="App Store Connect mostrando os detalhes do app e as capturas de tela"
   src="/static/images/tutorial/eas/app-store-04.png"
   className="max-w-[800px]"
 />
 
-- Then, manually select the build.
+- Depois, selecione o build manualmente.
 
 <ContentSpotlight
-  alt="App Store Connect showing the build selection for the app"
+  alt="App Store Connect mostrando a seleção do build do app"
   src="/static/images/tutorial/eas/app-store-05.png"
   className="max-w-[800px]"
 />
 
-> **Complete App Store listing**: To prepare the app for store listing, see [Create app store assets](/guides/store-assets/) on how to create screenshots and previews.
+> **Preencha a página do app na loja**: Para preparar o app para a ficha na loja, veja [Criar recursos para a loja de apps](/guides/store-assets/) e aprenda a criar capturas de tela e prévias.
 
-- Once our app is ready, click on **Submit to App Review**. After that, Apple will review our app, and if approved, the app will be available on the App Store.
+- Quando o app estiver pronto, clique em **Submit to App Review**. Depois disso, a Apple vai analisar nosso app e, se for aprovado, ele ficará disponível na App Store.
 
 <ContentSpotlight
-  alt="App Store Connect showing the app submission for review"
+  alt="App Store Connect mostrando o envio do app para análise"
   src="/static/images/tutorial/eas/app-store-06.png"
   className="max-w-[800px]"
 />
@@ -157,16 +157,18 @@ To prepare our app for App Store submission, go to the **App Store** tab:
 
 <Step label="6">
 
-## Automated submissions
+## Envios automatizados \{#automated-submissions}
 
-For future releases, we can streamline the process by combining build creation and App Store submission into a single step by using the [`--auto-submit`](/build/automate-submissions/) flag with `eas build`:
+Para os próximos releases, podemos simplificar o processo combinando a criação do build e o envio para a App Store em uma única etapa, usando a flag [`--auto-submit`](/build/automate-submissions/) com o `eas build`:
 
 <Terminal cmd={['$ eas build --platform ios --auto-submit']} />
 
-> **info** This command automatically uploads your build to TestFlight for internal testing, but it does not submit your app for App Store review. You still need to manually promote the build from TestFlight to the App Store when you're ready for public release. For more information, see [Default submission behavior for app stores](/build/automate-submissions/#default-submission-behavior-for-app-stores).
+> **info** Esse comando envia automaticamente seu build para o TestFlight, para teste interno, mas não envia o app para análise da App Store. Você ainda precisa promover manualmente o build do TestFlight para a App Store quando estiver pronto para o lançamento público. Para mais informações, veja [Comportamento padrão de envio para as lojas de apps](/build/automate-submissions/#default-submission-behavior-for-app-stores).
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/ios-production-build" />
+
+{/* ia-translate: true */}

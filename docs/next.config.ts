@@ -1,4 +1,3 @@
-import { withSentryConfig } from '@sentry/nextjs/config';
 import frontmatter from 'front-matter';
 import type { NextConfig } from 'next';
 import { event, error } from 'next/dist/build/output/log.js';
@@ -20,6 +19,7 @@ import remarkCodeTitle from './mdx-plugins/remark-code-title.js';
 import remarkCreateStaticProps from './mdx-plugins/remark-create-static-props.js';
 import remarkDiffBlockRaw from './mdx-plugins/remark-diff-block-raw.js';
 import remarkExportHeadings from './mdx-plugins/remark-export-headings.js';
+import remarkHeadingId from './mdx-plugins/remark-heading-id.js';
 import remarkImageSize from './mdx-plugins/remark-image-size.js';
 import remarkLinkRewrite from './mdx-plugins/remark-link-rewrite.js';
 import remarkSDKCompatibility from './mdx-plugins/remark-sdk-compatibility.js';
@@ -110,6 +110,7 @@ const nextConfig: NextConfig = {
               remarkFrontmatter,
               [remarkMDXFrontmatter, { name: 'meta' }],
               remarkCodeTitle,
+              remarkHeadingId,
               remarkExportHeadings,
               remarkLinkRewrite,
               remarkImageSize,
@@ -230,19 +231,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-const nextConfigWithSentry = withSentryConfig(nextConfig, {
-  org: 'expoio',
-  project: 'docs',
-  authToken: process.env.SENTRY_AUTH_TOKEN,
-  telemetry: false,
-  debug: false, // Set to `true` to enable debug logging if having issues with missing source maps
-  widenClientFileUpload: true, // Upload a larger set of source maps for prettier stack traces (increases build time)
-  sourcemaps: {
-    disable: false, // Set `true` to kill sourcemaps upload
-    assets: ['out/**/*.js', 'out/**/*.js.map', '.next/**/*.js', '.next/**/*.js.map'], // Specify which files to upload
-    ignore: ['**/node_modules/**'], // Files to exclude
-    deleteSourcemapsAfterUpload: true, // Delete source maps after upload to avoid publicly exposing them
-  },
-});
-
-export default nextConfigWithSentry;
+export default nextConfig;

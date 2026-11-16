@@ -1,6 +1,6 @@
 ---
-title: Create a project
-description: Learn how to create a new Expo project.
+title: Criar um projeto
+description: Aprenda a criar um novo projeto Expo.
 hideTOC: true
 ---
 
@@ -8,22 +8,22 @@ import { RelatedSkills } from '~/ui/components/RelatedSkills';
 import { Terminal } from '~/ui/components/Snippet';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 
-Expo is a React Native framework that makes developing Android and iOS apps easier. Our framework provides file-based routing, a standard library of native modules, and much more. Expo is open source with an active community on [GitHub](https://github.com/expo/expo) and [Discord](https://chat.expo.dev).
+O Expo é um framework React Native que facilita o desenvolvimento de apps para Android e iOS. Nosso framework oferece roteamento baseado em arquivos, uma biblioteca padrão de módulos nativos e muito mais. O Expo é open source e tem uma comunidade ativa no [GitHub](https://github.com/expo/expo) e no [Discord](https://chat.expo.dev).
 
-We also make [Expo Services](https://expo.dev/services), a set of services that complement the Expo framework in each step of the development process.
+Também oferecemos os [Expo Services](https://expo.dev/services), um conjunto de serviços que complementam o framework Expo em cada etapa do processo de desenvolvimento.
 
-> **info** **New to programming?** You can build your first Expo app by prompting an AI coding agent instead of writing code. Follow the [Build with AI tutorial](/tutorial/build-with-ai/introduction/). It covers setup from scratch.
+> **info** **Está começando a programar?** Você pode criar seu primeiro app Expo pedindo a um agente de IA de programação, em vez de escrever código. Siga o [tutorial Build with AI](/tutorial/build-with-ai/introduction/). Ele cobre a configuração do zero.
 
-## System requirements
+## Requisitos do sistema \{#system-requirements}
 
 - [Node.js (LTS)](https://nodejs.org/en/).
-- macOS, Windows (Powershell and [WSL 2](https://expo.fyi/wsl)), and Linux are supported.
+- macOS, Windows (PowerShell e [WSL 2](https://expo.fyi/wsl)) e Linux são compatíveis.
 
-## Start with a default project
+## Começar com o projeto padrão \{#start-with-a-default-project}
 
-We recommend starting with the default project created by [`create-expo-app`](/more/create-expo/). The default project includes example code to help you get started.
+Recomendamos começar com o projeto padrão criado pelo [`create-expo-app`](/more/create-expo/). O projeto padrão inclui código de exemplo para ajudar você a começar.
 
-To create a new project, run the following command:
+Para criar um novo projeto, execute o comando a seguir:
 
 <Terminal
   cmd={{
@@ -34,13 +34,13 @@ To create a new project, run the following command:
   }}
 />
 
-> **info** During the SDK 58 transition period, `create-expo-app@latest` without the `--template` flag creates an SDK 57 project. If you plan to use Expo Go on a physical device, use an SDK 57 project. Otherwise, use `--template default@sdk-58` to create an SDK 58 project. You can also choose a different template by adding the [`--template` option](/more/create-expo/#--template).
+> **info** Durante o período de transição do SDK 58, `create-expo-app@latest` sem a flag `--template` cria um projeto com SDK 57. Se você pretende usar o Expo Go em um aparelho físico, use um projeto SDK 57. Caso contrário, use `--template default@sdk-58` para criar um projeto SDK 58. Você também pode escolher outro template adicionando a [opção `--template`](/more/create-expo/#--template).
 
-## Start from an example
+## Começar a partir de um exemplo \{#start-from-an-example}
 
-Instead of the default project, you can start from one of the [Expo examples](https://github.com/expo/examples). These are small apps that each demonstrate a specific feature or integration, such as Expo Router, Expo Widgets, or a camera screen.
+Em vez do projeto padrão, você pode começar a partir de um dos [exemplos do Expo](https://github.com/expo/examples). São apps pequenos, cada um demonstrando um recurso ou integração específica, como Expo Router, Expo Widgets ou uma tela de câmera.
 
-To browse the full list and pick one interactively, run `create-expo-app` with the [`--example`](/more/create-expo/#--example) option and no name:
+Para ver a lista completa e escolher um exemplo de forma interativa, execute `create-expo-app` com a opção [`--example`](/more/create-expo/#--example) e sem nome:
 
 <Terminal
   cmd={{
@@ -51,7 +51,7 @@ To browse the full list and pick one interactively, run `create-expo-app` with t
   }}
 />
 
-To create a known example directly, pass its name:
+Para criar um exemplo específico diretamente, informe o nome dele:
 
 <Terminal
   cmd={{
@@ -62,11 +62,11 @@ To create a known example directly, pass its name:
   }}
 />
 
-> **info** The rest of the guides in this **"Get started"** section follows the default project. An example app may be organized differently but the concepts are the same.
+> **info** Os demais guias desta seção **"Primeiros passos"** seguem o projeto padrão. Um app de exemplo pode ser organizado de outra forma, mas os conceitos são os mesmos.
 
-## Set up an AI agent
+## Configurar um agente de IA \{#set-up-an-ai-agent}
 
-A new project includes **AGENTS.md** with project context for AI agents. When Claude Code is installed, it also includes **.claude/settings.json** to enable the Expo plugin. Claude Code and Codex have an official Expo plugin. Using one command, you can install [Expo Skills](/skills/) and register the [Expo Model Context Protocol (MCP) Server](/mcp/):
+Um projeto novo inclui o **AGENTS.md**, com o contexto do projeto para agentes de IA. Quando o Claude Code está instalado, o projeto também inclui o **.claude/settings.json**, que ativa o plugin do Expo. Claude Code e Codex têm um plugin oficial do Expo. Com um único comando, você instala as [Expo Skills](/skills/) e registra o [servidor Expo Model Context Protocol (MCP)](/mcp/):
 
 <Tabs>
 
@@ -74,7 +74,7 @@ A new project includes **AGENTS.md** with project context for AI agents. When Cl
 
 <Terminal cmd={['$ claude plugin install expo@claude-plugins-official']} />
 
-Then run `/mcp` inside your Claude Code session to sign in to your Expo account.
+Depois, execute `/mcp` dentro da sessão do Claude Code para entrar na sua conta Expo.
 
 </Tab>
 
@@ -82,7 +82,7 @@ Then run `/mcp` inside your Claude Code session to sign in to your Expo account.
 
 <Terminal cmd={['$ codex plugin add expo@openai-curated']} />
 
-Then sign in to your Expo account:
+Depois, entre na sua conta Expo:
 
 <Terminal cmd={['$ codex mcp login expo']} />
 
@@ -90,12 +90,14 @@ Then sign in to your Expo account:
 
 </Tabs>
 
-The plugin also installs the skill that teaches an agent where files live in a new Expo project:
+O plugin também instala a skill que ensina ao agente onde ficam os arquivos em um projeto Expo novo:
 
 <RelatedSkills names={['expo-project-structure']} />
 
-For Cursor and other agents, install [Expo Skills](/skills/) and the [Expo MCP Server](/mcp/) separately. The [AI agents and Expo](/agents/) overview covers setup for each agent.
+Para o Cursor e outros agentes, instale separadamente as [Expo Skills](/skills/) e o [servidor MCP do Expo](/mcp/). A visão geral [Agentes de IA e Expo](/agents/) explica a configuração de cada agente.
 
-## Next step
+## Próximo passo \{#next-step}
 
-You have a project. Now it's time to set up your development environment so that you can start developing.
+Você já tem um projeto. Agora é hora de configurar seu ambiente de desenvolvimento para começar a desenvolver.
+
+{/* ia-translate: true */}

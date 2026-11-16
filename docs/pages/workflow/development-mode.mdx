@@ -1,37 +1,37 @@
 ---
-title: Development and production modes
-description: Learn how to run a project in development mode or production mode.
+title: Modos de desenvolvimento e de produção
+description: Aprenda a executar um projeto no modo de desenvolvimento ou no modo de produção.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 
-Your project will always run in either **development** or **production** mode. By default, running your project locally with `npx expo start` runs it in development mode, whereas a published project (with `eas update`), or any standalone app, will run in production mode.
+Seu projeto sempre roda no modo **desenvolvimento** ou no modo **produção**. Por padrão, ao executar o projeto localmente com `npx expo start`, ele roda no modo de desenvolvimento, enquanto um projeto publicado (com `eas update`) ou qualquer app standalone roda no modo de produção.
 
-**Development mode** includes useful warnings and gives you access to tools that make development and debugging easier. **Production mode** [minifies your code](/guides/customizing-metro/#minification) and better represents the performance your app will have on end users' devices. Let's look at each of these modes in more detail and learn how you can switch between them.
+O **modo de desenvolvimento** inclui avisos úteis e dá acesso a ferramentas que facilitam o desenvolvimento e a depuração. O **modo de produção** [minifica o código](/guides/customizing-metro/#minification) e reflete melhor o desempenho que o app terá nos dispositivos dos usuários finais. Vamos ver cada um desses modos com mais detalhes e aprender como alternar entre eles.
 
-## Development mode
+## Modo de desenvolvimento \{#development-mode}
 
-React Native includes some very useful tools for development: remote JavaScript debugging in Chrome, live reload, hot reloading, and an element inspector similar to the beloved inspector you use in Chrome. If you want to see how to use those tools, see [Debugging](/debugging/runtime-issues/).
+O React Native inclui algumas ferramentas muito úteis para desenvolvimento: depuração remota de JavaScript no Chrome, live reload, hot reload e um inspetor de elementos parecido com o que você já usa no Chrome. Se quiser ver como usar essas ferramentas, veja [Depuração](/debugging/runtime-issues/).
 
-Development mode also performs validations while your app is running to give you warnings. For example, if you're using a deprecated property or if you forgot to pass a required property into a component. The video below shows the Element Inspector and Performance Monitor in action on both Android Emulator and iOS Simulator:
+O modo de desenvolvimento também faz validações enquanto o app está rodando, para mostrar avisos. Por exemplo, se você estiver usando uma propriedade descontinuada ou se esqueceu de passar uma prop obrigatória para um componente. O vídeo abaixo mostra o Element Inspector e o Performance Monitor em funcionamento no Android Emulator e no iOS Simulator:
 
 <ContentSpotlight file="dev-prod/dev-mode.mp4" />
 
-> **warning** **This comes at a cost. Your app runs slower in development mode.** <br /> You can switch it on and off with the Expo CLI, see [Production mode](#production-mode). When you switch it, close and re-open your app for the change to take effect. **Any time you are testing your app's performance, make sure to disable development mode**.
+> **warning** **Isso tem um custo. Seu app roda mais devagar no modo de desenvolvimento.** <br /> Você pode ativar e desativar esse modo com o Expo CLI, veja [Modo de produção](#production-mode). Ao alternar, feche e reabra o app para que a mudança tenha efeito. **Sempre que for testar o desempenho do app, desative o modo de desenvolvimento**.
 
-### View the developer menu
+### Ver o menu do desenvolvedor \{#view-the-developer-menu}
 
-The menu gives access to a host of features that make development and debugging much easier. For more information on how to open it on Android and iOS, see [Developer menu](/debugging/tools/#developer-menu).
+O menu dá acesso a vários recursos que facilitam bastante o desenvolvimento e a depuração. Para mais informações sobre como abri-lo no Android e no iOS, veja [Menu do desenvolvedor](/debugging/tools/#developer-menu).
 
-## Production mode
+## Modo de produção \{#production-mode}
 
-Production mode is most useful for two things:
+O modo de produção é mais útil para duas coisas:
 
-- Testing your app's performance, as Development slows your app down considerably.
-- Catching bugs that only show up in production.
+- Testar o desempenho do app, já que o modo de desenvolvimento deixa o app bem mais lento.
+- Encontrar bugs que só aparecem em produção.
 
-The easiest way to simulate how your project will run on end users' devices is with the command:
+A forma mais fácil de simular como o projeto vai rodar nos dispositivos dos usuários finais é com o comando:
 
 <Terminal
   cmd={{
@@ -42,8 +42,10 @@ The easiest way to simulate how your project will run on end users' devices is w
   }}
 />
 
-It runs the JavaScript of your app in production mode (which tells the Metro bundler to set the `__DEV__` environment variable to `false`, among a few other things). The `--minify` flag minifies your app. This flag also eliminates unnecessary data such as comments, formatting, and unused code. If you are getting an error or crash in your standalone app, running your project with this command can save you a lot of time in finding the root cause.
+Ele executa o JavaScript do app no modo de produção (o que faz o Metro bundler definir a variável de ambiente `__DEV__` como `false`, entre algumas outras coisas). A flag `--minify` minifica o app e também elimina dados desnecessários, como comentários, formatação e código não utilizado. Se o app standalone apresentar erro ou travamento, executar o projeto com esse comando pode economizar bastante tempo para encontrar a causa raiz.
 
-> **info** In production mode, console logs do not appear in the Expo CLI terminal. To access them through the native logs on your device, see [View console logs in production mode](/workflow/logging/#view-console-logs-in-production-mode).
+> **info** No modo de produção, os logs do console não aparecem no terminal do Expo CLI. Para acessá-los pelos logs nativos do dispositivo, veja [Ver logs do console no modo de produção](/workflow/logging/#view-console-logs-in-production-mode).
 
-To completely compile your app for production see [Compiling Android](/more/expo-cli/#compiling-android) and [Compiling iOS](/more/expo-cli/#compiling-ios).
+Para compilar o app por completo para produção, veja [Compilando para Android](/more/expo-cli/#compiling-android) e [Compilando para iOS](/more/expo-cli/#compiling-ios).
+
+{/* ia-translate: true */}

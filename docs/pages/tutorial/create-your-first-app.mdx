@@ -1,6 +1,6 @@
 ---
-title: Create your first app
-description: In this chapter, learn how to create a new Expo project.
+title: Crie seu primeiro app
+description: Neste capítulo, aprenda a criar um novo projeto Expo.
 hasVideoLink: true
 ---
 
@@ -16,41 +16,42 @@ import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, let's learn how to create a new Expo project and how to get it running.
+Neste capítulo, vamos aprender a criar um novo projeto Expo e a fazê-lo rodar.
 
 <VideoBoxLink
   videoId="m1-bc53EGh8"
-  title="Watch: Creating your first universal Expo app"
-  description="Create a new Expo project from scratch and get it running on Android, iOS, and web."
+  title="Assista: criando seu primeiro app Expo universal"
+  description="Crie um novo projeto Expo do zero e faça-o rodar em Android, iOS e web."
 />
 
 ---
 
 <Prerequisites>
-  <Requirement title="Expo Go on a physical device">
-    Install [Expo Go](https://expo.dev/go) on a physical Android or iOS device. On a physical iOS
-    device, you also need a free [Expo account](https://expo.dev/signup) and must sign in to it in
-    both Expo CLI and Expo Go.
+  <Requirement title="Expo Go em um dispositivo físico">
+    Instale o [Expo Go](https://expo.dev/go) em um dispositivo físico Android ou iOS. Em um
+    dispositivo iOS físico, você também precisa de uma [conta Expo](https://expo.dev/signup)
+    gratuita e deve entrar nela tanto no Expo CLI quanto no Expo Go.
   </Requirement>
   <Requirement title="Node.js (LTS)">
-    Install [Node.js (LTS version)](https://nodejs.org/en) on your machine.
+    Instale o [Node.js (versão LTS)](https://nodejs.org/en) na sua máquina.
   </Requirement>
-  <Requirement title="A code editor">
-    Install [VS Code](https://code.visualstudio.com/) or any other preferred code editor or IDE.
+  <Requirement title="Um editor de código">
+    Instale o [VS Code](https://code.visualstudio.com/) ou qualquer outro editor de código ou IDE
+    de sua preferência.
   </Requirement>
-  <Requirement title="A developer machine with a terminal">
-    A macOS, Linux, or Windows (PowerShell and [WSL2](https://expo.fyi/wsl)) with a terminal window
-    open.
+  <Requirement title="Uma máquina de desenvolvimento com terminal">
+    Um computador com macOS, Linux ou Windows (PowerShell e [WSL2](https://expo.fyi/wsl)) com uma
+    janela de terminal aberta.
   </Requirement>
 </Prerequisites>
 
-This tutorial assumes you are familiar with TypeScript and React. If you are not, check out the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html) and [React's official tutorial](https://react.dev/learn).
+Este tutorial pressupõe que você conheça TypeScript e React. Se não conhece, veja o [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html) e o [tutorial oficial do React](https://react.dev/learn).
 
 <Step label="1">
 
-## Initialize a new Expo app
+## Inicialize um novo app Expo \{#initialize-a-new-expo-app}
 
-We'll use [`create-expo-app`](/more/create-expo/) to initialize a new Expo app. It is a command-line tool to create a new React Native project. Run the following command in your terminal:
+Vamos usar o [`create-expo-app`](/more/create-expo/) para inicializar um novo app Expo. É uma ferramenta de linha de comando para criar um novo projeto React Native. Execute o comando a seguir no seu terminal:
 
 <Terminal
   cmd={{
@@ -97,15 +98,15 @@ We'll use [`create-expo-app`](/more/create-expo/) to initialize a new Expo app. 
   }}
 />
 
-This command will create a new project directory named StickerSmash, using the [default template](/more/create-expo/#--template). This template has essential boilerplate code and libraries needed to build our app, including Expo Router and Expo UI. It also allows us to test our app with Expo Go installed on our devices. We'll continue to add more libraries throughout this tutorial as needed.
+Esse comando cria um diretório de projeto chamado StickerSmash, usando o [template padrão](/more/create-expo/#--template). Esse template traz o código inicial e as bibliotecas essenciais para construir nosso app, incluindo o Expo Router e o Expo UI. Ele também nos permite testar o app com o Expo Go instalado nos nossos dispositivos. Vamos adicionar mais bibliotecas ao longo do tutorial, conforme necessário.
 
-<Collapsible summary="Benefits of using the default template">
+<Collapsible summary="Vantagens de usar o template padrão">
 
-- Creates a new React Native project with `expo` package installed
-- Includes recommended tools such as Expo CLI
-- Includes a tab navigator from Expo Router to provide a basic navigation system
-- Automatically configured to run a project on multiple platforms: Android, iOS, and web
-- TypeScript configured by default
+- Cria um novo projeto React Native com o pacote `expo` instalado
+- Inclui ferramentas recomendadas, como o Expo CLI
+- Inclui um navegador de abas do Expo Router para fornecer um sistema básico de navegação
+- Configurado automaticamente para rodar o projeto em várias plataformas: Android, iOS e web
+- TypeScript configurado por padrão
 
 </Collapsible>
 
@@ -113,27 +114,27 @@ This command will create a new project directory named StickerSmash, using the [
 
 <Step label="2">
 
-## Download assets
+## Baixe os assets \{#download-assets}
 
 <BoxLink
-  title="Download assets archive"
+  title="Baixar o arquivo de assets"
   Icon={Download03Icon}
-  description="We'll be using these assets throughout this tutorial."
+  description="Vamos usar esses assets ao longo deste tutorial."
   href="/static/images/tutorial/sticker-smash-assets.zip"
 />
 
-After downloading the archive:
+Depois de baixar o arquivo:
 
-1. Unzip the archive and replace the default assets in the **your-project-name/assets/images** directory.
-2. Open the project directory in a code editor or IDE.
+1. Descompacte o arquivo e substitua os assets padrão no diretório **your-project-name/assets/images**.
+2. Abra o diretório do projeto em um editor de código ou IDE.
 
 </Step>
 
 <Step label="3">
 
-## Run reset-project script
+## Execute o script reset-project \{#run-reset-project-script}
 
-In this tutorial, we'll build our app from scratch and understand the fundamentals of adding a file-based navigation. Let's run the `reset-project` script to remove the boilerplate code:
+Neste tutorial, vamos construir o app do zero e entender os fundamentos de adicionar navegação baseada em arquivos. Vamos executar o script `reset-project` para remover o código inicial:
 
 <Terminal
   cmd={{
@@ -144,13 +145,13 @@ In this tutorial, we'll build our app from scratch and understand the fundamenta
   }}
 />
 
-The script asks whether to move the existing files to an **example** directory instead of deleting them. Press <kbd>Enter</kbd> to move them.
+O script pergunta se deve mover os arquivos existentes para um diretório **example**, em vez de excluí-los. Pressione <kbd>Enter</kbd> para movê-los.
 
-After the script finishes, there are two files (**index.tsx** and **\_layout.tsx**) left inside the **src/app** directory. The script moves the previous files from the **src** directory (including **components**, **constants**, and **hooks**) and the **scripts** directory into the **example** directory. We'll create our own directories and component files as we go along.
+Quando o script terminar, restam dois arquivos (**index.tsx** e **\_layout.tsx**) dentro do diretório **src/app**. O script move os arquivos anteriores do diretório **src** (incluindo **components**, **constants** e **hooks**) e do diretório **scripts** para o diretório **example**. Vamos criar nossos próprios diretórios e arquivos de componentes conforme avançamos.
 
-<Collapsible summary={<>What does the <CODE>reset-project</CODE> script do?</>}>
+<Collapsible summary={<>O que o script <CODE>reset-project</CODE> faz?</>}>
 
-The `reset-project` script resets the **src/app** directory structure in a project. It moves the previous boilerplate files from the project's **src** and **scripts** directories to another sub-directory called **example**. We can delete **example** since it is not part of our main app's structure. The script file also moves to **example**, so running `reset-project` again does not work.
+O script `reset-project` redefine a estrutura do diretório **src/app** de um projeto. Ele move os arquivos de código inicial anteriores dos diretórios **src** e **scripts** do projeto para outro subdiretório chamado **example**. Podemos excluir **example**, já que ele não faz parte da estrutura principal do app. O próprio arquivo do script também é movido para **example**, então executar `reset-project` de novo não funciona.
 
 </Collapsible>
 
@@ -158,9 +159,9 @@ The `reset-project` script resets the **src/app** directory structure in a proje
 
 <Step label="4">
 
-## Run the app on mobile and web
+## Rode o app no celular e na web \{#run-the-app-on-mobile-and-web}
 
-In the project directory, run the following command to start the [development server](/more/glossary-of-terms/#development-server) from the terminal:
+No diretório do projeto, execute o comando a seguir para iniciar o [servidor de desenvolvimento](/more/glossary-of-terms/#development-server) pelo terminal:
 
 <Terminal
   cmd={{
@@ -171,18 +172,18 @@ In the project directory, run the following command to start the [development se
   }}
 />
 
-After running the above command:
+Depois de executar o comando acima:
 
-1. The development server will start, and you'll see a QR code inside the terminal window.
-2. Scan that QR code to open the app on the device. On Android, use the Expo Go > **Scan QR** option. On iOS, use the default camera app.
-3. To run the web app, press <kbd>W</kbd> in the terminal. It will open the web app in the default web browser.
+1. O servidor de desenvolvimento vai iniciar, e você verá um QR code dentro da janela do terminal.
+2. Escaneie esse QR code para abrir o app no dispositivo. No Android, use a opção Expo Go > **Scan QR**. No iOS, use o app de câmera padrão.
+3. Para rodar o app na web, pressione <kbd>W</kbd> no terminal. Ele vai abrir o app no navegador padrão.
 
-> **info** On a physical iOS device, Expo Go opens your project only when Expo CLI and Expo Go are signed in to the same Expo account. Run `npx expo login` on your computer, then sign in to Expo Go with the same account. If the error remains, see [Expo Go sign-in required](/troubleshooting/expo-go-sign-in-required/).
+> **info** Em um dispositivo iOS físico, o Expo Go só abre seu projeto quando o Expo CLI e o Expo Go estão logados na mesma conta Expo. Execute `npx expo login` no seu computador e, depois, entre no Expo Go com a mesma conta. Se o erro continuar, veja [Login obrigatório no Expo Go](/troubleshooting/expo-go-sign-in-required/).
 
-Once it is running on all platforms, the app should look like this:
+Quando estiver rodando em todas as plataformas, o app deve ficar assim:
 
 <ContentSpotlight
-  alt="App running on all platforms"
+  alt="App rodando em todas as plataformas"
   src="/static/images/tutorial/create-your-first-app-reset.webp"
   className="max-w-[720px]"
 />
@@ -191,17 +192,17 @@ Once it is running on all platforms, the app should look like this:
 
 <Step label="5">
 
-## Edit the index screen
+## Edite a tela index \{#edit-the-index-screen}
 
-The **src/app/index.tsx** file defines the text displayed on the app's screen. It is the first screen that our app shows. It uses core React Native components such as `<View>` and `<Text>` to display background and text.
+O arquivo **src/app/index.tsx** define o texto exibido na tela do app. Ele é a primeira tela que nosso app mostra. Ele usa componentes principais do React Native, como `<View>` e `<Text>`, para exibir o fundo e o texto.
 
-Styles applied to these components use JavaScript objects rather than CSS, which is used on web. However, a lot of the properties will look familiar if you've previously used CSS on web. Most React Native components accept a `style` prop that accepts a JavaScript object as its value. For more details, see [Styling in React Native](https://reactnative.dev/docs/style).
+Os estilos aplicados a esses componentes usam objetos JavaScript, e não CSS, como na web. No entanto, muitas propriedades vão parecer familiares se você já usou CSS na web. A maioria dos componentes do React Native aceita uma prop `style` que recebe um objeto JavaScript como valor. Para mais detalhes, veja [Estilização no React Native](https://reactnative.dev/docs/style).
 
-Let's modify **src/app/index.tsx** screen:
+Vamos modificar a tela **src/app/index.tsx**:
 
-1. Add a `backgroundColor` property with the value of `#25292e` to `styles.container`. This changes the background color.
-2. Replace the default value of `<Text>` with "Home screen".
-3. Add a `styles.text` object with a `color` property of `#fff` (white). Pass it to the `style` prop of `<Text>` to change the text color.
+1. Adicione a propriedade `backgroundColor` com o valor `#25292e` em `styles.container`. Isso muda a cor de fundo.
+2. Substitua o valor padrão de `<Text>` por "Home screen".
+3. Adicione um objeto `styles.text` com a propriedade `color` de valor `#fff` (branco). Passe-o para a prop `style` de `<Text>` para mudar a cor do texto.
 
 {/* prettier-ignore */}
 ```tsx src/app/index.tsx|collapseHeight=340
@@ -234,31 +235,33 @@ const styles = StyleSheet.create({
 });
 ```
 
-> React Native uses the same color format as the web. It supports hex triplets (this is what `#fff` is), `rgba`, `hsl`, and named colors, such as `red`, `green`, `blue`, `peru`, and `papayawhip`. For more information, see [Colors in React Native](https://reactnative.dev/docs/colors).
+> O React Native usa o mesmo formato de cores da web. Ele aceita valores hexadecimais (é o caso de `#fff`), `rgba`, `hsl` e nomes de cores, como `red`, `green`, `blue`, `peru` e `papayawhip`. Para mais informações, veja [Cores no React Native](https://reactnative.dev/docs/colors).
 
-Once you save your changes, they're sent and applied to the running apps connected to the development server:
+Assim que você salvar as alterações, elas são enviadas e aplicadas aos apps em execução conectados ao servidor de desenvolvimento:
 
 <ContentSpotlight
-  alt="App with updated text and background color"
+  alt="App com o texto e a cor de fundo atualizados"
   src="/static/images/tutorial/create-your-first-app-home-screen.webp"
   className="max-w-[720px]"
 />
 
-<Collapsible summary="What is the gear icon?">
+<Collapsible summary="O que é o ícone de engrenagem?">
 
-The gear icon is the **Tools button** for Android and iOS platforms. It's a floating shortcut that opens the [Developer menu](/debugging/tools/#developer-menu), which provides access to debugging functions such as reloading the app and toggling Fast Refresh. It appears only while developing and is never included in a production build.
+O ícone de engrenagem é o **botão Tools** nas plataformas Android e iOS. É um atalho flutuante que abre o [menu do desenvolvedor](/debugging/tools/#developer-menu), que dá acesso a funções de debug, como recarregar o app e ativar ou desativar o Fast Refresh. Ele aparece só durante o desenvolvimento e nunca é incluído em um build de produção.
 
-The remaining screenshots in this tutorial will have it hidden. To hide it:
+Nas demais capturas de tela deste tutorial, ele estará oculto. Para ocultá-lo:
 
-1. Open the Developer menu. Shake your device, or press <kbd>M</kbd> in the terminal running the development server if you're using an emulator, a simulator, or a device connected with USB.
-2. Find the **Tools button** option and toggle it off.
+1. Abra o menu do desenvolvedor. Sacuda seu dispositivo ou pressione <kbd>M</kbd> no terminal que roda o servidor de desenvolvimento, se você estiver usando um emulador, um simulador ou um dispositivo conectado por USB.
+2. Encontre a opção **Tools button** e desative-a.
 
-Hiding it doesn't disable the Developer menu. You can still open it the way described in Step 1 whenever you need it.
+Ocultá-lo não desativa o menu do desenvolvedor. Você ainda pode abri-lo do jeito descrito no Passo 1 sempre que precisar.
 
 </Collapsible>
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/create-your-first-app" />
+
+{/* ia-translate: true */}

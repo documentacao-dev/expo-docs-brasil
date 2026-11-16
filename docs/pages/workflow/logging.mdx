@@ -1,29 +1,29 @@
 ---
-title: View logs
-description: Learn how to view logs when using Expo CLI, native logs in Android Studio and Xcode, and system logs.
+title: Ver logs
+description: Aprenda a ver logs usando o Expo CLI, os logs nativos no Android Studio e no Xcode, e os logs do sistema.
 ---
 
 import { Terminal } from '~/ui/components/Snippet';
 
-Logging information in a React Native app works similarly to in a web browser. You can use `console.log`, `console.warn` and `console.error`. However, at times, you might want to dive deep to get more useful information about what's happening in your app. For that, you can use **native logs** and **system logs**.
+Registrar informações em um app React Native funciona de forma parecida com o navegador. Você pode usar `console.log`, `console.warn` e `console.error`. Porém, às vezes, você quer se aprofundar para obter informações mais úteis sobre o que está acontecendo no app. Para isso, pode usar **logs nativos** e **logs do sistema**.
 
-## Console logs
+## Logs do console \{#console-logs}
 
-When you run `npx expo start` and connect a device, console logs will show up in the terminal process. These logs are sent from the runtime to Expo CLI over web sockets, meaning the results are lower fidelity than connecting dev tools directly to the engine.
+Quando você executa `npx expo start` e conecta um dispositivo, os logs do console aparecem no processo do terminal. Esses logs são enviados do runtime para o Expo CLI por web sockets, ou seja, têm menor fidelidade do que conectar as ferramentas de desenvolvimento diretamente ao engine.
 
-You can view **high fidelity** logs and use advanced logging functions like `console.table` by creating a development build with [Hermes](/guides/using-hermes), and [connecting the inspector](/guides/using-hermes#javascript-debugger).
+Para ver logs de **alta fidelidade** e usar funções de log avançadas, como `console.table`, crie um development build com o [Hermes](/guides/using-hermes) e [conecte o inspector](/guides/using-hermes#javascript-debugger).
 
-### View console logs in production mode
+### Ver logs do console no modo de produção \{#view-console-logs-in-production-mode}
 
-When you start your app with [`npx expo start --no-dev`](/workflow/development-mode/#production-mode), console logs do not appear in the Expo CLI terminal. The runtime code that forwards logs to Expo CLI only runs in development mode. You cannot re-enable it in production mode. However, `console.log` still writes to the native log on the device. To view these logs, use `adb logcat` on Android or the Console app on iOS. For step-by-step instructions, see [Viewing native logs](/debugging/runtime-issues/#viewing-native-logs).
+Quando você inicia o app com [`npx expo start --no-dev`](/workflow/development-mode/#production-mode), os logs do console não aparecem no terminal do Expo CLI. O código do runtime que encaminha os logs para o Expo CLI só roda no modo de desenvolvimento, e não é possível reativá-lo no modo de produção. Porém, o `console.log` continua escrevendo no log nativo do dispositivo. Para ver esses logs, use `adb logcat` no Android ou o app Console no iOS. Para o passo a passo, veja [Ver logs nativos](/debugging/runtime-issues/#viewing-native-logs).
 
-## Native logs
+## Logs nativos \{#native-logs}
 
-You can view native runtime logs in Android Studio and Xcode by compiling the native app locally. For more information, see [native debugging](/debugging/runtime-issues/#native-debugging).
+Você pode ver os logs nativos do runtime no Android Studio e no Xcode compilando o app nativo localmente. Para mais informações, veja [depuração nativa](/debugging/runtime-issues/#native-debugging).
 
-## System logs
+## Logs do sistema \{#system-logs}
 
-While it's usually not necessary, if you want to see logs for everything happening on your device, for example, even the logs from other apps and the OS, you can use the following commands:
+Embora normalmente não seja necessário, se você quiser ver os logs de tudo que acontece no dispositivo, inclusive os de outros apps e do sistema operacional, pode usar os comandos a seguir:
 
 <Terminal
   cmd={{
@@ -53,3 +53,5 @@ While it's usually not necessary, if you want to see logs for everything happeni
     ],
   }}
 />
+
+{/* ia-translate: true */}

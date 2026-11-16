@@ -1,6 +1,6 @@
 ---
-title: iOS Simulator
-description: Learn how you can install the iOS Simulator on your Mac and use it to develop your app.
+title: Simulador do iOS
+description: Saiba como instalar o Simulador do iOS no seu Mac e usá-lo para desenvolver o seu app.
 ---
 
 import { Cube01Icon } from '@expo/styleguide-icons/outline/Cube01Icon';
@@ -11,65 +11,65 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-> **info** If you don't have a Mac or an iPhone, you can test your iOS app on a remote iOS Simulator with Expo Simulators. [Explore Expo Simulators](/eas/simulators/introduction/).
+> **info** Se você não tem um Mac ou um iPhone, pode testar o seu app iOS em um Simulador do iOS remoto com os Expo Simulators. [Conheça os Expo Simulators](/eas/simulators/introduction/).
 
-Developing your app directly on a computer can be more convenient than constantly interacting with an iPhone or iPad, especially when network conditions are slow or when a [tunnel connection](/more/expo-cli/#tunneling) is required due to LAN limitations.
+Desenvolver o seu app diretamente no computador pode ser mais conveniente do que interagir o tempo todo com um iPhone ou iPad, principalmente quando a conexão de rede está lenta ou quando é necessária uma [conexão por túnel](/more/expo-cli/#tunneling) por causa das limitações da LAN.
 
-This guide explains how to install the iOS Simulator on your Mac for app development. Note that the iOS Simulator can only be installed on macOS. If you are developing an iOS app from a Windows or a Linux machine, you need a physical iOS device or [Expo Simulators](/eas/simulators/introduction/).
+Este guia explica como instalar o Simulador do iOS no seu Mac para desenvolver apps. Observe que o Simulador do iOS só pode ser instalado no macOS. Se você estiver desenvolvendo um app iOS em um computador com Windows ou Linux, precisará de um dispositivo iOS físico ou dos [Expo Simulators](/eas/simulators/introduction/).
 
-## Setup Xcode and Watchman
+## Configurando o Xcode e o Watchman \{#setup-xcode-and-watchman}
 
 <XcodeInstructions />
 
 <Step label="4">
 
-### Try it out
+### Experimente \{#try-it-out}
 
-Run your app with `npx expo start` and press <kbd>I</kbd> from the command line.
+Rode o seu app com `npx expo start` e pressione <kbd>I</kbd> na linha de comando.
 
-You may get a warning about needing to accept the Xcode license. Run the command that it suggests. Open your app again to see if it was successful. If not, check the [troubleshooting](#troubleshooting) tips below.
+Você pode receber um aviso sobre a necessidade de aceitar a licença do Xcode. Rode o comando que ele sugerir. Abra o seu app de novo para ver se deu certo. Se não tiver dado certo, confira as dicas de [solução de problemas](#troubleshooting) abaixo.
 
 <ContentSpotlight file="open-in-ios-simulator.mp4" />
 
-You can also press <kbd>Shift</kbd> + <kbd>I</kbd> in the Expo CLI to interactively select a simulator to open.
+Você também pode pressionar <kbd>Shift</kbd> + <kbd>I</kbd> na CLI do Expo para escolher interativamente qual simulador abrir.
 
 <ContentSpotlight
-  alt="List of iOS Simulators in the Expo CLI UI."
+  alt="Lista de Simuladores do iOS na interface da CLI do Expo."
   src="/static/images/ios-simulator/simulators-list.webp"
   className="max-w-[720px]"
 />
 
 </Step>
 
-## Expo Orbit
+## Expo Orbit \{#expo-orbit}
 
-You can use the Expo Orbit app which allows launching builds and simulator management with one click from the menu bar on macOS.
+Você pode usar o app Expo Orbit, que permite iniciar builds e gerenciar simuladores com um clique a partir da barra de menus do macOS.
 
 <BoxLink
-  title="Use Expo Orbit"
-  description="Learn more about how to use Expo Orbit."
+  title="Use o Expo Orbit"
+  description="Saiba mais sobre como usar o Expo Orbit."
   href="/build/orbit/"
   Icon={Cube01Icon}
 />
 
-## Limitations
+## Limitações \{#limitations}
 
-Although the iOS Simulator is great for rapid development, it does come with a few limitations. We'll list out a few of the main differences that affect Expo APIs below. However, see [Apple's documentation](https://help.apple.com/simulator/mac/current/#/devb0244142d) for more details.
+Embora o Simulador do iOS seja ótimo para o desenvolvimento rápido, ele tem algumas limitações. Listamos a seguir as principais diferenças que afetam as APIs do Expo. No entanto, consulte a [documentação da Apple](https://help.apple.com/simulator/mac/current/#/devb0244142d) para mais detalhes.
 
-The following hardware is unavailable in the Simulator:
+Os seguintes recursos de hardware não estão disponíveis no Simulador:
 
-- Audio Input
-- Barometer
-- Camera
-- Motion Support (accelerometer and gyroscope)
+- Entrada de áudio
+- Barômetro
+- Câmera
+- Suporte a movimento (acelerômetro e giroscópio)
 
-The Simulator also suspends background apps and processes on iOS 11 and later.
+O Simulador também suspende apps e processos em segundo plano no iOS 11 e versões posteriores.
 
-## Troubleshooting
+## Solução de problemas \{#troubleshooting}
 
-### The CLI seems to be stuck when opening a Simulator
+### A CLI parece travada ao abrir um Simulador \{#the-cli-seems-to-be-stuck-when-opening-a-simulator}
 
-Sometimes the iOS Simulator doesn't respond to the open command. If it seems stuck on this prompt, start a simulator yourself, then run your app again.
+Às vezes, o Simulador do iOS não responde ao comando de abertura. Se parecer travado nesse prompt, inicie um simulador manualmente e rode o seu app de novo.
 
 <Terminal
   cmd={[
@@ -81,22 +81,22 @@ Sometimes the iOS Simulator doesn't respond to the open command. If it seems stu
   ]}
 />
 
-Xcode 27 replaces the Simulator app with Device Hub. Run `open -a DeviceHub` to open it. Each running device appears in the sidebar. On Xcode 26, run `open -a Simulator` instead.
+O Xcode 27 substitui o app Simulador pelo Device Hub. Rode `open -a DeviceHub` para abri-lo. Cada dispositivo em execução aparece na barra lateral. No Xcode 26, rode `open -a Simulator`.
 
 <ContentSpotlight
-  alt="Device Hub on macOS lists a running iPhone 17 simulator in the sidebar."
+  alt="Device Hub no macOS mostra um simulador iPhone 17 em execução na barra lateral."
   src="/static/images/ios-simulator/device-hub.webp"
 />
 
-You can run more than one simulator at the same time. Expo CLI always targets the most recently opened simulator.
+Você pode rodar mais de um simulador ao mesmo tempo. A CLI do Expo sempre usa o simulador aberto mais recentemente.
 
-### Simulator opened but the Expo Go app isn't opening inside of it
+### O Simulador abriu, mas o app Expo Go não abre dentro dele \{#simulator-opened-but-the-expo-go-app-isnt-opening-inside-of-it}
 
-The first time you install the app in the simulator, iOS will ask if you'd like to open the Expo Go app. You may need to interact with the simulator (click around, drag something) for this prompt to show up, then press **OK**.
+Na primeira vez que você instalar o app no simulador, o iOS vai perguntar se você quer abrir o app Expo Go. Pode ser necessário interagir com o simulador (clicar em algum lugar, arrastar algo) para esse aviso aparecer e, então, pressionar **OK**.
 
-### How do I install a specific version of Expo Go?
+### Como instalo uma versão específica do Expo Go? \{#how-do-i-install-a-specific-version-of-expo-go}
 
-You can create a project with the desired SDK version and open it in a simulator to install the matching version of Expo Go.
+Você pode criar um projeto com a versão desejada do SDK e abri-lo em um simulador para instalar a versão correspondente do Expo Go.
 
 <Terminal
   cmd={{
@@ -131,7 +131,7 @@ You can create a project with the desired SDK version and open it in a simulator
   }}
 />
 
-Alternatively, you can download a specific version of Expo Go with the [`expo-go` CLI](https://www.npmjs.com/package/expo-go) by passing an SDK version, or use `latest` for the latest SDK version. This command downloads the Expo Go app to the current directory and caches it under **~/.expo**.
+Como alternativa, você pode baixar uma versão específica do Expo Go com a [CLI `expo-go`](https://www.npmjs.com/package/expo-go), passando a versão do SDK, ou usar `latest` para a versão mais recente do SDK. Esse comando baixa o app Expo Go para o diretório atual e o guarda em cache em **~/.expo**.
 
 <Terminal
   cmd={{
@@ -142,11 +142,13 @@ Alternatively, you can download a specific version of Expo Go with the [`expo-go
   }}
 />
 
-### Expo CLI is printing an error message about `xcrun`, what do I do?
+### A CLI do Expo mostra uma mensagem de erro sobre o `xcrun`. O que faço? \{#expo-cli-is-printing-an-error-message-about-xcrun-what-do-i-do}
 
-For miscellaneous errors, try the following:
+Para erros variados, tente o seguinte:
 
-- Manually uninstall Expo Go on your simulator and reinstall by pressing <kbd>Shift</kbd> + <kbd>I</kbd> in the Expo CLI Terminal UI and selecting the desired simulator.
-- If that doesn't help, select the simulator in Device Hub and choose **Device** &gt; **Reset Content and Settings...**<br/>
-  The Simulator app on Xcode 26 calls this menu item **Erase All Content and Settings...**<br/>
-  This will reinitialize your simulator from a blank image. This is sometimes useful for cases where your computer is low on memory and the simulator fails to store some internal files, leaving the device in a corrupt state.
+- Desinstale manualmente o Expo Go no seu simulador e reinstale pressionando <kbd>Shift</kbd> + <kbd>I</kbd> na interface de terminal da CLI do Expo e selecionando o simulador desejado.
+- Se isso não resolver, selecione o simulador no Device Hub e escolha **Device** &gt; **Reset Content and Settings...**<br/>
+  No app Simulador do Xcode 26, esse item de menu se chama **Erase All Content and Settings...**<br/>
+  Isso vai reinicializar o seu simulador a partir de uma imagem em branco. Às vezes, isso é útil quando o computador está com pouca memória e o simulador não consegue armazenar alguns arquivos internos, deixando o dispositivo em um estado corrompido.
+
+{/* ia-translate: true */}

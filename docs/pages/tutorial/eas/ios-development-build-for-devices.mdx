@@ -1,7 +1,7 @@
 ---
-title: Create and run a cloud build for iOS device
-sidebar_title: iOS development build for devices
-description: Learn how to configure a development build for iOS devices using Expo Build.
+title: Crie e rode um build na nuvem para dispositivo iOS
+sidebar_title: Development build iOS para dispositivos
+description: Aprenda a configurar um development build para dispositivos iOS usando o Expo Build.
 hasVideoLink: true
 ---
 
@@ -13,134 +13,134 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll create a development build that can run on an iOS device with Expo Build.
+Neste capítulo, vamos criar um development build que roda em um dispositivo iOS usando o Expo Build.
 
-Development builds for iOS devices are generated in the **.ipa** format, which is standard for iOS app installations.
+Development builds para dispositivos iOS são gerados no formato **.ipa**, que é o padrão para instalar apps iOS.
 
 <VideoBoxLink
   videoId="HbfWU7_o4cU"
-  title="Watch: Creating a development build for iOS physical device"
-  description="Learn how to build and run a development build on a physical iOS device using Expo Build, including setting up code signing."
+  title="Assista: como criar um development build para um dispositivo iOS físico"
+  description="Aprenda a criar e rodar um development build em um dispositivo iOS físico usando o Expo Build, incluindo a configuração da assinatura de código."
 />
 
 ---
 
 <Prerequisites>
-  <Requirement title="Apple Developer account">
-    Required to access [necessary credentials](/app-signing/app-credentials/#ios) for signing our
-    app, as each build needs to be signed to verify that the app comes from a trusted source. Expo
-    Build helps manage these credentials.
+  <Requirement title="Conta de desenvolvedor Apple">
+    Necessária para acessar as [credenciais](/app-signing/app-credentials/#ios) exigidas para assinar
+    nosso app, já que cada build precisa ser assinado para comprovar que o app vem de uma origem
+    confiável. O Expo Build ajuda a gerenciar essas credenciais.
   </Requirement>
-  <Requirement title="Developer Mode activated on iOS 16 and higher">
-    Installing development builds on your device requires Developer Mode to be enabled. If this is
-    your first time or if it's currently disabled, see [activate Developer
-    Mode](/guides/ios-developer-mode/).
+  <Requirement title="Modo de Desenvolvedor ativado no iOS 16 ou superior">
+    Instalar development builds no seu dispositivo exige que o Modo de Desenvolvedor esteja
+    ativado. Se for a primeira vez ou se ele estiver desativado, veja como [ativar o Modo de
+    Desenvolvedor](/guides/ios-developer-mode/).
   </Requirement>
 </Prerequisites>
 
-## Provisioning profile
+## Perfil de provisionamento \{#provisioning-profile}
 
-To initiate development on an iOS device, we have to:
+Para iniciar o desenvolvimento em um dispositivo iOS, precisamos:
 
-- Register the device by creating a new [provisioning profile](/app-signing/app-credentials/#provisioning-profiles).
-- Download and install this profile onto the device.
+- Registrar o dispositivo criando um novo [perfil de provisionamento](/app-signing/app-credentials/#provisioning-profiles).
+- Baixar e instalar esse perfil no dispositivo.
 
 <Step label="1">
 
-### Register an iOS device
+### Registre um dispositivo iOS \{#register-an-ios-device}
 
-With EAS CLI, run the command to register a new Apple device:
+Com a EAS CLI, rode o comando para registrar um novo dispositivo Apple:
 
 <Terminal cmd={['$ eas device:create']} />
 
-This command prompts us with the following questions:
+Esse comando nos faz as seguintes perguntas:
 
-- **You're inside the project directory. Would you like to use the** **your-account-name** **account?** Press <kbd>Y</kbd>.
-- **Apple ID.** For this step, enter your Apple ID. It will then log in to our Apple Developer account. Follow the steps in the terminal window.
-- **How would you like to register your devices?** Select **Website** that generates a registration URL that can be opened on the iOS device.
+- **You're inside the project directory. Would you like to use the** **your-account-name** **account?** Pressione <kbd>Y</kbd>.
+- **Apple ID.** Nesta etapa, digite seu Apple ID. Em seguida, a EAS CLI faz login na nossa conta de desenvolvedor Apple. Siga os passos na janela do terminal.
+- **How would you like to register your devices?** Selecione **Website**, que gera uma URL de registro que pode ser aberta no dispositivo iOS.
 
-> **info** **Tip**: If you or your team have multiple devices, you can share the provisioning profile link with those devices for downloading and installing the profile.
+> **info** **Dica**: Se você ou sua equipe tiverem vários dispositivos, pode compartilhar o link do perfil de provisionamento com eles para baixar e instalar o perfil.
 
 </Step>
 
 <Step label="2">
 
-### Download and install profile
+### Baixe e instale o perfil \{#download-and-install-profile}
 
-On a device's web browser, open the link provided in the previous step and tap the **Download Profile button**.
+No navegador de um dispositivo, abra o link fornecido na etapa anterior e toque no botão **Download Profile**.
 
 <ContentSpotlight
-  alt="Download the provisioning profile"
+  alt="Baixe o perfil de provisionamento"
   src="/static/images/tutorial/eas/ios-ad-hoc-01.jpg"
   className="max-w-[240px]"
 />
 
-Open the **Settings** app, which prompts us to register our device.
+Abra o app **Settings** (Ajustes), que nos pede para registrar o dispositivo.
 
 <ContentSpotlight
-  alt="Install the provisioning profile"
+  alt="Instale o perfil de provisionamento"
   src="/static/images/tutorial/eas/ios-ad-hoc-02.jpg"
   className="max-w-[240px]"
 />
 
-Tap **Install** to register the iOS device.
+Toque em **Install** para registrar o dispositivo iOS.
 
 <ContentSpotlight
-  alt="Provisioning profile installed successfully"
+  alt="Perfil de provisionamento instalado com sucesso"
   src="/static/images/tutorial/eas/ios-ad-hoc-03.jpg"
   className="max-w-[240px]"
 />
 
-After the provisioning profile is installed, our device redirects us back to the web browser, displaying a success message indicating the completion of the process.
+Depois que o perfil de provisionamento é instalado, o dispositivo nos redireciona de volta ao navegador, exibindo uma mensagem de sucesso que confirma a conclusão do processo.
 
 </Step>
 
-## Development build for iOS device
+## Development build para dispositivo iOS \{#development-build-for-ios-device}
 
 <Step label="1">
 
-### Create
+### Crie \{#create}
 
-To create a development build on an iOS device, make sure that under the `build.development` profile:
+Para criar um development build em um dispositivo iOS, confirme que, no perfil `build.development`:
 
-- The `developmentClient` is set to `true` in **eas.json**, which is done by the default configuration.
-- Then, run the `eas build` command with `ios` as the platform and `development` as the build profile:
+- O `developmentClient` está definido como `true` no **eas.json**, o que já vem na configuração padrão.
+- Depois, rode o comando `eas build` com `ios` como plataforma e `development` como perfil de build:
 
 <Terminal cmd={['$ eas build --platform ios --profile development']} />
 
-> **info** **Tip**: Next time you run `eas build` command, you can also use `-p` to specify the platform. It is short for `--platform`.
+> **info** **Dica**: Na próxima vez que rodar o comando `eas build`, você também pode usar `-p` para especificar a plataforma. É a forma abreviada de `--platform`.
 
-This command prompts us with the following questions when we create the build for the first time:
+Esse comando nos faz as seguintes perguntas quando criamos o build pela primeira vez:
 
-- **What would you like your iOS bundle identifier to be?** Press <kbd>Return</kbd> to select the default value provided for this prompt. This will add [`ios.bundleIdentifier`](/versions/latest/config/app/#bundleidentifier) in **app.json** if it isn't already defined.
-- **Do you want to log in to your Apple account?** Since we are creating a development build for the first time, it will ask us to **Generate a new Apple Distribution Certificate**. Press <kbd>Y</kbd> both times.
-- **Select devices for the ad hoc build**. This is the key part, which is why we had to register a provisioning profile before. We can select one or all of our registered devices here and then press <kbd>Return</kbd> to install that build on those devices later.
+- **What would you like your iOS bundle identifier to be?** Pressione <kbd>Return</kbd> para escolher o valor padrão sugerido nesta pergunta. Isso vai adicionar o [`ios.bundleIdentifier`](/versions/latest/config/app/#bundleidentifier) no **app.json**, caso ele ainda não esteja definido.
+- **Do you want to log in to your Apple account?** Como estamos criando um development build pela primeira vez, ele vai pedir para **Generate a new Apple Distribution Certificate**. Pressione <kbd>Y</kbd> nas duas vezes.
+- **Select devices for the ad hoc build**. Esta é a parte principal, e por isso precisamos registrar um perfil de provisionamento antes. Aqui podemos selecionar um ou todos os dispositivos registrados e, depois, pressionar <kbd>Return</kbd> para instalar esse build neles mais tarde.
 
-> **warning** **On a new or recently renewed Apple Developer Program membership, a newly registered device may not be immediately installable.** Registering a device with Expo does not register it with Apple. The device is added to Apple only when it's first included in a build. For such a membership, Apple can then take [up to 24–72 hours](https://developer.apple.com/help/account/reference/device-registration-updates/) to finish processing the device before it can be added to a provisioning profile, so a build may fail the first time you include a newly registered device. If that happens, wait for Apple to finish processing and then run the build again.
+> **warning** **Em uma assinatura nova ou recém-renovada do Apple Developer Program, um dispositivo recém-registrado pode não ser instalável de imediato.** Registrar um dispositivo com a Expo não o registra na Apple. O dispositivo só é adicionado à Apple quando é incluído pela primeira vez em um build. Nesse tipo de assinatura, a Apple pode levar [de 24 a 72 horas](https://developer.apple.com/help/account/reference/device-registration-updates/) para processar o dispositivo antes que ele possa ser adicionado a um perfil de provisionamento. Por isso, um build pode falhar na primeira vez em que você incluir um dispositivo recém-registrado. Se isso acontecer, aguarde a Apple concluir o processamento e rode o build de novo.
 
-> **info** **Only if you have skipped [iOS Simulator chapter](/tutorial/eas/ios-development-build-for-simulators/):** EAS CLI asks **iOS app only uses standard/exempt encryption?** Press <kbd>Y</kbd> to select the default value provided for this prompt. Since our app doesn't use non-exempt encryption, EAS CLI adds `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` to the [app config](/workflow/configuration/). This value manages the compliance check when you release your app to TestFlight or the App Store. If your own app uses non-exempt encryption, press <kbd>N</kbd> and confirm the follow-up prompt. EAS CLI then leaves the app config unchanged. You set the encryption status in App Store Connect.
+> **info** **Somente se você pulou o capítulo do [iOS Simulator](/tutorial/eas/ios-development-build-for-simulators/):** a EAS CLI pergunta **iOS app only uses standard/exempt encryption?** Pressione <kbd>Y</kbd> para escolher o valor padrão sugerido nesta pergunta. Como nosso app não usa criptografia não isenta, a EAS CLI adiciona `ios.infoPlist.ITSAppUsesNonExemptEncryption: false` na [configuração do app](/workflow/configuration/). Esse valor controla a verificação de conformidade quando você publica o app no TestFlight ou na App Store. Se seu app usar criptografia não isenta, pressione <kbd>N</kbd> e confirme o próximo prompt. Nesse caso, a EAS CLI não altera a configuração do app. Você define o status da criptografia no App Store Connect.
 
-After responding, the build will queue up, and we can track its progress via a provided link by the EAS CLI in the Expo dashboard:
+Depois de responder, o build entra na fila, e podemos acompanhar o progresso pelo link fornecido pela EAS CLI no painel da Expo:
 
 <ContentSpotlight
-  alt="iOS development build details and progress in Expo dashboard"
+  alt="Detalhes e progresso do development build iOS no painel da Expo"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-details.webp"
   className="max-w-[800px]"
 />
 
-<Collapsible summary="What does a build details page contain?">
+<Collapsible summary="O que a página de detalhes do build contém?">
 
-The build details page displays the build type, profile, environment, Expo SDK version, app version, and build number. It also displays the fingerprint, the last commit hash, and the identity of the developer or account owner who initiated the build.
+A página de detalhes do build mostra o tipo de build, o perfil, o ambiente, a versão do Expo SDK, a versão do app e o número do build. Ela também mostra o fingerprint, o hash do último commit e a identidade do dev ou do dono da conta que iniciou o build.
 
-In the above image, the current status of the **Build artifact** shows that the build is in progress. Upon completion, this section will offer an option to download the build. The **Logs** outlines every step taken during the iOS build process on Expo Build. For the sake of brevity, we won't explore each step in detail here. To learn more, see [iOS build process](/build-reference/ios-builds/).
+Na imagem acima, o status atual do **Build artifact** mostra que o build está em andamento. Ao terminar, essa seção vai oferecer a opção de baixar o build. Os **Logs** detalham cada etapa do processo de build iOS no Expo Build. Para não nos estendermos, não vamos explorar cada etapa aqui. Para saber mais, veja [processo de build iOS](/build-reference/ios-builds/).
 
 </Collapsible>
 
-<Collapsible summary="What is iOS bundle identifier?">
+<Collapsible summary="O que é o iOS bundle identifier?">
 
-The `ios.bundleIdentifier` is a unique name of our app. If we publish our app right now, the Apple App Store will use this property and its value to identify our app on the store.
+O `ios.bundleIdentifier` é um nome único do nosso app. Se publicarmos o app agora, a Apple App Store vai usar essa propriedade e o valor dela para identificar nosso app na loja.
 
-This notation is defined as `host.owner.app-name`. For example, our example app has `com.owner.stickersmash` where `com.owner` is the domain and `stickersmash` is our app name.
+Essa notação é definida como `host.owner.app-name`. Por exemplo, nosso app de exemplo tem `com.owner.stickersmash`, em que `com.owner` é o domínio e `stickersmash` é o nome do app.
 
 </Collapsible>
 
@@ -148,46 +148,46 @@ This notation is defined as `host.owner.app-name`. For example, our example app 
 
 <Step label="2">
 
-### Install
+### Instale \{#install}
 
-Once the build finishes, the Build artifact section gets updated, indicating that the build is complete:
+Quando o build terminar, a seção Build artifact é atualizada, indicando que o build está concluído:
 
 <ContentSpotlight
-  alt="Build artifact gives the option to download development build for iOS devices"
+  alt="O Build artifact oferece a opção de baixar o development build para dispositivos iOS"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-artifact.webp"
 />
 
-This section provides the methods available for running the development build on an iOS device: Expo Orbit and Install button.
+Esta seção mostra os métodos disponíveis para rodar o development build em um dispositivo iOS: o Expo Orbit e o botão Install.
 
-[Expo Orbit](https://expo.dev/orbit) allows for seamless installation of the development build on an iOS device. To use this method:
+O [Expo Orbit](https://expo.dev/orbit) permite instalar o development build em um dispositivo iOS sem complicações. Para usar esse método:
 
-- Connect our iOS device to our developer machine using USB.
-- Open the Orbit menu bar app.
-- Select the **Device** in the Orbit app.
+- Conecte o dispositivo iOS à nossa máquina de desenvolvimento por USB.
+- Abra o app de barra de menus Orbit.
+- Selecione o **Device** no app Orbit.
 
 <ContentSpotlight
-  alt="Open with Orbit button on Expo dashboard in Build artifact"
+  alt="Botão Open with Orbit no painel da Expo, em Build artifact"
   src="/static/images/tutorial/eas/ios-orbit.png"
   className="max-w-[300px]"
 />
 
-- On the Expo dashboard, under **Build artifact**, click the **Open with Orbit**.
+- No painel da Expo, em **Build artifact**, clique em **Open with Orbit**.
 
-After the build is installed, the Orbit app launches the development build on the device.
+Depois que o build é instalado, o app Orbit abre o development build no dispositivo.
 
-<Collapsible summary="Alternate: Use the Install button and QR code">
+<Collapsible summary="Alternativa: use o botão Install e o QR code">
 
-The **Install** button in the **Build artifact** section generates a QR code for easy installation:
+O botão **Install** na seção **Build artifact** gera um QR code para uma instalação simples:
 
-- Click **Install** to display a popup with the QR code.
+- Clique em **Install** para exibir um pop-up com o QR code.
 
 <ContentSpotlight
-  alt="Install button generates a QR code for easy installation on iOS devices"
+  alt="O botão Install gera um QR code para instalar facilmente em dispositivos iOS"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-qr-code.webp"
   className="max-w-[480px]"
 />
 
-- Scan the QR code with our iOS device's camera to open and tap the link to download the development build on the device.
+- Escaneie o QR code com a câmera do dispositivo iOS, abra o link e toque nele para baixar o development build no dispositivo.
 
 </Collapsible>
 
@@ -195,9 +195,9 @@ The **Install** button in the **Build artifact** section generates a QR code for
 
 <Step label="3">
 
-### Run
+### Rode \{#run}
 
-Start the development server by running the `npx expo start` command from the project directory:
+Inicie o servidor de desenvolvimento rodando o comando `npx expo start` no diretório do projeto:
 
 <Terminal
   cmd={{
@@ -208,35 +208,37 @@ Start the development server by running the `npx expo start` command from the pr
   }}
 />
 
-- On the device, tap the app icon to open the development build.
+- No dispositivo, toque no ícone do app para abrir o development build.
 
 <ContentSpotlight
-  alt="Development build's launcher UI on iOS device"
+  alt="Interface do launcher do development build em um dispositivo iOS"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-launcher.webp"
   className="max-w-[240px]"
 />
 
-- Use the account syncing feature by ensuring we're logged into both the EAS CLI and development build. As we're already logged into the EAS CLI, the next step is to log in through the UI of your development build.
+- Use o recurso de sincronização de conta, garantindo que você esteja logado tanto na EAS CLI quanto no development build. Como já estamos logados na EAS CLI, o próximo passo é fazer login pela interface do development build.
 
 <ContentSpotlight
-  alt="Modal to log in to Expo account on iOS device"
+  alt="Modal para fazer login na conta Expo no dispositivo iOS"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-login.webp"
   className="max-w-[240px]"
 />
 
-- Select the server running from the list under Development servers.
+- Selecione, na lista em Development servers, o servidor que está rodando.
 
 <ContentSpotlight
-  alt="Development server in the list under Development servers"
+  alt="Servidor de desenvolvimento na lista em Development servers"
   src="/static/images/tutorial/eas/ios-development-build-for-devices-dev-servers.webp"
   className="max-w-[240px]"
 />
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker
   name="EAS_TUTORIAL"
   currentChapterSlug="/tutorial/eas/ios-development-build-for-devices"
 />
+
+{/* ia-translate: true */}

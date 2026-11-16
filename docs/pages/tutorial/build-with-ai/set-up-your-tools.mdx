@@ -1,6 +1,6 @@
 ---
-title: Set up your tools
-description: In this chapter, install an AI coding agent, Node.js, and Expo Go, and teach your agent about Expo.
+title: Configure suas ferramentas
+description: Neste capítulo, instale um agente de IA para programação, o Node.js e o Expo Go, e ensine seu agente sobre o Expo.
 ---
 
 import { Star06Icon } from '@expo/styleguide-icons/outline/Star06Icon';
@@ -14,88 +14,88 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 
-In this chapter, you'll install everything you need, starting from zero. This is the longest chapter. Once your tools are set up, the fun starts and the rest of the tutorial moves quickly.
+Neste capítulo, você vai instalar tudo o que precisa, partindo do zero. Este é o capítulo mais longo. Depois que suas ferramentas estiverem configuradas, a parte divertida começa, e o resto do tutorial avança rápido.
 
 <Prerequisites>
-  <Requirement title="A computer">A computer running macOS, Windows, or Linux.</Requirement>
-  <Requirement title="A phone">
-    An Android or iOS phone, connected to the same Wi-Fi network as your computer.
+  <Requirement title="Um computador">Um computador com macOS, Windows ou Linux.</Requirement>
+  <Requirement title="Um celular">
+    Um celular Android ou iOS, conectado à mesma rede Wi-Fi do seu computador.
   </Requirement>
-  <Requirement title="An AI agent and its account">
-    An AI coding agent and an account with the service you choose.
+  <Requirement title="Um agente de IA e sua conta">
+    Um agente de IA para programação e uma conta no serviço que você escolher.
   </Requirement>
-  <Requirement title="About 20 minutes">That's all the setup should take.</Requirement>
+  <Requirement title="Cerca de 20 minutos">A configuração não deve levar mais que isso.</Requirement>
 </Prerequisites>
 
 <Step label="1">
 
-## Open a terminal
+## Abra um terminal \{#open-a-terminal}
 
-The terminal is the app where you'll talk to your AI agent.
+O terminal é o app onde você vai conversar com o seu agente de IA.
 
-- On macOS, open the built-in **Terminal** app. You can find it by opening Spotlight Search (<kbd>Cmd ⌘</kbd> + <kbd>Space</kbd>) and typing "Terminal".
-- On Windows, open **PowerShell** from the Start menu. You'll type a handful of commands into it during this chapter. Each one is provided for you to copy and paste.
+- No macOS, abra o app **Terminal**, que já vem no sistema. Você o encontra abrindo a Pesquisa Spotlight (<kbd>Cmd ⌘</kbd> + <kbd>Space</kbd>) e digitando "Terminal".
+- No Windows, abra o **PowerShell** pelo menu Iniciar. Você vai digitar alguns comandos nele neste capítulo. Cada um já vem pronto para você copiar e colar.
 
 <ContentSpotlight
-  alt="An empty terminal window on macOS."
-  caption="Your terminal may look different depending on your operating system and settings, but it will work the same."
+  alt="Uma janela de terminal vazia no macOS."
+  caption="Seu terminal pode parecer diferente dependendo do sistema operacional e das configurações, mas vai funcionar do mesmo jeito."
   src="/static/images/tutorial/terminal.webp"
   className="max-w-[640px]"
 />
 
-> If you plan to use **Cursor**, you'll work inside its visual editor instead of a terminal for most of this tutorial, but keep a terminal handy since you'll still use it to run your app.
+> Se você pretende usar o **Cursor**, vai trabalhar na interface visual dele, e não em um terminal, na maior parte deste tutorial. Mesmo assim, deixe um terminal à mão, porque você ainda vai usá-lo para rodar o seu app.
 
 </Step>
 
 <Step label="2">
 
-## Install an AI agent
+## Instale um agente de IA \{#install-an-ai-agent}
 
-If you already use an AI coding agent, skip to the next step. Otherwise, pick one below. This tutorial works the same with any of them.
+Se você já usa um agente de IA para programação, pule para a próxima etapa. Caso contrário, escolha um abaixo. Este tutorial funciona igual com qualquer um deles.
 
 <Tabs>
 
 <Tab label="Claude Code">
 
-Run the following command in your terminal window to install [Claude Code](https://claude.com/claude-code):
+Execute o comando a seguir na sua janela de terminal para instalar o [Claude Code](https://claude.com/claude-code):
 
 <Terminal cmd={['$ curl -fsSL https://claude.ai/install.sh | bash']} />
 
-> **On Windows:** Run `irm https://claude.ai/install.ps1 | iex` if you're using PowerShell to install Claude Code.
+> **No Windows:** execute `irm https://claude.ai/install.ps1 | iex` se estiver usando o PowerShell para instalar o Claude Code.
 
-Then run `claude` in your terminal and follow the instructions to sign in. See the [Claude Code setup guide](https://code.claude.com/docs/en/setup) if you run into trouble.
+Depois, execute `claude` no terminal e siga as instruções para entrar na sua conta. Veja o [guia de configuração do Claude Code](https://code.claude.com/docs/en/setup) se encontrar problemas.
 
 </Tab>
 
 <Tab label="Codex">
 
-Run the following command in your terminal window to install [Codex](https://developers.openai.com/codex/cli):
+Execute o comando a seguir na sua janela de terminal para instalar o [Codex](https://developers.openai.com/codex/cli):
 
 <Terminal cmd={['$ curl -fsSL https://chatgpt.com/codex/install.sh | sh']} />
 
-Then run `codex` in your terminal and follow the instructions to sign in with your ChatGPT account. See the [Codex CLI documentation](https://developers.openai.com/codex/cli) if you run into trouble.
+Depois, execute `codex` no terminal e siga as instruções para entrar com a sua conta do ChatGPT. Veja a [documentação do Codex CLI](https://developers.openai.com/codex/cli) se encontrar problemas.
 
 </Tab>
 
 <Tab label="Cursor">
 
-Download [Cursor](https://cursor.com) and install it like any other app. Cursor is a visual code editor with a built-in AI agent where you'll type prompts into its agent panel instead of a terminal.
+Baixe o [Cursor](https://cursor.com) e instale como qualquer outro app. O Cursor é um editor de código visual com um agente de IA embutido, onde você vai digitar os prompts no painel do agente em vez de em um terminal.
 
 </Tab>
 
 </Tabs>
 
-Other agents work too. As long as your agent can edit files and run commands on your computer, you can follow along.
+Outros agentes também funcionam. Desde que seu agente consiga editar arquivos e executar comandos no seu computador, você pode acompanhar o tutorial.
 
 </Step>
 
 <Step label="3">
 
-## Install Node.js
+## Instale o Node.js \{#install-nodejs}
 
-Let's run your first prompt and install Node.js.
+Vamos rodar seu primeiro prompt e instalar o Node.js.
 
-Node.js is the runtime that powers Expo's developer tools. Run the following prompt that will instruct your agent to download the **Long-Term Support (LTS)** version from [nodejs.org](https://nodejs.org/en).
+O Node.js é o runtime que faz funcionar as ferramentas de desenvolvimento do Expo. Rode o prompt a seguir, que vai instruir seu agente a baixar a versão **Long-Term Support (LTS)** do [nodejs.org](https://nodejs.org/en).
 
 ```text Prompt|wrap
 I'm following the Expo "Build with AI" tutorial on a brand-new setup and I have no programming experience. Please install the latest LTS version of Node.js on my computer.
@@ -105,7 +105,7 @@ I'm following the Expo "Build with AI" tutorial on a brand-new setup and I have 
 - When you're done, verify it worked by showing me the output of `node --version` and `npm --version`, and tell me if I need to reopen anything for it to take effect.
 ```
 
-To confirm it worked, run the following command by opening a new terminal window. It should print Node.js version number currently installed:
+Para confirmar que deu certo, execute o comando a seguir abrindo uma nova janela de terminal. Ele deve mostrar o número da versão do Node.js instalada:
 
 <Terminal cmd={['$ node --version']} />
 
@@ -113,15 +113,15 @@ To confirm it worked, run the following command by opening a new terminal window
 
 <Step label="4">
 
-## Install Expo Go and create an Expo account
+## Instale o Expo Go e crie uma conta na Expo \{#install-expo-go-and-create-an-expo-account}
 
-Expo Go is a free app that lets you test your project on your phone while you build it, with no app store publishing required. Every time your agent changes the code, the app on your phone updates within seconds.
+O Expo Go é um app gratuito que permite testar seu projeto no celular enquanto você constrói, sem precisar publicar nada em uma store. Toda vez que seu agente mudar o código, o app no seu celular atualiza em poucos segundos.
 
-1. Install [Expo Go](https://expo.dev/go) from the Google Play Store or Apple App Store on your phone.
-2. Create a free account at [expo.dev/signup](https://expo.dev/signup) on your computer.
-3. Open Expo Go on your phone and sign in with the same account.
+1. Instale o [Expo Go](https://expo.dev/go) pela Google Play Store ou pela Apple App Store no seu celular.
+2. Crie uma conta gratuita em [expo.dev/signup](https://expo.dev/signup) no seu computador.
+3. Abra o Expo Go no celular e entre com a mesma conta.
 
-On a physical iOS device, Expo Go opens your project only when Expo CLI is signed in to the same account. Sign in to Expo CLI now:
+Em um dispositivo iOS físico, o Expo Go só abre o seu projeto quando o Expo CLI está conectado à mesma conta. Entre no Expo CLI agora:
 
 <Terminal cmd={['$ npx expo login']} />
 
@@ -129,15 +129,15 @@ On a physical iOS device, Expo Go opens your project only when Expo CLI is signe
 
 <Step label="5">
 
-## Teach your agent about Expo
+## Ensine seu agente sobre o Expo \{#teach-your-agent-about-expo}
 
-Expo Skills are instruction files that teach AI agents how to build Expo apps well: which libraries to use, how to structure screens, and how to avoid common mistakes. Installing them is the single biggest thing you can do to get good results from your agent.
+As Expo Skills são arquivos de instrução que ensinam agentes de IA a construir bons apps Expo: quais bibliotecas usar, como organizar as telas e como evitar erros comuns. Instalá-las é a coisa mais importante que você pode fazer para obter bons resultados do seu agente.
 
 <Tabs>
 
 <Tab label="Claude Code">
 
-Start `claude`, then run the following command inside it:
+Inicie o `claude` e, dentro dele, execute o comando a seguir:
 
 <Terminal cmd={['$ /plugin install expo@claude-plugins-official']} />
 
@@ -145,7 +145,7 @@ Start `claude`, then run the following command inside it:
 
 <Tab label="Codex">
 
-Run the following command in your terminal:
+Execute o comando a seguir no seu terminal:
 
 <Terminal cmd={['$ codex plugin add expo@openai-curated']} />
 
@@ -153,13 +153,13 @@ Run the following command in your terminal:
 
 <Tab label="Cursor">
 
-Run the following command in your terminal:
+Execute o comando a seguir no seu terminal:
 
 <Terminal cmd={['$ npx skills add expo/skills']} />
 
 {/* vale off */}
 
-Then reopen Cursor and verify the skills appear under **Settings** > **Rules, Skills, Subagents** > **Skills**.
+Depois, reabra o Cursor e confirme que as skills aparecem em **Settings** > **Rules, Skills, Subagents** > **Skills**.
 
 {/* vale on */}
 
@@ -170,7 +170,7 @@ Then reopen Cursor and verify the skills appear under **Settings** > **Rules, Sk
 <BoxLink
   title="Expo Skills"
   Icon={Star06Icon}
-  description="Full installation instructions for every agent, and a list of all available skills."
+  description="Instruções completas de instalação para cada agente, e a lista de todas as skills disponíveis."
   href="/skills/"
 />
 
@@ -178,25 +178,25 @@ Then reopen Cursor and verify the skills appear under **Settings** > **Rules, Sk
 
 <Step label="6">
 
-## Connect the Expo MCP server
+## Conecte o servidor MCP do Expo \{#connect-the-expo-mcp-server}
 
-The Expo MCP server gives your agent direct access to Expo's tools: it can read the latest Expo documentation, install the right packages, and inspect your project.
+O servidor MCP do Expo dá ao seu agente acesso direto às ferramentas do Expo: ele consegue ler a documentação mais recente, instalar os pacotes certos e inspecionar o seu projeto.
 
 <Tabs>
 
 <Tab label="Claude Code">
 
-Run the following command in your terminal:
+Execute o comando a seguir no seu terminal:
 
 <Terminal cmd={['$ claude mcp add --transport http expo https://mcp.expo.dev/mcp']} />
 
-Then start `claude` and run `/mcp` inside it to sign in with the Expo account you created in the previous step.
+Depois, inicie o `claude` e execute `/mcp` dentro dele para entrar com a conta da Expo que você criou na etapa anterior.
 
 </Tab>
 
 <Tab label="Codex">
 
-Run the following command in your terminal, and sign in with the Expo account you created in the previous step when prompted:
+Execute o comando a seguir no seu terminal e, quando solicitado, entre com a conta da Expo que você criou na etapa anterior:
 
 <Terminal cmd={['$ codex mcp add expo --url https://mcp.expo.dev/mcp']} />
 
@@ -204,17 +204,17 @@ Run the following command in your terminal, and sign in with the Expo account yo
 
 <Tab label="Cursor">
 
-Click the following link to install the MCP server for Cursor, then sign in with the Expo account you created in the previous step:
+Clique no link a seguir para instalar o servidor MCP no Cursor e depois entre com a conta da Expo que você criou na etapa anterior:
 
 <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=expo&config=eyJ1cmwiOiJodHRwczovL21jcC5leHBvLmRldi9tY3AifQ%3D%3D">
   <img
     src="https://cursor.com/deeplink/mcp-install-light.svg"
-    alt="Install MCP server"
+    alt="Instalar servidor MCP"
     className="hidden max-w-48 dark:block"
   />
   <img
     src="https://cursor.com/deeplink/mcp-install-dark.svg"
-    alt="Install MCP server"
+    alt="Instalar servidor MCP"
     className="block max-w-48 dark:hidden"
   />
 </a>
@@ -223,16 +223,16 @@ Click the following link to install the MCP server for Cursor, then sign in with
 
 </Tabs>
 
-<Collapsible summary="Optional: let your agent see and tap your app">
+<Collapsible summary="Opcional: deixe seu agente ver e tocar no seu app">
 
-The MCP server also offers local capabilities: with extra setup, a multimodal agent can take screenshots of your app running in a simulator, tap buttons, and verify its own work. This requires a simulator on your computer (macOS only for iOS), so it's beyond this tutorial. In the chapters ahead, **you** are the one verifying the app on your phone. If you want to explore it later, see [Set up local capabilities](/mcp/#set-up-local-capabilities-recommended).
+O servidor MCP também oferece recursos locais: com uma configuração extra, um agente multimodal pode tirar capturas de tela do seu app rodando em um simulador, tocar em botões e verificar o próprio trabalho. Isso exige um simulador no seu computador (no iOS, somente no macOS), então fica fora deste tutorial. Nos próximos capítulos, **você** é quem verifica o app no seu celular. Se quiser explorar isso depois, veja [Configurar recursos locais](/mcp/#set-up-local-capabilities-recommended).
 
 </Collapsible>
 
 <BoxLink
-  title="Expo MCP server"
+  title="Servidor MCP do Expo"
   Icon={Star06Icon}
-  description="Full installation instructions, available tools, and data privacy details."
+  description="Instruções completas de instalação, ferramentas disponíveis e detalhes de privacidade dos dados."
   href="/mcp/"
 />
 
@@ -240,21 +240,23 @@ The MCP server also offers local capabilities: with extra setup, a multimodal ag
 
 <Step label="7">
 
-## Test your setup
+## Teste sua configuração \{#test-your-setup}
 
-Let's confirm everything is wired up. Paste the following prompt into your agent:
+Vamos confirmar que tudo está conectado. Cole o prompt a seguir no seu agente:
 
 ```text Prompt|wrap
 Use the Expo MCP server to search the Expo documentation for "expo-image-picker" and tell me in one sentence what it does.
 ```
 
-**What you should see**: The agent calls an Expo documentation tool and replies with a sentence about picking images from the device's photo library. If it reports a connection or authentication error instead, repeat the sign-in part of the previous step.
+**O que você deve ver**: o agente chama uma ferramenta de documentação do Expo e responde com uma frase sobre escolher imagens da biblioteca de fotos do dispositivo. Se ele informar um erro de conexão ou de autenticação, repita a parte de login da etapa anterior.
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker
   name="BUILD_WITH_AI"
   currentChapterSlug="/tutorial/build-with-ai/set-up-your-tools"
 />
+
+{/* ia-translate: true */}

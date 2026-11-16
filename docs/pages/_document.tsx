@@ -71,7 +71,7 @@ export default class DocsDocument extends Document<DocsDocumentProps> {
 
   render() {
     return (
-      <Html lang={this.props.locale} data-expo-theme>
+      <Html lang={this.props.locale === 'ja' ? 'ja' : 'pt-BR'} data-expo-theme>
         <Head>
           <script dangerouslySetInnerHTML={{ __html: BLOCKING_THEME_SCRIPT }} />
           <script dangerouslySetInnerHTML={{ __html: BLOCKING_PACKAGE_MANAGER_SCRIPT }} />

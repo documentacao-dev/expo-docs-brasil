@@ -1,7 +1,7 @@
 ---
-title: Development builds FAQ
+title: FAQ sobre development builds
 sidebar_title: FAQ
-description: A collection of common questions about development builds, Expo Go, and Expo Build.
+description: Uma coleção de perguntas comuns sobre development builds, Expo Go e Expo Build.
 ---
 
 import { VideoRecorderIcon } from '@expo/styleguide-icons/outline/VideoRecorderIcon';
@@ -10,114 +10,116 @@ import { BoxLink } from '~/ui/components/BoxLink';
 import { Collapsible } from '~/ui/components/Collapsible';
 import { FAQ } from '~/ui/components/FAQ';
 
-This page answers common questions about development builds, how they compare to Expo Go, and where to learn more about Expo Build.
+Esta página responde a perguntas comuns sobre development builds, como eles se comparam ao Expo Go e onde aprender mais sobre o Expo Build.
 
 <FAQ>
 
-## Learn more about development builds and Expo Go
+## Saiba mais sobre development builds e Expo Go \{#learn-more-about-development-builds-and-expo-go}
 
-<Collapsible summary="Difference between Expo Go and development builds">
+<Collapsible summary="Diferença entre Expo Go e development builds">
 
-[Expo Go](https://expo.dev/go) is a playground app for students and learners to get started quickly. It comes with a fixed set of native libraries built in, so you can write JavaScript code and see changes instantly without building a native app yourself. A development build is a fully featured development environment for working on your production-grade Expo apps.
-
-</Collapsible>
-
-<Collapsible summary="Native app and JavaScript bundle">
-
-The **native app** is what you install on your device. Expo Go is a pre-built native app that works like a playground — it can't be changed after you install it. To add new native libraries or change things like your app name and icon, you need to build your own native app (a development build).
-
-The **JavaScript bundler (`expo start`)** is where your app's UI code and business logic are. In production apps, there is one **main.js** bundle that is shipped with the app itself. In development, this JS bundle is live reloaded from your local machine. The main role of React Native is to provide a way for the JavaScript code to access the native APIs (Image, Camera, Notifications, and more). However, only APIs and libraries that were bundled in the **native app** can be used.
+O [Expo Go](https://expo.dev/go) é um app playground para estudantes e iniciantes começarem rapidamente. Ele vem com um conjunto fixo de bibliotecas nativas embutidas, então você pode escrever código JavaScript e ver as mudanças na hora, sem gerar um app nativo por conta própria. Um development build é um ambiente de desenvolvimento completo para trabalhar nos seus apps Expo prontos para produção.
 
 </Collapsible>
 
-## Why use a development build (a.k.a what _can't_ you do in Expo Go and why)
+<Collapsible summary="App nativo e bundle JavaScript">
 
-Expo Go is a playground for students and learners to understand the basics of React Native. It's limited and not useful for building production-grade projects, so most apps will convert to using development builds. It helps to know exactly what is _impossible_ in Expo Go and _why_, so you can make an informed decision on when and why to make this move.
+O **app nativo** é o que você instala no seu aparelho. O Expo Go é um app nativo pronto que funciona como um playground: depois de instalado, não dá para alterá-lo. Para adicionar novas bibliotecas nativas ou mudar coisas como o nome e o ícone do app, você precisa gerar um app nativo próprio (um development build).
 
-<Collapsible summary="Use libraries with native code that aren't in Expo Go">
-
-Consider [`react-native-webview`](/versions/latest/sdk/webview/) as an example, a library that contains native code, but [is included in Expo Go](https://github.com/expo/expo/blob/main/apps/expo-go/package.json#L23). When you run `npx expo install react-native-webview` command in your project, it will install the library in your **node_modules** directory, which includes both the JS code and the native code. But the JS bundle you are building _only_ uses the JS code. Then, your JS bundle gets uploaded to Expo Go, and it interacts with the native code that was already bundled with the app.
-
-Instead, when you try to use a library that is not included, for example, [`react-native-firebase`](/guides/using-firebase/#using-react-native-firebase), then you can use the JS code and hot reload the new bundle into Expo Go but it will immediately error because the JS code tries to call the native code from the React Native Firebase package that does not exist in Expo Go. There is no way to get the native code into the Expo Go app unless it was already included in the bundle that was uploaded to the app stores.
+O **bundler JavaScript (`expo start`)** é onde ficam o código de UI e a lógica de negócio do seu app. Em apps de produção, existe um bundle **main.js** que vai junto com o próprio app. Em desenvolvimento, esse bundle JS é recarregado ao vivo a partir da sua máquina local. O papel principal do React Native é dar ao código JavaScript um jeito de acessar as APIs nativas (Image, Camera, Notifications e outras). No entanto, só podem ser usadas as APIs e bibliotecas que foram incluídas no **app nativo**.
 
 </Collapsible>
 
-<Collapsible summary="Test changes in app icon, name, splash screen">
+## Por que usar um development build (ou seja, o que _não_ dá para fazer no Expo Go e por quê) \{#why-use-a-development-build-aka-what-cant-you-do-in-expo-go-and-why}
 
-If you're developing your app in Expo Go only, you can build a store version that will use your provided values and images; it just won't be possible to test it in Expo Go.
+O Expo Go é um playground para estudantes e iniciantes entenderem o básico do React Native. Ele é limitado e não serve para projetos prontos para produção, então a maioria dos apps migra para development builds. Vale saber exatamente o que é _impossível_ no Expo Go e _por quê_, para decidir com conhecimento de causa quando e por que fazer essa mudança.
 
-These native assets are shipped with the native bundle and are immutable once the app is installed. The Expo Go app does show a splash screen, which is your app icon on a solid color background. This is a dev-only emulation to view how the splash screen will probably look. However, it is limited, for example, you cannot test `SplashScreen.setOptions` to animate the splash screen.
+<Collapsible summary="Usar bibliotecas com código nativo que não estão no Expo Go">
 
-</Collapsible>
+Tome como exemplo o [`react-native-webview`](/versions/latest/sdk/webview/), uma biblioteca que tem código nativo, mas [está incluída no Expo Go](https://github.com/expo/expo/blob/main/apps/expo-go/package.json#L23). Quando você executa o comando `npx expo install react-native-webview` no projeto, ele instala a biblioteca no diretório **node_modules**, que inclui tanto o código JS quanto o código nativo. Mas o bundle JS que você está gerando usa _apenas_ o código JS. Depois, esse bundle JS é enviado ao Expo Go, e ele interage com o código nativo que já estava embutido no app.
 
-<Collapsible summary="Remote push notifications">
-
-While [in-app notifications](/versions/latest/sdk/notifications/) are available in Expo Go, remote push notifications (that is, sending a push notification from a server to the app) are not. This is because a push notification service should be tied to your own push notification certificates, and while it is possible to make it work in Expo Go, it often causes confusion for production builds. It is recommended to test remote push notifications in development builds so you can ensure parity in behavior between development and production.
+Já quando você tenta usar uma biblioteca que não está incluída, por exemplo o [`react-native-firebase`](/guides/using-firebase/#using-react-native-firebase), você pode usar o código JS e recarregar o novo bundle no Expo Go, mas dá erro imediatamente, porque o código JS tenta chamar o código nativo do pacote React Native Firebase, que não existe no Expo Go. Não há como colocar o código nativo no app do Expo Go, a menos que ele já estivesse incluído no bundle enviado às lojas de apps.
 
 </Collapsible>
 
-<Collapsible summary="Implementing App/Universal links">
+<Collapsible summary="Testar mudanças no ícone, nome e splash screen do app">
 
-Both [Android App Links](/linking/android-app-links/) and [iOS Universal Links](/linking/ios-universal-links/) require a two-way association between the native app and the website. In particular, it requires the native app to include the linked website's URL. This is impossible with Expo Go due to the aforementioned native code immutability.
+Se você desenvolver seu app só no Expo Go, pode gerar uma versão para a loja que usará os valores e as imagens que você informou. Só não será possível testá-la no Expo Go.
 
-</Collapsible>
-
-<Collapsible summary="Open projects using other SDK versions">
-
-Each build of Expo Go supports one SDK version. The project and Expo Go SDK versions must match.
-
-On an Android device, Android Emulator, or iOS Simulator, install a compatible version from [expo.dev/go](https://expo.dev/go) or use the [`expo-go` CLI](/develop/tools/#expo-go-cli).
-
-See [Troubleshoot an Expo Go version mismatch](/troubleshooting/expo-go-version-mismatch/) for platform-specific instructions.
+Esses assets nativos vão junto com o bundle nativo e não podem ser alterados depois que o app é instalado. O app Expo Go mostra uma splash screen, que é o ícone do seu app sobre uma cor sólida de fundo. É uma emulação apenas para desenvolvimento, para ver como a splash screen provavelmente vai ficar. Porém, ela é limitada: por exemplo, você não consegue testar o `SplashScreen.setOptions` para animar a splash screen.
 
 </Collapsible>
 
-## Learn more about Expo Build
+<Collapsible summary="Notificações push remotas">
 
-<Collapsible summary="How do I configure Expo Build with eas.json?">
-
-See [Configuring Expo Build with eas.json](/build/eas-json/) to learn how a project using Expo Services is configured.
+Embora as [notificações in-app](/versions/latest/sdk/notifications/) estejam disponíveis no Expo Go, as notificações push remotas (ou seja, o envio de uma notificação push de um servidor para o app) não estão. Isso acontece porque o serviço de push deve estar ligado aos seus próprios certificados de notificação push. Embora seja possível fazer funcionar no Expo Go, isso costuma gerar confusão em builds de produção. Recomendamos testar as notificações push remotas em development builds, para garantir paridade de comportamento entre desenvolvimento e produção.
 
 </Collapsible>
 
-<Collapsible summary="How do I use environment variables in my project?">
+<Collapsible summary="Implementando App Links e Universal Links">
 
-See [Environment variables](/guides/environment-variables/) to learn about different ways to use environment variables in an Expo project.
-
-</Collapsible>
-
-<Collapsible summary="How is an Android project built on Expo Build?">
-
-See [Android build process](/build-reference/android-builds/) to learn how an Android project is built on Expo Build.
+Tanto os [Android App Links](/linking/android-app-links/) quanto os [iOS Universal Links](/linking/ios-universal-links/) exigem uma associação de mão dupla entre o app nativo e o site. Em especial, exigem que o app nativo inclua a URL do site vinculado. Isso é impossível no Expo Go por causa da imutabilidade do código nativo mencionada acima.
 
 </Collapsible>
 
-<Collapsible summary="How is an iOS project built on Expo Build?">
+<Collapsible summary="Abrir projetos com outras versões do SDK">
 
-See [iOS build process](/build-reference/ios-builds/) to learn how an iOS project is built on Expo Build.
+Cada build do Expo Go aceita uma versão do SDK. As versões do SDK do projeto e do Expo Go precisam ser iguais.
+
+Em um aparelho Android, em um Android Emulator ou em um iOS Simulator, instale uma versão compatível em [expo.dev/go](https://expo.dev/go) ou use a [CLI `expo-go`](/develop/tools/#expo-go-cli).
+
+Veja [Resolver incompatibilidade de versão do Expo Go](/troubleshooting/expo-go-version-mismatch/) para as instruções de cada plataforma.
 
 </Collapsible>
 
-<Collapsible summary="How do I set up Expo Build with a monorepo?">
+## Saiba mais sobre o Expo Build \{#learn-more-about-expo-build}
 
-See [Set up Expo Build with a monorepo](/build-reference/build-with-monorepos/) for a step-by-step guide.
+<Collapsible summary="Como configuro o Expo Build com o eas.json?">
+
+Veja [Configurando o Expo Build com o eas.json](/build/eas-json/) para entender como um projeto que usa os Expo Services é configurado.
+
+</Collapsible>
+
+<Collapsible summary="Como uso variáveis de ambiente no meu projeto?">
+
+Veja [Variáveis de ambiente](/guides/environment-variables/) para conhecer as diferentes formas de usar variáveis de ambiente em um projeto Expo.
+
+</Collapsible>
+
+<Collapsible summary="Como um projeto Android é gerado no Expo Build?">
+
+Veja o [processo de build Android](/build-reference/android-builds/) para entender como um projeto Android é gerado no Expo Build.
+
+</Collapsible>
+
+<Collapsible summary="Como um projeto iOS é gerado no Expo Build?">
+
+Veja o [processo de build iOS](/build-reference/ios-builds/) para entender como um projeto iOS é gerado no Expo Build.
+
+</Collapsible>
+
+<Collapsible summary="Como configuro o Expo Build com um monorepo?">
+
+Veja [Configurar o Expo Build com um monorepo](/build-reference/build-with-monorepos/) em um guia passo a passo.
 
 </Collapsible>
 
 </FAQ>
 
-## Video walkthroughs
+## Vídeos explicativos \{#video-walkthroughs}
 
 <BoxLink
-  title="Expo Services Tutorial Series"
-  description="A course on YouTube: learn how to speed up your development with Expo Services."
+  title="Série de tutoriais sobre Expo Services"
+  description="Um curso no YouTube: aprenda a acelerar seu desenvolvimento com os Expo Services."
   href="https://www.youtube.com/playlist?list=PLsXDmrmFV_AS14tZCBin6m9NIS_VCUKe2"
   Icon={VideoRecorderIcon}
 />
 
 <BoxLink
-  title="Async Office Hours: How to make a development build with Expo Build"
-  description="Learn how to make a development build with Expo Build in this video tutorial hosted by Developer Success Engineer: Keith Kurak."
+  title="Async Office Hours: como criar um development build com o Expo Build"
+  description="Aprenda a criar um development build com o Expo Build neste vídeo tutorial apresentado pelo Developer Success Engineer Keith Kurak."
   href="https://www.youtube.com/watch?v=LUFHXsBcW6w"
   Icon={VideoRecorderIcon}
 />
+
+{/* ia-translate: true */}

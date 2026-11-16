@@ -1,6 +1,6 @@
 ---
-title: Create a modal
-description: In this tutorial, learn how to create an emoji picker with the Expo UI BottomSheet component and show the selected emoji as a sticker in a React Native app.
+title: Criar um modal
+description: Neste tutorial, aprenda a criar um seletor de emoji com o componente BottomSheet do Expo UI e mostrar o emoji escolhido como adesivo em um app React Native.
 hasVideoLink: true
 ---
 
@@ -13,29 +13,29 @@ import { Tabs, Tab } from '~/ui/components/Tabs';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-A modal presents content above the rest of the app. In general, modals are used to draw a user's attention toward critical information or guide them to take action. A bottom sheet is a type of modal that slides up from the bottom of the screen.
+Um modal apresenta conteúdo acima do restante do app. Em geral, modais são usados para chamar a atenção do usuário para informações críticas ou para guiá-lo a tomar uma ação. Uma bottom sheet é um tipo de modal que desliza de baixo para cima, a partir da parte inferior da tela.
 
-In this chapter, we'll create an emoji picker with the [`BottomSheet`](/versions/latest/sdk/ui/universal/bottomsheet/) component from Expo UI. On Android and iOS, it displays the platform's native bottom sheet. On web, it displays a sheet at the bottom of the page.
+Neste capítulo, vamos criar um seletor de emoji com o componente [`BottomSheet`](/versions/latest/sdk/ui/universal/bottomsheet/) do Expo UI. No Android e no iOS, ele exibe a bottom sheet nativa da plataforma. Na web, ele exibe uma folha na parte inferior da página.
 
 <VideoBoxLink
   videoId="HRAMzrBwVeo"
-  title="Watch: Creating a modal in your universal Expo app"
-  description="Build a modal component using React Native's Modal API to display an emoji picker and handle user interactions."
+  title="Assista: Criando um modal em um app Expo universal"
+  description="Crie um componente de modal usando a API Modal do React Native para exibir um seletor de emoji e tratar as interações do usuário."
 />
 
 ---
 
 <Step label="1">
 
-## Declare a state variable to show buttons
+## Declare uma variável de estado para mostrar os botões \{#declare-a-state-variable-to-show-buttons}
 
-Before implementing the bottom sheet, we are going to add three new buttons. These buttons are visible after the user picks an image from the media library or uses the placeholder image. One of these buttons will open the emoji picker.
+Antes de implementar a bottom sheet, vamos adicionar três botões novos. Esses botões ficam visíveis depois que o usuário escolhe uma imagem da biblioteca de mídia ou usa a imagem de placeholder. Um desses botões vai abrir o seletor de emoji.
 
-In **src/app/(tabs)/index.tsx**:
+No arquivo **src/app/(tabs)/index.tsx**:
 
-1. Declare a boolean state variable, `showAppOptions`, to show or hide the buttons that open the emoji picker, alongside a few other options. When the app screen loads, we'll set it to `false` so the options are not shown before picking an image. When the user picks an image or uses the placeholder image, we'll set it to `true`.
-2. Update the `pickImageAsync()` function to set the value of `showAppOptions` to `true` after the user picks an image.
-3. In the `onPress` prop of the button with no theme, replace the `alert()` with a function that sets `showAppOptions` to `true`.
+1. Declare uma variável de estado booleana, `showAppOptions`, para mostrar ou esconder os botões que abrem o seletor de emoji, junto com algumas outras opções. Quando a tela do app carregar, vamos defini-la como `false`, para que as opções não apareçam antes de escolher uma imagem. Quando o usuário escolher uma imagem ou usar a imagem de placeholder, vamos defini-la como `true`.
+2. Atualize a função `pickImageAsync()` para definir o valor de `showAppOptions` como `true` depois que o usuário escolher uma imagem.
+3. Na prop `onPress` do botão sem tema, substitua o `alert()` por uma função que define `showAppOptions` como `true`.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -110,27 +110,27 @@ const styles = StyleSheet.create({
 });
 ```
 
-In the above snippet, we're rendering the `Button` component based on the value of `showAppOptions` and moving the buttons in the ternary operator block. When the value of `showAppOptions` is `true`, render an empty `<View>` component. We'll address this state in the next step.
+No trecho acima, renderizamos o componente `Button` com base no valor de `showAppOptions` e movemos os botões para dentro do bloco do operador ternário. Quando o valor de `showAppOptions` é `true`, renderizamos um componente `<View>` vazio. Vamos tratar esse estado no próximo passo.
 
 </Step>
 
 <Step label="2">
 
-## Add buttons
+## Adicione botões \{#add-buttons}
 
-Let's break down the layout of the option buttons we'll implement in this chapter. The design looks like this:
+Vamos entender a estrutura dos botões de opção que vamos implementar neste capítulo. O design fica assim:
 
 <ContentSpotlight
-  alt="Break down of the layout of the buttons row."
+  alt="Detalhamento do layout da linha de botões."
   src="/static/images/tutorial/create-a-modal-buttons-layout.webp"
   className="max-w-[480px]"
 />
 
-It contains a parent `<View>` with three buttons aligned in a row. The button in the middle with the plus icon (+) will open the emoji picker and is styled differently than the other two buttons.
+Ele contém um `<View>` pai com três botões alinhados em linha. O botão do meio, com o ícone de mais (+), abre o seletor de emoji e tem um estilo diferente dos outros dois.
 
-Like the `Button` component in the [third chapter](/tutorial/build-a-screen/#use-native-buttons-with-expo-ui), the option buttons use Expo UI on Android and iOS, and React Native components on web. Each button has one file for each platform.
+Assim como o componente `Button` no [terceiro capítulo](/tutorial/build-a-screen/#use-native-buttons-with-expo-ui), os botões de opção usam o Expo UI no Android e no iOS, e componentes do React Native na web. Cada botão tem um arquivo para cada plataforma.
 
-Inside the **src/components** directory, create three files for the circle button:
+Dentro do diretório **src/components**, crie três arquivos para o botão circular:
 
 <Tabs>
 
@@ -243,17 +243,17 @@ const styles = StyleSheet.create({
 
 </Tabs>
 
-Let's learn what the above code does:
+Vamos entender o que o código acima faz:
 
-- On Android, `FloatingActionButton` displays a Material 3 floating action button. The `size` and `clip` modifiers make it a circle of 84 dp, and `Icon` displays the **add.xml** icon from `@expo/material-symbols`.
-- On iOS, `Button` uses the `plain` style, and its label is an SF Symbols `Image`. The `frame` and `background` modifiers draw a yellow circle of 84 points around the icon.
-- On web, **circle-button.tsx** uses `Pressable` and `SymbolView`, like **button.tsx** in the third chapter.
+- No Android, `FloatingActionButton` exibe um botão de ação flutuante do Material 3. Os modificadores `size` e `clip` o transformam em um círculo de 84 dp, e o `Icon` exibe o ícone **add.xml** de `@expo/material-symbols`.
+- No iOS, `Button` usa o estilo `plain`, e o rótulo é uma `Image` do SF Symbols. Os modificadores `frame` e `background` desenham um círculo amarelo de 84 pontos ao redor do ícone.
+- Na web, **circle-button.tsx** usa `Pressable` e `SymbolView`, assim como o **button.tsx** do terceiro capítulo.
 
-The other two buttons display an icon above a text label. Inside the **src/components** directory, create three files for the icon button. This component accepts three props:
+Os outros dois botões exibem um ícone acima de um rótulo de texto. Dentro do diretório **src/components**, crie três arquivos para o botão com ícone. Esse componente aceita três props:
 
-- `icon`: an icon for each platform. Android uses an XML icon from `@expo/material-symbols`, iOS uses an SF Symbols name, and web uses a Material Symbols name.
-- `label`: the text label displayed on the button.
-- `onPress`: this function invokes when the user presses the button.
+- `icon`: um ícone para cada plataforma. O Android usa um ícone XML de `@expo/material-symbols`, o iOS usa um nome do SF Symbols, e a web usa um nome do Material Symbols.
+- `label`: o texto do rótulo exibido no botão.
+- `onPress`: a função invocada quando o usuário pressiona o botão.
 
 <Tabs>
 
@@ -365,9 +365,9 @@ const styles = StyleSheet.create({
 
 </Tabs>
 
-On Android, a `Column` places the `Icon` above the `Text`. On iOS, a `VStack` does the same. All three files accept the same props, like the `Button` files in the third chapter.
+No Android, um `Column` posiciona o `Icon` acima do `Text`. No iOS, um `VStack` faz o mesmo. Os três arquivos aceitam as mesmas props, como os arquivos `Button` do terceiro capítulo.
 
-The **src/components** directory now contains three files for each button:
+O diretório **src/components** agora contém três arquivos para cada botão:
 
 <FileTree
   files={[
@@ -384,11 +384,11 @@ The **src/components** directory now contains three files for each button:
   ]}
 />
 
-Inside **src/app/(tabs)/index.tsx**:
+Dentro de **src/app/(tabs)/index.tsx**:
 
-1. Import the `CircleButton` and `IconButton` components to display them.
-2. Add three placeholder functions for these buttons. The `onReset()` function invokes when the user presses the reset button, causing the image picker button to appear again. We'll add the functionality for the other two functions later.
-3. Pass an icon for each platform to the `icon` prop of each `IconButton`.
+1. Importe os componentes `CircleButton` e `IconButton` para exibi-los.
+2. Adicione três funções de placeholder para esses botões. A função `onReset()` é invocada quando o usuário pressiona o botão de reset, fazendo o botão de escolher foto aparecer de novo. Vamos adicionar a funcionalidade das outras duas funções mais adiante.
+3. Passe um ícone para cada plataforma na prop `icon` de cada `IconButton`.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -503,12 +503,12 @@ const styles = StyleSheet.create({
 });
 ```
 
-The option buttons use the same `footerContainer` style as the **Choose a photo** and **Use this photo** buttons. They appear in the same place on the screen, above the tab bar.
+Os botões de opção usam o mesmo estilo `footerContainer` dos botões **Choose a photo** e **Use this photo**. Eles aparecem no mesmo lugar da tela, acima da barra de abas.
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos ver nosso app no Android, iOS e web:
 
 <ContentSpotlight
-  alt="Button options displayed after an image is selected."
+  alt="Opções de botões exibidas depois que uma imagem é selecionada."
   src="/static/images/tutorial/create-a-modal-button-options.webp"
   className="max-w-[720px]"
 />
@@ -517,13 +517,13 @@ Let's take a look at our app on Android, iOS, and web:
 
 <Step label="3">
 
-## Create an emoji picker with a bottom sheet
+## Crie um seletor de emoji com uma bottom sheet \{#create-an-emoji-picker-with-a-bottom-sheet}
 
-The bottom sheet allows the user to choose an emoji from a list of available emoji. Create an **emoji-picker.tsx** file inside the **src/components** directory. This component accepts three props:
+A bottom sheet permite que o usuário escolha um emoji de uma lista de emojis disponíveis. Crie um arquivo **emoji-picker.tsx** dentro do diretório **src/components**. Esse componente aceita três props:
 
-- `isVisible`: a boolean to determine whether the bottom sheet is visible.
-- `onClose`: a function to close the bottom sheet.
-- `children`: used later to display a list of emoji.
+- `isVisible`: um booleano que determina se a bottom sheet está visível.
+- `onClose`: uma função para fechar a bottom sheet.
+- `children`: usada mais adiante para exibir uma lista de emojis.
 
 {/* prettier-ignore */}
 ```tsx src/components/emoji-picker.tsx
@@ -566,28 +566,28 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's learn what the above code does:
+Vamos entender o que o código acima faz:
 
-- The `BottomSheet` component comes from `@expo/ui`, which the default template already includes. On Android, it displays a Material 3 bottom sheet. On iOS, it displays a SwiftUI sheet. On web, it displays a sheet at the bottom of the page.
-- Its `isPresented` prop takes the value of `isVisible` and controls whether the bottom sheet is open or closed.
-- Its `onDismiss` prop calls `onClose` when the user closes the bottom sheet. The user can swipe the bottom sheet down or tap outside it. On Android, the back button also closes it. On web, the <kbd>Esc</kbd> key also closes it.
-- Its `snapPoints` prop sets the heights where the bottom sheet can rest. The `'half'` value opens it at about half of the screen height.
-- Its `containerColor` prop sets the background color of the bottom sheet to match the app's background.
-- The `RNHostView` component displays React Native views, such as `<View>` and `<Text>`, inside the bottom sheet.
+- O componente `BottomSheet` vem de `@expo/ui`, que o template padrão já inclui. No Android, ele exibe uma bottom sheet do Material 3. No iOS, exibe uma sheet do SwiftUI. Na web, exibe uma folha na parte inferior da página.
+- Sua prop `isPresented` recebe o valor de `isVisible` e controla se a bottom sheet está aberta ou fechada.
+- Sua prop `onDismiss` chama `onClose` quando o usuário fecha a bottom sheet. O usuário pode arrastar a bottom sheet para baixo ou tocar fora dela. No Android, o botão voltar também a fecha. Na web, a tecla <kbd>Esc</kbd> também a fecha.
+- Sua prop `snapPoints` define as alturas em que a bottom sheet pode parar. O valor `'half'` abre a bottom sheet em cerca de metade da altura da tela.
+- Sua prop `containerColor` define a cor de fundo da bottom sheet, para combinar com o fundo do app.
+- O componente `RNHostView` exibe views do React Native, como `<View>` e `<Text>`, dentro da bottom sheet.
 
-<Collapsible summary={<>What is <CODE>RNHostView</CODE>?</>}>
+<Collapsible summary={<>O que é <CODE>RNHostView</CODE>?</>}>
 
-On Android and iOS, `BottomSheet` is a native view from Jetpack Compose and SwiftUI. To display React Native views inside it, wrap them in `RNHostView`. It works in the opposite direction of `Host`, which we used in the [third chapter](/tutorial/build-a-screen/#use-native-buttons-with-expo-ui) to display Expo UI components inside React Native views. `BottomSheet` creates its own `Host`, so we don't wrap it in one. For more information, see [`RNHostView`](/versions/latest/sdk/ui/universal/rnhostview/).
+No Android e no iOS, `BottomSheet` é uma view nativa do Jetpack Compose e do SwiftUI. Para exibir views do React Native dentro dela, envolva-as em `RNHostView`. Ele funciona na direção oposta do `Host`, que usamos no [terceiro capítulo](/tutorial/build-a-screen/#use-native-buttons-with-expo-ui) para exibir componentes do Expo UI dentro de views do React Native. O `BottomSheet` cria o próprio `Host`, então não o envolvemos em um. Para mais informações, veja [`RNHostView`](/versions/latest/sdk/ui/universal/rnhostview/).
 
 </Collapsible>
 
-Now, let's modify the **src/app/(tabs)/index.tsx**:
+Agora, vamos modificar o **src/app/(tabs)/index.tsx**:
 
-1. Import the `<EmojiPicker>` component.
-2. Create an `isModalVisible` state variable with the `useState` hook. Its default value is `false`, which hides the bottom sheet until the user presses the button to open it.
-3. Replace the comment in the `onAddSticker()` function to update the `isModalVisible` variable to `true` when the user presses the button. This will open the emoji picker.
-4. Create the `onModalClose()` function to update the `isModalVisible` state variable.
-5. Place the `<EmojiPicker>` component at the bottom of the `Index` component.
+1. Importe o componente `<EmojiPicker>`.
+2. Crie uma variável de estado `isModalVisible` com o hook `useState`. Seu valor padrão é `false`, o que esconde a bottom sheet até o usuário pressionar o botão para abri-la.
+3. Substitua o comentário na função `onAddSticker()` para atualizar a variável `isModalVisible` para `true` quando o usuário pressionar o botão. Isso vai abrir o seletor de emoji.
+4. Crie a função `onModalClose()` para atualizar a variável de estado `isModalVisible`.
+5. Posicione o componente `<EmojiPicker>` no final do componente `Index`.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=440
@@ -711,10 +711,10 @@ const styles = StyleSheet.create({
 });
 ```
 
-Here is the result after this step:
+Aqui está o resultado depois deste passo:
 
 <ContentSpotlight
-  alt="The bottom sheet with its title on Android, iOS, and web."
+  alt="A bottom sheet com o título no Android, iOS e web."
   src="/static/images/tutorial/create-a-modal-bottom-sheet.webp"
   className="max-w-[720px]"
 />
@@ -723,11 +723,11 @@ Here is the result after this step:
 
 <Step label="4">
 
-## Display a list of emoji
+## Exiba uma lista de emojis \{#display-a-list-of-emoji}
 
-Let's add a grid of emoji to the bottom sheet's content. We'll use the [`<FlatList>`](https://reactnative.dev/docs/flatlist) component from React Native for it.
+Vamos adicionar uma grade de emojis ao conteúdo da bottom sheet. Para isso, vamos usar o componente [`<FlatList>`](https://reactnative.dev/docs/flatlist) do React Native.
 
-Create an **emoji-list.tsx** file inside the **src/components** directory and add the following code:
+Crie um arquivo **emoji-list.tsx** dentro do diretório **src/components** e adicione o código a seguir:
 
 {/* prettier-ignore */}
 ```tsx src/components/emoji-list.tsx
@@ -781,13 +781,13 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's learn what the above code does:
+Vamos entender o que o código acima faz:
 
-- The `emoji` array holds the emoji images. It is outside the component because its value never changes.
-- The `<FlatList>` component takes the `emoji` array as the value of the `data` prop. The `renderItem` prop takes each item from the `data` and returns an `Image` component, wrapped by a `<Pressable>`. When the user presses an emoji, `onSelect` receives it, and `onCloseModal` closes the bottom sheet.
-- The `numColumns` prop displays the list as a grid with three columns. The `columnWrapperStyle` prop styles each row of the grid.
+- O array `emoji` guarda as imagens dos emojis. Ele fica fora do componente porque o valor dele nunca muda.
+- O componente `<FlatList>` recebe o array `emoji` como valor da prop `data`. A prop `renderItem` pega cada item de `data` e retorna um componente `Image`, envolvido por um `<Pressable>`. Quando o usuário pressiona um emoji, `onSelect` o recebe, e `onCloseModal` fecha a bottom sheet.
+- A prop `numColumns` exibe a lista como uma grade de três colunas. A prop `columnWrapperStyle` estiliza cada linha da grade.
 
-Now, update the **src/app/(tabs)/index.tsx** to import the `<EmojiList>` component and replace the comments inside the `<EmojiPicker>` component with the following code snippet:
+Agora, atualize o **src/app/(tabs)/index.tsx** para importar o componente `<EmojiList>` e substituir os comentários dentro do componente `<EmojiPicker>` pelo trecho de código a seguir:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=440
@@ -914,12 +914,12 @@ const styles = StyleSheet.create({
 });
 ```
 
-In the `EmojiList` component, the `onSelect` prop selects the emoji and after selecting it, the `onCloseModal` closes the bottom sheet.
+No componente `EmojiList`, a prop `onSelect` seleciona o emoji e, depois da seleção, `onCloseModal` fecha a bottom sheet.
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos ver nosso app no Android, iOS e web:
 
 <ContentSpotlight
-  alt="Emoji list displayed on all platforms"
+  alt="Lista de emojis exibida em todas as plataformas"
   src="/static/images/tutorial/create-a-modal-emoji-list.webp"
   className="max-w-[720px]"
 />
@@ -928,9 +928,9 @@ Let's take a look at our app on Android, iOS, and web:
 
 <Step label="5">
 
-## Display the selected emoji
+## Exiba o emoji selecionado \{#display-the-selected-emoji}
 
-Now, we'll put the emoji sticker on the image. Create a new file in the **src/components** directory and call it **emoji-sticker.tsx**. Then, add the following code:
+Agora, vamos colocar o adesivo de emoji sobre a imagem. Crie um arquivo novo no diretório **src/components** e chame-o de **emoji-sticker.tsx**. Depois, adicione o código a seguir:
 
 ```tsx src/components/emoji-sticker.tsx|collapseHeight=300
 import { View } from 'react-native';
@@ -950,12 +950,12 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
 }
 ```
 
-This component receives two props:
+Esse componente recebe duas props:
 
-- `imageSize`: a value defined inside the `Index` component. We will use this value in the next chapter to scale the image's size when tapped.
-- `stickerSource`: the source of the selected emoji image.
+- `imageSize`: um valor definido dentro do componente `Index`. Vamos usar esse valor no próximo capítulo para escalar o tamanho da imagem quando ela for tocada.
+- `stickerSource`: a origem da imagem do emoji selecionado.
 
-Import this component in the **src/app/(tabs)/index.tsx** file and update the `Index` component to display the emoji sticker on the image. We will check if the `pickedEmoji` state is not `undefined`:
+Importe esse componente no arquivo **src/app/(tabs)/index.tsx** e atualize o componente `Index` para exibir o adesivo de emoji sobre a imagem. Vamos verificar se o estado `pickedEmoji` não é `undefined`:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=440
@@ -1078,12 +1078,14 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos ver nosso app no Android, iOS e web:
 
 <ContentSpotlight file="tutorial/create-a-modal-select-emoji.mp4" />
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/create-a-modal" />
+
+{/* ia-translate: true */}

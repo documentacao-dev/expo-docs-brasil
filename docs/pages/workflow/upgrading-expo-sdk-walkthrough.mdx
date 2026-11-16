@@ -1,6 +1,6 @@
 ---
-title: Upgrade Expo SDK
-description: Learn how to incrementally upgrade the Expo SDK version in your project.
+title: Atualize o SDK do Expo
+description: Saiba como atualizar gradualmente a versão do SDK do Expo no seu projeto.
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
@@ -8,27 +8,27 @@ import { RelatedSkills } from '~/ui/components/RelatedSkills';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-> **info** We recommend upgrading SDK versions incrementally, one at a time. Doing so will help you pinpoint breakages and issues that arise during the upgrade process.
+> **info** Recomendamos atualizar as versões do SDK de forma incremental, uma por vez. Assim, fica mais fácil identificar as quebras e os problemas que surgem durante o processo de atualização.
 
-With a new SDK release, the latest version enters the current release status. This applies to Expo Go as it only supports the latest SDK version and previous versions are no longer supported. We recommend using [development builds](/develop/development-builds/introduction/) for production apps as the backwards compatibility for older SDK versions on Expo Services tends to be much longer, but not forever.
+Com o lançamento de um novo SDK, a versão mais recente passa a ter o status de versão atual. Isso vale para o Expo Go, que só oferece suporte à versão mais recente do SDK, e as versões anteriores deixam de ter suporte. Recomendamos usar [development builds](/develop/development-builds/introduction/) para apps em produção, porque a compatibilidade com versões antigas do SDK nos Serviços do Expo tende a durar bem mais, mas não para sempre.
 
-If you are looking to install a specific version of Expo Go on an Android device, Android Emulator, or iOS Simulator, visit [expo.dev/go](https://expo.dev/go) or use the [`expo-go` CLI](/develop/tools/#expo-go-cli). See [Troubleshoot an Expo Go version mismatch](/troubleshooting/expo-go-version-mismatch/) for more information.
+Se você quiser instalar uma versão específica do Expo Go em um dispositivo Android, no Emulador Android ou no Simulador do iOS, acesse [expo.dev/go](https://expo.dev/go) ou use a [CLI `expo-go`](/develop/tools/#expo-go-cli). Veja [Solucione uma incompatibilidade de versão do Expo Go](/troubleshooting/expo-go-version-mismatch/) para mais informações.
 
-## How to upgrade to the latest SDK version
+## Como atualizar para a versão mais recente do SDK \{#how-to-upgrade-to-the-latest-sdk-version}
 
-### Upgrade with an AI coding agent
+### Atualize com um agente de IA de programação \{#upgrade-with-an-ai-coding-agent}
 
-If you use an AI coding agent, install [Expo Skills](/skills/) and use the [`expo-upgrade` skill](/skills/#available-expo-skills). The skill provides guidelines for upgrading Expo SDK versions and fixing dependency issues. Review any proposed changes and check the SDK changelog for version-specific instructions.
+Se você usa um agente de IA de programação, instale as [Skills do Expo](/skills/) e use a skill [`expo-upgrade`](/skills/#available-expo-skills). A skill oferece diretrizes para atualizar as versões do SDK do Expo e corrigir problemas de dependências. Revise todas as alterações propostas e consulte o changelog do SDK para instruções específicas de cada versão.
 
 <RelatedSkills names={['expo-upgrade']} />
 
-### Upgrade manually
+### Atualize manualmente \{#upgrade-manually}
 
 <Step label="1">
 
-#### Upgrade the Expo SDK
+#### Atualize o SDK do Expo \{#upgrade-the-expo-sdk}
 
-Install the new version of the Expo package:
+Instale a nova versão do pacote Expo:
 
 <Terminal
   cmd={{
@@ -39,15 +39,15 @@ Install the new version of the Expo package:
   }}
 />
 
-Depending on which SDK you're upgrading to, substitute `expo@^58.0.0` with the version range of the Expo SDK version you're targeting. For example, `expo@^58.0.0` stands for SDK 58.
+Dependendo do SDK para o qual você está atualizando, substitua `expo@^58.0.0` pelo intervalo de versão do SDK do Expo que você quer. Por exemplo, `expo@^58.0.0` corresponde ao SDK 58.
 
 </Step>
 
 <Step label="2">
 
-#### Upgrade dependencies
+#### Atualize as dependências \{#upgrade-dependencies}
 
-Upgrade all dependencies to match the installed SDK version. Then run [`expo-doctor`](/develop/tools/#expo-doctor) command to check for common problems.
+Atualize todas as dependências para que correspondam à versão do SDK instalada. Em seguida, rode o comando [`expo-doctor`](/develop/tools/#expo-doctor) para verificar problemas comuns.
 
 <Terminal
   cmd={['$ npx expo install --fix', '', '$ npx expo-doctor']}
@@ -58,56 +58,58 @@ Upgrade all dependencies to match the installed SDK version. Then run [`expo-doc
 
 <Step label="3">
 
-#### Update native projects
+#### Atualize os projetos nativos \{#update-native-projects}
 
-- **If you use [Continuous Native Generation](/workflow/continuous-native-generation/)**: Delete the **android** and **ios** directories if you generated them for a previous SDK version in your local project directory. They'll be re-generated next time you run a build, either with `npx expo run:ios`, `npx expo prebuild`, or with Expo Build.
-- **If you don't use [Continuous Native Generation](/workflow/continuous-native-generation/)**: Run `npx pod-install` if you have an **ios** directory. Apply any relevant changes from the [Native project upgrade helper](/bare/upgrade/). Alternatively, you could consider [adopting prebuild](/guides/adopting-prebuild/) for easier upgrades in the future.
+- **Se você usa a [Geração Nativa Contínua](/workflow/continuous-native-generation/)**: apague os diretórios **android** e **ios** caso você os tenha gerado para uma versão anterior do SDK no diretório do projeto local. Eles serão gerados de novo na próxima vez que você fizer um build, seja com `npx expo run:ios`, `npx expo prebuild` ou com o Expo Build.
+- **Se você não usa a [Geração Nativa Contínua](/workflow/continuous-native-generation/)**: rode `npx pod-install` se tiver um diretório **ios**. Aplique as alterações relevantes do [assistente de atualização de projetos nativos](/bare/upgrade/). Como alternativa, considere [adotar o prebuild](/guides/adopting-prebuild/) para facilitar as atualizações no futuro.
 
 </Step>
 
 <Step label="4">
 
-#### Follow the release notes for any other instructions
+#### Siga as notas de versão para outras instruções \{#follow-the-release-notes-for-any-other-instructions}
 
-Read the [SDK changelogs](#sdk-changelogs) for the SDK version you are upgrading to. They contain important information about breaking changes, deprecations, and other changes that may affect your app. Refer to the "Upgrading your app" section at the bottom of the release notes page for any additional instructions.
+Leia os [changelogs do SDK](#sdk-changelogs) da versão para a qual você está atualizando. Eles trazem informações importantes sobre quebras de compatibilidade, descontinuações e outras mudanças que podem afetar o seu app. Consulte a seção "Upgrading your app" no final da página de notas de versão para instruções adicionais.
 
 </Step>
 
-## SDK changelogs
+## Changelogs do SDK \{#sdk-changelogs}
 
-Each SDK announcement release notes post contains information about deprecations, breaking changes, and anything else that might be unique to that particular SDK version. When upgrading, be sure to check these out to make sure you don't miss anything.
+Cada post de anúncio de versão do SDK contém informações sobre descontinuações, quebras de compatibilidade e tudo o mais que for específico daquela versão do SDK. Ao atualizar, não deixe de conferir esses posts para não perder nada.
 
-- **SDK 58**: [Release notes](https://expo.dev/changelog/sdk-58)
-- **SDK 57**: [Release notes](https://expo.dev/changelog/sdk-57)
-- **SDK 56**: [Release notes](https://expo.dev/changelog/sdk-56)
-- **SDK 55**: [Release notes](https://expo.dev/changelog/sdk-55)
+- **SDK 58**: [Notas de versão](https://expo.dev/changelog/sdk-58)
+- **SDK 57**: [Notas de versão](https://expo.dev/changelog/sdk-57)
+- **SDK 56**: [Notas de versão](https://expo.dev/changelog/sdk-56)
+- **SDK 55**: [Notas de versão](https://expo.dev/changelog/sdk-55)
 
-### Deprecated SDK version changelogs
+### Changelogs de versões do SDK descontinuadas \{#deprecated-sdk-version-changelogs}
 
-The following blog posts may included outdated information, but they are still useful for reference if you happen to fall far behind on SDK upgrades.
+Os posts a seguir podem conter informações desatualizadas, mas continuam úteis como referência caso você esteja muito atrasado nas atualizações do SDK.
 
-<Collapsible summary="See a full list of deprecated SDK release changelogs">
+<Collapsible summary="Veja a lista completa de changelogs de versões do SDK descontinuadas">
 
-- **SDK 54**: [Release notes](https://expo.dev/changelog/sdk-54)
-- **SDK 53**: [Release notes](https://expo.dev/changelog/sdk-53)
-- **SDK 52**: [Release notes](https://expo.dev/changelog/2024-11-12-sdk-52)
-  - **React Native 0.77 is available with Expo SDK 52**. To upgrade, see these [Release notes](https://expo.dev/changelog/2025-01-21-react-native-0.77).
-- **SDK 51**: [Release notes](https://expo.dev/changelog/2024-05-07-sdk-51)
-- **SDK 50**: [Release notes](https://expo.dev/changelog/2024-01-18-sdk-50)
-- **SDK 49**: [Release notes](https://blog.expo.dev/expo-sdk-49-c6d398cdf740)
-- **SDK 48**: [Release notes](https://blog.expo.dev/expo-sdk-48-ccb8302e231)
-- **SDK 47**: [Release notes](https://blog.expo.dev/expo-sdk-47-a0f6f5c038af)
-- **SDK 46**: [Release notes](https://blog.expo.dev/expo-sdk-46-c2a1655f63f7)
-- **SDK 45**: [Release notes](https://blog.expo.dev/expo-sdk-45-f4e332954a68)
-- **SDK 44**: [Release notes](https://blog.expo.dev/expo-sdk-44-4c4b8306584a)
-- **SDK 43**: [Release notes](https://blog.expo.dev/expo-sdk-43-aa9b3c7d5541)
-- **SDK 42**: [Release notes](https://blog.expo.dev/expo-sdk-42-579aee2348b6)
-- **SDK 41**: [Release notes](https://blog.expo.dev/expo-sdk-41-12cc5232f2ef)
-- **SDK 40**: [Release notes](https://dev.to/expo/expo-sdk-40-is-now-available-1in0)
-- **SDK 39**: [Release notes](https://dev.to/expo/expo-sdk-39-is-now-available-1lm8)
-- **SDK 38**: [Release notes](https://dev.to/expo/expo-sdk-38-is-now-available-5aa0)
-- **SDK 37**: [Release notes](https://dev.to/expo/expo-sdk-37-is-now-available-69g)
-- **SDK 36**: [Release notes](https://blog.expo.dev/expo-sdk-36-is-now-available-b91897b437fe)
-- **SDK 35**: [Release notes](https://blog.expo.dev/expo-sdk-35-is-now-available-beee0dfafbf4)
+- **SDK 54**: [Notas de versão](https://expo.dev/changelog/sdk-54)
+- **SDK 53**: [Notas de versão](https://expo.dev/changelog/sdk-53)
+- **SDK 52**: [Notas de versão](https://expo.dev/changelog/2024-11-12-sdk-52)
+  - **O React Native 0.77 está disponível com o Expo SDK 52**. Para atualizar, veja estas [notas de versão](https://expo.dev/changelog/2025-01-21-react-native-0.77).
+- **SDK 51**: [Notas de versão](https://expo.dev/changelog/2024-05-07-sdk-51)
+- **SDK 50**: [Notas de versão](https://expo.dev/changelog/2024-01-18-sdk-50)
+- **SDK 49**: [Notas de versão](https://blog.expo.dev/expo-sdk-49-c6d398cdf740)
+- **SDK 48**: [Notas de versão](https://blog.expo.dev/expo-sdk-48-ccb8302e231)
+- **SDK 47**: [Notas de versão](https://blog.expo.dev/expo-sdk-47-a0f6f5c038af)
+- **SDK 46**: [Notas de versão](https://blog.expo.dev/expo-sdk-46-c2a1655f63f7)
+- **SDK 45**: [Notas de versão](https://blog.expo.dev/expo-sdk-45-f4e332954a68)
+- **SDK 44**: [Notas de versão](https://blog.expo.dev/expo-sdk-44-4c4b8306584a)
+- **SDK 43**: [Notas de versão](https://blog.expo.dev/expo-sdk-43-aa9b3c7d5541)
+- **SDK 42**: [Notas de versão](https://blog.expo.dev/expo-sdk-42-579aee2348b6)
+- **SDK 41**: [Notas de versão](https://blog.expo.dev/expo-sdk-41-12cc5232f2ef)
+- **SDK 40**: [Notas de versão](https://dev.to/expo/expo-sdk-40-is-now-available-1in0)
+- **SDK 39**: [Notas de versão](https://dev.to/expo/expo-sdk-39-is-now-available-1lm8)
+- **SDK 38**: [Notas de versão](https://dev.to/expo/expo-sdk-38-is-now-available-5aa0)
+- **SDK 37**: [Notas de versão](https://dev.to/expo/expo-sdk-37-is-now-available-69g)
+- **SDK 36**: [Notas de versão](https://blog.expo.dev/expo-sdk-36-is-now-available-b91897b437fe)
+- **SDK 35**: [Notas de versão](https://blog.expo.dev/expo-sdk-35-is-now-available-beee0dfafbf4)
 
 </Collapsible>
+
+{/* ia-translate: true */}

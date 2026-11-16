@@ -24,7 +24,7 @@ export function getPageMdxFilePath(path: string) {
 
 export function githubUrl(path: string) {
   const filePath = getPageMdxFilePath(path);
-  return `https://github.com/expo/expo/edit/main/${DOCS_PAGES_ROOT}${filePath}`;
+  return `https://github.com/documentacao-dev/expo-docs-brasil/edit/main/${DOCS_PAGES_ROOT}${filePath}`;
 }
 
 export function githubRawUrl(path: string) {

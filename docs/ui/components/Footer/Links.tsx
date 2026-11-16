@@ -3,12 +3,10 @@ import { GithubIcon } from '@expo/styleguide-icons/custom/GithubIcon';
 import { Edit05Icon } from '@expo/styleguide-icons/outline/Edit05Icon';
 import { File02Icon } from '@expo/styleguide-icons/outline/File02Icon';
 import { MessageTextSquare02Icon } from '@expo/styleguide-icons/outline/MessageTextSquare02Icon';
-import * as Dialog from '@radix-ui/react-dialog';
 import type { ReactNode } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { A, CALLOUT, LI } from '../Text';
-import { FeedbackDialog } from './FeedbackDialog';
 import { githubUrl } from './utils';
 
 const LINK_CLASSES = 'inline-flex items-center mb-1 focus-visible:outline-offset-4';
@@ -83,19 +81,20 @@ export const LlmsTxtLink = () => (
   </LI>
 );
 
+// O formulário de feedback original envia dados para a API da Expo; na tradução, o feedback vai
+// para as issues do repositório da tradução.
 export const ShareFeedbackLink = ({ pathname }: { pathname?: string }) => {
   const intl = useIntl();
+  const issueUrl = new URL('https://github.com/documentacao-dev/expo-docs-brasil/issues/new');
+  if (pathname) {
+    issueUrl.searchParams.set('title', `Feedback sobre ${pathname}`);
+  }
   return (
     <LI>
-      <Dialog.Root>
-        <Dialog.Trigger className="h-5.5 focus-visible:outline-offset-4">
-          <A isStyled className={LINK_CLASSES}>
-            <MessageTextSquare02Icon aria-hidden="true" className={ICON_CLASSES} />
-            <CALLOUT theme="secondary">{intl.formatMessage({ id: 'footerShareFeedback' })}</CALLOUT>
-          </A>
-        </Dialog.Trigger>
-        <FeedbackDialog pathname={pathname} />
-      </Dialog.Root>
+      <A isStyled openInNewTab href={issueUrl.toString()} className={LINK_CLASSES}>
+        <MessageTextSquare02Icon aria-hidden="true" className={ICON_CLASSES} />
+        <CALLOUT theme="secondary">{intl.formatMessage({ id: 'footerShareFeedback' })}</CALLOUT>
+      </A>
     </LI>
   );
 };

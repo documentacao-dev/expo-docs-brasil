@@ -1,37 +1,37 @@
 ---
 title: Safe areas
-description: Learn how to add safe areas for screen components inside your Expo project.
+description: Aprenda a adicionar safe areas para os componentes de tela dentro do seu projeto Expo.
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal, SnackInline } from '~/ui/components/Snippet';
 
-Creating a safe area ensures your app screen's content is positioned correctly. This means it doesn't get overlapped by notches, status bars, home indicators, and other interface elements that are part of the device's physical hardware or are controlled by the operating system. When the content gets overlapped, it gets concealed by these interface elements.
+Criar uma safe area garante que o conteúdo da tela do app fique posicionado corretamente. Isso significa que ele não será sobreposto por notches, barras de status, indicadores de tela inicial e outros elementos de interface que fazem parte do hardware físico do dispositivo ou são controlados pelo sistema operacional. Quando o conteúdo é sobreposto, ele fica escondido atrás desses elementos.
 
-Here's an example of an app screen's content getting concealed by the status bar on Android. On iOS, the same content is concealed by rounded corners, notch, and the status bar.
+Veja um exemplo de conteúdo de uma tela do app escondido pela barra de status no Android. No iOS, o mesmo conteúdo fica escondido pelos cantos arredondados, pelo notch e pela barra de status.
 
 <ContentSpotlight
-  alt="Without defining a safe area, the content can be obscured by the device's interface elements."
+  alt="Sem definir uma safe area, o conteúdo pode ser ocultado pelos elementos de interface do dispositivo."
   src="/static/images/safe-area/without-safe-area.webp"
   className="max-w-[480px]"
 />
 
-## Use `react-native-safe-area-context` library
+## Use a biblioteca `react-native-safe-area-context` \{#use-react-native-safe-area-context-library}
 
-[`react-native-safe-area-context`](https://github.com/AppAndFlow/react-native-safe-area-context) provides a flexible API for handling Android and iOS device's safe area insets. It also provides a `SafeAreaView` component that you can use instead of a [`<View>`](https://reactnative.dev/docs/view) to account for safe areas automatically in your screen components.
+A [`react-native-safe-area-context`](https://github.com/AppAndFlow/react-native-safe-area-context) oferece uma API flexível para lidar com os insets da safe area dos dispositivos Android e iOS. Ela também traz o componente `SafeAreaView`, que você pode usar no lugar de um [`<View>`](https://reactnative.dev/docs/view) para considerar as safe areas automaticamente nos componentes de tela.
 
-Using the library, the result of the previous example changes as it displays the content inside a safe area, as shown below:
+Usando a biblioteca, o resultado do exemplo anterior muda, pois o conteúdo passa a ser exibido dentro da safe area, como mostrado abaixo:
 
 <ContentSpotlight
-  alt="On using react-native-safe-area-context, the content is positioned within the safe area."
+  alt="Ao usar a react-native-safe-area-context, o conteúdo fica posicionado dentro da safe area."
   src="/static/images/safe-area/with-safe-area.webp"
   className="max-w-[480px]"
 />
 
-### Installation
+### Instalação \{#installation}
 
-You can skip installing `react-native-safe-area-context` if you have created a project using [the default template](/get-started/create-a-project/). This library is installed as peer dependency for Expo Router library. Otherwise, install it by running the following command:
+Você pode pular a instalação do `react-native-safe-area-context` se criou o projeto com [o template padrão](/get-started/create-a-project/). Essa biblioteca é instalada como peer dependency da biblioteca Expo Router. Caso contrário, instale-a executando o comando a seguir:
 
 <Terminal
   cmd={{
@@ -42,9 +42,9 @@ You can skip installing `react-native-safe-area-context` if you have created a p
   }}
 />
 
-### Usage
+### Uso \{#usage}
 
-You can directly use [`SafeAreaView`](https://appandflow.github.io/react-native-safe-area-context/api/safe-area-view) to wrap the content of your screen's component. It is a regular `<View>` with the safe area insets applied as extra padding or margin.
+Você pode usar diretamente o [`SafeAreaView`](https://appandflow.github.io/react-native-safe-area-context/api/safe-area-view) para envolver o conteúdo do componente da tela. Ele é um `<View>` comum com os insets da safe area aplicados como padding ou margin extra.
 
 ```tsx src/app/index.tsx
 import { Text } from 'react-native';
@@ -59,9 +59,9 @@ export default function HomeScreen() {
 }
 ```
 
-<Collapsible summary="Using a different Expo template and don't have Expo Router installed?">
+<Collapsible summary="Usando outro template do Expo e sem o Expo Router instalado?">
 
-Import and add [`SafeAreaProvider`](https://appandflow.github.io/react-native-safe-area-context/api/safe-area-provider) to the root component file (such as **App.tsx**) before using `SafeAreaView` in your screen component.
+Importe e adicione o [`SafeAreaProvider`](https://appandflow.github.io/react-native-safe-area-context/api/safe-area-provider) ao arquivo do componente raiz (como o **App.tsx**) antes de usar o `SafeAreaView` no componente da tela.
 
 {/* prettier-ignore */}
 ```tsx App.tsx
@@ -78,11 +78,11 @@ export default function App() {
 
 </Collapsible>
 
-## Alternate: `useSafeAreaInsets` hook
+## Alternativa: hook `useSafeAreaInsets` \{#alternate-usesafeareainsets-hook}
 
-Alternate to `SafeAreaView`, you can use [`useSafeAreaInsets`](https://appandflow.github.io/react-native-safe-area-context/api/use-safe-area-insets) hook in your screen component. It provides direct access to the safe area insets, allowing you to apply padding for each edge of the `<View>` using an inset from this hook.
+Como alternativa ao `SafeAreaView`, você pode usar o hook [`useSafeAreaInsets`](https://appandflow.github.io/react-native-safe-area-context/api/use-safe-area-insets) no componente da tela. Ele dá acesso direto aos insets da safe area, permitindo aplicar padding em cada borda do `<View>` usando um inset desse hook.
 
-The example below uses the `useSafeAreaInsets` hook. It applies top padding to a `<View>` using `insets.top`.
+O exemplo abaixo usa o hook `useSafeAreaInsets`. Ele aplica padding no topo de um `<View>` usando `insets.top`.
 
 ```tsx src/app/index.tsx
 import { Text, View } from 'react-native';
@@ -99,7 +99,7 @@ export default function HomeScreen() {
 }
 ```
 
-The hook provides the insets in the following object:
+O hook fornece os insets no seguinte objeto:
 
 ```ts
 {
@@ -110,13 +110,13 @@ The hook provides the insets in the following object:
 }
 ```
 
-## Additional information
+## Informações adicionais \{#additional-information}
 
-### Minimal example
+### Exemplo mínimo \{#minimal-example}
 
-Below is a minimal working example that uses the `useSafeAreaInsets` hook to apply top padding to a view.
+Abaixo está um exemplo mínimo funcional que usa o hook `useSafeAreaInsets` para aplicar padding no topo de uma view.
 
-<SnackInline label="Using react-native-safe-area-context" dependencies={['react-native-safe-area-context']}>
+<SnackInline label="Usando react-native-safe-area-context" dependencies={['react-native-safe-area-context']}>
 
 ```tsx collapseHeight=320
 import { Text, View } from 'react-native';
@@ -142,21 +142,21 @@ export default function App() {
 
 </SnackInline>
 
-### Usage with React Navigation
+### Uso com React Navigation \{#usage-with-react-navigation}
 
-By default, React Navigation supports safe areas and uses `react-native-safe-area-context` as a peer dependency. For more information, see the [React Navigation documentation](https://reactnavigation.org/docs/handling-safe-area/).
+Por padrão, o React Navigation oferece suporte a safe areas e usa o `react-native-safe-area-context` como peer dependency. Para mais informações, veja a [documentação do React Navigation](https://reactnavigation.org/docs/handling-safe-area/).
 
-### Usage with web
+### Uso na web \{#usage-with-web}
 
-On web, use CSS `env(safe-area-inset-*)` values for safe-area spacing. The browser applies these values across client rendering, server rendering, and static generation. CSS safe-area spacing does not require the `react-native-safe-area-context` library.
+Na web, use os valores CSS `env(safe-area-inset-*)` para o espaçamento da safe area. O navegador aplica esses valores na renderização no cliente, na renderização no servidor e na geração estática. O espaçamento de safe area feito com CSS não exige a biblioteca `react-native-safe-area-context`.
 
-With Expo Router, create **src/safe-area.css** and import it in your existing [root layout](/router/basics/navigation-layouts/#root-layout):
+Com o Expo Router, crie o **src/safe-area.css** e e importe-o no [layout raiz](/router/basics/navigation-layouts/#root-layout) que você já tem:
 
 ```tsx src/app/_layout.tsx
 import '../safe-area.css';
 ```
 
-Apply a class to an element in a [web-specific route](/router/advanced/platform-specific-modules/):
+Aplique uma classe a um elemento em uma [rota específica para web](/router/advanced/platform-specific-modules/):
 
 ```tsx src/app/index.web.tsx
 export default function HomeScreen() {
@@ -164,7 +164,7 @@ export default function HomeScreen() {
 }
 ```
 
-In **src/safe-area.css**, define the spacing for the `safe-area-content` class:
+No **src/safe-area.css**, defina o espaçamento da classe `safe-area-content`:
 
 ```css src/safe-area.css
 .safe-area-content {
@@ -175,16 +175,18 @@ In **src/safe-area.css**, define the spacing for the `safe-area-content` class:
 }
 ```
 
-The browser provides the `safe-area-inset-*` environment variables. These values specify the distance from their respective edge of the viewport to the safe area, keeping content clear of notches and rounded corners. The `env()` function is used to read these values. See the [CSS `env()` reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env) for details.
+O navegador fornece as variáveis de ambiente `safe-area-inset-*`. Esses valores indicam a distância entre a respectiva borda da viewport e a safe area, mantendo o conteúdo longe de notches e cantos arredondados. A função `env()` é usada para ler esses valores. Veja a [referência de `env()` em CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env) para mais detalhes.
 
-The browser updates this spacing without a React state update. Keep a corresponding **src/app/index.tsx** route using `react-native-safe-area-context` for Android and iOS.
+O navegador atualiza esse espaçamento sem uma atualização de estado do React. Mantenha uma rota correspondente em **src/app/index.tsx** usando o `react-native-safe-area-context` para Android e iOS.
 
-Static and server exports include the stylesheet in the initial HTML.
+Exportações estáticas e de servidor incluem a folha de estilo no HTML inicial.
 
-In development, [async routes](/router/web/async-routes/) can load layout CSS after streamed content and cause a layout shift. To avoid this development limitation, render the rules in a `<style>` element inside the `<head>` of your [Root HTML component](/router/web/static-rendering/#root-html). Use **src/app/+html.tsx** for this component. CSS imports in **+html.tsx** are not supported.
+Em desenvolvimento, as [rotas assíncronas](/router/web/async-routes/) podem carregar o CSS do layout depois do conteúdo transmitido e causar um deslocamento de layout. Para contornar essa limitação do desenvolvimento, renderize as regras em um elemento `<style>` dentro do `<head>` do seu [componente HTML raiz](/router/web/static-rendering/#root-html). Use o **src/app/+html.tsx** para esse componente. Imports de CSS no **+html.tsx** não funcionam.
 
-In SDK 58 and later, Expo Router disables automatic safe-area measurements on web to preserve streamed content during hydration. Do not add another `SafeAreaProvider` to restore these measurements. Its updates can interrupt hydration and discard pending streamed content, even if you provide `initialMetrics`.
+A partir do SDK 58, o Expo Router desativa as medições automáticas da safe area na web para preservar o conteúdo transmitido durante a hidratação. Não adicione outro `SafeAreaProvider` para restaurar essas medições. As atualizações dele podem interromper a hidratação e descartar o conteúdo transmitido pendente, mesmo se você fornecer `initialMetrics`.
 
-See the [safe-area context reference](/versions/latest/sdk/safe-area-context/#context) for the behavior of its hooks and components. CSS values do not change the numbers returned by these hooks.
+Veja a [referência do safe-area context](/versions/latest/sdk/safe-area-context/#context) para o comportamento dos hooks e componentes. Os valores de CSS não alteram os números retornados por esses hooks.
 
-Without Expo Router, the library's provider still supports web measurements. If you use its components or hooks, configure `SafeAreaProvider` as described in the [usage section](#usage). CSS remains the recommended approach for web spacing.
+Sem o Expo Router, o provider da biblioteca ainda oferece medições para a web. Se você usar os componentes ou hooks dela, configure o `SafeAreaProvider` como descrito na [seção de uso](#usage). O CSS continua sendo a abordagem recomendada para o espaçamento na web.
+
+{/* ia-translate: true */}

@@ -1,7 +1,7 @@
 ---
-title: Create and run a cloud build for Android
-sidebar_title: Android development build
-description: Learn how to configure a development build for Android devices and emulators using Expo Build.
+title: Crie e rode um build na nuvem para Android
+sidebar_title: Development build para Android
+description: Aprenda a configurar um development build para dispositivos e emuladores Android usando o Expo Build.
 hasVideoLink: true
 ---
 
@@ -12,110 +12,110 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll create a development build that can run on Android with Expo Build.
+Neste capítulo, vamos criar um development build que roda em Android usando o Expo Build.
 
-The process for creating and running a build on Android devices or emulators is identical, with differences only in the installation of the development build.
+O processo de criar e rodar um build em dispositivos ou emuladores Android é idêntico, com diferenças só na instalação do development build.
 
 <VideoBoxLink
   videoId="D612BUtvvl8"
-  title="Watch: How to create and run a cloud build for Android"
-  description="Learn how to create an Android development build with Expo Build and install it on a device or emulator."
+  title="Assista: como criar e rodar um build na nuvem para Android"
+  description="Aprenda a criar um development build para Android com o Expo Build e instalá-lo em um dispositivo ou emulador."
 />
 
 ---
 
-## Create a build for the development profile
+## Crie um build para o perfil development \{#create-a-build-for-the-development-profile}
 
-For Android, the development build must be in the **.apk**. While the default Android format is **.aab**, which is ideal for Google Play Store distribution, it cannot be installed on devices or emulators.
+No Android, o development build precisa estar no formato **.apk**. O formato padrão do Android é o **.aab**, ideal para publicar na Google Play Store, mas ele não pode ser instalado em dispositivos ou emuladores.
 
-To create a **.apk**:
+Para criar um **.apk**:
 
-- In **eas.json**, make sure that `developmentClient` is set to `true` under `build.development` profile.
-- Then, run the `eas build` command with `android` as the platform and `development` as the build profile:
+- No **eas.json**, confirme que `developmentClient` está como `true` no perfil `build.development`.
+- Depois, rode o comando `eas build` com `android` como plataforma e `development` como perfil de build:
 
   <Terminal cmd={['$ eas build --platform android --profile development']} />
 
-  > **info** **Tip**: Next time you run `eas build` command, you can also use `-p` to specify the platform. It is short for `--platform`.
+  > **info** **Dica**: Na próxima vez que rodar o comando `eas build`, você também pode usar `-p` para especificar a plataforma. É a forma abreviada de `--platform`.
 
-This command prompts us with the following questions:
+Esse comando nos faz as seguintes perguntas:
 
-- **What would you like your Android application id to be?** Press <kbd>Return</kbd> to select the default value provided for this prompt. This will add [`android.package`](/versions/latest/config/app/#package) in **app.json**.
-- **Generate a new Android Keystore**? Press <kbd>Y</kbd>.
+- **What would you like your Android application id to be?** Pressione <kbd>Return</kbd> para escolher o valor padrão sugerido nesta pergunta. Isso vai adicionar o [`android.package`](/versions/latest/config/app/#package) no **app.json**.
+- **Generate a new Android Keystore**? Pressione <kbd>Y</kbd>.
 
-After responding, the build will queue up, and we can track its progress via a provided link by the EAS CLI in the Expo dashboard:
+Depois de responder, o build entra na fila, e podemos acompanhar o progresso pelo link fornecido pela EAS CLI no painel da Expo:
 
 <ContentSpotlight
-  alt="Android development build details and progress in Expo dashboard"
+  alt="Detalhes e progresso do development build Android no painel da Expo"
   src="/static/images/tutorial/eas/android-development-build-details.webp"
   className="max-w-[800px]"
 />
 
-<Collapsible summary="What information does a build details page contain?">
+<Collapsible summary="Quais informações a página de detalhes do build mostra?">
 
-The build details page displays the build type, profile, environment, Expo SDK version, app version, and version code. It also displays the fingerprint, the last commit hash, and the identity of the developer or account owner who initiated the build.
+A página de detalhes do build mostra o tipo de build, o perfil, o ambiente, a versão do Expo SDK, a versão do app e o version code. Ela também mostra o fingerprint, o hash do último commit e a identidade do dev ou do dono da conta que iniciou o build.
 
-In the above image, the current status of the **Build artifact** shows that the build is in progress. Upon completion, this section will offer an option to download the build. The **Logs** outlines every step taken during the Android build process on Expo Build. For the sake of brevity, we won't explore each step in detail here. To learn more, see [Android build process](/build-reference/android-builds/).
-
-</Collapsible>
-
-<Collapsible summary="What is an Android application ID?">
-
-Also known as the package name of our Android app, it stores the value in DNS reverse notation format (`com.owner.appname`). Each component of this notation should start with a lowercase letter.
-
-For example, our example app has `com.owner.stickersmash` where `com.owner` is the domain and `stickersmash` is our app name.
+Na imagem acima, o status atual do **Build artifact** mostra que o build está em andamento. Ao terminar, essa seção vai oferecer a opção de baixar o build. Os **Logs** detalham cada etapa do processo de build Android no Expo Build. Para não nos estendermos, não vamos explorar cada etapa aqui. Para saber mais, veja [processo de build Android](/build-reference/android-builds/).
 
 </Collapsible>
 
-## Android device
+<Collapsible summary="O que é o application ID de um app Android?">
+
+Também conhecido como nome do pacote do nosso app Android, ele guarda o valor em notação DNS reversa (`com.owner.appname`). Cada parte dessa notação deve começar com uma letra minúscula.
+
+Por exemplo, nosso app de exemplo tem `com.owner.stickersmash`, em que `com.owner` é o domínio e `stickersmash` é o nome do app.
+
+</Collapsible>
+
+## Dispositivo Android \{#android-device}
 
 <Step label="1">
 
-### Install development build
+### Instale o development build \{#install-development-build}
 
-Once the build finishes, the **Build artifact** section gets updated, indicating that the build is complete:
+Quando o build terminar, a seção **Build artifact** é atualizada, indicando que o build foi concluído:
 
 <ContentSpotlight
-  alt="Build artifact gives the option to download development build for Android devices and emulators"
+  alt="O Build artifact oferece a opção de baixar o development build para dispositivos e emuladores Android"
   src="/static/images/tutorial/eas/android-development-build-artifact.webp"
 />
 
-This section provides the methods available for running the development build on an Android device: Expo Orbit and Install button.
+Esta seção mostra os métodos disponíveis para rodar o development build em um dispositivo Android: o Expo Orbit e o botão Install.
 
-[Expo Orbit](https://expo.dev/orbit) allows for seamless installation of the development build on an Android device. To use this method:
+O [Expo Orbit](https://expo.dev/orbit) permite instalar o development build em um dispositivo Android sem complicações. Para usar esse método:
 
-- Connect our Android device to our local machine using USB.
-- Open the Orbit app.
-- Select the **Device** in the Orbit app.
+- Conecte o dispositivo Android à nossa máquina por USB.
+- Abra o app Orbit.
+- Selecione o **Device** no app Orbit.
 
 <ContentSpotlight
-  alt="Expo Orbit app interface when connected to an Android device"
+  alt="Interface do app Expo Orbit conectado a um dispositivo Android"
   src="/static/images/tutorial/eas/android-orbit.png"
   className="max-w-[300px]"
 />
 
-- On the Expo dashboard, under **Build artifact**, click the **Open with Orbit**.
+- No painel da Expo, em **Build artifact**, clique em **Open with Orbit**.
 
-After the build is installed, the Orbit app launches the development build on the device.
+Depois que o build é instalado, o app Orbit abre o development build no dispositivo.
 
-<Collapsible summary="Alternate: Use the Install button and QR code">
+<Collapsible summary="Alternativa: use o botão Install e o QR code">
 
-The **Install** button in the **Build artifact** generates a QR code for installation:
+O botão **Install** em **Build artifact** gera um QR code para a instalação:
 
-- Click **Install** to display a popup with the QR code.
+- Clique em **Install** para exibir um pop-up com o QR code.
 
 <ContentSpotlight
-  alt="Install button generates a QR code for easy installation on Android devices and emulators"
+  alt="O botão Install gera um QR code para instalar facilmente em dispositivos e emuladores Android"
   src="/static/images/tutorial/eas/android-development-build-qr-code.webp"
   className="max-w-[480px]"
 />
 
-- Scan the QR code with our Android device's camera to open the build link in the default web browser.
-- Tap the **Install** button on the webpage to download the **.apk** file.
-- Once downloaded, open the **.apk** to start the installation process.
-- If an **Unsafe app blocked message** appears, select **Install anyway**. This warning can safely be ignored as the source of the **.apk** (which we generated) is trusted.
+- Escaneie o QR code com a câmera do dispositivo Android para abrir o link do build no navegador padrão.
+- Toque no botão **Install** na página para baixar o arquivo **.apk**.
+- Quando o download terminar, abra o **.apk** para iniciar a instalação.
+- Se aparecer a mensagem **Unsafe app blocked**, selecione **Install anyway**. Esse aviso pode ser ignorado com segurança, já que a origem do **.apk** (que geramos nós mesmos) é confiável.
 
 <ContentSpotlight
-  alt="Unsafe app message dialog on Android device when installing development build"
+  alt="Caixa de diálogo de app não seguro no dispositivo Android ao instalar o development build"
   src="/static/images/tutorial/eas/android-unsafe-dialog.webp"
   className="max-w-[300px]"
 />
@@ -126,9 +126,9 @@ The **Install** button in the **Build artifact** generates a QR code for install
 
 <Step label="2">
 
-### Run development build
+### Rode o development build \{#run-development-build}
 
-Start the development server by running `npx expo start` from the project directory. Once the server is running, press <kbd>A</kbd> in the terminal window to open the project:
+Inicie o servidor de desenvolvimento rodando `npx expo start` no diretório do projeto. Depois que o servidor estiver em execução, pressione <kbd>A</kbd> na janela do terminal para abrir o projeto:
 
 <Terminal
   cmd={{
@@ -141,23 +141,23 @@ Start the development server by running `npx expo start` from the project direct
 
 </Step>
 
-## Android Emulator
+## Android Emulator \{#android-emulator}
 
 <Step label="1">
 
-### Install the development build
+### Instale o development build \{#install-the-development-build}
 
-In the terminal, once the build finishes, EAS CLI prompts us by asking whether we want to run the build on an Android Emulator. Press <kbd>Y</kbd>.
+No terminal, quando o build terminar, a EAS CLI nos pergunta se queremos rodar o build em um Android Emulator. Pressione <kbd>Y</kbd>.
 
 <ContentSpotlight
-  alt="EAS CLI automatically gives to run build on Android Emulator"
+  alt="A EAS CLI oferece automaticamente rodar o build no Android Emulator"
   src="/static/images/tutorial/eas/android-development-build-emulator-cli.webp"
   className="max-w-[600px]"
 />
 
-<Collapsible summary="Alternate: Use Expo Orbit">
+<Collapsible summary="Alternativa: use o Expo Orbit">
 
-Alternatively, [Expo Orbit](/build/orbit/) can be used for installation. From **Build artifact** on the Expo dashboard, click **Open with Orbit** to install the development build on the Android Emulator.
+Como alternativa, o [Expo Orbit](/build/orbit/) pode ser usado para a instalação. Em **Build artifact** no painel da Expo, clique em **Open with Orbit** para instalar o development build no Android Emulator.
 
 </Collapsible>
 
@@ -165,9 +165,9 @@ Alternatively, [Expo Orbit](/build/orbit/) can be used for installation. From **
 
 <Step label="2">
 
-### Run the development build
+### Rode o development build \{#run-the-development-build}
 
-Start the development server by running `npx expo start` from the project directory. Once the server is running, press <kbd>A</kbd> in the terminal window to open the project:
+Inicie o servidor de desenvolvimento rodando `npx expo start` no diretório do projeto. Depois que o servidor estiver em execução, pressione <kbd>A</kbd> na janela do terminal para abrir o projeto:
 
 <Terminal
   cmd={{
@@ -180,6 +180,8 @@ Start the development server by running `npx expo start` from the project direct
 
 </Step>
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="EAS_TUTORIAL" currentChapterSlug="/tutorial/eas/android-development-build" />
+
+{/* ia-translate: true */}

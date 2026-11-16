@@ -1,7 +1,7 @@
 ---
-title: 'Run your first Expo Workflows job'
-sidebar_title: First Expo Workflows job
-description: Learn basics of Expo Workflows by creating workflow files, jobs, triggers, and chain jobs together for an Expo app.
+title: 'Rode seu primeiro job do Expo Workflows'
+sidebar_title: Primeiro job do Expo Workflows
+description: Aprenda o básico do Expo Workflows criando arquivos de workflow, jobs e gatilhos, e encadeando jobs para um app Expo.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
@@ -10,39 +10,39 @@ import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-In this chapter, we create our first Expo Workflows job.
+Neste capítulo, criamos nosso primeiro job do Expo Workflows.
 
-## Learning outcomes
+## Objetivos de aprendizado \{#learning-outcomes}
 
-- Create and run a custom workflow that prints a message to the Expo dashboard
-- Set up an automatic trigger so every push to `main` runs the workflow
-- Chain multiple jobs together so one job's output feeds the next
-- Read workflow logs and job graphs in the Expo dashboard
+- Criar e rodar um workflow personalizado que imprime uma mensagem no painel da Expo
+- Configurar um gatilho automático para que cada push para `main` rode o workflow
+- Encadear vários jobs para que a saída de um alimente o próximo
+- Ler os logs do workflow e os grafos de jobs no painel da Expo
 
-## How workflow files work
+## Como os arquivos de workflow funcionam \{#how-workflow-files-work}
 
-Workflow files are YAML files stored in our project's **.eas/workflows/** directory. Each file defines the jobs to run and the steps each job follows.
+Os arquivos de workflow são arquivos YAML guardados na pasta **.eas/workflows/** do nosso projeto. Cada arquivo define os jobs a rodar e as etapas que cada job segue.
 
 <JobTypes />
 
-A workflow file contains one or more jobs and an optional trigger. When it runs, Expo Workflows reads the file, provisions the environment, and executes the jobs in that environment.
+Um arquivo de workflow contém um ou mais jobs e um gatilho opcional. Quando roda, o Expo Workflows lê o arquivo, prepara o ambiente e executa os jobs nele.
 
-## Types of jobs in Expo Workflows
+## Tipos de job no Expo Workflows \{#types-of-jobs-in-expo-workflows}
 
-Expo Workflows has two types of jobs:
+O Expo Workflows tem dois tipos de job:
 
-- **Pre-packaged job:** This job uses the `type` field. It tells Expo Workflows which operation to run, like `build`, `submit`, or `update`. Expo Workflows then runs the pre-configured steps for that operation.
-- **Custom job:** This type of job uses `steps` instead of the `type` field. We write our own commands using `run` for each step. A custom job allows us to control what happens when a workflow runs and when to run a specific command.
+- **Job pré-empacotado:** usa o campo `type`. Ele diz ao Expo Workflows qual operação executar, como `build`, `submit` ou `update`. Depois, o Expo Workflows executa as etapas pré-configuradas dessa operação.
+- **Job personalizado:** usa `steps` no lugar do campo `type`. Escrevemos nossos próprios comandos usando `run` em cada etapa. Um job personalizado nos dá controle sobre o que acontece quando um workflow roda e sobre quando executar um comando específico.
 
-## Create our first workflow
+## Crie nosso primeiro workflow \{#create-our-first-workflow}
 
-Let's create our first workflow using a custom job and run it on Expo Workflows.
+Vamos criar nosso primeiro workflow usando um job personalizado e rodá-lo no Expo Workflows.
 
 <Step label="1">
 
-### Create the workflow directory
+### Crie a pasta de workflows \{#create-the-workflow-directory}
 
-Create the **.eas/workflows/** directory at the root of our Expo project. Expo Workflows looks for workflow files only in this location.
+Crie a pasta **.eas/workflows/** na raiz do nosso projeto Expo. O Expo Workflows procura arquivos de workflow só nesse lugar.
 
 <Terminal cmd={['$ mkdir -p .eas/workflows']} />
 
@@ -50,9 +50,9 @@ Create the **.eas/workflows/** directory at the root of our Expo project. Expo W
 
 <Step label="2">
 
-### Add a hello.yml file
+### Adicione um arquivo hello.yml \{#add-a-helloyml-file}
 
-Inside **.eas/workflows/**, create a file named **hello.yml**. This file defines our first workflow using a single custom job. The job runs a shell command that prints `"Hello, Workflows"`:
+Dentro de **.eas/workflows/**, crie um arquivo chamado **hello.yml**. Este arquivo define nosso primeiro workflow, com um único job personalizado. O job roda um comando de shell que imprime `"Hello, Workflows"`:
 
 ```yaml .eas/workflows/hello.yml
 name: Hello
@@ -63,64 +63,64 @@ jobs:
       - run: echo "Hello, Workflows" # Any shell command works here
 ```
 
-The above workflow uses the following syntax:
+O workflow acima usa a seguinte sintaxe:
 
-- `name` is the workflow's name as shown on the Expo dashboard.
-- `jobs` contains one or more jobs to run. Each job has a unique ID (in this case, `greet`).
-- `steps` is a sequence of tasks the job executes in order. A job with `steps` but no `type` field is a custom job.
-- `run` is the shell command to execute in a step. Here, it runs `echo` to print a message. Any shell command works.
+- `name` é o nome do workflow, como aparece no painel da Expo.
+- `jobs` contém um ou mais jobs para rodar. Cada job tem um ID único (neste caso, `greet`).
+- `steps` é uma sequência de tarefas que o job executa em ordem. Um job com `steps` e sem campo `type` é um job personalizado.
+- `run` é o comando de shell a executar em uma etapa. Aqui, ele roda `echo` para imprimir uma mensagem. Qualquer comando de shell funciona.
 
 </Step>
 
 <Step label="3">
 
-### Manually run the workflow
+### Rode o workflow manualmente \{#manually-run-the-workflow}
 
-To run the workflow on the Expo dashboard, run the following command from a terminal window:
+Para rodar o workflow no painel da Expo, execute o comando a seguir em uma janela do terminal:
 
 <Terminal cmd={['$ eas workflow:run .eas/workflows/hello.yml']} />
 
-The `eas workflow:run` command uploads the workflow file to Expo Workflows. It then runs any job defined inside the file and the EAS CLI prints a URL to the Expo dashboard where we can watch the job.
+O comando `eas workflow:run` envia o arquivo de workflow para o Expo Workflows. Em seguida, ele roda qualquer job definido no arquivo, e o EAS CLI imprime uma URL para o painel da Expo, onde podemos acompanhar o job.
 
 </Step>
 
 <Step label="4">
 
-### View the job logs
+### Veja os logs do job \{#view-the-job-logs}
 
-Open the URL from the previous step in a browser window. On the workflow page, we can see the `greet` job and its status. Once the job completes, expand the step output to see the logged message: `Hello, Workflows`.
+Abra a URL da etapa anterior em um navegador. Na página do workflow, vemos o job `greet` e o status dele. Quando o job terminar, expanda a saída da etapa para ver a mensagem registrada: `Hello, Workflows`.
 
 <ContentSpotlight
-  alt="Expo Workflows dashboard showing expanded job logs for a Hello World workflow run."
+  alt="Painel do Expo Workflows mostrando os logs expandidos do job de uma execução do workflow Hello World."
   src="/static/images/tutorial/cicd/eas-workflows-job-logs-dashboard.png"
   className="max-w-160"
 />
 
-The Expo dashboard is where we view and debug any workflow job. The **Workflow graph** shows what triggered our job and the job's unique ID.
+O painel da Expo é onde vemos e fazemos debug de qualquer job de workflow. O **Workflow graph** mostra o que disparou nosso job e o ID único do job.
 
-Switch to the **Workflow file** tab. This is the workflow file we wrote in Step 2, preserved with the run.
+Troque para a aba **Workflow file**. Este é o arquivo de workflow que escrevemos na etapa 2, preservado com a execução.
 
-> **info** **Tip:** View all of our project's workflows and filter them by status or type on the [Workflows page](https://expo.dev/accounts/[account]/projects/[project]/workflows).
+> **info** **Dica:** veja todos os workflows do projeto e filtre-os por status ou tipo na [página de Workflows](https://expo.dev/accounts/[account]/projects/[project]/workflows).
 
 </Step>
 
-## Automatically run a workflow
+## Rode um workflow automaticamente \{#automatically-run-a-workflow}
 
-Running `eas workflow:run` from the terminal works for a one-off, but most teams want workflows that fire automatically on GitHub events. Automatic triggers mean no one has to remember to run a workflow. The workflow's configuration lives in the repository alongside the code it builds.
+Rodar `eas workflow:run` no terminal serve para uma execução pontual, mas a maioria das equipes quer workflows que disparem sozinhos com eventos do GitHub. Gatilhos automáticos significam que ninguém precisa lembrar de rodar um workflow. A configuração do workflow fica no repositório, junto com o código que ele gera.
 
-> **info** **Note:** A trigger is a rule that tells a CI/CD pipeline when to start. It defines the event (such as a code push or a pull request) that causes the pipeline to run automatically instead of requiring manual execution.
+> **info** **Nota:** um gatilho é uma regra que diz a um pipeline de CI/CD quando começar. Ele define o evento (como um push de código ou um pull request) que faz o pipeline rodar automaticamente, em vez de exigir execução manual.
 
-We define a trigger with the `on` key in the workflow file. Expo Workflows watches for the matching GitHub event and runs the workflow automatically.
+Definimos um gatilho com a chave `on` no arquivo de workflow. O Expo Workflows observa o evento correspondente do GitHub e roda o workflow automaticamente.
 
 <Step label="1">
 
-### Add an automatic trigger
+### Adicione um gatilho automático \{#add-an-automatic-trigger}
 
-Let's add an `on.push.branches` trigger to our existing workflow file.
+Vamos adicionar um gatilho `on.push.branches` ao nosso arquivo de workflow existente.
 
-- The `on` key defines which GitHub event triggers the workflow
-- The `push` field defines when to trigger
-- The `branches` field allows us to specify that whenever the code is pushed to the `main` branch, the workflow should run automatically
+- A chave `on` define qual evento do GitHub dispara o workflow
+- O campo `push` define quando disparar
+- O campo `branches` permite especificar que, sempre que o código for enviado para a branch `main`, o workflow deve rodar automaticamente
 
 ```yaml .eas/workflows/hello.yml
 name: Hello
@@ -137,15 +137,15 @@ jobs:
       - run: echo "Hello, Workflows"
 ```
 
-The `branches` field can include any branch name that exists in a GitHub repository. We can specify multiple branches such as `['main', 'develop', 'staging']` to trigger the workflow when we push to any of those branches.
+O campo `branches` pode incluir qualquer nome de branch que exista em um repositório do GitHub. Podemos especificar várias branches, como `['main', 'develop', 'staging']`, para disparar o workflow quando enviarmos código para qualquer uma delas.
 
 </Step>
 
 <Step label="2">
 
-### Commit the change and push to GitHub
+### Faça o commit da mudança e envie ao GitHub \{#commit-the-change-and-push-to-github}
 
-Commit the workflow file and push it to the `main` branch:
+Faça o commit do arquivo de workflow e envie-o para a branch `main`:
 
 <Terminal
   cmd={[
@@ -160,39 +160,39 @@ Commit the workflow file and push it to the `main` branch:
 
 <Step label="3">
 
-### Verify the automatic trigger
+### Verifique o gatilho automático \{#verify-the-automatic-trigger}
 
-> **info** **Tip:** This step depends on our local Expo project being pushed to GitHub and the GitHub repository being connected to Expo Services. To confirm: run `git remote -v` to verify the local repo points to a GitHub URL and open the project's [GitHub settings in the Expo dashboard](https://expo.dev/accounts/[account]/projects/[projectName]/github) to check that a repository is connected.
+> **info** **Dica:** esta etapa depende de o projeto Expo local estar enviado ao GitHub e de o repositório estar conectado aos Expo Services. Para confirmar: rode `git remote -v` para verificar se o repositório local aponta para uma URL do GitHub, e abra as [configurações do GitHub no painel da Expo](https://expo.dev/accounts/[account]/projects/[projectName]/github) para checar se um repositório está conectado.
 
-Let's open our project's [Workflows page](https://expo.dev/accounts/[account]/projects/[project]/workflows) on the Expo dashboard to see the new job.
+Vamos abrir a [página de Workflows](https://expo.dev/accounts/[account]/projects/[project]/workflows) do nosso projeto no painel da Expo para ver o novo job.
 
 <ContentSpotlight
-  alt="Expo Workflows dashboard showing a workflow run automatically triggered by a push to the GitHub repository's main branch."
+  alt="Painel do Expo Workflows mostrando uma execução de workflow disparada automaticamente por um push para a branch main do repositório do GitHub."
   src="/static/images/tutorial/cicd/eas-workflows-github-triggered-run.png"
   className="max-w-160"
 />
 
-In the Expo dashboard, notice that the **Workflow graph** tab shows the commit message and branch reference for this push. In the status under the workflow header, the **Trigger** and **Triggered by** reflect the same information.
+No painel da Expo, repare que a aba **Workflow graph** mostra a mensagem de commit e a referência da branch deste push. No status abaixo do cabeçalho do workflow, **Trigger** e **Triggered by** mostram as mesmas informações.
 
 </Step>
 
-## Other trigger types
+## Outros tipos de gatilho \{#other-trigger-types}
 
-Other trigger types we use later in this tutorial:
+Outros tipos de gatilho que usamos mais adiante neste tutorial:
 
-- `on.pull_request`: Runs when a pull request opens or updates against a matching branch
-- `on.push` with `tags`: Runs when a matching tag pattern is pushed to the GitHub repository
-- `on.pull_request_labeled`: Runs when a specific label gets added to a pull request
+- `on.pull_request`: roda quando um pull request é aberto ou atualizado em uma branch correspondente
+- `on.push` com `tags`: roda quando um padrão de tag correspondente é enviado ao repositório do GitHub
+- `on.pull_request_labeled`: roda quando um label específico é adicionado a um pull request
 
-## Chain jobs together
+## Encadeie os jobs \{#chain-jobs-together}
 
-So far, we have implemented a single job in our workflow file. A workflow file can have multiple jobs. A job's input can depend on the output of the previous job. Let's chain multiple jobs together in a workflow file.
+Até agora, implementamos um único job no nosso arquivo de workflow. Um arquivo de workflow pode ter vários jobs, e a entrada de um job pode depender da saída do anterior. Vamos encadear vários jobs em um arquivo de workflow.
 
 <Step label="1">
 
-### Update hello.yml
+### Atualize o hello.yml \{#update-helloyml}
 
-Let's update the **hello.yml** file to add a custom job and a pre-packaged job. This pre-packaged job is called [`doc`](/eas/workflows/pre-packaged-jobs/#doc) and it renders Markdown on the Expo dashboard:
+Vamos atualizar o arquivo **hello.yml** para adicionar um job personalizado e um job pré-empacotado. Esse job pré-empacotado se chama [`doc`](/eas/workflows/pre-packaged-jobs/#doc) e renderiza Markdown no painel da Expo:
 
 ```yaml .eas/workflows/hello.yml
 name: Hello
@@ -217,37 +217,39 @@ jobs:
         **${{ needs.greet.outputs.greeting }}**
 ```
 
-The above workflow file does the following:
+O arquivo de workflow acima faz o seguinte:
 
-- Defines a `greet` job, which is a custom job. It uses the [`set-output`](/eas/workflows/syntax/#set-output) shell function to set a value called `greeting`. The `outputs` field at the job level exposes the step output so other jobs can reference it.
-- Defines a `show_info` job which uses `needs: [greet]` to wait for the `greet` job to complete and access its output. Then, it uses the pre-packaged `doc` job type to render a Markdown document in the Expo dashboard. The Markdown content includes the value of `greeting` set in the previous job.
+- Define um job `greet`, que é um job personalizado. Ele usa a função de shell [`set-output`](/eas/workflows/syntax/#set-output) para definir um valor chamado `greeting`. O campo `outputs` no nível do job expõe a saída da etapa para que outros jobs possam referenciá-la.
+- Define um job `show_info`, que usa `needs: [greet]` para esperar o job `greet` terminar e acessar a saída dele. Depois, usa o tipo de job pré-empacotado `doc` para renderizar um documento Markdown no painel da Expo. O conteúdo Markdown inclui o valor de `greeting` definido no job anterior.
 
-> **info** **Tip:** In Expo Workflows, jobs run in parallel by default. The `needs` field is what makes a job wait: it lists the job IDs that must complete successfully before the job using `needs` can start. If a job in the `needs` list fails, the dependent job is skipped.
+> **info** **Dica:** no Expo Workflows, os jobs rodam em paralelo por padrão. O campo `needs` é o que faz um job esperar: ele lista os IDs de jobs que precisam terminar com sucesso antes de o job que usa `needs` começar. Se um job da lista `needs` falhar, o job dependente é pulado.
 
 </Step>
 
 <Step label="2">
 
-### Run the chained workflow
+### Rode o workflow encadeado \{#run-the-chained-workflow}
 
-Run the following command from a terminal window to see the chained jobs in action:
+Rode o comando a seguir em uma janela do terminal para ver os jobs encadeados em ação:
 
 <Terminal cmd={['$ eas workflow:run .eas/workflows/hello.yml']} />
 
-Open the Expo dashboard link from the EAS CLI. Under **Logs**, notice that the `greet` job runs first. Once it completes, the `show_info` job runs and renders the Markdown content using the output from the previous job.
+Abra o link do painel da Expo que o EAS CLI mostra. Em **Logs**, repare que o job `greet` roda primeiro. Quando ele termina, o job `show_info` roda e renderiza o conteúdo Markdown usando a saída do job anterior.
 
 <ContentSpotlight
-  alt="Expo Workflows dashboard showing two chained jobs running sequentially after the first job completes."
+  alt="Painel do Expo Workflows mostrando dois jobs encadeados rodando em sequência, depois que o primeiro job termina."
   src="/static/images/tutorial/cicd/eas-workflows-chained-jobs.png"
   className="max-w-160"
 />
 
 </Step>
 
-## Clean up
+## Limpeza \{#clean-up}
 
-After this chapter, delete the **hello.yml** file because we do not use it in the next chapters. If we prefer to keep it, remove the `on.push` trigger so it does not fire on every push to `main`.
+Depois deste capítulo, apague o arquivo **hello.yml**, porque não o usamos nos próximos capítulos. Se preferir mantê-lo, remova o gatilho `on.push` para que ele não dispare a cada push para `main`.
 
-## Summary
+## Resumo \{#summary}
 
 <ProgressTracker name="CICD_TUTORIAL" currentChapterSlug="/tutorial/cicd/first-workflow" />
+
+{/* ia-translate: true */}
