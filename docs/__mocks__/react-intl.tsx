@@ -1,6 +1,6 @@
 import { type ReactElement, type ReactNode } from 'react';
 
-import enMessages from '~/messages/en.json';
+import enMessages from './messages.en.json';
 
 type FormatMessageDescriptor = {
   id?: string;
