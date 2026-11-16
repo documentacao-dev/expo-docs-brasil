@@ -1,6 +1,6 @@
 ---
-title: Configure with app config
-description: Learn about what app.json/app.config.js/app.config.ts files are and how you can customize and use them dynamically.
+title: Configurar com a config do app
+description: Saiba o que são os arquivos app.json, app.config.js e app.config.ts e como personalizá-los e usá-los de forma dinâmica.
 ---
 
 import { DocsLogo } from '@expo/styleguide';
@@ -12,9 +12,9 @@ import { Terminal } from '~/ui/components/Snippet';
 
 <PossibleRedirectNotification newUrl="/versions/latest/config/app/" />
 
-The app config (**app.json**, **app.config.js**, **app.config.ts**) is used for configuring [Expo Prebuild](/more/glossary-of-terms/#prebuild) generation, how a project loads in [Expo Go](/get-started/set-up-your-environment/), and the OTA update manifest.
+A config do app (**app.json**, **app.config.js**, **app.config.ts**) é usada para configurar a geração do [Expo Prebuild](/more/glossary-of-terms/#prebuild), como um projeto é carregado no [Expo Go](/get-started/set-up-your-environment/) e o manifesto de atualizações OTA.
 
-It must be located at the root of your project, next to the **package.json**. Here is a minimal example:
+Ela precisa ficar na raiz do projeto, ao lado do **package.json**. Veja um exemplo mínimo:
 
 ```json app.json
 {
@@ -23,30 +23,30 @@ It must be located at the root of your project, next to the **package.json**. He
 }
 ```
 
-If your Expo config has a top-level `expo: {}` object, then this will be used in place of the root object and all other keys will be ignored.
+Se a sua config do Expo tiver um objeto `expo: {}` no nível superior, ele será usado no lugar do objeto raiz e todas as outras chaves serão ignoradas.
 
 <BoxLink
-  title="App config schema reference"
-  description="Explore the full schema of the app config (app.json/app.config.js)."
+  title="Referência do schema da config do app"
+  description="Explore o schema completo da config do app (app.json/app.config.js)."
   href="/versions/latest/config/app/"
   Icon={DocsLogo}
 />
 
-## Properties
+## Propriedades
 
-The app config configures many things such as app name, icon, splash screen, deep linking scheme, API keys to use for some services and so on. For a complete list of available properties, see [app.json/app.config.js/app.config.ts reference](/versions/latest/config/app/).
+A config do app define várias coisas, como nome do app, ícone, splash screen, esquema de deep linking, chaves de API usadas por alguns serviços e assim por diante. Para a lista completa de propriedades disponíveis, consulte a [referência de app.json/app.config.js/app.config.ts](/versions/latest/config/app/).
 
-> **info** Do you use Visual Studio Code? If so, we recommend that you install the [Expo Tools](https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools) extension to get auto-completion of properties in **app.json** files.
+> **info** Você usa o Visual Studio Code? Se sim, recomendamos instalar a extensão [Expo Tools](https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools) para ter preenchimento automático das propriedades nos arquivos **app.json**.
 
-## Reading configuration values in your app
+## Lendo valores de configuração no seu app
 
-Most configuration in the app config is accessible at runtime from your JavaScript code, using [`Constants.expoConfig`](/versions/latest/sdk/constants/#nativeconstants). You **should not** include any sensitive information in the app config (with a few exceptions for fields that are filtered out, as outlined below).
+A maior parte da configuração da config do app pode ser acessada em tempo de execução pelo seu código JavaScript, usando [`Constants.expoConfig`](/versions/latest/sdk/constants/#nativeconstants). Você **não deve** incluir nenhuma informação sensível na config do app (com algumas exceções para os campos que são filtrados, como detalhado abaixo).
 
-You can verify which configuration will be embedded in your builds/updates and available at runtime by running `npx expo config --type public`.
+Você pode verificar quais configurações serão incorporadas aos seus builds e atualizações e ficarão disponíveis em tempo de execução rodando `npx expo config --type public`.
 
-<Collapsible summary="Which fields are filtered out of the public app config?">
+<Collapsible summary="Quais campos são filtrados da config pública do app?">
 
-The following fields are filtered out of the public app config (and not accessible through the `Constants.expoConfig` object):
+Os campos a seguir são filtrados da config pública do app (e não ficam acessíveis pelo objeto `Constants.expoConfig`):
 
 - [`ios.config`](/versions/latest/config/app/#config)
 - [`android.config`](/versions/latest/config/app/#config-1)
@@ -55,28 +55,28 @@ The following fields are filtered out of the public app config (and not accessib
 
 </Collapsible>
 
-> **warning** You should also avoid importing **app.json** or **app.config.js** directly in your JavaScript code, because this will import the entire file rather than a processed version of it. Instead, use [`Constants.expoConfig`](/versions/latest/sdk/constants/#nativeconstants) to access the configuration.
+> **warning** Também evite importar o **app.json** ou o **app.config.js** diretamente no seu código JavaScript, porque isso importa o arquivo inteiro e não uma versão processada dele. Em vez disso, use [`Constants.expoConfig`](/versions/latest/sdk/constants/#nativeconstants) para acessar a configuração.
 
-## Extending configuration
+## Estendendo a configuração
 
-Library authors can extend the app config by using [Expo Config plugins](/config-plugins/introduction/).
+Autores de bibliotecas podem estender a config do app usando [config plugins do Expo](/config-plugins/introduction/).
 
-> **info** Config plugins are mostly used to configure the [`npx expo prebuild`](/more/glossary-of-terms/#prebuild) command.
+> **info** Os config plugins são usados principalmente para configurar o comando [`npx expo prebuild`](/more/glossary-of-terms/#prebuild).
 
-## Dynamic configuration
+## Configuração dinâmica
 
-For more customization, you can use the JavaScript (**app.config.js**) or [TypeScript](#using-typescript-for-configuration-appconfigts-instead-of-appconfigjs) (**app.config.ts**). These configs have the following properties:
+Para mais personalização, você pode usar JavaScript (**app.config.js**) ou [TypeScript](#using-typescript-for-configuration-appconfigts-instead-of-appconfigjs) (**app.config.ts**). Essas configs têm as seguintes propriedades:
 
-- Comments, variables, and single quotes.
-- ESM `import` syntax in both **app.config.js** and **app.config.ts**, including importing other JavaScript files.
-- TypeScript support (**app.config.ts**) with nullish coalescing and optional chaining. Importing other TypeScript files or customizing language features requires [`tsx`](/guides/typescript/#app-config).
-- Updated whenever Metro bundler reloads.
-- Provide environment information to your app.
-- Does not support Promises.
+- Comentários, variáveis e aspas simples.
+- Sintaxe `import` do ESM tanto em **app.config.js** quanto em **app.config.ts**, incluindo a importação de outros arquivos JavaScript.
+- Suporte a TypeScript (**app.config.ts**) com coalescência nula e encadeamento opcional. Importar outros arquivos TypeScript ou personalizar recursos da linguagem exige [`tsx`](/guides/typescript/#app-config).
+- Atualizada sempre que o Metro bundler recarrega.
+- Fornece informações do ambiente para o seu app.
+- Não oferece suporte a Promises.
 
-> **info** **Note**: **app.config.mts**, **app.config.cts**, **app.config.mjs**, and **app.config.cjs** files are also discovered. By default, the config is transpiled to CommonJS and both `.js` and `.ts` files can mix ESM and CommonJS syntax. When that mix causes import or require issues, use one of the explicit extensions to lock the config to a single module format.
+> **info** **Observação**: os arquivos **app.config.mts**, **app.config.cts**, **app.config.mjs** e **app.config.cjs** também são encontrados. Por padrão, a config é transpilada para CommonJS, e os arquivos `.js` e `.ts` podem misturar sintaxe ESM e CommonJS. Quando essa mistura causar problemas de import ou require, use uma das extensões explícitas para fixar a config em um único formato de módulo.
 
-For example, you can export an object to define your custom config:
+Por exemplo, você pode exportar um objeto para definir sua config personalizada:
 
 ```js app.config.js
 const myValue = 'My App';
@@ -91,7 +91,7 @@ module.exports = {
 };
 ```
 
-The `"extra"` key allows passing arbitrary configuration data to your app. The value of this key is accessed using [`expo-constants`](/versions/latest/sdk/constants/):
+A chave `"extra"` permite passar dados de configuração arbitrários para o seu app. O valor dessa chave é acessado usando [`expo-constants`](/versions/latest/sdk/constants/):
 
 ```js App.js
 import Constants from 'expo-constants';
@@ -99,9 +99,9 @@ import Constants from 'expo-constants';
 Constants.expoConfig.extra.fact === 'kittens are cool';
 ```
 
-You can access and modify incoming config values by exporting a function that returns an object. This is useful if your project also has an **app.json**. By default, Expo CLI will read the **app.json** first and send the normalized results to the **app.config.js**.
+Você pode acessar e modificar os valores de configuração recebidos exportando uma função que retorna um objeto. Isso é útil se o seu projeto também tiver um **app.json**. Por padrão, a CLI do Expo lê primeiro o **app.json** e envia o resultado normalizado para o **app.config.js**.
 
-For example, your **app.json** could look like this:
+Por exemplo, o seu **app.json** pode ficar assim:
 
 ```json app.json
 {
@@ -109,7 +109,7 @@ For example, your **app.json** could look like this:
 }
 ```
 
-And in your **app.config.js**, you are provided with that configuration in the arguments to the exported function:
+E no seu **app.config.js** você recebe essa configuração nos argumentos da função exportada:
 
 ```js app.config.js
 module.exports = ({ config }) => {
@@ -120,9 +120,9 @@ module.exports = ({ config }) => {
 };
 ```
 
-### Switching configuration based on the environment
+### Alternando a configuração de acordo com o ambiente
 
-It's common to have some different configuration in development, staging, and production environments, or to swap out configuration entirely to white label an app. To accomplish this, you can use **app.config.js** along with environment variables.
+É comum ter configurações diferentes em desenvolvimento, staging e produção, ou trocar a configuração inteira para fazer white label de um app. Para isso, você pode usar o **app.config.js** junto com variáveis de ambiente.
 
 ```js app.config.js
 module.exports = () => {
@@ -138,11 +138,11 @@ module.exports = () => {
 };
 ```
 
-To use this configuration with Expo CLI commands, set the environment variable either for specific commands or in your shell profile. To set environment variables for specific commands, prefix the command with the variables and values as shown in the example:
+Para usar essa configuração com os comandos da CLI do Expo, defina a variável de ambiente para comandos específicos ou no seu perfil do shell. Para definir variáveis de ambiente em um comando específico, coloque as variáveis e os valores antes do comando, como mostrado no exemplo:
 
 <Terminal cmd={['$ MY_ENVIRONMENT=production eas update']} />
 
-This is not anything unique to Expo CLI. On Windows you can approximate the above command with:
+Isso não é exclusivo da CLI do Expo. No Windows, você pode aproximar o comando acima assim:
 
 <Terminal
   cmd={{
@@ -153,11 +153,11 @@ This is not anything unique to Expo CLI. On Windows you can approximate the abov
   }}
 />
 
-Or you can use any other mechanism that you are comfortable with for environment variables.
+Ou você pode usar qualquer outro mecanismo com o qual se sinta à vontade para variáveis de ambiente.
 
-### Using TypeScript for configuration: app.config.ts instead of app.config.js
+### Usando TypeScript na configuração: app.config.ts em vez de app.config.js
 
-You can use autocomplete and doc-blocks with an Expo config in TypeScript. Create an **app.config.ts** with the following contents:
+Você pode ter autocompletar e blocos de documentação em uma config do Expo em TypeScript. Crie um **app.config.ts** com o seguinte conteúdo:
 
 ```ts app.config.ts
 import { ExpoConfig, ConfigContext } from 'expo/config';
@@ -169,17 +169,19 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 });
 ```
 
-To import other TypeScript files into **app.config.ts** or customize the language features, we recommend using [`tsx`](/guides/typescript/#app-config). `tsx` also enables using `import` syntax in any file imported by **app.config.ts**. This means you can write local [config plugins](/config-plugins/introduction/) in TypeScript with full language features.
+Para importar outros arquivos TypeScript no **app.config.ts** ou personalizar os recursos da linguagem, recomendamos usar o [`tsx`](/guides/typescript/#app-config). O `tsx` também permite usar a sintaxe `import` em qualquer arquivo importado pelo **app.config.ts**. Isso significa que você pode escrever [config plugins](/config-plugins/introduction/) locais em TypeScript com todos os recursos da linguagem.
 
-### Configuration resolution rules
+### Regras de resolução da configuração
 
-There are two different types of configs: static (**app.config.json**, **app.json**), and dynamic (**app.config.js**, **app.config.ts**). Static configs can be automatically updated with CLI tools, whereas dynamic configs must be manually updated by the developer.
+Existem dois tipos de config: estática (**app.config.json**, **app.json**) e dinâmica (**app.config.js**, **app.config.ts**). As configs estáticas podem ser atualizadas automaticamente pelas ferramentas de linha de comando, enquanto as dinâmicas precisam ser atualizadas manualmente pelo desenvolvedor.
 
-1. The static config is read if **app.config.json** exists (falls back to **app.json**). If no static config exists, then default values are inferred from the **package.json** and your dependencies.
-2. The dynamic config is read if either **app.config.ts** or **app.config.js** exist. If both exist, then the TypeScript config is used.
-3. If the dynamic config returns a function, then the static config is passed to the function with `({ config }) => ({})`. This function can then mutate the static config values. Think of this like middleware for the static config.
-4. The return value from the dynamic config is used as the final config. It cannot have any promises.
-5. All functions in the config are evaluated and serialized before any tool in the Expo ecosystem uses it. The config must be a JSON manifest when it is hosted.
-6. If the final config object has a top-level `expo: {}` object, then this will be used in place of the root object and all other keys will be ignored.
+1. A config estática é lida se o **app.config.json** existir (com fallback para o **app.json**). Se nenhuma config estática existir, os valores padrão são inferidos a partir do **package.json** e das suas dependências.
+2. A config dinâmica é lida se existir o **app.config.ts** ou o **app.config.js**. Se os dois existirem, a config TypeScript é usada.
+3. Se a config dinâmica retornar uma função, a config estática é passada para a função com `({ config }) => ({})`. Essa função pode então alterar os valores da config estática. Pense nisso como um middleware para a config estática.
+4. O valor retornado pela config dinâmica é usado como config final. Ele não pode conter Promises.
+5. Todas as funções da config são avaliadas e serializadas antes que qualquer ferramenta do ecossistema Expo as use. A config precisa ser um manifesto JSON quando for hospedada.
+6. Se o objeto final de config tiver um objeto `expo: {}` no nível superior, ele será usado no lugar do objeto raiz e todas as outras chaves serão ignoradas.
 
-Running `npx expo config` will display the final configuration that will be used in Expo CLI after resolution has occurred.
+Rodar `npx expo config` exibe a configuração final que será usada pela CLI do Expo depois que a resolução ocorrer.
+
+{/* ia-translate: true */}

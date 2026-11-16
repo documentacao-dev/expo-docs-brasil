@@ -1,23 +1,23 @@
 ---
-title: Color themes
-description: Learn how to support light and dark modes in your app.
+title: Temas de cores
+description: Aprenda a oferecer os modos claro e escuro no seu app.
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { SnackInline, Terminal } from '~/ui/components/Snippet';
 
-It's common for apps to support light and dark color schemes. Here is an example of how supporting both modes looks in an Expo project:
+É comum que os apps ofereçam esquemas de cores claro e escuro. Veja a seguir um exemplo de como fica oferecer os dois modos em um projeto Expo:
 
 <ContentSpotlight file="guides/color-schemes.mp4" />
 
-## Configuration
+## Configuração
 
-> **info** For Android and iOS projects, additional configuration is required to support switching between light and dark mode. For web, no additional configuration is required.
+> **info** Para projetos Android e iOS, é preciso uma configuração adicional para alternar entre o modo claro e o modo escuro. Para a web, não é necessária nenhuma configuração adicional.
 
-To configure supported appearance styles, you can use the [`userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle) property in your project's [app config](/versions/latest/config/app). By default, this property is set to `automatic` when you create a new project with the [default template](/get-started/create-a-project/).
+Para configurar os estilos de aparência disponíveis, use a propriedade [`userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle) no [app config](/versions/latest/config/app) do seu projeto. Por padrão, essa propriedade vem definida como `automatic` quando você cria um novo projeto com o [template padrão](/get-started/create-a-project/).
 
-Here is an example configuration:
+Veja um exemplo de configuração:
 
 ```json app.json
 {
@@ -27,11 +27,11 @@ Here is an example configuration:
 }
 ```
 
-You can also configure `userInterfaceStyle` property for a specific platforms by setting either [`android.userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle-2) or [`ios.userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle-1) to the preferred value.
+Você também pode configurar a propriedade `userInterfaceStyle` para plataformas específicas, definindo [`android.userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle-2) ou [`ios.userInterfaceStyle`](/versions/latest/config/app/#userinterfacestyle-1) com o valor desejado.
 
-> **info** The app will default to the `light` style if this property is absent.
+> **info** O app usa o estilo `light` por padrão se essa propriedade não estiver presente.
 
-When you are creating a development build, you have to install [`expo-system-ui`](/versions/latest/sdk/system-ui/#installation) to support the appearance styles for Android. Otherwise, the `userInterfaceStyle` property is ignored.
+Ao criar um development build, você precisa instalar o [`expo-system-ui`](/versions/latest/sdk/system-ui/#installation) para habilitar os estilos de aparência no Android. Caso contrário, a propriedade `userInterfaceStyle` é ignorada.
 
 <Terminal
   cmd={{
@@ -42,7 +42,7 @@ When you are creating a development build, you have to install [`expo-system-ui`
   }}
 />
 
-If the project is misconfigured and doesn't have `expo-system-ui` installed, the following warning will be shown in the terminal:
+Se o projeto estiver mal configurado e não tiver o `expo-system-ui` instalado, o aviso a seguir será exibido no terminal:
 
 <Terminal
   cmd={[
@@ -50,7 +50,7 @@ If the project is misconfigured and doesn't have `expo-system-ui` installed, the
   ]}
 />
 
-You can also use the following command to check if the project is misconfigured:
+Você também pode usar o comando a seguir para verificar se o projeto está mal configurado:
 
 <Terminal
   cmd={{
@@ -61,17 +61,17 @@ You can also use the following command to check if the project is misconfigured:
   }}
 />
 
-<Collapsible summary="Using an existing React Native project?">
+<Collapsible summary="Usando um projeto React Native existente?">
 
 ### Android
 
-Ensure that the `uiMode` flag is present on your `MainActivity` (and any other activities where this behavior is desired) in **AndroidManifest.xml**:
+Garanta que a flag `uiMode` esteja presente na sua `MainActivity` (e em qualquer outra activity em que esse comportamento seja desejado) no **AndroidManifest.xml**:
 
 ```xml
 <activity android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode">
 ```
 
-Implement the `onConfigurationChanged` method in **MainActivity.java**:
+Implemente o método `onConfigurationChanged` no **MainActivity.java**:
 
 ```java
 /* @info Import the `Intent` and `Configuration` classes. */
@@ -94,27 +94,27 @@ public class MainActivity extends ReactActivity {
 
 ### iOS
 
-You can configure supported styles with the [`UIUserInterfaceStyle`](https://developer.apple.com/documentation/bundleresources/information_property_list/uiuserinterfacestyle) key in your app **Info.plist**. Use `Automatic` to support both light and dark modes.
+Você pode configurar os estilos disponíveis com a chave [`UIUserInterfaceStyle`](https://developer.apple.com/documentation/bundleresources/information_property_list/uiuserinterfacestyle) no **Info.plist** do seu app. Use `Automatic` para oferecer os modos claro e escuro.
 
 </Collapsible>
 
-### Supported appearance styles
+### Estilos de aparência disponíveis
 
-The `userInterfaceStyle` property supports the following values:
+A propriedade `userInterfaceStyle` aceita os valores a seguir:
 
-- `automatic`: Follow system appearance settings and notify about any change the user makes.
-- `light`: Restrict the app to support light theme only.
-- `dark`: Restrict the app to support dark theme only.
+- `automatic`: Segue as configurações de aparência do sistema e acompanha qualquer mudança feita pelo usuário.
+- `light`: Restringe o app ao tema claro.
+- `dark`: Restringe o app ao tema escuro.
 
-## Detect the color scheme
+## Detecte o esquema de cores
 
-To detect the color scheme in your project, use `Appearance` or `useColorScheme` from `react-native`:
+Para detectar o esquema de cores no seu projeto, use `Appearance` ou `useColorScheme` do `react-native`:
 
 ```tsx src/app/index.tsx
 import { Appearance, useColorScheme } from 'react-native';
 ```
 
-Then, you can use `useColorScheme()` hook as shown below:
+Depois, você pode usar o hook `useColorScheme()`, como mostrado abaixo:
 
 ```tsx src/app/index.tsx
 function MyComponent() {
@@ -128,13 +128,13 @@ function MyComponent() {
 }
 ```
 
-In some cases, you will find it helpful to get the current color scheme imperatively with [`Appearance.getColorScheme()` or listen to changes with `Appearance.addChangeListener()`](https://reactnative.dev/docs/appearance).
+Em alguns casos, pode ser útil obter o esquema de cores atual de forma imperativa com [`Appearance.getColorScheme()` ou ouvir as mudanças com `Appearance.addChangeListener()`](https://reactnative.dev/docs/appearance).
 
-## Additional information
+## Informações adicionais
 
-### Minimal example
+### Exemplo mínimo
 
-<SnackInline label="useColorScheme example" dependencies={['expo-status-bar']}>
+<SnackInline label="Exemplo de useColorScheme" dependencies={['expo-status-bar']}>
 
 {/* prettier-ignore */}
 ```tsx
@@ -184,10 +184,12 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-### Tips
+### Dicas
 
-While you are developing your project, you can change your simulator's or device's appearance by using the following shortcuts:
+Enquanto desenvolve o projeto, você pode mudar a aparência do simulador ou do dispositivo usando os atalhos a seguir:
 
-- If using an Android Emulator, you can run `adb shell "cmd uimode night yes"` to enable dark mode, and `adb shell "cmd uimode night no"` to disable dark mode.
-- If using a physical Android device or an Android Emulator, you can toggle the system dark mode setting in the device's settings.
-- If working with an iOS emulator locally, you can use the <kbd>Cmd ⌘</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> shortcut to toggle between light and dark modes.
+- Se estiver usando um emulador Android, execute `adb shell "cmd uimode night yes"` para ativar o modo escuro e `adb shell "cmd uimode night no"` para desativá-lo.
+- Se estiver usando um dispositivo Android físico ou um emulador Android, alterne a configuração de modo escuro do sistema nas configurações do dispositivo.
+- Se estiver trabalhando com um simulador iOS localmente, use o atalho <kbd>Cmd ⌘</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> para alternar entre os modos claro e escuro.
+
+{/* ia-translate: true */}

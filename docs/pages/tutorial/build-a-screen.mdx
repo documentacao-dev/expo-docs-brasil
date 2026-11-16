@@ -1,6 +1,6 @@
 ---
-title: Build a screen
-description: In this tutorial, learn how to use components such as React Native's Pressable, Expo Image, and Expo UI to build a screen.
+title: Crie uma tela
+description: Neste tutorial, aprenda a usar componentes como o Pressable do React Native, o Expo Image e o Expo UI para criar uma tela.
 hasVideoLink: true
 ---
 
@@ -13,75 +13,75 @@ import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll create the first screen of the StickerSmash app.
+Neste capítulo, vamos criar a primeira tela do app StickerSmash.
 
 <ContentSpotlight
-  alt="Initial layout of the StickerSmash app."
+  alt="Layout inicial do app StickerSmash."
   src="/static/images/tutorial/build-a-screen-initial-layout.webp"
   className="max-w-[300px]"
 />
 
-The screen above displays an image and two buttons. The app user can select an image using one of the two buttons. The first button allows the user to select an image from their device. The second button allows the user to continue with a default image provided by the app.
+A tela acima mostra uma imagem e dois botões. O usuário do app pode selecionar uma imagem usando um dos dois botões. O primeiro botão permite selecionar uma imagem do dispositivo. O segundo permite continuar com uma imagem padrão fornecida pelo app.
 
-Once the user selects an image, they can add a sticker to it. So, let's start creating this screen.
+Depois que o usuário seleciona uma imagem, ele pode adicionar um adesivo a ela. Então, vamos começar a criar esta tela.
 
 <VideoBoxLink
   videoId="3rcOP8xDwTQ"
-  title="Watch: Building a screen in your universal Expo app"
-  description="Build the StickerSmash app's first screen using Pressable, Expo Image, and other core components to create an image picker layout."
+  title="Assista: criando uma tela no seu app Expo universal"
+  description="Crie a primeira tela do app StickerSmash usando Pressable, Expo Image e outros componentes principais para montar o layout de seleção de imagem."
 />
 
 ---
 
 <Step label="1">
 
-## Break down the screen
+## Decomponha a tela
 
-Before we build this screen by writing code, let's break it down into some essential elements.
+Antes de construir esta tela escrevendo código, vamos decompô-la em alguns elementos essenciais.
 
 <ContentSpotlight
-  alt="Breakdown of the initial layout."
+  alt="Decomposição do layout inicial."
   src="/static/images/tutorial/build-a-screen-breakdown-of-layout.webp"
   className="max-w-[300px]"
 />
 
-There are two essential elements:
+Há dois elementos essenciais:
 
-- A large image in the top half of the screen
-- Two buttons in the bottom half of the screen
+- Uma imagem grande na metade superior da tela
+- Dois botões na metade inferior da tela
 
-The first button contains multiple components. It has a yellow background. It contains an icon and a text component inside a row.
+O primeiro botão contém vários componentes. Ele tem fundo amarelo e traz um ícone e um texto em uma linha.
 
 <ContentSpotlight
-  alt="Breakdown of the first button: an icon and a text component on a yellow background."
+  alt="Decomposição do primeiro botão: um ícone e um texto sobre um fundo amarelo."
   src="/static/images/tutorial/build-a-screen-breakdown-of-buttons.webp"
   className="max-w-[400px]"
 />
 
-Now that we've broken down the UI into smaller chunks, we're ready to start coding.
+Agora que decompusemos a interface em partes menores, estamos prontos para começar a programar.
 
 </Step>
 
 <Step label="2">
 
-## Display the image
+## Exiba a imagem
 
-We'll use `expo-image` library to display the image in the app. It provides a cross-platform `<Image>` component to load and render an image. It is already included in the default project template we're using.
+Vamos usar a biblioteca `expo-image` para exibir a imagem no app. Ela fornece um componente `<Image>` multiplataforma para carregar e renderizar uma imagem. Ela já vem incluída no template padrão de projeto que estamos usando.
 
-The Image component takes the source of an image as its value. The source can be either a [static asset](https://reactnative.dev/docs/images#static-image-resources) or a URL. For example, the source required from **assets/images** directory is static. It can also come from [Network](https://reactnative.dev/docs/images#network-images) as a `uri` property.
+O componente Image recebe a origem da imagem como valor. A origem pode ser um [asset estático](https://reactnative.dev/docs/images#static-image-resources) ou uma URL. Por exemplo, a origem vinda do diretório **assets/images** é estática. Ela também pode vir da [rede](https://reactnative.dev/docs/images#network-images) como propriedade `uri`.
 
 <ContentSpotlight
-  alt="Background image that we are going to use as a placeholder for the tutorial."
+  alt="Imagem de fundo que vamos usar como marcador de posição no tutorial."
   src="/static/images/tutorial/background-image.webp"
   className="max-w-[250px]"
 />
 
-To use the Image component in **src/app/(tabs)/index.tsx** file:
+Para usar o componente Image no arquivo **src/app/(tabs)/index.tsx**:
 
-1. Import `Image` from the `expo-image` library.
-2. Create a `PlaceholderImage` variable to use **assets/images/background-image.png** file as the `source` prop on the `Image` component.
-3. Replace the outer `View` with `SafeAreaView` from `react-native-safe-area-context`. Native tabs don't add a header, so `SafeAreaView` keeps the screen content below the status bar on Android and iOS. The default template includes this library.
-4. Add a `paddingTop` to the image container with [`Platform.select()`](https://reactnative.dev/docs/platform#select). On web, the tab list sits at the top of the page, so the image needs more space there.
+1. Importe `Image` da biblioteca `expo-image`.
+2. Crie uma variável `PlaceholderImage` para usar o arquivo **assets/images/background-image.png** como prop `source` do componente `Image`.
+3. Substitua o `View` externo pelo `SafeAreaView` de `react-native-safe-area-context`. As abas nativas não adicionam um cabeçalho, então o `SafeAreaView` mantém o conteúdo da tela abaixo da barra de status no Android e no iOS. O template padrão inclui essa biblioteca.
+4. Adicione um `paddingTop` ao contêiner da imagem com [`Platform.select()`](https://reactnative.dev/docs/platform#select). Na web, a lista de abas fica no topo da página, então a imagem precisa de mais espaço ali.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=380
@@ -131,12 +131,12 @@ const styles = StyleSheet.create({
 
 <Step label="3">
 
-## Divide components into files
+## Divida os componentes em arquivos
 
-Let's divide the code into multiple files as we add more components to this screen. Throughout this tutorial, we'll use the components directory to create custom components.
+Vamos dividir o código em vários arquivos conforme adicionarmos mais componentes a esta tela. Ao longo deste tutorial, vamos usar o diretório components para criar componentes personalizados.
 
-1. Create a **components** directory inside **src**, and inside it, create the **image-viewer.tsx** file.
-2. Move the code to display the image in this file along with the `image` styles.
+1. Crie um diretório **components** dentro de **src** e, dentro dele, crie o arquivo **image-viewer.tsx**.
+2. Mova o código que exibe a imagem para esse arquivo, junto com os estilos `image`.
 
 {/* prettier-ignore */}
 ```tsx src/components/image-viewer.tsx|collapseHeight=280
@@ -160,9 +160,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-> **info** Since **ImageViewer** is a custom component, we are placing it in a separate directory instead of the **src/app** directory. Every file inside **src/app** directory is either a layout file or a route file. For more information, see [Non-navigation components live outside the src/app directory](/router/basics/core-concepts/#6-non-navigation-components-live-outside-the-srcapp-directory).
+> **info** Como **ImageViewer** é um componente personalizado, colocamos ele em um diretório separado, e não no diretório **src/app**. Cada arquivo dentro de **src/app** é um arquivo de layout ou de rota. Para mais informações, veja [Componentes que não são de navegação ficam fora do diretório src/app](/router/basics/core-concepts/#6-non-navigation-components-live-outside-the-srcapp-directory).
 
-Import `ImageViewer` and use it in the **src/app/(tabs)/index.tsx**:
+Importe `ImageViewer` e use-o em **src/app/(tabs)/index.tsx**:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=320
@@ -198,9 +198,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-<Collapsible summary={<>What is the <CODE>@</CODE> in import statement?</>}>
+<Collapsible summary={<>O que é o <CODE>@</CODE> na instrução import?</>}>
 
-The `@` symbol is a custom [path alias](/guides/typescript/#path-aliases-optional) for importing custom components and other modules instead of relative paths. Expo CLI automatically configures it in **tsconfig.json**.
+O símbolo `@` é um [alias de caminho](/guides/typescript/#path-aliases-optional) personalizado para importar componentes e outros módulos no lugar de caminhos relativos. O Expo CLI o configura automaticamente no **tsconfig.json**.
 
 </Collapsible>
 
@@ -208,11 +208,11 @@ The `@` symbol is a custom [path alias](/guides/typescript/#path-aliases-optiona
 
 <Step label="4">
 
-## Create buttons using Pressable
+## Crie botões com Pressable
 
-React Native includes a few different components for handling touch events, but [`<Pressable>`](https://reactnative.dev/docs/pressable) is recommended for its flexibility. It can detect single taps, long presses, trigger separate events when the button is pushed in and released, and more.
+O React Native inclui alguns componentes diferentes para tratar eventos de toque, mas o [`<Pressable>`](https://reactnative.dev/docs/pressable) é recomendado pela flexibilidade. Ele detecta toques simples e toques longos, dispara eventos separados quando o botão é pressionado e quando é solto, entre outros recursos.
 
-In the design, there are two buttons we need to create. Each has a different style and label. Let's start by creating a reusable component for these buttons. Create a **button.tsx** file inside the **src/components** directory with the following code:
+No design, há dois botões que precisamos criar. Cada um tem um estilo e um rótulo diferentes. Vamos começar criando um componente reutilizável para esses botões. Crie um arquivo **button.tsx** dentro do diretório **src/components** com o código a seguir:
 
 {/* prettier-ignore */}
 ```tsx src/components/button.tsx|collapseHeight=280
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-The `onPress` prop lets the screen decide what happens when the user presses the button. Let's import this component into the **src/app/(tabs)/index.tsx** file. Pass each button an `onPress` function that calls `alert()`. Then, add styles for the `<View>` that encapsulates the buttons:
+A prop `onPress` permite que a tela decida o que acontece quando o usuário pressiona o botão. Vamos importar esse componente no arquivo **src/app/(tabs)/index.tsx**. Passe a cada botão uma função `onPress` que chama `alert()`. Depois, adicione estilos para o `<View>` que envolve os botões:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -303,25 +303,25 @@ const styles = StyleSheet.create({
 });
 ```
 
-The app displays an alert when the user taps any of the buttons on the screen. Let's take a look at our app on Android, iOS, and web:
+O app exibe um alerta quando o usuário toca em qualquer um dos botões da tela. Vamos ver nosso app no Android, no iOS e na web:
 
 <ContentSpotlight
-  alt="The image and two buttons on Android, iOS, and web."
+  alt="A imagem e os dois botões no Android, no iOS e na web."
   src="/static/images/tutorial/build-a-screen-buttons-created.webp"
   className="max-w-[720px]"
 />
 
-The second button with the label "Use this photo" resembles the actual button from the design. However, the first button needs more styling to match the design.
+O segundo botão, com o rótulo "Use this photo", se parece com o botão real do design. No entanto, o primeiro botão precisa de mais estilo para combinar com o design.
 
 </Step>
 
 <Step label="5">
 
-## Enhance the reusable button component
+## Aprimore o componente de botão reutilizável
 
-The "Choose a photo" button requires different styling than the "Use this photo" button. Let's add a `theme` prop to apply a `primary` theme to it. This button also has an icon before the label. We will use the `SymbolView` component from [`expo-symbols`](/versions/latest/sdk/symbols/) to display it. On Android and web, `SymbolView` displays a [Material Symbols](https://fonts.google.com/icons) icon. On iOS, it displays an [SF Symbols](https://developer.apple.com/sf-symbols/) icon. The default template already includes `expo-symbols`.
+O botão "Choose a photo" precisa de um estilo diferente do botão "Use this photo". Vamos adicionar uma prop `theme` para aplicar a ele um tema `primary`. Esse botão também tem um ícone antes do rótulo. Vamos usar o componente `SymbolView` do [`expo-symbols`](/versions/latest/sdk/symbols/) para exibi-lo. No Android e na web, o `SymbolView` exibe um ícone do [Material Symbols](https://fonts.google.com/icons). No iOS, ele exibe um ícone do [SF Symbols](https://developer.apple.com/sf-symbols/). O template padrão já inclui o `expo-symbols`.
 
-Modify **src/components/button.tsx** to add the following code snippet:
+Modifique **src/components/button.tsx** para adicionar o trecho de código a seguir:
 
 {/* prettier-ignore */}
 ```tsx src/components/button.tsx
@@ -393,13 +393,13 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's learn what the above code does:
+Vamos entender o que o código acima faz:
 
-- The primary theme button passes an array to the `style` prop of `<Pressable>`. React Native applies the styles in order, so the `backgroundColor` from `styles.primaryButton` applies only to the primary button.
-- The label of the primary button uses an **inline style**, an object passed directly in the `style` prop. It changes the label color to `#25292e` and overrides the `color` from `styles.buttonLabel`.
-- The `name` prop of `SymbolView` takes an icon name for each platform: `image` for Android and web, and `photo` for iOS.
+- O botão com o tema primary passa um array para a prop `style` do `<Pressable>`. O React Native aplica os estilos em ordem, então o `backgroundColor` de `styles.primaryButton` se aplica só ao botão primary.
+- O rótulo do botão primary usa um **estilo inline**, um objeto passado diretamente na prop `style`. Ele muda a cor do rótulo para `#25292e` e sobrescreve o `color` de `styles.buttonLabel`.
+- A prop `name` do `SymbolView` recebe um nome de ícone para cada plataforma: `image` para Android e web, e `photo` para iOS.
 
-Now, modify the **src/app/(tabs)/index.tsx** file to use the `theme="primary"` prop on the first button.
+Agora, modifique o arquivo **src/app/(tabs)/index.tsx** para usar a prop `theme="primary"` no primeiro botão.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -448,10 +448,10 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos ver nosso app no Android, no iOS e na web:
 
 <ContentSpotlight
-  alt="The primary button with an icon and a yellow background on Android, iOS, and web."
+  alt="O botão primary com ícone e fundo amarelo no Android, no iOS e na web."
   src="/static/images/tutorial/build-a-screen-primary-button.webp"
   className="max-w-[720px]"
 />
@@ -460,13 +460,13 @@ Let's take a look at our app on Android, iOS, and web:
 
 <Step label="6">
 
-## Use native buttons with Expo UI
+## Use botões nativos com o Expo UI
 
-Our button uses React Native components, so it looks the same on every platform. [Expo UI](/versions/latest/sdk/ui/) provides native components: Jetpack Compose views on Android and SwiftUI views on iOS. The default template already includes Expo UI (`@expo/ui`). Expo UI works in Expo Go.
+Nosso botão usa componentes do React Native, então ele tem a mesma aparência em todas as plataformas. O [Expo UI](/versions/latest/sdk/ui/) oferece componentes nativos: views do Jetpack Compose no Android e views do SwiftUI no iOS. O template padrão já inclui o Expo UI (`@expo/ui`). O Expo UI funciona no Expo Go.
 
-Let's replace the button on Android and iOS with a native button, and keep the React Native button for web. To do this, we'll use platform-specific extensions. When **button.android.tsx** and **button.ios.tsx** exist next to **button.tsx**, Metro uses the file for the current platform when we import `@/components/button`. Web still uses **button.tsx**. For more information, see [Platform-specific extensions](/router/advanced/platform-specific-modules/#platform-specific-extensions).
+Vamos substituir o botão no Android e no iOS por um botão nativo e manter o botão do React Native para a web. Para isso, vamos usar extensões específicas de plataforma. Quando **button.android.tsx** e **button.ios.tsx** existem ao lado de **button.tsx**, o Metro usa o arquivo da plataforma atual ao importarmos `@/components/button`. A web continua usando **button.tsx**. Para mais informações, veja [Extensões específicas de plataforma](/router/advanced/platform-specific-modules/#platform-specific-extensions).
 
-The Android button displays an icon from [`@expo/material-symbols`](https://www.npmjs.com/package/@expo/material-symbols), a set of Material Symbols icons for Jetpack Compose. To install it, stop the development server by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal, then run the following command:
+O botão do Android exibe um ícone do [`@expo/material-symbols`](https://www.npmjs.com/package/@expo/material-symbols), um conjunto de ícones Material Symbols para o Jetpack Compose. Para instalá-lo, pare o servidor de desenvolvimento pressionando <kbd>Ctrl</kbd> + <kbd>C</kbd> no terminal e depois execute o comando a seguir:
 
 <Terminal
   cmd={{
@@ -477,9 +477,9 @@ The Android button displays an icon from [`@expo/material-symbols`](https://www.
   }}
 />
 
-Keep the development server stopped until both new files exist. If you add them while the server is running, Metro can keep using **button.tsx**. In that case, restart the server.
+Mantenha o servidor de desenvolvimento parado até que os dois novos arquivos existam. Se você adicioná-los com o servidor rodando, o Metro pode continuar usando **button.tsx**. Nesse caso, reinicie o servidor.
 
-Create a **button.android.tsx** file inside the **src/components** directory:
+Crie um arquivo **button.android.tsx** dentro do diretório **src/components**:
 
 {/* prettier-ignore */}
 ```tsx src/components/button.android.tsx
@@ -535,13 +535,13 @@ const styles = StyleSheet.create({
 });
 ```
 
-<Collapsible summary={<>What is <CODE>Host</CODE>?</>}>
+<Collapsible summary={<>O que é o <CODE>Host</CODE>?</>}>
 
-`Host` is the bridge between React Native and Expo UI. Jetpack Compose components on Android and SwiftUI components on iOS render only inside a `Host`. The `matchContents` prop sizes the `Host` to fit its content, which is the button here. For more information, see `Host` for [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/host/) and [SwiftUI](/versions/latest/sdk/ui/swift-ui/host/).
+O `Host` é a ponte entre o React Native e o Expo UI. Os componentes do Jetpack Compose no Android e os componentes do SwiftUI no iOS só são renderizados dentro de um `Host`. A prop `matchContents` faz o `Host` ter o tamanho do seu conteúdo, que aqui é o botão. Para mais informações, veja o `Host` do [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/host/) e do [SwiftUI](/versions/latest/sdk/ui/swift-ui/host/).
 
 </Collapsible>
 
-Then, create a **button.ios.tsx** file inside the **src/components** directory:
+Depois, crie um arquivo **button.ios.tsx** dentro do diretório **src/components**:
 
 {/* prettier-ignore */}
 ```tsx src/components/button.ios.tsx
@@ -605,35 +605,37 @@ const styles = StyleSheet.create({
 });
 ```
 
-<Collapsible summary="What are modifiers?">
+<Collapsible summary="O que são modificadores?">
 
-Modifiers customize the appearance and behavior of Expo UI components, such as their style, size, and colors. Import them from `@expo/ui/jetpack-compose/modifiers` for Jetpack Compose and from `@expo/ui/swift-ui/modifiers` for SwiftUI. Then, pass them in an array to the `modifiers` prop of a component, as **button.ios.tsx** does. For more information, see modifiers for [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/modifiers/) and [SwiftUI](/versions/latest/sdk/ui/swift-ui/modifiers/).
+Modificadores personalizam a aparência e o comportamento dos componentes do Expo UI, como estilo, tamanho e cores. Importe-os de `@expo/ui/jetpack-compose/modifiers` para o Jetpack Compose e de `@expo/ui/swift-ui/modifiers` para o SwiftUI. Depois, passe-os em um array para a prop `modifiers` de um componente, como faz o **button.ios.tsx**. Para mais informações, veja os modificadores do [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/modifiers/) e do [SwiftUI](/versions/latest/sdk/ui/swift-ui/modifiers/).
 
 </Collapsible>
 
-Both files keep the same props as **button.tsx**, so **src/app/(tabs)/index.tsx** doesn't change. The **src/components** directory now contains three versions of the button:
+Os dois arquivos mantêm as mesmas props de **button.tsx**, então **src/app/(tabs)/index.tsx** não muda. O diretório **src/components** agora contém três versões do botão:
 
 <FileTree
   files={[
-    ['src/components/button.android.tsx', 'Used on Android'],
-    ['src/components/button.ios.tsx', 'Used on iOS'],
-    ['src/components/button.tsx', 'Used on web'],
+    ['src/components/button.android.tsx', 'Usado no Android'],
+    ['src/components/button.ios.tsx', 'Usado no iOS'],
+    ['src/components/button.tsx', 'Usado na web'],
     ['src/components/image-viewer.tsx'],
   ]}
 />
 
-<Collapsible summary={<>Why do we keep <CODE>button.tsx</CODE>?</>}>
+<Collapsible summary={<>Por que mantemos o <CODE>button.tsx</CODE>?</>}>
 
-Web uses **button.tsx**, because there is no **button.web.tsx** file. TypeScript also reads the types of `@/components/button` from **button.tsx**. So all three files must accept the same props.
+A web usa **button.tsx**, porque não existe um arquivo **button.web.tsx**. O TypeScript também lê os tipos de `@/components/button` a partir de **button.tsx**. Por isso, os três arquivos precisam aceitar as mesmas props.
 
 </Collapsible>
 
-Start the development server again by running `npx expo start`. Let's take a look at our app on Android, iOS, and web:
+Inicie o servidor de desenvolvimento de novo executando `npx expo start`. Vamos ver nosso app no Android, no iOS e na web:
 
 <ContentSpotlight file="tutorial/build-a-screen-complete-layout.mp4" />
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/build-a-screen" />
+
+{/* ia-translate: true */}

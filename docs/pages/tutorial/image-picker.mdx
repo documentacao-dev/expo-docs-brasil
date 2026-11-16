@@ -1,6 +1,6 @@
 ---
-title: Use an image picker
-description: In this tutorial, learn how to use Expo Image Picker to select an image from the media library and show it in a React Native app on Android, iOS, and web.
+title: Use um seletor de imagens
+description: Neste tutorial, aprenda a usar o Expo Image Picker para selecionar uma imagem da biblioteca de mídia e exibi-la em um app React Native no Android, iOS e web.
 hasVideoLink: true
 ---
 
@@ -11,25 +11,25 @@ import { Step } from '~/ui/components/Step';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-React Native provides built-in components as standard building blocks, such as `<View>`, `<Text>`, and `<Pressable>`. We are building a feature to select an image from the device's media library. This isn't possible with the core components and we'll need a library to add this feature in our app.
+O React Native oferece componentes integrados como blocos básicos, como `<View>`, `<Text>` e `<Pressable>`. Estamos criando um recurso para selecionar uma imagem da biblioteca de mídia do dispositivo. Isso não é possível apenas com os componentes principais, então vamos precisar de uma biblioteca para adicionar esse recurso ao nosso app.
 
-We'll use [`expo-image-picker`](/versions/latest/sdk/imagepicker), a library from the [Expo SDK](/versions/latest/).
+Vamos usar o [`expo-image-picker`](/versions/latest/sdk/imagepicker), uma biblioteca do [SDK do Expo](/versions/latest/).
 
-> `expo-image-picker` provides access to the system's UI to select images and videos from the device's media library.
+> `expo-image-picker` dá acesso à interface do sistema para selecionar imagens e vídeos da biblioteca de mídia do dispositivo.
 
 <VideoBoxLink
   videoId="iEQZU58naS8"
-  title="Watch: Using an image picker in your universal Expo app"
-  description="Learn how to use expo-image-picker to select images from the device's media library."
+  title="Assista: Usando um seletor de imagens no seu app Expo universal"
+  description="Aprenda a usar o expo-image-picker para selecionar imagens da biblioteca de mídia do dispositivo."
 />
 
 ---
 
 <Step label="1">
 
-## Install expo-image-picker
+## Instale o expo-image-picker
 
-To install the `expo-image-picker` library, stop the development server by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal, then run the following command:
+Para instalar a biblioteca `expo-image-picker`, pare o servidor de desenvolvimento pressionando <kbd>Ctrl</kbd> + <kbd>C</kbd> no terminal e execute o comando a seguir:
 
 <Terminal
   cmd={{
@@ -40,19 +40,19 @@ To install the `expo-image-picker` library, stop the development server by press
   }}
 />
 
-The [`npx expo install`](/more/expo-cli/#installation) command will install the library and add it to the project's dependencies in **package.json**.
+O comando [`npx expo install`](/more/expo-cli/#installation) instala a biblioteca e a adiciona às dependências do projeto no **package.json**.
 
-> **info** **Tip:** Any time we install a new library in the project, stop the development server by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal and then run the installation command. After the installation completes, start the development server again by running `npx expo start`.
+> **info** **Dica:** sempre que instalarmos uma nova biblioteca no projeto, pare o servidor de desenvolvimento pressionando <kbd>Ctrl</kbd> + <kbd>C</kbd> no terminal e depois execute o comando de instalação. Quando a instalação terminar, inicie o servidor de desenvolvimento novamente executando `npx expo start`.
 
 </Step>
 
 <Step label="2">
 
-## Pick an image from the device's media library
+## Escolha uma imagem da biblioteca de mídia do dispositivo
 
-`expo-image-picker` provides the `launchImageLibraryAsync()` method, which opens the system UI to select an image or a video from the device's media library. We'll create a function that calls this method, and then connect it to the primary button from the previous chapter.
+`expo-image-picker` oferece o método `launchImageLibraryAsync()`, que abre a interface do sistema para selecionar uma imagem ou um vídeo da biblioteca de mídia do dispositivo. Vamos criar uma função que chama esse método e depois conectá-la ao botão principal do capítulo anterior.
 
-In **src/app/(tabs)/index.tsx**, import the `expo-image-picker` library and create a `pickImageAsync()` function inside the `Index` component:
+No arquivo **src/app/(tabs)/index.tsx**, importe a biblioteca `expo-image-picker` e crie uma função `pickImageAsync()` dentro do componente `Index`:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx|collapseHeight=440
@@ -84,18 +84,18 @@ export default function Index() {
 }
 ```
 
-Let's learn what the above code does:
+Vamos entender o que o código acima faz:
 
-- The `launchImageLibraryAsync()` method receives an object to specify different options. This object is the [`ImagePickerOptions`](/versions/latest/sdk/imagepicker/#imagepickeroptions) object, which we are passing when invoking the method.
-- When `allowsEditing` is set to `true`, the user can crop the image during the selection process on Android and iOS. On web, the browser's file picker opens without a crop step.
+- O método `launchImageLibraryAsync()` recebe um objeto para especificar diferentes opções. Esse objeto é o [`ImagePickerOptions`](/versions/latest/sdk/imagepicker/#imagepickeroptions), que passamos ao chamar o método.
+- Quando `allowsEditing` é `true`, o usuário pode recortar a imagem durante a seleção no Android e no iOS. Na web, o seletor de arquivos do navegador abre sem uma etapa de recorte.
 
 </Step>
 
 <Step label="3">
 
-## Connect the button to the image picker
+## Conecte o botão ao seletor de imagens
 
-The `Button` component from the previous chapter already accepts an `onPress` prop. In **src/app/(tabs)/index.tsx**, pass the `pickImageAsync()` function to the `onPress` prop of the first `<Button>`:
+O componente `Button` do capítulo anterior já aceita uma prop `onPress`. Em **src/app/(tabs)/index.tsx**, passe a função `pickImageAsync()` para a prop `onPress` do primeiro `<Button>`:
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -153,9 +153,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-The `pickImageAsync()` function invokes `ImagePicker.launchImageLibraryAsync()` and then handles the result. The `launchImageLibraryAsync()` method returns an object containing information about the selected image.
+A função `pickImageAsync()` chama `ImagePicker.launchImageLibraryAsync()` e depois trata o resultado. O método `launchImageLibraryAsync()` retorna um objeto com informações sobre a imagem selecionada.
 
-Here is an example of the `result` object and the properties it contains:
+Veja um exemplo do objeto `result` e das propriedades que ele contém:
 
 <Tabs>
 
@@ -239,15 +239,15 @@ Here is an example of the `result` object and the properties it contains:
 
 <Step label="4">
 
-## Use the selected image
+## Use a imagem selecionada
 
-The `result` object provides the `assets` array, which contains the `uri` of the selected image. Let's take this value from the image picker and use it to show the selected image in the app.
+O objeto `result` fornece o array `assets`, que contém o `uri` da imagem selecionada. Vamos pegar esse valor do seletor de imagens e usá-lo para exibir a imagem escolhida no app.
 
-Modify the **src/app/(tabs)/index.tsx** file:
+Modifique o arquivo **src/app/(tabs)/index.tsx**:
 
-1. Declare a state variable called `selectedImage` using the [`useState`](https://react.dev/learn/state-a-components-memory#adding-a-state-variable) hook from React. We'll use this state variable to hold the URI of the selected image.
-2. Update the `pickImageAsync()` function to save the image URI in the `selectedImage` state variable.
-3. Pass the `selectedImage` as a prop to the `ImageViewer` component.
+1. Declare uma variável de estado chamada `selectedImage` usando o hook [`useState`](https://react.dev/learn/state-a-components-memory#adding-a-state-variable) do React. Vamos usar essa variável para guardar a URI da imagem selecionada.
+2. Atualize a função `pickImageAsync()` para salvar a URI da imagem na variável de estado `selectedImage`.
+3. Passe `selectedImage` como prop para o componente `ImageViewer`.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -316,11 +316,11 @@ const styles = StyleSheet.create({
 });
 ```
 
-Pass the `selectedImage` prop to the `ImageViewer` component to display the selected image instead of a placeholder image.
+Passe a prop `selectedImage` para o componente `ImageViewer` para exibir a imagem selecionada no lugar da imagem provisória.
 
-1. Modify the **src/components/image-viewer.tsx** file to accept the `selectedImage` prop.
-2. The source of the image is getting long, so let's also move it to a separate variable called `imageSource`.
-3. Pass `imageSource` as the value of the `source` prop on the `Image` component.
+1. Modifique o arquivo **src/components/image-viewer.tsx** para aceitar a prop `selectedImage`.
+2. A origem da imagem está ficando longa, então vamos movê-la também para uma variável separada chamada `imageSource`.
+3. Passe `imageSource` como valor da prop `source` do componente `Image`.
 
 {/* prettier-ignore */}
 ```tsx src/components/image-viewer.tsx
@@ -353,16 +353,18 @@ const styles = StyleSheet.create({
 });
 ```
 
-In the above snippet, the `Image` component uses a conditional operator to load the image's source. The picked image is a [`uri` string](https://reactnative.dev/docs/images#network-images), not a local asset like the placeholder image.
+No trecho acima, o componente `Image` usa um operador condicional para carregar a origem da imagem. A imagem escolhida é uma [string `uri`](https://reactnative.dev/docs/images#network-images), e não um recurso local, como a imagem provisória.
 
-Let's take a look at our app now:
+Vamos dar uma olhada no nosso app agora:
 
 <ContentSpotlight file="tutorial/image-picker-selected-image.mp4" />
 
-> The images used for the example app in this tutorial were picked from [Unsplash](https://unsplash.com).
+> As imagens usadas no app de exemplo deste tutorial foram escolhidas no [Unsplash](https://unsplash.com).
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/image-picker" />
+
+{/* ia-translate: true */}

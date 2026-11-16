@@ -1,6 +1,6 @@
 ---
-title: Configure status bar, splash screen and app icon
-description: In this tutorial, learn the basics of how to configure a status bar, app icon, and splash screen.
+title: Configure a barra de status, a splash screen e o ícone do app
+description: Neste tutorial, aprenda o básico de como configurar a barra de status, o ícone do app e a splash screen.
 hasVideoLink: true
 ---
 
@@ -9,26 +9,26 @@ import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In this chapter, we'll address some app details before deploying our app to an app store, such as theming the status bar, customizing the app icon, and splash screen.
+Neste capítulo, vamos cuidar de alguns detalhes do app antes de publicá-lo em uma loja, como definir o tema da barra de status, personalizar o ícone do app e a splash screen.
 
 <VideoBoxLink
   videoId="OgGCYdElcZo"
-  title="Watch: Adding the finishing touches to your universal Expo app"
-  description="Configure the status bar, customize your app icon, and set up the splash screen before deploying to the app store."
+  title="Assista: os toques finais do seu app Expo universal"
+  description="Configure a barra de status, personalize o ícone do app e prepare a splash screen antes de publicar na loja de apps."
 />
 
 ---
 
 <Step label="1">
 
-## Configure the status bar
+## Configure a barra de status
 
-[`expo-status-bar`](/versions/latest/sdk/status-bar/) library comes pre-installed in every project created using `create-expo-app`. This library provides a `StatusBar` component to configure the app's status bar style.
+A biblioteca [`expo-status-bar`](/versions/latest/sdk/status-bar/) já vem instalada em todo projeto criado com `create-expo-app`. Ela fornece o componente `StatusBar` para configurar o estilo da barra de status do app.
 
-Inside **src/app/\_layout.tsx**:
+Dentro de **src/app/\_layout.tsx**:
 
-1. Import `StatusBar` from `expo-status-bar`.
-2. Add the `StatusBar` component after the `Stack` component, inside `GestureHandlerRootView`. Set its `style` prop to `light`, so the status bar text and icons are light on the dark background.
+1. Importe `StatusBar` de `expo-status-bar`.
+2. Adicione o componente `StatusBar` depois do componente `Stack`, dentro de `GestureHandlerRootView`. Defina a prop `style` como `light`, para que o texto e os ícones da barra de status fiquem claros sobre o fundo escuro.
 
 {/* prettier-ignore */}
 ```tsx src/app/_layout.tsx
@@ -50,10 +50,10 @@ export default function RootLayout() {
 }
 ```
 
-Let's take a look at our app now on Android and iOS:
+Vamos ver o app agora no Android e no iOS:
 
 <ContentSpotlight
-  alt="StatusBar with light style shown on both Android and iOS."
+  alt="StatusBar com o estilo light exibido no Android e no iOS."
   src="/static/images/tutorial/statusbar-example.webp"
   className="max-w-[480px]"
 />
@@ -62,22 +62,22 @@ Let's take a look at our app now on Android and iOS:
 
 <Step label="2">
 
-## App icon
+## Ícone do app
 
-Inside the project, there's an **icon.png** file inside the **assets/images** directory. This is our app icon. It's a 1024px by 1024px image and looks as shown below:
+Dentro do projeto, há um arquivo **icon.png** no diretório **assets/images**. Esse é o ícone do nosso app. É uma imagem de 1024 px por 1024 px e fica como mostrado abaixo:
 
 <ContentSpotlight
-  alt="The default app icon: a dark rounded square showing a white photo glyph with a yellow smiley face."
+  alt="O ícone padrão do app: um quadrado escuro com cantos arredondados, mostrando um símbolo branco de foto com um smiley amarelo."
   src="/static/images/tutorial/icon.webp"
   className="max-w-[150px]"
 />
 
-Like the splash screen image, the `"icon"` property in the **app.json** file configures the app icon's path. By default, a new Expo project defines the correct path to `"./assets/images/icon.png"`.
+Assim como na imagem da splash screen, a propriedade `"icon"` no arquivo **app.json** configura o caminho do ícone do app. Por padrão, um novo projeto Expo já define o caminho correto como `"./assets/images/icon.png"`.
 
-A new Expo project also has platform-specific icon properties, which take priority over `"icon"`:
+Um novo projeto Expo também tem propriedades de ícone específicas de cada plataforma, que têm prioridade sobre `"icon"`:
 
-- On Android, the `"android.adaptiveIcon"` property uses the **android-icon-foreground.png**, **android-icon-background.png**, and **android-icon-monochrome.png** files from the **assets/images** directory. The [downloaded assets](/tutorial/create-your-first-app/#download-assets) replaced these files with the StickerSmash icon, so we don't have to change anything.
-- On iOS, the `"ios.icon"` property uses the default Expo icon from the **assets/expo.icon** file. To use our **icon.png** on iOS, remove the following `"ios"` property from **app.json**:
+- No Android, a propriedade `"android.adaptiveIcon"` usa os arquivos **android-icon-foreground.png**, **android-icon-background.png** e **android-icon-monochrome.png** do diretório **assets/images**. Os [assets baixados](/tutorial/create-your-first-app/#download-assets) substituíram esses arquivos pelo ícone do StickerSmash, então não precisamos mudar nada.
+- No iOS, a propriedade `"ios.icon"` usa o ícone padrão do Expo, do arquivo **assets/expo.icon**. Para usar nosso **icon.png** no iOS, remova a propriedade `"ios"` a seguir do **app.json**:
 
 ```json app.json
 {
@@ -92,9 +92,9 @@ A new Expo project also has platform-specific icon properties, which take priori
 }
 ```
 
-Expo Go doesn't show our app icon. We'll see it on the device after we build the app. To learn more, see the [app icon](/develop/user-interface/splash-screen-and-app-icon/#app-icon) guide.
+O Expo Go não mostra o ícone do nosso app. Vamos vê-lo no dispositivo depois que fizermos a build do app. Para saber mais, veja o guia de [ícone do app](/develop/user-interface/splash-screen-and-app-icon/#app-icon).
 
-> Eventually, when you'll build your app for the app stores, [Expo Services](/eas/) will take this image and create optimized icons for every device.
+> Quando você for fazer a build do app para as lojas, os [Expo Services](/eas/) vão usar esta imagem e criar ícones otimizados para cada dispositivo.
 
 </Step>
 
@@ -102,11 +102,11 @@ Expo Go doesn't show our app icon. We'll see it on the device after we build the
 
 ## Splash screen
 
-A splash screen is visible before the app's content is loaded. It uses a smaller image, such as an app's icon, which is centered. It hides once the app's content is ready to be displayed.
+A splash screen fica visível antes que o conteúdo do app seja carregado. Ela usa uma imagem menor, como o ícone do app, centralizada. Ela some assim que o conteúdo do app estiver pronto para ser exibido.
 
-The [`expo-splash-screen`](/versions/latest/sdk/splash-screen/) plugin already comes pre-installed in every project created using `create-expo-app`. This library provides a config plugin to configure the splash screen.
+O plugin [`expo-splash-screen`](/versions/latest/sdk/splash-screen/) já vem instalado em todo projeto criado com `create-expo-app`. Essa biblioteca fornece um config plugin para configurar a splash screen.
 
-In **app.json**, the `expo-splash-screen` plugin is already configured to use the app's icon as the splash screen image (provided in the [downloadable assets](/tutorial/create-your-first-app/#download-assets)). Its `backgroundColor` is the default Expo blue (`#208AEF`). Change it to `#25292e`, so the splash screen has the same dark background as our app and its icon:
+No **app.json**, o plugin `expo-splash-screen` já está configurado para usar o ícone do app como imagem da splash screen (fornecida nos [assets para download](/tutorial/create-your-first-app/#download-assets)). Seu `backgroundColor` é o azul padrão do Expo (`#208AEF`). Mude para `#25292e`, para que a splash screen tenha o mesmo fundo escuro do app e do ícone:
 
 ```json app.json
 {
@@ -124,13 +124,15 @@ In **app.json**, the `expo-splash-screen` plugin is already configured to use th
 }
 ```
 
-However, **to test the splash screen, we cannot use Expo Go or a [development build](/develop/development-builds/introduction/)**. To test it, we need to create a preview or a production build of our app. We recommend going through the following resources to learn more about the splash screen configuration and how to test it:
+No entanto, **para testar a splash screen, não podemos usar o Expo Go nem um [development build](/develop/development-builds/introduction/)**. Para testá-la, precisamos criar uma build de preview ou de produção do app. Recomendamos ler os recursos a seguir para saber mais sobre a configuração da splash screen e como testá-la:
 
-- [Create a splash screen icon](/develop/user-interface/splash-screen-and-app-icon/#splash-screen) guide to learn how splash screen icon is configured.
-- To learn how to create a preview build, see [Internal distribution](/tutorial/eas/internal-distribution-builds/) guide in Expo Services Tutorial, or to create production builds see guides for [Android](/tutorial/eas/android-production-build/) and [iOS](/tutorial/eas/ios-production-build/).
+- Guia de [criação do ícone da splash screen](/develop/user-interface/splash-screen-and-app-icon/#splash-screen) para entender como esse ícone é configurado.
+- Para aprender a criar uma build de preview, veja o guia [Distribuição interna](/tutorial/eas/internal-distribution-builds/) do tutorial dos Expo Services, ou, para criar builds de produção, veja os guias para [Android](/tutorial/eas/android-production-build/) e [iOS](/tutorial/eas/ios-production-build/).
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/configuration" />
+
+{/* ia-translate: true */}

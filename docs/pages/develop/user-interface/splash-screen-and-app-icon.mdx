@@ -1,6 +1,6 @@
 ---
-title: Splash screen and app icon
-description: Learn how to add a splash screen and app icon to your Expo project.
+title: Splash screen e ícone do app
+description: Aprenda a adicionar uma splash screen e um ícone do app ao seu projeto Expo.
 ---
 
 import { DocsLogo } from '@expo/styleguide';
@@ -12,47 +12,47 @@ import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-A splash screen and an app icon are fundamental elements of a mobile app. They play an important role in the user experience and branding of the app. This guide provides steps on how to create and add them to your app.
+A splash screen e o ícone do app são elementos fundamentais de um app mobile. Eles têm um papel importante na experiência do usuário e na identidade visual do app. Este guia mostra o passo a passo para criá-los e adicioná-los ao seu app.
 
 ---
 
 ## Splash screen
 
-A splash screen, also known as a launch screen, is the first screen a user sees when they open your app. It stays visible while the app is loading. You can also control the behavior of when a splash screen disappears by using the native [SplashScreen API](/versions/latest/sdk/splash-screen).
+A splash screen, também conhecida como launch screen, é a primeira tela que o usuário vê ao abrir o app. Ela continua visível enquanto o app carrega. Você também pode controlar quando a splash screen desaparece usando a [API SplashScreen](/versions/latest/sdk/splash-screen) nativa.
 
-The [`expo-splash-screen`](/versions/latest/sdk/splash-screen) has a built-in [config plugin](/config-plugins/introduction) that lets you configure properties such as the splash icon and background color.
+O [`expo-splash-screen`](/versions/latest/sdk/splash-screen) tem um [config plugin](/config-plugins/introduction) integrado que permite configurar propriedades como o ícone e a cor de fundo da splash screen.
 
-> **warning** **Do not use Expo Go or a development build to test your splash screen**. Expo Go renders your app icon while the splash screen is visible, which can interfere with testing. Development builds include `expo-dev-client`, which has its own splash screen and may cause conflicts. **Instead, use a [preview build](/build/eas-json/#preview-builds) or a [production build](/build/eas-json/#production-builds)**.
+> **warning** **Não use o Expo Go nem um development build para testar sua splash screen**. O Expo Go mostra o ícone do app enquanto a splash screen está visível, o que pode atrapalhar o teste. Development builds incluem o `expo-dev-client`, que tem a própria splash screen e pode causar conflitos. **Use um [preview build](/build/eas-json/#preview-builds) ou um [production build](/build/eas-json/#production-builds)**.
 
 <Step label="1">
 
-### Create a splash screen icon
+### Crie o ícone da splash screen
 
-To create a splash screen icon, you can use this [Figma template](https://www.figma.com/community/file/1637141012732584189). It provides a bare minimum design for an icon and splash images for Android and iOS.
+Para criar o ícone da splash screen, você pode usar este [template do Figma](https://www.figma.com/community/file/1637141012732584189). Ele traz um design mínimo para o ícone e imagens de splash para Android e iOS.
 
-**Recommended:**
+**Recomendado:**
 
-- Use a 1024x1024 image.
-- Use a **.png** file.
-- Use a transparent background.
+- Use uma imagem de 1024x1024.
+- Use um arquivo **.png**.
+- Use um fundo transparente.
 
 </Step>
 
 <Step label="2">
 
-### Export the splash icon as a .png
+### Exporte o ícone da splash como .png
 
-After creating a splash screen icon, export it as a **.png** and save it in the **assets/images** directory. By default, Expo uses **splash-icon.png** as the file name. If you decide to change the name of your splash screen file, make sure to use that in the next step.
+Depois de criar o ícone da splash screen, exporte-o como **.png** e salve-o no diretório **assets/images**. Por padrão, o Expo usa **splash-icon.png** como nome do arquivo. Se você decidir mudar o nome do arquivo da splash screen, use esse nome no próximo passo.
 
-> **Note:** **Currently, only .png images are supported** to use as a splash screen icon in an Expo project. If you use another image format, making a production build of your app will fail.
+> **Note:** **Atualmente, só imagens .png são aceitas** como ícone da splash screen em um projeto Expo. Se você usar outro formato de imagem, o production build do seu app vai falhar.
 
 </Step>
 
 <Step label="3">
 
-### Configure the splash screen icon
+### Configure o ícone da splash screen
 
-Open the app config file, and under plugins, set the following properties:
+Abra o arquivo de app config e, em plugins, defina as seguintes propriedades:
 
 ```json app.json
 {
@@ -85,11 +85,11 @@ Open the app config file, and under plugins, set the following properties:
 }
 ```
 
-To test your new splash screen, build your app for [internal distribution](/tutorial/eas/internal-distribution-builds) or for production, see guides on [Android](/tutorial/eas/android-production-build/) and [iOS](/tutorial/eas/ios-production-build/).
+Para testar a nova splash screen, faça o build do seu app para [distribuição interna](/tutorial/eas/internal-distribution-builds) ou para produção. Veja os guias para [Android](/tutorial/eas/android-production-build/) e [iOS](/tutorial/eas/ios-production-build/).
 
 <BoxLink
-  title="Configurable splash screen properties"
-  description="Learn about the configurable properties of the SplashScreen API."
+  title="Propriedades configuráveis da splash screen"
+  description="Conheça as propriedades configuráveis da API SplashScreen."
   href="/versions/latest/sdk/splash-screen/#configurable-properties"
   Icon={DocsLogo}
 />
@@ -98,7 +98,7 @@ To test your new splash screen, build your app for [internal distribution](/tuto
 
 <Collapsible summary={<>Configuring <CODE>expo-splash-screen</CODE> properties separately for Android and iOS</>}>
 
-[`expo-splash-screen`](/versions/latest/sdk/splash-screen) also supports `android` and `ios` properties for configuring the splash screen for a specific platform. See the following example:
+O [`expo-splash-screen`](/versions/latest/sdk/splash-screen) também aceita as propriedades `android` e `ios` para configurar a splash screen de uma plataforma específica. Veja o exemplo a seguir:
 
 ```json app.json
 {
@@ -126,15 +126,15 @@ To test your new splash screen, build your app for [internal distribution](/tuto
 
 </Collapsible>
 
-<Collapsible summary="Not using prebuild?">
+<Collapsible summary="Não está usando prebuild?">
 
-If your app does not use [Expo Prebuild](/more/glossary-of-terms/#prebuild) to generate the native **android** and **ios** directories, then changes in the app config will have no effect. For more information, see [how you can customize the configuration manually](https://github.com/expo/expo/tree/main/packages/expo-splash-screen#-installation-in-bare-react-native-projects).
+Se o seu app não usa o [Expo Prebuild](/more/glossary-of-terms/#prebuild) para gerar as pastas nativas **android** e **ios**, as mudanças no app config não terão efeito. Para mais informações, veja [como personalizar a configuração manualmente](https://github.com/expo/expo/tree/main/packages/expo-splash-screen#-installation-in-bare-react-native-projects).
 
 </Collapsible>
 
-<Collapsible summary="Troubleshooting: New splash screen not appearing on iOS">
+<Collapsible summary="Solução de problemas: nova splash screen não aparece no iOS">
 
-For SDK 52 and earlier, in iOS development builds, launch screens can sometimes remain cached between builds, making it harder to test new images. Apple recommends clearing the _derived data_ directory before rebuilding, this can be done with Expo CLI by running:
+Nas versões do SDK 52 e anteriores, em development builds para iOS, as launch screens às vezes ficam em cache entre os builds, o que dificulta testar novas imagens. A Apple recomenda limpar o diretório _derived data_ antes de recompilar. Isso pode ser feito com o Expo CLI executando:
 
 <Terminal
   cmd={{
@@ -145,35 +145,35 @@ For SDK 52 and earlier, in iOS development builds, launch screens can sometimes 
   }}
 />
 
-See [Apple's guide on testing launch screens](https://developer.apple.com/documentation/technotes/tn3118-debugging-your-apps-launch-screen) for more information.
+Veja o [guia da Apple sobre como testar launch screens](https://developer.apple.com/documentation/technotes/tn3118-debugging-your-apps-launch-screen) para mais informações.
 
 </Collapsible>
 
-## App icon
+## Ícone do app
 
-An app's icon is what your app users see on their device's home screen and app stores. Android and iOS have different and strict requirements.
+O ícone do app é o que os usuários veem na tela inicial do dispositivo e nas lojas de apps. Android e iOS têm requisitos diferentes e rigorosos.
 
 <Step label="1">
 
-### Create an app icon
+### Crie o ícone do app
 
-To create an app icon, you can use this [Figma template](https://www.figma.com/community/file/1637141012732584189). It provides a bare minimum design for an icon and splash images for Android and iOS.
+Para criar o ícone do app, você pode usar este [template do Figma](https://www.figma.com/community/file/1637141012732584189). Ele traz um design mínimo para o ícone e imagens de splash para Android e iOS.
 
 </Step>
 
 <Step label="2">
 
-### Export the icon image as a .png
+### Exporte a imagem do ícone como .png
 
-After creating an app icon, export it as **.png** and save it in the **assets/images** directory. By default, Expo uses **icon.png** as the file name. If you decide to use a different file name, make sure to use that in the next step.
+Depois de criar o ícone do app, exporte-o como **.png** e salve-o no diretório **assets/images**. Por padrão, o Expo usa **icon.png** como nome do arquivo. Se você decidir usar outro nome, use esse nome no próximo passo.
 
 </Step>
 
 <Step label="3">
 
-### Add the icon in app config
+### Adicione o ícone no app config
 
-Open the app config and add the local path as the value of [`icon`](/versions/latest/config/app/#icon) property to point it to your new app icon:
+Abra o app config e adicione o caminho local como valor da propriedade [`icon`](/versions/latest/config/app/#icon) para apontar para o novo ícone do app:
 
 ```json app.json
 {
@@ -181,37 +181,37 @@ Open the app config and add the local path as the value of [`icon`](/versions/la
 }
 ```
 
-<Collapsible summary="Custom configuration tips for Android and iOS">
+<Collapsible summary="Dicas de configuração personalizada para Android e iOS">
 
 #### Android
 
-Further customization of the Android icon is possible using the [`android.adaptiveIcon`](/versions/latest/config/app/#adaptiveicon) property, which will override both of the previously mentioned settings.
+É possível personalizar ainda mais o ícone do Android usando a propriedade [`android.adaptiveIcon`](/versions/latest/config/app/#adaptiveicon), que sobrescreve as duas configurações mencionadas anteriormente.
 
-The Android Adaptive Icon is formed from two separate layers — a foreground image and a background color or image. This allows the OS to mask the icon into different shapes and also supports visual effects. For Android 13 and later, the OS supports a themed app icon that uses a wallpaper and theme to determine the color set by the device's theme.
+O Adaptive Icon do Android é formado por duas camadas separadas: uma imagem de foreground e uma cor ou imagem de background. Isso permite que o sistema aplique máscaras para deixar o ícone com formatos diferentes e também oferece suporte a efeitos visuais. A partir do Android 13, o sistema também aceita um ícone temático, que usa o papel de parede e o tema para definir as cores de acordo com o tema do dispositivo.
 
-The design you provide should follow the [Android Adaptive Icon Guidelines](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive) for launcher icons. You should also:
+O design que você fornecer deve seguir as [diretrizes de Adaptive Icon do Android](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive) para ícones de launcher. Você também deve:
 
-- Use **.png** files.
-- Use the `android.adaptiveIcon.foregroundImage` property to specify the path to your foreground image.
-- Use the `android.adaptiveIcon.monochromeImage` property to specify the path to your monochrome image.
-- The default background color is white; to specify a different background color, use the `android.adaptiveIcon.backgroundColor` property. You can instead specify a background image using the `android.adaptiveIcon.backgroundImage` property. Make sure that it has the same dimensions as your foreground image.
+- Use arquivos **.png**.
+- Use a propriedade `android.adaptiveIcon.foregroundImage` para indicar o caminho da imagem de foreground.
+- Use a propriedade `android.adaptiveIcon.monochromeImage` para indicar o caminho da imagem monocromática.
+- A cor de fundo padrão é branca. Para usar outra cor, use a propriedade `android.adaptiveIcon.backgroundColor`. Você também pode usar uma imagem de fundo com a propriedade `android.adaptiveIcon.backgroundImage`. Garanta que ela tenha as mesmas dimensões da imagem de foreground.
 
-You may also want to provide a separate icon for older Android devices that do not support Adaptive Icons. You can do so with the `android.icon` property. This single icon would be a combination of your foreground and background layers.
+Você também pode querer fornecer um ícone separado para dispositivos Android mais antigos que não aceitam Adaptive Icons. Para isso, use a propriedade `android.icon`. Esse ícone único deve combinar as camadas de foreground e background.
 
-> See [Apple best practices](https://developer.apple.com/design/human-interface-guidelines/app-icons/#Best-practices) to ensure your icon looks professional, such as testing your icon on different wallpapers and avoiding text beside your product's wordmark. Provide an icon that's at least 512x512 pixels.
+> Veja as [boas práticas da Apple](https://developer.apple.com/design/human-interface-guidelines/app-icons/#Best-practices) para garantir que seu ícone tenha uma aparência profissional, como testar o ícone em diferentes papéis de parede e evitar texto ao lado do logotipo do produto. Forneça um ícone de pelo menos 512x512 pixels.
 
 #### iOS
 
 <VideoBoxLink
   videoId="RZ_QMym3adw"
   title="Icon Composer"
-  description="Learn how to use the new Icon Composer to create app icons for an Expo project."
+  description="Aprenda a usar o novo Icon Composer para criar ícones de app em um projeto Expo."
   className="mb-4"
 />
 
-For iOS, your app's icon should follow the [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/app-icons/). You can use the [Icon Composer](https://developer.apple.com/icon-composer/) app to create your app icon. This will output a **.icon** directory that you can add to your project's **assets** directory. You can then provide the path to this directory in your app config. Adding support for dark mode is handled in Icon Composer, so you do not need to provide variants when using this approach.
+No iOS, o ícone do app deve seguir as [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/app-icons/). Você pode usar o app [Icon Composer](https://developer.apple.com/icon-composer/) para criar o ícone. Ele gera um diretório **.icon** que pode ser adicionado à pasta **assets** do projeto. Depois, informe o caminho desse diretório no app config. O suporte ao modo escuro é feito no Icon Composer, então você não precisa fornecer variantes ao usar essa abordagem.
 
-> **info** **Note:** Providing an Icon Composer **.icon** directory via `ios.icon` is supported **in SDK 54** and later.
+> **info** **Nota:** fornecer um diretório **.icon** do Icon Composer por meio de `ios.icon` é compatível **a partir do SDK 54**.
 
 ```json app.json
 {
@@ -223,13 +223,13 @@ For iOS, your app's icon should follow the [Apple Human Interface Guidelines](ht
 }
 ```
 
-Alternatively, the previous approach of providing an image is still supported. You should:
+Como alternativa, a abordagem anterior, de fornecer uma imagem, ainda é compatível. Você deve:
 
-- Use a **.png** file.
-- 1024x1024 is a good size. If you have an Expo project created using `npx create-expo-app`, [Expo Build](/build/setup/) will generate the other sizes for you. In case of an [existing React Native project](/bare/overview/), generate the icons on your own. The largest size Expo Build generates is 1024x1024.
-- The icon must be exactly square. For example, a 1023x1024 icon is not valid.
-- Make sure the icon fills the whole square, with no rounded corners or other transparent pixels. The operating system will mask your icon when appropriate.
-- Use `ios.icon` to specify different icons for various system appearances (for example, dark and tinted) can be provided. If specified, this overrides the top-level icon key in the app config file. See the example below:
+- Use um arquivo **.png**.
+- 1024x1024 é um bom tamanho. Se você tem um projeto Expo criado com `npx create-expo-app`, o [Expo Build](/build/setup/) gera os outros tamanhos para você. No caso de um [projeto React Native existente](/bare/overview/), gere os ícones por conta própria. O maior tamanho que o Expo Build gera é 1024x1024.
+- O ícone precisa ser exatamente quadrado. Por exemplo, um ícone de 1023x1024 não é válido.
+- Garanta que o ícone preencha o quadrado inteiro, sem cantos arredondados nem outros pixels transparentes. O sistema operacional aplicará a máscara no ícone quando for o caso.
+- Use `ios.icon` para fornecer ícones diferentes para as variações de aparência do sistema (por exemplo, escuro e tonalizado). Quando definido, ele substitui a chave `icon` do nível superior no app config. Veja o exemplo abaixo:
 
 ```json app.json
 {
@@ -248,3 +248,5 @@ Alternatively, the previous approach of providing an image is still supported. Y
 </Collapsible>
 
 </Step>
+
+{/* ia-translate: true */}

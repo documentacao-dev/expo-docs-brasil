@@ -1,6 +1,6 @@
 ---
-title: Add gestures
-description: In this tutorial, learn how to add double tap and drag gestures with React Native Gesture Handler and animate them with Reanimated in a React Native app.
+title: Adicione gestos
+description: Neste tutorial, aprenda a adicionar gestos de toque duplo e de arrastar com o React Native Gesture Handler e animá-los com o Reanimated em um app React Native.
 hasVideoLink: true
 ---
 
@@ -9,26 +9,26 @@ import { ProgressTracker } from '~/ui/components/ProgressTracker';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-Gestures are a great way to provide an intuitive user experience in an app. The [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/) library provides built-in native components that can handle gestures. It recognizes pan, tap, rotation, and other gestures using the platform's native touch handling system. In this chapter, we'll add two different gestures using this library:
+Gestos são uma ótima forma de oferecer uma experiência de usuário intuitiva em um app. A biblioteca [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/) oferece componentes nativos integrados que sabem tratar gestos. Ela reconhece arrastar, toque, rotação e outros gestos usando o sistema de toque nativo da plataforma. Neste capítulo, vamos adicionar dois gestos diferentes com essa biblioteca:
 
-- Double tap to scale the size of the emoji sticker and reduce the scale when double tapped again.
-- Pan to move the emoji sticker so that the user can place the sticker anywhere on the image. The sticker stays inside the image.
+- Toque duplo para aumentar o tamanho do adesivo de emoji e reduzir a escala quando o usuário tocar duas vezes novamente.
+- Arrastar para mover o adesivo de emoji, para que o usuário possa posicioná-lo em qualquer lugar da imagem. O adesivo permanece dentro da imagem.
 
-We'll also use the [Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/handling-gestures/) library to animate between gesture states. The default template already includes both libraries.
+Também vamos usar a biblioteca [Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/handling-gestures/) para animar a transição entre os estados dos gestos. O template padrão já inclui as duas bibliotecas.
 
 <VideoBoxLink
   videoId="0q48LLvTGDU"
-  title="Watch: Adding gestures to your universal Expo app"
-  description="Add double tap and pan gestures to the emoji sticker using React Native Gesture Handler and Reanimated."
+  title="Assista: Adicionando gestos ao seu app Expo universal"
+  description="Adicione gestos de toque duplo e de arrastar ao adesivo de emoji usando o React Native Gesture Handler e o Reanimated."
 />
 
 ---
 
 <Step label="1">
 
-## Add GestureHandlerRootView
+## Adicione o GestureHandlerRootView
 
-To get gesture interactions to work in the app, we'll render [`<GestureHandlerRootView>`](https://docs.swmansion.com/react-native-gesture-handler/docs/core-components/root-view) from `react-native-gesture-handler` at the root of the app. Gestures are recognized only inside this view. In **src/app/\_layout.tsx**, wrap the `<Stack>` with `<GestureHandlerRootView>`:
+Para que as interações por gestos funcionem no app, vamos renderizar o [`<GestureHandlerRootView>`](https://docs.swmansion.com/react-native-gesture-handler/docs/core-components/root-view) do `react-native-gesture-handler` na raiz do app. Os gestos são reconhecidos somente dentro dessa view. Em **src/app/\_layout.tsx**, envolva o `<Stack>` com `<GestureHandlerRootView>`:
 
 {/* prettier-ignore */}
 ```tsx src/app/_layout.tsx
@@ -52,21 +52,21 @@ export default function RootLayout() {
 }
 ```
 
-By default, `<GestureHandlerRootView>` has the `flex: 1` style, so it fills the screen.
+Por padrão, o `<GestureHandlerRootView>` tem o estilo `flex: 1`, então ocupa toda a tela.
 
 </Step>
 
 <Step label="2">
 
-## Use animated components
+## Use componentes animados
 
-An `Animated` component looks at the `style` prop of the component and determines which values to animate and apply updates to create an animation. Reanimated exports animated components such as `<Animated.View>`, `<Animated.Text>`, or `<Animated.ScrollView>`. We'll use `<Animated.View>` to animate the emoji sticker.
+Um componente `Animated` observa a prop `style` do componente e determina quais valores animar e quais atualizações aplicar para criar a animação. O Reanimated exporta componentes animados, como `<Animated.View>`, `<Animated.Text>` ou `<Animated.ScrollView>`. Vamos usar `<Animated.View>` para animar o adesivo de emoji.
 
-The sticker must also stay on the image. In the previous chapter, a negative `top` value placed the sticker on the image. Let's position the sticker relative to the image instead:
+O adesivo também precisa permanecer sobre a imagem. No capítulo anterior, um valor negativo de `top` posicionava o adesivo sobre a imagem. Em vez disso, vamos posicionar o adesivo em relação à imagem:
 
-1. In **src/app/(tabs)/index.tsx**, wrap the `ImageViewer` and `EmojiSticker` components with a `<View>`. This `<View>` has the same size as the image.
-2. Open the **emoji-sticker.tsx** file in the **src/components** directory. Inside it, import `Animated` from the `react-native-reanimated` library to use animated components.
-3. Replace the `<View>` component with `<Animated.View>`, and place it at the top-left corner of the image with `position: 'absolute'`. The `Image` fills the `<Animated.View>`.
+1. Em **src/app/(tabs)/index.tsx**, envolva os componentes `ImageViewer` e `EmojiSticker` com um `<View>`. Esse `<View>` tem o mesmo tamanho da imagem.
+2. Abra o arquivo **emoji-sticker.tsx**, no diretório **src/components**. Dentro dele, importe `Animated` da biblioteca `react-native-reanimated` para usar componentes animados.
+3. Substitua o componente `<View>` por `<Animated.View>` e posicione-o no canto superior esquerdo da imagem com `position: 'absolute'`. A `Image` preenche o `<Animated.View>`.
 
 {/* prettier-ignore */}
 ```tsx src/app/(tabs)/index.tsx
@@ -131,21 +131,21 @@ const styles = StyleSheet.create({
 });
 ```
 
-> For a complete reference of the animated component API, see [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/core/createAnimatedComponent) documentation.
+> Para a referência completa da API de componentes animados, consulte a documentação do [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/core/createAnimatedComponent).
 
 </Step>
 
 <Step label="3">
 
-## Add a tap gesture
+## Adicione um gesto de toque
 
-React Native Gesture Handler allows us to add behavior when it detects touch input, like a double tap event.
+O React Native Gesture Handler permite adicionar comportamentos quando ele detecta uma entrada de toque, como um evento de toque duplo.
 
-In the **src/components/emoji-sticker.tsx** file:
+No arquivo **src/components/emoji-sticker.tsx**:
 
-1. Import `GestureDetector` and `useTapGesture` from `react-native-gesture-handler`.
-2. To recognize the tap on the sticker, import `useAnimatedStyle`, `useSharedValue`, and `withSpring` from `react-native-reanimated` to animate the style of the `<Animated.View>`.
-3. Inside the `EmojiSticker` component, create a reference called `scaleImage` using the `useSharedValue()` hook. It will take the value of `imageSize` as its initial value.
+1. Importe `GestureDetector` e `useTapGesture` do `react-native-gesture-handler`.
+2. Para reconhecer o toque no adesivo, importe `useAnimatedStyle`, `useSharedValue` e `withSpring` do `react-native-reanimated` para animar o estilo do `<Animated.View>`.
+3. Dentro do componente `EmojiSticker`, crie uma referência chamada `scaleImage` usando o hook `useSharedValue()`. Ela vai receber o valor de `imageSize` como valor inicial.
 
 {/* prettier-ignore */}
 ```tsx src/components/emoji-sticker.tsx
@@ -162,11 +162,11 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
 }
 ```
 
-Creating a shared value using the `useSharedValue()` hook has many advantages. It helps to mutate data and runs animations based on the current value. We read a shared value with its `get()` method and change it with its `set()` method. The default template enables the [React Compiler](/guides/react-compiler/), and with the React Compiler, Reanimated recommends [`get()` and `set()`](https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue) instead of the `value` property.
+Criar um valor compartilhado com o hook `useSharedValue()` tem várias vantagens. Ele ajuda a alterar dados e executa animações com base no valor atual. Lemos um valor compartilhado com o método `get()` e o alteramos com o método `set()`. O template padrão ativa o [React Compiler](/guides/react-compiler/) e, com o React Compiler, o Reanimated recomenda [`get()` e `set()`](https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue) em vez da propriedade `value`.
 
-We'll create a `doubleTap` gesture with the `useTapGesture()` hook. The `numberOfTaps` option sets the number of taps required, and the `onActivate` callback runs when the gesture is recognized. It doubles the size of the sticker, or returns it to its initial size.
+Vamos criar um gesto `doubleTap` com o hook `useTapGesture()`. A opção `numberOfTaps` define quantos toques são necessários, e o callback `onActivate` é executado quando o gesto é reconhecido. Ele dobra o tamanho do adesivo ou o faz voltar ao tamanho inicial.
 
-Create the following gesture in the `EmojiSticker` component:
+Crie o gesto a seguir no componente `EmojiSticker`:
 
 ```tsx src/components/emoji-sticker.tsx
 const doubleTap = useTapGesture({
@@ -177,11 +177,11 @@ const doubleTap = useTapGesture({
 });
 ```
 
-To animate the transition, let's use a spring-based animation. This will make it feel alive because it's based on the real-world physics of a spring. We will use the `withSpring()` function provided by `react-native-reanimated`.
+Para animar a transição, vamos usar uma animação baseada em mola. Isso deixa o movimento mais vivo, porque segue a física real de uma mola. Vamos usar a função `withSpring()` do `react-native-reanimated`.
 
-On the sticker, we'll use the `useAnimatedStyle()` hook to create a style object. This will help us to update styles using shared values when the animation happens. We'll also scale the size of the sticker by manipulating the `width` and `height` properties. The initial values of these properties are set to `imageSize`.
+No adesivo, vamos usar o hook `useAnimatedStyle()` para criar um objeto de estilo. Isso nos ajuda a atualizar os estilos com valores compartilhados quando a animação acontece. Também vamos alterar o tamanho do adesivo manipulando as propriedades `width` e `height`. Os valores iniciais dessas propriedades são definidos como `imageSize`.
 
-Create a `stickerStyle` variable and add it to the `EmojiSticker` component:
+Crie uma variável `stickerStyle` e adicione-a ao componente `EmojiSticker`:
 
 ```tsx src/components/emoji-sticker.tsx
 const stickerStyle = useAnimatedStyle(() => {
@@ -192,7 +192,7 @@ const stickerStyle = useAnimatedStyle(() => {
 });
 ```
 
-Next, wrap the `<Animated.View>` component with the `<GestureDetector>` and replace the size in the `style` prop on the `<Animated.View>` with `stickerStyle`.
+Em seguida, envolva o componente `<Animated.View>` com o `<GestureDetector>` e substitua o tamanho na prop `style` do `<Animated.View>` por `stickerStyle`.
 
 {/* prettier-ignore */}
 ```tsx src/components/emoji-sticker.tsx
@@ -249,29 +249,29 @@ const styles = StyleSheet.create({
 });
 ```
 
-In the above snippet, the `gesture` prop takes the value of the `doubleTap` to trigger a gesture when a user double-taps the sticker.
+No trecho acima, a prop `gesture` recebe o valor de `doubleTap` para disparar o gesto quando o usuário dá um toque duplo no adesivo.
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos dar uma olhada no nosso app no Android, iOS e web:
 
 <ContentSpotlight file="tutorial/gestures-tap-gesture.mp4" />
 
-> For a complete reference of the tap gesture API, see the [`useTapGesture`](https://docs.swmansion.com/react-native-gesture-handler/docs/gestures/use-tap-gesture) documentation.
+> Para a referência completa da API do gesto de toque, consulte a documentação do [`useTapGesture`](https://docs.swmansion.com/react-native-gesture-handler/docs/gestures/use-tap-gesture).
 
 </Step>
 
 <Step label="4">
 
-## Add a pan gesture
+## Adicione um gesto de arrastar
 
-To recognize a dragging gesture on the sticker and to track its movement, we'll use a pan gesture. The sticker must stay inside the image, so we'll also limit its position. In the **src/components/emoji-sticker.tsx** file:
+Para reconhecer um gesto de arrastar no adesivo e acompanhar o seu movimento, vamos usar um gesto de arrastar (pan). O adesivo precisa permanecer dentro da imagem, então também vamos limitar a sua posição. No arquivo **src/components/emoji-sticker.tsx**:
 
-1. Create two new shared values: `translateX` and `translateY`. They hold the position of the sticker. Their initial value of `0` keeps the sticker at the top-left corner of the image.
-2. Create a `drag` gesture with the `usePanGesture()` hook. Its `onUpdate` callback runs while the finger moves. The `changeX` and `changeY` properties of the `event` hold the change in position since the last event.
-3. Pass each new position to the [`clamp()`](https://docs.swmansion.com/react-native-reanimated/docs/utilities/clamp) function from Reanimated. It limits a value between a minimum and a maximum. The image is 320 wide and 440 tall, as set in **image-viewer.tsx**. The largest position is the image size minus the sticker size.
-4. In the `doubleTap` gesture, clamp the position after the size changes. A sticker that doubles its size near an edge then stays inside the image.
-5. Combine both gestures with the [`useSimultaneousGestures()`](https://docs.swmansion.com/react-native-gesture-handler/docs/composition/use-simultaneous-gestures) hook, so the sticker recognizes both gestures at the same time.
-6. Add a `transform` property to `stickerStyle` to move the sticker with the `translateX` and `translateY` values.
-7. Set `pointerEvents` to `'none'` on the `Image`. On web, the browser starts its own drag when the user presses an image and moves the pointer, which cancels the pan gesture. With this style, the `<Animated.View>` receives the pointer events instead.
+1. Crie dois novos valores compartilhados: `translateX` e `translateY`. Eles guardam a posição do adesivo. O valor inicial `0` mantém o adesivo no canto superior esquerdo da imagem.
+2. Crie um gesto `drag` com o hook `usePanGesture()`. O callback `onUpdate` é executado enquanto o dedo se move. As propriedades `changeX` e `changeY` do `event` guardam a mudança de posição desde o último evento.
+3. Passe cada nova posição para a função [`clamp()`](https://docs.swmansion.com/react-native-reanimated/docs/utilities/clamp) do Reanimated. Ela limita um valor entre um mínimo e um máximo. A imagem tem 320 de largura e 440 de altura, como definido em **image-viewer.tsx**. A maior posição possível é o tamanho da imagem menos o tamanho do adesivo.
+4. No gesto `doubleTap`, limite a posição depois que o tamanho mudar. Assim, um adesivo que dobra de tamanho perto de uma borda continua dentro da imagem.
+5. Combine os dois gestos com o hook [`useSimultaneousGestures()`](https://docs.swmansion.com/react-native-gesture-handler/docs/composition/use-simultaneous-gestures), para que o adesivo reconheça os dois gestos ao mesmo tempo.
+6. Adicione uma propriedade `transform` ao `stickerStyle` para mover o adesivo com os valores de `translateX` e `translateY`.
+7. Defina `pointerEvents` como `'none'` na `Image`. Na web, o navegador inicia o próprio arrastar quando o usuário pressiona uma imagem e move o ponteiro, o que cancela o gesto de arrastar. Com esse estilo, o `<Animated.View>` recebe os eventos de ponteiro.
 
 {/* prettier-ignore */}
 ```tsx src/components/emoji-sticker.tsx
@@ -364,14 +364,16 @@ const styles = StyleSheet.create({
 });
 ```
 
-Let's take a look at our app on Android, iOS, and web:
+Vamos dar uma olhada no nosso app no Android, iOS e web:
 
 <ContentSpotlight file="tutorial/gestures-pan-gesture.mp4" />
 
-> For a complete reference of the pan gesture API, see the [`usePanGesture`](https://docs.swmansion.com/react-native-gesture-handler/docs/gestures/use-pan-gesture) documentation.
+> Para a referência completa da API do gesto de arrastar, consulte a documentação do [`usePanGesture`](https://docs.swmansion.com/react-native-gesture-handler/docs/gestures/use-pan-gesture).
 
 </Step>
 
-## Summary
+## Resumo
 
 <ProgressTracker name="GET_STARTED" currentChapterSlug="/tutorial/gestures" />
+
+{/* ia-translate: true */}

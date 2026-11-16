@@ -1,40 +1,40 @@
 ---
 title: Assets
-description: Learn about using static assets in your project, including images, videos, sounds, database files, and fonts.
+description: Aprenda a usar assets estáticos no seu projeto, incluindo imagens, vídeos, sons, arquivos de banco de dados e fontes.
 ---
 
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-A **static asset** is a file that is bundled with your app's binary (native binary). This file type is not part of your app's JavaScript bundle which contain your app's code. Common types of static assets include images, videos, sounds, database files for SQLite, and fonts. These assets can be served locally from your project or remotely over the network.
+Um **asset estático** é um arquivo empacotado junto com o binário nativo do seu app. Esse tipo de arquivo não faz parte do bundle JavaScript do app, que contém o código. Tipos comuns de assets estáticos incluem imagens, vídeos, sons, arquivos de banco de dados para SQLite e fontes. Esses assets podem ser servidos localmente, a partir do seu projeto, ou remotamente, pela rede.
 
-This guide covers different ways you can load and use static assets in your project and also provides additional information on how to optimize and minify assets.
+Este guia mostra as diferentes formas de carregar e usar assets estáticos no seu projeto e também traz informações sobre como otimizar e reduzir o tamanho dos assets.
 
-## Serve an asset locally
+## Servir um asset localmente
 
-When an asset is stored in your project's file system, it can be embedded in your app binary at build time or loaded at runtime. You can import it like a JavaScript module using `require` or `import` statements.
+Quando um asset está armazenado no sistema de arquivos do projeto, ele pode ser incorporado ao binário do app no momento do build ou carregado em tempo de execução. Você pode importá-lo como um módulo JavaScript usando as instruções `require` ou `import`.
 
-For example, to render an image called **example.png** in **App.js**, you can use `require` to import the image from the project's **assets/images** directory and pass it to the `<Image>` component:
+Por exemplo, para renderizar uma imagem chamada **example.png** no **App.js**, use `require` para importar a imagem do diretório **assets/images** do projeto e passe-a para o componente `<Image>`:
 
 ```tsx src/app/index.tsx
 <Image source={require('./assets/images/example.png')} />
 ```
 
-In the above example, the bundler reads the imported image's metadata and automatically provides the width and height. For more information, see [Static Image Resources](https://reactnative.dev/docs/images#static-image-resources).
+No exemplo acima, o bundler lê os metadados da imagem importada e fornece automaticamente a largura e a altura. Para mais informações, veja [Recursos de imagem estáticos](https://reactnative.dev/docs/images#static-image-resources).
 
-Libraries such as `expo-image` and `expo-file-system` work similarly to the `<Image>` component with local assets.
+Bibliotecas como `expo-image` e `expo-file-system` funcionam de forma parecida com o componente `<Image>` quando usadas com assets locais.
 
-### How are assets served locally
+### Como os assets locais são servidos
 
-Locally stored assets are served over HTTP in development. They are automatically bundled into your app binary at the build time for production apps and served from disk on a device.
+Os assets armazenados localmente são servidos via HTTP em desenvolvimento. Em apps de produção, eles são incluídos automaticamente no binário do app durante o build e servidos a partir do disco no dispositivo.
 
-### Load an asset at build time with `expo-asset` config plugin
+### Carregar um asset no build com o plugin de config `expo-asset`
 
-To load an asset at build time, you can use the [config plugin](/versions/latest/sdk/asset/#example-appjson-with-config-plugin) from the `expo-asset` library. This plugin will embed the asset file in your native project.
+Para carregar um asset no build, use o [plugin de config](/versions/latest/sdk/asset/#example-appjson-with-config-plugin) da biblioteca `expo-asset`. Esse plugin incorpora o arquivo do asset ao seu projeto nativo.
 
 <Step label="1">
 
-Install the `expo-asset` library.
+Instale a biblioteca `expo-asset`.
 
 <Terminal
   cmd={{
@@ -49,9 +49,9 @@ Install the `expo-asset` library.
 
 <Step label="2">
 
-Add the config plugin to your project's [app config](/versions/latest/config/app/#plugins) file. The configuration must contain the path to the asset file using [`assets`](/versions/latest/sdk/asset/#configurable-properties) property which takes an array of one or more files or directories to link to the native project.
+Adicione o plugin de config ao arquivo de [app config](/versions/latest/config/app/#plugins) do seu projeto. A configuração deve conter o caminho do arquivo do asset, usando a propriedade [`assets`](/versions/latest/sdk/asset/#configurable-properties), que recebe um array com um ou mais arquivos ou diretórios para vincular ao projeto nativo.
 
-The path to each asset file must be relative to your project's root since the app config file is located in the project's root directory.
+O caminho de cada arquivo de asset deve ser relativo à raiz do projeto, já que o arquivo de app config fica no diretório raiz do projeto.
 
 ```json app.json
 {
@@ -74,9 +74,9 @@ The path to each asset file must be relative to your project's root since the ap
 
 <Step label="3">
 
-After embedding the asset with the config plugin, [create a new development build](/develop/development-builds/introduction/#how-would-you-like-to-build-your-development-build). Now, you can import and use the asset in your project without using a `require` or an `import` statement.
+Depois de incorporar o asset com o plugin de config, [crie um novo development build](/develop/development-builds/introduction/#how-would-you-like-to-build-your-development-build). Agora você pode importar e usar o asset no projeto sem usar `require` ou `import`.
 
-For example, the **example.png** is linked by the above config plugin. You can directly import it into your component and use its resource name as the URI. Note that when rendering assets without using `require`, you need to explicitly provide a width / height.
+Por exemplo, o **example.png** está vinculado pelo plugin de config acima. Você pode importá-lo diretamente no componente e usar o nome do recurso como URI. Observe que, ao renderizar assets sem usar `require`, é preciso informar explicitamente a largura e a altura.
 
 ```tsx src/app/index.tsx
 import { Image } from 'expo-image';
@@ -89,15 +89,15 @@ export default function HomeScreen() {
 
 </Step>
 
-> **info** Different file formats are supported with the `expo-asset` config plugin. For more information on these formats, see [Assets API reference](/versions/latest/sdk/asset/#configurable-properties). If you don't see a file format supported by the config plugin, you can use the [`useAssets`](#load-an-asset-at-runtime-with-useassets-hook) hook to load the asset at runtime.
+> **info** O plugin de config `expo-asset` aceita diferentes formatos de arquivo. Para mais informações sobre esses formatos, veja a [referência da API de Assets](/versions/latest/sdk/asset/#configurable-properties). Se você não encontrar um formato de arquivo suportado pelo plugin de config, pode usar o hook [`useAssets`](#load-an-asset-at-runtime-with-useassets-hook) para carregar o asset em tempo de execução.
 
-### Load an asset at runtime with `useAssets` hook
+### Carregar um asset em tempo de execução com o hook `useAssets`
 
-The `useAssets` hook from `expo-asset` library allows loading assets asynchronously. This hook downloads and stores an asset locally and after the asset is loaded, it returns a list of that asset's instances.
+O hook `useAssets` da biblioteca `expo-asset` permite carregar assets de forma assíncrona. Ele baixa e armazena o asset localmente e, depois que o asset é carregado, retorna uma lista com as instâncias desse asset.
 
 <Step label="1">
 
-Install the `expo-asset` library.
+Instale a biblioteca `expo-asset`.
 
 <Terminal
   cmd={{
@@ -112,7 +112,7 @@ Install the `expo-asset` library.
 
 <Step label="2">
 
-Import the [`useAssets`](/versions/latest/sdk/asset/#useassetsmoduleids) hook from the `expo-asset` library in your screen component:
+Importe o hook [`useAssets`](/versions/latest/sdk/asset/#useassetsmoduleids) da biblioteca `expo-asset` no componente da sua tela:
 
 ```tsx src/app/index.tsx
 import { useAssets } from 'expo-asset';
@@ -129,9 +129,9 @@ export default function HomeScreen() {
 
 </Step>
 
-## Serve an asset remotely
+## Servir um asset remotamente
 
-When an asset is served remotely, it is not bundled into the app binary at build time. You can use the URL of the asset resource in your project if it is hosted remotely. For example, pass the URL to the `<Image>` component to render a remote image:
+Quando um asset é servido remotamente, ele não é incluído no binário do app durante o build. Você pode usar a URL do recurso no seu projeto se ele estiver hospedado remotamente. Por exemplo, passe a URL para o componente `<Image>` para renderizar uma imagem remota:
 
 ```jsx App.js
 import { Image } from 'expo-image';
@@ -144,32 +144,34 @@ function App() {
 }
 ```
 
-There is no guarantee about the availability of images served remotely using a web URL because an internet connection may not be available, or the asset might be removed.
+Não há garantia de que imagens servidas remotamente por uma URL da web estejam disponíveis, porque a conexão com a internet pode não estar disponível ou o asset pode ter sido removido.
 
-Additionally, loading assets remotely also requires you to provide an asset's metadata. In the above example, since the bundler cannot retrieve the image's width and height, those values are passed explicitly to the `<Image>` component. If you don't, the image will default to 0px by 0px.
+Além disso, carregar assets remotamente exige que você informe os metadados do asset. No exemplo acima, como o bundler não consegue obter a largura e a altura da imagem, esses valores são passados explicitamente ao componente `<Image>`. Se você não fizer isso, a imagem assume o padrão de 0px por 0px.
 
-## Additional information
+## Informações adicionais
 
-### Manual optimization methods
+### Métodos de otimização manual
 
-#### Images
+#### Imagens
 
-You can compress images using the following:
+Você pode comprimir imagens com as ferramentas a seguir:
 
 - [`guetzli`](https://github.com/google/guetzli)
 - [`pngcrush`](https://pmt.sourceforge.io/pngcrush/)
 - [`optipng`](https://optipng.sourceforge.net/)
 
-Some image optimizers are lossless. They re-encode your image to be smaller without any change or loss in the pixels displayed. When you need each pixel to be untouched from the original image, a lossless optimizer and a lossless image format like PNG are a good choice.
+Alguns otimizadores de imagem são sem perda (lossless). Eles recodificam a imagem para deixá-la menor, sem nenhuma alteração ou perda nos pixels exibidos. Quando você precisa que cada pixel fique intacto em relação à imagem original, um otimizador sem perda e um formato sem perda, como o PNG, são boas escolhas.
 
-Other image optimizers are lossy. The optimized image differs from the original image. Often, lossy optimizers are more efficient because they discard visual information that reduces file size while making the image look nearly identical to humans. Tools like `imagemagick` can use comparison algorithms like [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) to show how similar two images look. It's quite common for an optimized image that is over 95% similar to the original image to be far less than 95% of the original file size.
+Outros otimizadores de imagem são com perda (lossy). A imagem otimizada é diferente da original. Muitas vezes, os otimizadores com perda são mais eficientes, porque descartam informações visuais que reduzem o tamanho do arquivo, mas deixam a imagem praticamente idêntica para as pessoas. Ferramentas como o `imagemagick` podem usar algoritmos de comparação, como o [SSIM](https://en.wikipedia.org/wiki/Structural_similarity), para mostrar o quão parecidas duas imagens são. É bem comum que uma imagem otimizada com mais de 95% de semelhança com a original tenha bem menos de 95% do tamanho do arquivo original.
 
-#### Other assets
+#### Outros assets
 
-For assets like GIFs or videos, or non-code and non-image assets, it's up to you to optimize and minify those assets.
+Para assets como GIFs, vídeos ou outros assets que não são código nem imagem, cabe a você otimizar e reduzir o tamanho desses arquivos.
 
-> **Note**: GIFs are a very inefficient format. Modern video codecs can produce significantly smaller file sizes with better quality.
+> **Note**: GIFs são um formato muito ineficiente. Codecs de vídeo modernos conseguem arquivos bem menores e com melhor qualidade.
 
-### Fonts
+### Fontes
 
-See [Add a custom font](/develop/user-interface/fonts/#add-a-custom-font) for more information on how to add a custom font to your app.
+Veja [Adicione uma fonte personalizada](/develop/user-interface/fonts/#add-a-custom-font) para mais informações sobre como adicionar uma fonte personalizada ao seu app.
+
+{/* ia-translate: true */}

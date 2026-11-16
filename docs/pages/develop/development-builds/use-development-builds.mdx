@@ -1,17 +1,17 @@
 ---
-title: Use a development build
-description: Learn how to use development builds for a project.
-sidebar_title: Use a build
+title: Usar um development build
+description: Aprenda a usar development builds em um projeto.
+sidebar_title: Usar um build
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 
-Usually, creating a new native build from scratch takes long enough that you'll be tempted to switch tasks and lose your focus. However, with the development build installed on your device or an emulator/simulator, you won't have to wait for the native build process until you [change the underlying native code](#rebuild-a-development-build) that powers your app.
+Normalmente, criar um build nativo do zero leva tanto tempo que você fica tentado a trocar de tarefa e perder o foco. Mas, com o development build instalado no seu aparelho ou em um emulador/simulador, você não precisa esperar pelo processo de build nativo até [alterar o código nativo](#rebuild-a-development-build) que sustenta o seu app.
 
-## Start the development server
+## Iniciar o servidor de desenvolvimento
 
-To start developing, run the following command to start the development server:
+Para começar a desenvolver, execute o comando a seguir para iniciar o servidor de desenvolvimento:
 
 <Terminal
   cmd={{
@@ -22,29 +22,31 @@ To start developing, run the following command to start the development server:
   }}
 />
 
-To open the project inside your development client:
+Para abrir o projeto dentro do seu development client:
 
-- Press <kbd>A</kbd> or <kbd>I</kbd> keys to open your project on an Android Emulator or an iOS Simulator.
-- On a physical device, scan the QR code from your system's camera or a QR code reader to open the project on your device.
+- Pressione as teclas <kbd>A</kbd> ou <kbd>I</kbd> para abrir seu projeto em um Android Emulator ou em um iOS Simulator.
+- Em um aparelho físico, escaneie o QR code com a câmera do sistema ou com um leitor de QR code para abrir o projeto no seu aparelho.
 
-## The launcher screen
+## A tela do launcher
 
-If you launch the development build from your device's Home screen, you will see your launcher screen, which looks similar to the following:
+Se você abrir o development build pela tela inicial do aparelho, verá a tela do launcher, parecida com esta:
 
 <ContentSpotlight
-  alt="The launcher screen of a development build running on an iOS Simulator, showing the Home tab with a development server on the local network and the Updates tab with updates published with Expo Update"
+  alt="A tela do launcher de um development build rodando em um iOS Simulator, mostrando a aba Home com um servidor de desenvolvimento na rede local e a aba Updates com atualizações publicadas com o Expo Update"
   src="/static/images/dev-client/launcher-screen-simulator.webp"
   className="max-w-[480px]"
 />
 
-If a bundler is detected on your local network, or if you have signed in to an Expo account in both Expo CLI and your development build, you can connect to it directly from this screen. Otherwise, you can connect by scanning the QR code displayed by the Expo CLI.
+Se um bundler for detectado na sua rede local, ou se você tiver entrado em uma conta Expo tanto no Expo CLI quanto no seu development build, você pode se conectar diretamente por esta tela. Caso contrário, conecte-se escaneando o QR code exibido pelo Expo CLI.
 
-## Rebuild a development build
+## Gerar novamente um development build
 
-If you add a library to your project that contains native code APIs, for example, [`expo-secure-store`](/versions/latest/sdk/securestore/), you will have to rebuild the development client. This is because the native code of the library is not included in the development client automatically when installing the library as a dependency on your project.
+Se você adicionar ao projeto uma biblioteca com APIs de código nativo, por exemplo o [`expo-secure-store`](/versions/latest/sdk/securestore/), será preciso gerar o development client novamente. Isso acontece porque o código nativo da biblioteca não entra automaticamente no development client quando você a instala como dependência do projeto.
 
-## Debug a development build
+## Depurar um development build
 
-When you need to, you can access the menu by pressing <kbd>Cmd ⌘</kbd> + <kbd>D</kbd> or <kbd>Ctrl</kbd> + <kbd>D</kbd> in Expo CLI or by shaking your phone or tablet. Here you'll be able to access all of the functions of your development build, any debugging functionality you need, or switch to a different version of your app.
+Quando precisar, você acessa o menu pressionando <kbd>Cmd ⌘</kbd> + <kbd>D</kbd> ou <kbd>Ctrl</kbd> + <kbd>D</kbd> no Expo CLI, ou sacudindo o celular ou tablet. Ali você consegue acessar todas as funções do seu development build, qualquer recurso de depuração de que precisar, ou trocar para outra versão do seu app.
 
-See [Debugging](/debugging/runtime-issues/) guide for more information.
+Veja o guia de [Depuração](/debugging/runtime-issues/) para mais informações.
+
+{/* ia-translate: true */}

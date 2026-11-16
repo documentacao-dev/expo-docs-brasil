@@ -1,7 +1,7 @@
 ---
-title: Share a development build with your team
-description: Learn how to install and share the development with your team or run it on multiple devices.
-sidebar_title: Share with your team
+title: Compartilhar um development build com sua equipe
+description: Aprenda a instalar e compartilhar o development build com sua equipe ou rodá-lo em vários aparelhos.
+sidebar_title: Compartilhar com sua equipe
 ---
 
 import { Cube01Icon } from '@expo/styleguide-icons/outline/Cube01Icon';
@@ -11,52 +11,52 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 import { CODE } from '~/ui/components/Text';
 
-Android and iOS both offer ways to install a build of your application directly on devices. This gives you full control of putting specific builds on devices, allowing you to iterate quickly and have multiple builds of your application available for review at the same time. You can also share it with your team or run it on multiple test devices.
+Android e iOS oferecem formas de instalar um build do seu app diretamente nos aparelhos. Isso dá controle total sobre quais builds vão para cada aparelho, permitindo iterar rápido e ter vários builds do seu app disponíveis para revisão ao mesmo tempo. Você também pode compartilhá-lo com sua equipe ou rodá-lo em vários aparelhos de teste.
 
-## Share the URL
+## Compartilhe a URL
 
-When a development build is ready, a shareable URL is generated for your build with instructions on how to get it up and running. You can use this URL with a teammate or send it to your test device to install the build. The URL generated is unique to the build for your project.
+Quando um development build fica pronto, é gerada uma URL compartilhável para ele, com instruções de como colocá-lo para rodar. Você pode usar essa URL com um colega ou enviá-la ao seu aparelho de teste para instalar o build. A URL gerada é exclusiva desse build do seu projeto.
 
 <ContentSpotlight
-  alt="An example of shareable development build URL after the Android internal distribution build is ready."
+  alt="Exemplo de URL compartilhável do development build depois que o build de distribuição interna para Android fica pronto."
   src="/static/images/share-dev-build/shareable-url.png"
 />
 
-> If you register any new iOS devices after creating a development build, you'll need to create a new development build to install it on those devices. For more information, see [internal distribution](/build/internal-distribution/).
+> Se você registrar novos dispositivos iOS depois de criar um development build, será preciso criar um novo development build para instalá-lo neles. Para mais informações, veja a [distribuição interna](/build/internal-distribution/).
 
-### Use the Expo dashboard
+### Use o painel do Expo
 
-You can also direct your teammate to the build page in the Expo dashboard. From there, they can download the build artifact directly on their device.
+Você também pode direcionar seu colega para a página do build no painel do Expo. De lá, ele pode baixar o artefato do build diretamente no aparelho dele.
 
 <ContentSpotlight
-  alt="An example of shareable development build URL from Expo dashboard."
+  alt="Exemplo de URL compartilhável do development build pelo painel do Expo."
   src="/static/images/tutorial/eas/android-development-build-qr-code.webp"
   className="max-w-[480px]"
 />
 
-### Use EAS CLI
+### Use o EAS CLI
 
-Your teammate can also download and install the development build using EAS CLI. They have to make sure that they are signed from the Expo account associated with the development build and then can run the following command:
+Seu colega também pode baixar e instalar o development build usando o EAS CLI. Ele precisa garantir que esteja conectado à conta Expo associada ao development build e depois pode executar o comando a seguir:
 
 <Terminal cmd={['$ eas build:run --profile development']} />
 
-If the profile name for the development build is different from `development`, use it instead with `--profile`.
+Se o nome do perfil do development build for diferente de `development`, use esse nome no lugar, com `--profile`.
 
-### iOS-only instructions
+### Instruções somente para iOS
 
-> If you're running iOS 16 or above and haven't yet turned on Developer Mode, you'll need to [enable it](/guides/ios-developer-mode) before you can run your build. (This doesn't apply if you're using enterprise provisioning.)
+> Se você estiver usando iOS 16 ou superior e ainda não tiver ativado o Modo Desenvolvedor, será preciso [ativá-lo](/guides/ios-developer-mode) antes de rodar seu build. (Isso não se aplica se você estiver usando provisionamento empresarial.)
 
-You can use `eas build:resign` to codesign an existing **.ipa** for iOS to a new ad hoc provisioning profile. This helps reduce time when distributing with your team. For example, if you want to add a new test device to an existing build, you can use this command to update the provisioning profile to include the device without rebuilding the entire app from scratch. For more information, see [Re-signing new credentials](/app-signing/app-credentials/#re-signing-new-credentials).
+Você pode usar `eas build:resign` para assinar novamente um **.ipa** existente para iOS com um novo perfil de provisionamento ad hoc. Isso reduz o tempo ao distribuir com a equipe. Por exemplo, se você quiser adicionar um novo aparelho de teste a um build existente, pode usar esse comando para atualizar o perfil de provisionamento e incluir o aparelho, sem gerar o app inteiro do zero. Para mais informações, veja [Reassinar com novas credenciais](/app-signing/app-credentials/#re-signing-new-credentials).
 
-## Next steps
+## Próximos passos
 
 <BoxLink
-  title="Install multiple app variants on the same device"
+  title="Instale várias variantes do app no mesmo aparelho"
   description={
     <>
-      Learn how to install multiple variants (development, preview, production) of an app on the
-      same device side by side by converting <CODE>app.json</CODE> to <CODE>app.config.js</CODE> and
-      additional configuration that is required to start the development server for each variant.
+      Aprenda a instalar várias variantes (development, preview, production) de um app lado a lado
+      no mesmo aparelho, convertendo o <CODE>app.json</CODE> em <CODE>app.config.js</CODE> e com a
+      configuração extra necessária para iniciar o servidor de desenvolvimento de cada variante.
     </>
   }
   href="/build-reference/variants/"
@@ -64,8 +64,10 @@ You can use `eas build:resign` to codesign an existing **.ipa** for iOS to a new
 />
 
 <BoxLink
-  title="Sharing pre-release versions of your app"
-  description="Learn more about sharing pre-release versions of your app."
+  title="Compartilhando versões de pré-lançamento do seu app"
+  description="Saiba mais sobre como compartilhar versões de pré-lançamento do seu app."
   href="/build/internal-distribution"
   Icon={Cube01Icon}
 />
+
+{/* ia-translate: true */}

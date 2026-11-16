@@ -1,7 +1,7 @@
 ---
-title: 'Expo Services Tutorial: Introduction'
-sidebar_title: Introduction
-description: An introduction to the tutorial for building apps for Android and iOS using Expo Services that covers the Build, Update, and Submit workflows.
+title: 'Tutorial do Expo Services: introdução'
+sidebar_title: Introdução
+description: Uma introdução ao tutorial para criar apps para Android e iOS usando o Expo Services, com os fluxos de Build, Update e Submit.
 ---
 
 import { PlanEnterpriseIcon } from '@expo/styleguide-icons/custom/PlanEnterpriseIcon';
@@ -9,51 +9,53 @@ import { PlanEnterpriseIcon } from '@expo/styleguide-icons/custom/PlanEnterprise
 import { BoxLink } from '~/ui/components/BoxLink';
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 
-## About this tutorial
+## Sobre este tutorial
 
-This tutorial will give you proficiency with the core [Expo Services](https://expo.dev/services): [Build](/build/introduction/), [Submit](/deploy/submit-to-app-stores/), and [Update](/eas-update/introduction/). When you complete the tutorial, you will know how to set up a professional mobile Continuous Integration (CI)/Continuous Development (CD) pipeline for your individual and team projects.
+Este tutorial vai dar a você domínio dos principais serviços do [Expo Services](https://expo.dev/services): [Build](/build/introduction/), [Submit](/deploy/submit-to-app-stores/) e [Update](/eas-update/introduction/). Ao concluir o tutorial, você saberá como montar um pipeline profissional de Integração Contínua (CI) e Entrega Contínua (CD) para seus projetos individuais e de equipe.
 
-This tutorial covers the following topics:
+Este tutorial aborda os seguintes tópicos:
 
-- Use Expo Build to create and install a development build, then run it on a device, emulator, or simulator.
-- Experience the benefits of using a development build instead of Expo Go.
-- Implement workflows for sharing development builds with a team or external stakeholders.
-- Automatically increment app build versions.
-- Simultaneously install different app variants, like development and preview, on one device.
-- Utilize Expo Update to create and deploy updates swiftly during the development phase.
-- Automate build processes by integrating with a GitHub repository.
+- Use o Expo Build para criar e instalar um development build e, depois, rodá-lo em um dispositivo, emulador ou simulador.
+- Veja as vantagens de usar um development build em vez do Expo Go.
+- Implemente fluxos para compartilhar development builds com a equipe ou com partes externas interessadas.
+- Incremente automaticamente as versões de build do app.
+- Instale, ao mesmo tempo, variantes diferentes do app, como development e preview, em um mesmo dispositivo.
+- Use o Expo Update para criar e publicar atualizações rapidamente durante a fase de desenvolvimento.
+- Automatize os processos de build integrando com um repositório no GitHub.
 
-These topics will give us the foundation needed to use Expo Services effectively and to approach more advanced topics when needed.
+Esses tópicos vão nos dar a base necessária para usar o Expo Services com eficiência e para avançar em temas mais complexos quando precisar.
 
-This tutorial is hands-on and designed to be completed in about two hours.
+Este tutorial é prático e foi feito para ser concluído em cerca de duas horas.
 
 <Prerequisites>
-  <Requirement title="An existing Expo project set up locally">
-    Pick one of the following options to follow along:
+  <Requirement title="Um projeto Expo existente configurado localmente">
+    Escolha uma das opções a seguir para acompanhar o tutorial:
 
-    - Continue with the Sticker Smash app from the previous tutorial. If new, download it from [GitHub](https://github.com/expo/examples/tree/master/stickersmash).
-    - Start a new project with [`npx create-expo-app`](/get-started/create-a-project/).
-    - Use an [existing React Native project](/bare/overview/). Ensure the `expo` package is installed, which you can do [automatically](/bare/installing-expo-modules/) or [manually](/bare/installing-expo-modules/#manual-installation).
+    - Continue com o app Sticker Smash do tutorial anterior. Se for a primeira vez, baixe-o no [GitHub](https://github.com/expo/examples/tree/master/stickersmash).
+    - Crie um projeto novo com o [`npx create-expo-app`](/get-started/create-a-project/).
+    - Use um [projeto React Native existente](/bare/overview/). Garanta que o pacote `expo` esteja instalado, o que você pode fazer [automaticamente](/bare/installing-expo-modules/) ou [manualmente](/bare/installing-expo-modules/#manual-installation).
 
   </Requirement>
 </Prerequisites>
 
-## Tools
+## Ferramentas
 
-[Expo Orbit](https://expo.dev/orbit) to manage and launch builds with one click on macOS, Windows, and Linux.
+[Expo Orbit](https://expo.dev/orbit) para gerenciar e abrir builds com um clique no macOS, Windows e Linux.
 
-If you want to install and run the build locally on your machine simultaneously, you can use Android Emulator or iOS Simulator. To set them up, see the following:
+Se você quiser instalar e rodar o build localmente na sua máquina ao mesmo tempo, pode usar o Android Emulator ou o iOS Simulator. Para configurá-los, veja a seguir:
 
 - [Android Emulator](/workflow/android-studio-emulator/)
-- [iOS Simulator](/workflow/ios-simulator/) (available only on macOS)
+- [iOS Simulator](/workflow/ios-simulator/) (disponível apenas no macOS)
 
-## Next step
+## Próximo passo
 
-We're ready for this journey after setting up an Expo project locally. In the next chapter, let's learn how to create your first build with Expo Build.
+Estamos prontos para essa jornada depois de configurar um projeto Expo localmente. No próximo capítulo, vamos aprender a criar seu primeiro build com o Expo Build.
 
 <BoxLink
-  title="Start"
-  description="Let's start by configuring a development build."
+  title="Começar"
+  description="Vamos começar configurando um development build."
   Icon={PlanEnterpriseIcon}
   href="/tutorial/eas/configure-development-build/"
 />
+
+{/* ia-translate: true */}
