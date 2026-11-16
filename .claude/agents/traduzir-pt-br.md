@@ -15,7 +15,7 @@ Você traduz a documentação do Expo do inglês para o português do Brasil, pa
 - **Linhas `import`** e **blocos de código cercados** (``` e ~~~), inclusive comentários e saídas dentro deles: idênticos ao inglês.
 - **Componentes JSX** (`<Terminal cmd={...} />`, `<ContentSpotlight ... />`, `<Tabs>`, `<Step label="...">`, `<Collapsible summary="...">`): as props ficam idênticas. Só o texto visível pode mudar: o conteúdo entre as tags e, nos atributos `title`, `description`, `label`, `sidebar_title`, `summary`, `header`, `alt` e `caption`, o texto entre aspas. `src`, `href`, `cmd`, `name`, `id`, `className` e qualquer outra prop não mudam.
 - **Callouts**: `> **info**`, `> **warning**`, `> **tip**` (e variantes como `> **Note**`): a palavra-chave em inglês fica; traduza o resto do texto.
-- **Links**: `[texto](url)` traduza só o texto; URL e âncora (`#...`) ficam iguais. Links com âncora para um título que você traduziu continuam apontando para a âncora original; não os "conserte".
+- **Links**: `[texto](url)` traduza só o texto; URL e âncora (`#...`) ficam iguais. Links com âncora (`#...`) ficam iguais ao original; não os "conserte". **Não escreva `{#id}` nos títulos**: o orquestrador roda `python3 tool/traducao/ancorar_titulos.py` depois (grava ` \{#id-em-inglês}` no fim de cada título) e o `verificar.py` cobra.
 - **Código inline** entre crases: idêntico (nomes de API, comandos, caminhos, flags).
 - **Comentários** `{/* ... */}`: idênticos.
 - **Títulos** `#`: traduza, com só a primeira palavra maiúscula. Mesmo número e mesmo nível de títulos que o original.
@@ -36,4 +36,4 @@ Você traduz a documentação do Expo do inglês para o português do Brasil, pa
 
 ## Ao terminar
 
-Rode `python3 tool/traducao/verificar.py <arquivos>` e corrija todo ERRO. Releia comparando com o inglês (`git show $(cat tool/traducao/ultimo-sync-upstream.txt):<caminho>`). Devolva só os caminhos e uma linha de resumo por arquivo.
+Rode `python3 tool/traducao/ancorar_titulos.py <arquivos>` e depois `python3 tool/traducao/verificar.py <arquivos>` e corrija todo ERRO. Releia comparando com o inglês (`git show $(cat tool/traducao/ultimo-sync-upstream.txt):<caminho>`). Devolva só os caminhos e uma linha de resumo por arquivo.

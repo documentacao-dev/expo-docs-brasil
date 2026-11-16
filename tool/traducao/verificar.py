@@ -15,17 +15,22 @@ tool/traducao/ultimo-sync-upstream.txt (`git show`):
 - frontmatter com as mesmas chaves; title/description/sidebar_title podem ser
   traduzidos, o resto fica idêntico;
 - comentários {/* */} idênticos (exceto o marcador);
+- título traduzido termina com ` \\{#id}` igual ao slug do título em inglês (ancorar_titulos.py grava);
 - código inline que não existe no inglês vira AVISO.
 
 Uso: python3 tool/traducao/verificar.py [caminhos .mdx...]
 Saída: `ERRO arquivo: ...` e `N arquivo(s) traduzido(s), M erro(s)`; exit 1 se houver erro.
 """
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+from slugger import SUFIXO, slugs_do_ingles, texto_do_titulo, titulos as titulos_md
+
+GIT_ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get('VERIFICAR_RAIZ') or Path(__file__).resolve().parents[2])
 PAGES = ROOT / 'docs' / 'pages'
 MARCADOR = '{/* ia-translate: true */}'
 EXCLUIDOS = ('ja', 'versions')
@@ -52,7 +57,7 @@ def commit_upstream():
 
 def ingles(p, commit):
     rel = p.resolve().relative_to(ROOT).as_posix()
-    r = subprocess.run(['git', '-C', str(ROOT), 'show', f'{commit}:{rel}'],
+    r = subprocess.run(['git', '-C', str(GIT_ROOT), 'show', f'{commit}:{rel}'],
                        capture_output=True, text=True)
     return r.stdout if r.returncode == 0 else None
 
@@ -124,10 +129,54 @@ def tags_jsx(t):
     return tags
 
 
+ELEMENTO_INLINE = re.compile(r'<([A-Za-z][\w.]*)\b[^>]*?/>|<([A-Za-z][\w.]*)\b[^>]*>.*?</\2>', re.S)
+
+
+def _fim_da_chave(t, i):
+    """Índice da `}` que fecha a `{` em t[i] (ignora chaves dentro de aspas)."""
+    prof, aspas = 0, None
+    for j in range(i, len(t)):
+        c = t[j]
+        if aspas:
+            if c == '\\':
+                continue
+            if c == aspas:
+                aspas = None
+        elif c in '"\'`':
+            aspas = c
+        elif c == '{':
+            prof += 1
+        elif c == '}':
+            prof -= 1
+            if prof == 0:
+                return j
+    return -1
+
+
 def neutralizar_atributos(tag):
+    """Esvazia o texto dos atributos visíveis. Aceita "..." e {<>...</>}; no caso da
+    expressão só os elementos internos (<CODE>@</CODE>) são comparados, o texto solto muda."""
     nomes = '|'.join(ATTR_TRADUZIVEIS)
     tag = re.sub(rf'\b({nomes})="[^"]*"', r'\1=""', tag)
     tag = re.sub(rf"\b({nomes})='[^']*'", r"\1=''", tag)
+    out, pos = [], 0
+    for m in re.finditer(rf'\b({nomes})=\{{', tag):
+        if m.start() < pos:
+            continue
+        ini = m.end() - 1
+        fim = _fim_da_chave(tag, ini)
+        if fim < 0:
+            continue
+        inner = tag[ini + 1:fim].strip()
+        if inner.startswith('<>') and inner.endswith('</>'):
+            elementos = ' '.join(e.group(0) for e in ELEMENTO_INLINE.finditer(inner[2:-3]))
+            out.append(tag[pos:m.start()] + f'{m.group(1)}={{<>{elementos}</>}}')
+            pos = fim + 1
+    out.append(tag[pos:])
+    tag = ''.join(out)
+    if tag.startswith('<FileTree'):
+        # files={[['caminho', 'descrição visível'], ...]}: a descrição pode ser traduzida
+        tag = re.sub(r"(\[\s*'[^']*'\s*,\s*)'[^']*'(\s*\])", r"\1''\2", tag)
     return tag
 
 
@@ -197,6 +246,19 @@ def conferir(p, commit):
     tit = lambda t: [len(m.group(1)) for m in re.finditer(r'^(#{1,6})\s', t, re.M)]
     if tit(se2) != tit(sp2):
         erros.append(f'títulos #: {len(tit(se2))} no inglês, {len(tit(sp2))} na tradução (ou níveis diferentes)')
+
+    # ids dos títulos: o título traduzido leva ` \\{#id}` com o slug do inglês
+    tm_en, tm_pt, sl_en = titulos_md(en), titulos_md(pt), slugs_do_ingles(en)
+    if len(tm_en) == len(tm_pt):
+        for (_, _, bruto_en), (_, _, bruto_pt), slug_en in zip(tm_en, tm_pt, sl_en):
+            m = SUFIXO.search(bruto_pt)
+            mudou = texto_do_titulo(bruto_pt) != texto_do_titulo(bruto_en)
+            if m and not re.search(r'\\\{#', bruto_pt):
+                erros.append(f'título "{bruto_pt[:50]}": escreva `\\{{#{slug_en}}}` com a barra (`{{#id}}` solto quebra o MDX)')
+            elif m and m.group(1) != slug_en:
+                erros.append(f'título "{bruto_pt[:50]}": id `{m.group(1)}`, deveria ser `{slug_en}` (rode ancorar_titulos.py)')
+            elif not m and mudou:
+                erros.append(f'título "{bruto_pt[:50]}": falta ` \\{{#{slug_en}}}` (rode ancorar_titulos.py)')
 
     # código inline novo
     for c in sorted(codigo_inline(sp2) - codigo_inline(se2))[:5]:
