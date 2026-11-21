@@ -12,7 +12,7 @@ import { Step } from '~/ui/components/Step';
 
 O [Sentry](https://getsentry.com/) é uma plataforma de relatório de falhas que oferece **visibilidade em tempo real sobre os deploys de produção, com informações para reproduzir e corrigir as falhas**.
 
-Ele avisa sobre as exceções e os erros que os usuários encontram ao usar seu app e os organiza em um painel web. As exceções reportadas incluem stacktraces, informações do dispositivo, versão e outros contextos relevantes, automaticamente. Você também pode fornecer contexto adicional específico do seu app, como a rota atual e o ID do usuário.
+Ele avisa sobre as exceções e os erros que os usuários encontram ao usar seu app e os organiza em um painel web. As exceções reportadas incluem stack traces, informações do dispositivo, versão e outros contextos relevantes, automaticamente. Você também pode fornecer contexto adicional específico do seu app, como a rota atual e o ID do usuário.
 
 ## O que você vai aprender \{#what-youll-learn}
 
@@ -102,7 +102,7 @@ import { Button } from 'react-native';
 
 ## Uso com o Expo Build \{#usage-with-expo-build}
 
-Garanta que `SENTRY_AUTH_TOKEN` esteja definido no ambiente de build com [visibilidade sensível](/eas/environment-variables/#visibility-settings-for-environment-variables). O Sentry vai enviar os source maps automaticamente. Se você usa variáveis de ambiente em vez de propriedades no app config, confirme que elas também estão definidas.
+Confirme que `SENTRY_AUTH_TOKEN` esteja definido no ambiente de build com [visibilidade sensível](/eas/environment-variables/#visibility-settings-for-environment-variables). O Sentry vai enviar os source maps automaticamente. Se você usa variáveis de ambiente em vez de propriedades no app config, confirme que elas também estão definidas.
 
 Seguindo as instruções acima, nenhum trabalho adicional é necessário para integrar o Sentry ao seu projeto ao usar o Expo Build.
 
@@ -182,7 +182,7 @@ if (typeof updateGroup === 'string') {
 }
 ```
 
-Depois de configurado, as informações sobre o update associado aparecem na seção de tags do erro:
+Depois de configurar, as informações sobre o update associado aparecem na seção de tags do erro:
 
 <ContentSpotlight alt="Tags de update no Sentry" src="/static/images/guides/sentry-tags.webp" />
 
@@ -190,7 +190,7 @@ Depois de configurado, as informações sobre o update associado aparecem na se�
 
 ## Integração do Sentry com o dashboard do Expo \{#sentry-integration-with-expo-dashboard}
 
-A integração do Sentry com o Expo permite ver relatórios de falhas e Session Replays das implantações do seu app Expo diretamente no dashboard do Expo. Essa integração oferece um link direto para os stack traces do Sentry, com contexto completo, Session Replays e recursos de debug.
+A integração do Sentry com o Expo permite ver relatórios de falhas e Session Replays dos deploys do seu app Expo diretamente no dashboard do Expo. Essa integração oferece um link direto para os stack traces do Sentry, com contexto completo, Session Replays e recursos de debug.
 
 ### Instalar \{#install}
 

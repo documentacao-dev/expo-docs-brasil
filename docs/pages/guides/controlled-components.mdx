@@ -9,7 +9,7 @@ import { WorkletPathDiagram } from '~/scenes/guides/controlled-components/Workle
 
 Todo campo tem um valor atual, como o texto em um campo de texto, a posição de um switch ou a opção selecionada em um picker. Um **componente controlado** mantém esse valor em um state que você gerencia. O campo exibe o que o state contém, e cada alteração feita pelo usuário atualiza esse state. Esse state é a única fonte da verdade.
 
-Componentes controlados combinam uma prop que define o valor com um callback que informa as alterações. Esta página foca no [`TextInput`](https://reactnative.dev/docs/textinput), o componente do React Native para digitar texto, porque é em um campo de texto que controlar o valor é mais útil e mais difícil de acertar. Para `Switch`, `Checkbox` e `Picker`, veja [Controlar outros componentes](#control-other-components).
+Componentes controlados combinam uma prop que define o valor com um callback que informa as alterações. Esta página trata do [`TextInput`](https://reactnative.dev/docs/textinput), o componente do React Native para digitar texto, porque é em um campo de texto que controlar o valor é mais útil e mais difícil de acertar. Para `Switch`, `Checkbox` e `Picker`, veja [Controlar outros componentes](#control-other-components).
 
 ## Controlar um campo de texto \{#control-a-text-input}
 
@@ -229,11 +229,11 @@ export default function PhoneMaskExample() {
 
 A verificação `formatted !== value` pula a reescrita quando a formatação não altera o texto. Quando a máscara reescreve a string, atualize `selection.value` junto com `phone.value`. Caso contrário, o cursor deixa de acompanhar o texto reescrito, e a digitação rápida coloca os caracteres na posição errada. Levar o cursor para o fim é o comportamento correto mais simples quando o usuário digita no final do campo. Uma máscara de produção que aceite edições no meio do texto precisa de um tratamento de cursor mais elaborado.
 
-Os campos de texto específicos de cada plataforma do `@expo/ui` oferecem os mesmos padrões de componente controlado e de worklet. Veja os exemplos de campo de texto controlado para [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/textfield/#controlled-text-field) e [SwiftUI](/versions/latest/sdk/ui/swift-ui/textfield/#controlled-text-field), e o [exemplo de máscara com worklet](/versions/latest/sdk/ui/universal/textinput/#worklet-masking) para o `TextInput` universal.
+Os campos de texto específicos de cada plataforma do `@expo/ui` aceitam os mesmos padrões de componente controlado e de worklet. Veja os exemplos de campo de texto controlado para [Jetpack Compose](/versions/latest/sdk/ui/jetpack-compose/textfield/#controlled-text-field) e [SwiftUI](/versions/latest/sdk/ui/swift-ui/textfield/#controlled-text-field), e o [exemplo de máscara com worklet](/versions/latest/sdk/ui/universal/textinput/#worklet-masking) para o `TextInput` universal.
 
 ## Quando usar uma biblioteca \{#when-to-use-a-library}
 
-Uma formatação feita à mão funciona para um ou dois campos. Uma biblioteca cuida dos cálculos do cursor e das regras de localização em casos especiais, como números de telefone internacionais, separadores de moeda, números de cartão de crédito e datas:
+Uma formatação feita à mão funciona para um ou dois campos. Uma biblioteca cuida dos cálculos do cursor e das regras de idioma e região em casos especiais, como números de telefone internacionais, separadores de moeda, números de cartão de crédito e datas:
 
 - Para máscaras: [`react-native-mask-input`](https://github.com/CaioQuirinoMedeiros/react-native-mask-input) ou [`react-native-mask-text`](https://github.com/akinncar/react-native-mask-text).
 - Para state e validação de formulários com muitos campos: [React Hook Form](https://react-hook-form.com/) ou [Formik](https://formik.org/docs/guides/react-native). Com o React Hook Form, envolva o `TextInput` no componente `Controller`, porque `register` não se vincula a campos nativos.

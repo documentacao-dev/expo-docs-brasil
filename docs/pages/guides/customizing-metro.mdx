@@ -40,7 +40,7 @@ module.exports = config;
 
 Veja a [documentação do **metro.config.js**](/versions/latest/config/metro) para mais informações.
 
-> **info** O Expo bloqueia algumas opções de configuração do Metro para evitar que projetos quebrem. Nem toda opção aceita pelo Metro original pode ser personalizada ou é suportada. O Expo também não oferece suporte ao carregamento de configurações do Metro a partir de arquivos YAML (descontinuado no projeto original) nem de configurações localizadas fora do seu repositório.
+> **info** O Expo bloqueia algumas opções de configuração do Metro para evitar que projetos quebrem. Nem toda opção aceita pelo Metro original pode ser personalizada ou tem suporte. O Expo também não oferece suporte ao carregamento de configurações do Metro a partir de arquivos YAML (descontinuado no projeto original) nem de configurações localizadas fora do seu repositório.
 
 ## Assets \{#assets}
 
@@ -119,7 +119,7 @@ As mudanças vão aparecer na próxima vez que você reiniciar o servidor de des
   Icon={DocsLogo}
 />
 
-## Monitoramento e varredura de arquivos \{#file-watching-and-crawling}
+## Observação e varredura de arquivos \{#file-watching-and-crawling}
 
 A partir do **SDK 56**, o mapa de arquivos do Expo passa a oferecer suporte a acesso ao sistema de arquivos sob demanda. Na prática, isso significa que seu `watchFolders` não precisa mais incluir todos os módulos que o app empacota, e projetos que usam symlinks para dependências fora da raiz do projeto agora são resolvidos corretamente.
 
@@ -201,7 +201,7 @@ Ao exportar com `npx expo export`, o conteúdo da pasta **public** é copiado pa
 
 Você pode substituir o **index.html** padrão do Metro web criando um arquivo **public/index.html** no seu projeto.
 
-No futuro, isso vai funcionar de forma universal em todas as plataformas com a hospedagem de updates do Expo. Atualmente, o recurso é exclusivo da web e depende do host estático usado pelo app nativo. Por exemplo, as atualizações do serviço legado do Expo não oferecem suporte a esse recurso.
+No futuro, isso vai funcionar de forma universal em todas as plataformas com a hospedagem de updates do Expo. Atualmente, o recurso é exclusivo da web e depende do host estático usado pelo app nativo. Por exemplo, os updates do serviço legado do Expo não oferecem suporte a esse recurso.
 
 > **warning** Alguns caminhos, como `/assets`, são reservados pelo Metro. Evite colocar arquivos em **public/assets/** ou em outros caminhos reservados. Veja [Caminhos reservados](/router/reference/reserved-paths/) para a lista completa.
 

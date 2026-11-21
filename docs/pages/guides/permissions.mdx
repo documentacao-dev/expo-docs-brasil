@@ -25,7 +25,7 @@ A maioria das permissões é adicionada automaticamente pelas bibliotecas que vo
 }
 ```
 
-A única forma de remover permissões adicionadas por arquivos **AndroidManifest.xml** no nível do pacote é bloqueá-las com a propriedade [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions). Para isso, informe o **nome completo da permissão**. Por exemplo, se você quiser remover a permissão de gravação de áudio adicionada pelo `expo-camera`:
+A única forma de remover permissões adicionadas por arquivos **AndroidManifest.xml** no nível do pacote é bloqueá-las com a propriedade [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions). Para isso, informe o **nome completo da permissão**. Por exemplo, se você quiser remover as permissões de gravação de áudio adicionadas pelo `expo-camera`:
 
 ```json app.json
 {
@@ -85,7 +85,7 @@ Muitas dessas propriedades também podem ser configuradas diretamente pelas prop
 }
 ```
 
-Para mostrar a mensagem de permissão no idioma do usuário, adicione a chave de descrição de uso correspondente, como `NSCameraUsageDescription`, no objeto `ios` de cada arquivo de locale. Veja [Traduzindo metadados do app](/guides/localization/#translating-app-metadata) para a configuração e um exemplo.
+Para mostrar a mensagem de permissão no idioma do usuário, adicione a chave de descrição de uso correspondente, como `NSCameraUsageDescription`, no objeto `ios` de cada arquivo de locale. Veja [Traduzir metadados do app](/guides/localization/#translating-app-metadata) para a configuração e um exemplo.
 
 - Alterações no **Info.plist** não podem ser enviadas por OTA. Elas só são publicadas quando você envia um novo binário nativo, por exemplo, com o [`eas build`](/build/introduction).
 - As [recomendações oficiais da Apple para mensagens de permissão](https://developer.apple.com/design/human-interface-guidelines/privacy#Requesting-permission).
@@ -103,7 +103,7 @@ Na web, permissões como `Camera` e `Location` só podem ser solicitadas em um [
 
 ## Redefinir permissões \{#resetting-permissions}
 
-Muitas vezes, você quer testar o que acontece quando o usuário recusa uma permissão, para garantir que o app reaja com elegância. Uma restrição do sistema operacional, tanto no Android quanto no iOS, impede que o app peça a mesma permissão mais de uma vez (imagine como seria irritante para o usuário ser solicitado repetidamente depois de recusar). Para testar diferentes fluxos envolvendo permissões durante o desenvolvimento, pode ser necessário desinstalar e reinstalar o app nativo.
+Muitas vezes, você quer testar o que acontece quando o usuário recusa uma permissão, para garantir que o app reaja bem. Uma restrição do sistema operacional, tanto no Android quanto no iOS, impede que o app peça a mesma permissão mais de uma vez (imagine como seria irritante para o usuário ser solicitado repetidamente depois de recusar). Para testar diferentes fluxos envolvendo permissões durante o desenvolvimento, pode ser necessário desinstalar e reinstalar o app nativo.
 
 Ao testar no [Expo Go](https://expo.dev/go), você pode excluir o app e instalá-lo de novo executando `npx expo start` e pressionando <kbd>I</kbd> ou <kbd>A</kbd> na interface de terminal da [Expo CLI](/more/expo-cli/).
 

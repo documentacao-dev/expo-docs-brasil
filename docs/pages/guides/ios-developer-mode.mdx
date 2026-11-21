@@ -1,6 +1,6 @@
 ---
-title: Modo de Desenvolvedor do iOS
-description: Saiba como ativar a configuração do Modo de Desenvolvedor do iOS no iOS 16 ou superior para rodar builds de distribuição interna e development builds locais.
+title: Modo de desenvolvedor do iOS
+description: Saiba como ativar a configuração do Modo de desenvolvedor do iOS no iOS 16 ou superior para rodar builds de distribuição interna e development builds locais.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
@@ -9,33 +9,33 @@ import { Step } from '~/ui/components/Step';
 
 > Isso não se aplica a builds assinados com provisionamento empresarial nem a builds instalados em um Simulador do iOS.
 
-Dispositivos com iOS 16 ou superior precisam ativar a configuração **Modo de Desenvolvedor** do sistema antes de rodar builds de [distribuição interna](/build/internal-distribution) (incluindo os feitos com o Expo Build) ou development builds locais, depois de instalá-los no dispositivo.
+Dispositivos com iOS 16 ou superior precisam ativar a configuração **Modo de desenvolvedor** do sistema antes de rodar builds de [distribuição interna](/build/internal-distribution) (incluindo os feitos com o Expo Build) ou development builds locais, depois de instalá-los no dispositivo.
 
-Há duas formas de ativar o Modo de Desenvolvedor no seu dispositivo:
+Há duas formas de ativar o Modo de desenvolvedor no seu dispositivo:
 
 - Diretamente em um dispositivo iOS
 - Conectando um dispositivo iOS a um Mac com o Xcode instalado
 
 <Prerequisites>
   <Requirement title="Um dispositivo com iOS 16 ou posterior">
-    O Modo de Desenvolvedor só é necessário em dispositivos com iOS 16 ou posterior.
+    O Modo de desenvolvedor só é necessário em dispositivos com iOS 16 ou posterior.
   </Requirement>
 </Prerequisites>
 
 As instruções abaixo só precisam ser seguidas uma vez por dispositivo.
 
-## Ative o Modo de Desenvolvedor \{#enable-developer-mode}
+## Ative o Modo de desenvolvedor \{#enable-developer-mode}
 
 ### Diretamente em um dispositivo iOS \{#directly-on-an-ios-device}
 
-Para seguir os passos abaixo, **instale seu development build no dispositivo antes de ativar o Modo de Desenvolvedor.** Quando o build for criado, siga as instruções do painel do Expo para instalá-lo no seu dispositivo iOS.
+Para seguir os passos abaixo, **instale seu development build no dispositivo antes de ativar o Modo de desenvolvedor.** Quando o build for criado, siga as instruções do painel do Expo para instalá-lo no seu dispositivo iOS.
 
 <Step label="1">
 
-Depois que o build estiver instalado no dispositivo, toque no ícone do app. Isso vai abrir um alerta pedindo para ativar o Modo de Desenvolvedor. Toque em **OK**.
+Depois que o build estiver instalado no dispositivo, toque no ícone do app. Isso vai abrir um alerta pedindo para ativar o Modo de desenvolvedor. Toque em **OK**.
 
 <ContentSpotlight
-  alt="Acessando a configuração do Modo de Desenvolvedor"
+  alt="Acessando a configuração do Modo de desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-0.webp"
   className="max-w-[240px]"
 />
@@ -44,10 +44,10 @@ Depois que o build estiver instalado no dispositivo, toque no ícone do app. Iss
 
 <Step label="2">
 
-Abra o app Ajustes e acesse **Privacidade e Segurança** > **Modo de Desenvolvedor**.
+Abra o app Ajustes e acesse **Privacidade e Segurança** > **Modo de desenvolvedor**.
 
 <ContentSpotlight
-  alt="Acessando a configuração do Modo de Desenvolvedor"
+  alt="Acessando a configuração do Modo de desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-1.webp"
   className="max-w-[480px]"
 />
@@ -59,7 +59,7 @@ Abra o app Ajustes e acesse **Privacidade e Segurança** > **Modo de Desenvolved
 Ative a chave. O iOS vai pedir para reiniciar o dispositivo. Toque em **Reiniciar**.
 
 <ContentSpotlight
-  alt="Aviso de reinicialização do Modo de Desenvolvedor"
+  alt="Aviso de reinicialização do Modo de desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-2.webp"
   className="max-w-[480px]"
 />
@@ -78,15 +78,15 @@ Depois que o dispositivo reiniciar, desbloqueie-o. Um alerta do sistema deve apa
 
 </Step>
 
-O Modo de Desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
+O Modo de desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
 
-Você pode desativar o Modo de Desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
+Você pode desativar o Modo de desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
 
 ### Conecte um dispositivo iOS a um Mac \{#connect-an-ios-device-with-a-mac}
 
 > **Note:** o Xcode precisa estar instalado no Mac antes de seguir os passos abaixo.
 
-Você não precisa instalar o development build no dispositivo iOS antes de ativar o Modo de Desenvolvedor conectando-o a um Mac. Você pode:
+Você não precisa instalar o development build no dispositivo iOS antes de ativar o Modo de desenvolvedor conectando-o a um Mac. Você pode:
 
 <Step label="1">
 
@@ -110,12 +110,12 @@ Selecione seu dispositivo na barra lateral. O Device Hub mostra **Enable Develop
 
 <Step label="3">
 
-No dispositivo iOS, abra **Ajustes** > **Privacidade e Segurança** > **Modo de Desenvolvedor**.
+No dispositivo iOS, abra **Ajustes** > **Privacidade e Segurança** > **Modo de desenvolvedor**.
 
 Ative a chave. O iOS vai pedir para reiniciar o dispositivo. Toque em **Reiniciar**.
 
 <ContentSpotlight
-  alt="Aviso de reinicialização do Modo de Desenvolvedor"
+  alt="Aviso de reinicialização do Modo de desenvolvedor"
   src="/static/images/ios-dev-mode/with-xcode-02.webp"
   className="max-w-[560px]"
 />
@@ -127,15 +127,15 @@ Ative a chave. O iOS vai pedir para reiniciar o dispositivo. Toque em **Reinicia
 Depois que o dispositivo reiniciar, desbloqueie-o. Um alerta do sistema deve aparecer. Toque em **Ativar** e digite a senha do dispositivo quando solicitado.
 
 <ContentSpotlight
-  alt="Aviso de reinicialização do Modo de Desenvolvedor"
+  alt="Aviso de reinicialização do Modo de desenvolvedor"
   src="/static/images/ios-dev-mode/with-xcode-03.webp"
   className="max-w-[360px]"
 />
 
 </Step>
 
-O Modo de Desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
+O Modo de desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
 
-Você pode desativar o Modo de Desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
+Você pode desativar o Modo de desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
 
 {/* ia-translate: true */}

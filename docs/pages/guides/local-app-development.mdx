@@ -13,7 +13,7 @@ import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 import { Terminal } from '~/ui/components/Snippet';
 import { CODE } from '~/ui/components/Text';
 
-Para compilar o seu projeto em um app na sua própria máquina, você precisa gerar manualmente o código nativo antes de testar um debug build ou criar um build de produção para enviar às lojas de apps. Há duas formas de compilar o seu app localmente. Este guia traz uma introdução breve aos dois métodos e referências para os outros guias necessários para montar esse fluxo de trabalho.
+Para compilar o seu projeto em um app na sua própria máquina, você precisa gerar manualmente o código nativo antes de testar um debug build ou criar um build de produção para enviar às lojas de apps. Há duas formas de compilar o seu app localmente. Este guia traz uma introdução breve aos dois métodos e referências para os outros guias necessários para montar esse workflow.
 
 <Prerequisites>
   <Requirement title="Android Studio">
@@ -61,12 +61,12 @@ Para compilar o seu projeto localmente, use os comandos de compilação da Expo 
   }}
 />
 
-Os comandos acima compilam o seu projeto, usando o Android SDK ou o Xcode instalados na sua máquina, em um debug build do seu app. Cada comando faz duas etapas: compila e instala o binário nativo no seu dispositivo ou emulador, e depois inicia o Metro bundler para servir o seu código JavaScript ou TypeScript.
+Os comandos acima compilam o seu projeto, usando o Android SDK ou o Xcode instalados na sua máquina, em um debug build do seu app. Cada comando executa duas etapas: compila e instala o binário nativo no seu dispositivo ou emulador, e depois inicia o Metro bundler para servir o seu código JavaScript ou TypeScript.
 
 - Esses comandos de compilação executam primeiro o `npx expo prebuild` para gerar os diretórios nativos (**android** e **ios**) antes do build, caso eles ainda não existam. Se já existirem, essa etapa é ignorada.
 - Você também pode usar a flag `--device` para escolher o dispositivo em que o app será executado. Pode ser um dispositivo conectado fisicamente ou um emulador/simulador.
-- Você pode passar `--variant release` (Android) ou `--configuration Release` (iOS) para gerar um [build de produção do seu app](/deploy/build-project/#release-builds-locally). Esses builds não são assinados e não podem ser enviados às lojas de apps. Para assinar o seu build de produção, veja [Produção local do app](/guides/local-app-production/).
-- **Somente Android**: a partir da SDK 54, você pode usar a variante `--variant debugOptimized` para iterar mais rápido no desenvolvimento. Veja [Compilando Android na referência da Expo CLI](/more/expo-cli/#compiling-android) para mais informações.
+- Você pode passar `--variant release` (Android) ou `--configuration Release` (iOS) para gerar um [build de produção do seu app](/deploy/build-project/#release-builds-locally). Esses builds não são assinados e não podem ser enviados às lojas de apps. Para assinar o seu build de produção, veja [Criar um build de release localmente](/guides/local-app-production/).
+- **Somente Android**: a partir da SDK 54, você pode usar a variante `--variant debugOptimized` para iterar mais rápido no desenvolvimento. Veja [Compilar o Android, na referência da Expo CLI](/more/expo-cli/#compiling-android) para mais informações.
 
 ### Depois do primeiro build: use o `npx expo start` \{#after-the-first-build-use-npx-expo-start}
 
@@ -130,7 +130,7 @@ Para criar um development build, use os comandos de [compilação local do app](
 
 ## Builds locais com product flavors do Android \{#local-builds-using-android-product-flavors}
 
-Se você tem um projeto Android personalizado com vários product flavors que usam application IDs diferentes, pode configurar o `npx expo run:android` para usar o flavor e o build type corretos. O Expo oferece suporte tanto a `--variant` quanto a `--app-id` para personalizar o comportamento de build e de execução.
+Se você tem um projeto Android personalizado com vários product flavors que usam application IDs diferentes, pode configurar o `npx expo run:android` para usar o flavor e o build type corretos. A Expo oferece suporte tanto a `--variant` quanto a `--app-id` para personalizar o comportamento de build e de execução.
 
 A flag `--variant` pode trocar o build type do Android de **debug** para **release**. Ela também pode configurar um product flavor e um build type, quando escrito em camelCase. Por exemplo, se você tiver os product flavors [**free** e **paid**](https://developer.android.com/build/build-variants#change-app-id), pode criar uma versão de desenvolvimento do seu app com:
 
@@ -170,7 +170,7 @@ A flag `--app-id` pode ser usada para abrir o app depois do build, usando um app
   }}
 />
 
-> **info** Também é possível personalizar o build type do Android, mas isso quebraria a premissa do Expo de que o build type **release** é usado em produção. Você poderia gerar código não otimizado no app usando um build type diferente de **release**.
+> **info** Também é possível personalizar o build type do Android, mas isso quebraria a premissa da Expo de que o build type **release** é usado em produção. Você poderia gerar código não otimizado no app usando um build type diferente de **release**.
 
 ## Builds locais com o Expo Build \{#local-builds-with-expo-build}
 

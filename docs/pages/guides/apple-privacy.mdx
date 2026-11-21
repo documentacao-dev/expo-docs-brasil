@@ -41,7 +41,7 @@ Você pode incluir um manifesto de privacidade do iOS usando o campo `privacyMan
 }
 ```
 
-Confirme que você atualizou as bibliotecas do Expo SDK para as versões mais recentes da sua SDK, usando `npx expo install --fix`.
+Confirme que você atualizou as bibliotecas da Expo SDK para as versões mais recentes da sua SDK, usando `npx expo install --fix`.
 
 <ConfigReactNative>
 
@@ -52,15 +52,15 @@ Siga o guia [Arquivos de manifesto de privacidade da Apple](https://developer.ap
 
 Você pode identificar os valores de `NSPrivacyAccessedAPITypes` e `NSPrivacyAccessedAPITypeReasons` consultando a [documentação para desenvolvedores da Apple](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api).
 
-### Incluir os motivos exigidos para pacotes do Expo SDK e outras bibliotecas de terceiros \{#including-required-reasons-for-expo-sdk-packages-and-other-third-party-libraries}
+### Incluir os motivos exigidos para pacotes da Expo SDK e outras bibliotecas de terceiros \{#including-required-reasons-for-expo-sdk-packages-and-other-third-party-libraries}
 
-Até o momento, a Apple não interpreta corretamente todos os arquivos **PrivacyInfo** incluídos por dependências estáticas do CocoaPods (como os pacotes do Expo SDK e outras bibliotecas do ecossistema). Talvez você precise incluir os motivos exigidos para as APIs usadas por essas dependências no arquivo **PrivacyInfo.xcprivacy** do seu app ou na configuração do **app.json**.
+Até o momento, a Apple não interpreta corretamente todos os arquivos **PrivacyInfo** incluídos por dependências estáticas do CocoaPods (como os pacotes da Expo SDK e outras bibliotecas do ecossistema). Talvez você precise incluir os motivos exigidos para as APIs usadas por essas dependências no arquivo **PrivacyInfo.xcprivacy** do seu app ou na configuração do **app.json**.
 
-Todos os pacotes do Expo SDK que usam APIs de "required reason" têm um arquivo **PrivacyInfo** incluído no diretório do pacote. Aqui está [um arquivo de exemplo](https://github.com/expo/expo/blob/main/packages/expo-application/ios/PrivacyInfo.xcprivacy) incluído na biblioteca `expo-application`.
+Todos os pacotes da Expo SDK que usam APIs de "required reason" têm um arquivo **PrivacyInfo** incluído no diretório do pacote. Aqui está [um arquivo de exemplo](https://github.com/expo/expo/blob/main/packages/expo-application/ios/PrivacyInfo.xcprivacy) incluído na biblioteca `expo-application`.
 
 Normalmente, você consegue identificar os motivos exigidos para as APIs usadas por outras bibliotecas de terceiros verificando se a biblioteca que você pretende usar tem um arquivo **PrivacyInfo.xcprivacy** no diretório **node_modules/nome_do_pacote/ios**. Se tiver, confira os valores de `NSPrivacyAccessedAPITypes` e `NSPrivacyAccessedAPITypeReasons` nesse arquivo e copie esses valores para a sua configuração.
 
-Como alternativa, a Apple avisa os desenvolvedores depois que eles enviam um build com arquivos de manifesto de privacidade ou motivos específicos ausentes. Você pode esperar o e-mail de notificação da Apple e, então, incluir os motivos exigidos listados no e-mail no arquivo **PrivacyInfo.xcprivacy** do seu app (se você não usa o [CNG](/workflow/continuous-native-generation/)) ou na configuração do arquivo **app.json**.
+Como alternativa, a Apple avisa os desenvolvedores depois que eles enviam um build sem os arquivos de manifesto de privacidade ou sem motivos específicos. Você pode esperar o e-mail de notificação da Apple e, então, incluir os motivos exigidos listados no e-mail no arquivo **PrivacyInfo.xcprivacy** do seu app (se você não usa o [CNG](/workflow/continuous-native-generation/)) ou na configuração do arquivo **app.json**.
 
 ## Testar o manifesto de privacidade \{#testing-the-privacy-manifest}
 

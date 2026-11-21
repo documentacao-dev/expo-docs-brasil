@@ -18,7 +18,7 @@ Por ter suporte de primeira classe ao Metro, garantimos que os developers do Exp
 - O React Native DevTools, incluindo suporte de primeira classe a [debug de rede e de JS](/debugging/tools/#debugging-with-react-native-devtools), está disponível exclusivamente com Metro e Hermes.
 - O React Compiler foi lançado inicialmente como um plugin Babel compatível com o Metro.
 
-Novos recursos e recursos futuros planejados para o Metro incluem:
+Entre os recursos novos e os planejados para o Metro estão:
 
 - Compilação de código Flow para código de máquina nativo com o Static Hermes. Saiba mais na palestra [Static Hermes](https://www.youtube.com/watch?v=GUM64b-gAGg), de Tzvetan Mikov.
 - Busca de dados, streaming, React Suspense, renderização no servidor e renderização estática em tempo de build com React Server Components universais para todas as plataformas. Saiba mais na palestra [Universal React Server Components](https://www.youtube.com/watch?v=djhEgxQf3Kw), na React Conf 2024.
@@ -27,11 +27,11 @@ A equipe do Expo colabora com a Meta para desenvolver o Metro para o Expo Router
 
 ## Testado em larga escala \{#battle-tested-at-scale}
 
-Quase todo app React Native do mundo usa o Metro, o que faz dele uma solução testada em produção e otimizada para projetos de grande escala. Isso o torna adequado para developers de todos os portes, de hobbistas a grandes empresas. O Metro foi projetado especificamente para lidar com os apps de grande escala da Meta, e por isso tem recursos como delta bundling e [caches remotos compartilhados](https://metrobundler.dev/docs/caching).
+Quase todo app React Native do mundo usa o Metro, o que faz dele uma solução testada em produção e otimizada para projetos de grande escala. Isso o torna adequado para developers de todos os portes, de entusiastas a grandes empresas. O Metro foi projetado especificamente para lidar com os apps de grande escala da Meta, e por isso tem recursos como delta bundling e [caches remotos compartilhados](https://metrobundler.dev/docs/caching).
 
 ## Processamento sob demanda \{#on-demand-processing}
 
-Em desenvolvimento, o Metro não faz nenhum trabalho específico de plataforma até que seja solicitado. Isso permite que os developers trabalhem em projetos grandes sem pagar um custo de performance pelo número de plataformas que suportam. Combinado com um cache agressivo e [rotas assíncronas](/router/web/async-routes/), os developers podem fazer o bundle, de forma incremental, somente das partes do app em que estão trabalhando.
+Em desenvolvimento, o Metro não faz nenhum trabalho específico de plataforma até que seja solicitado. Isso permite que os developers trabalhem em projetos grandes sem pagar um custo de performance pelo número de plataformas que têm suporte. Combinado com um cache agressivo e [rotas assíncronas](/router/web/async-routes/), os developers podem fazer o bundle, de forma incremental, somente das partes do app em que estão trabalhando.
 
 ## Multidimensional \{#multi-dimensional}
 
@@ -43,7 +43,7 @@ O Metro é incremental e pode criar artefatos de transformação em cache que po
 
 ## Otimizado para runtimes personalizados \{#optimized-for-custom-runtimes}
 
-Enquanto outros bundlers são projetados em torno da especificação estática dos navegadores web, o Metro é otimizado para a flexibilidade do React Native. Isso permite recursos como gerar o conjunto específico de recursos da linguagem suportados pela compilação de bytecode Hermes, o que torna a inicialização do app em produção mais rápida. Isso também vai se estender ao Static Hermes, que vai compilar informações de tipo estáticas em código de máquina para apps nativos.
+Enquanto outros bundlers são projetados em torno da especificação estática dos navegadores web, o Metro é otimizado para a flexibilidade do React Native. Isso permite recursos como gerar o conjunto específico de recursos da linguagem com suporte pela compilação de bytecode Hermes, o que torna a inicialização do app em produção mais rápida. Isso também vai se estender ao Static Hermes, que vai compilar informações de tipo estáticas em código de máquina para apps nativos.
 
 ## Suporte entre tecnologias \{#cross-technology-support}
 
