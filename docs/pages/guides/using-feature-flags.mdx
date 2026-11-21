@@ -8,7 +8,7 @@ import { BookOpen02Icon } from '@expo/styleguide-icons/outline/BookOpen02Icon';
 
 import { BoxLink } from '~/ui/components/BoxLink';
 
-Uma feature flag (também chamada de _feature gate_) é um mecanismo que ativa e desativa funcionalidades remotamente. É uma forma segura de liberar gradualmente novas funcionalidades para os usuários do app, sem publicar código adicional. Você pode usá-las para testar em produção, fazer testes A/B ou lançar novos recursos do app, como elementos de interface.
+Uma feature flag (também chamada de _feature gate_) é um mecanismo que ativa e desativa funcionalidades remotamente. É uma forma segura de liberar gradualmente novas funcionalidades para os usuários do app, sem publicar código adicional. Você pode usá-las para testar em produção, fazer testes A/B ou lançar novas funcionalidades do app, como elementos de interface.
 
 ## Serviços de feature flags \{#feature-flag-services}
 
@@ -16,7 +16,7 @@ As bibliotecas a seguir oferecem suporte a feature flags e funcionam sem configu
 
 ### PostHog \{#posthog}
 
-O [PostHog](https://posthog.com/) é uma plataforma de análise de produto de código aberto que oferece um conjunto completo de feature flags, junto com análise de dados, gravações de sessão e testes A/B. Ele suporta toggles de funcionalidades em tempo real, com segmentação de usuários e a possibilidade de reverter funcionalidades instantaneamente. Por isso, é uma ótima escolha para equipes que querem análise e gerenciamento de funcionalidades em uma única plataforma. Ele inclui testes A/B e testes multivariados integrados, o que permite rodar experimentos diretamente pelas feature flags e acompanhar em detalhes a adoção e as métricas de desempenho das funcionalidades. O serviço também oferece suporte a bootstrap flags, que eliminam estados de carregamento e melhoram a experiência do usuário.
+O [PostHog](https://posthog.com/) é uma plataforma de análise de produto de código aberto que oferece um conjunto completo de feature flags, junto com análise de dados, gravações de sessão e testes A/B. Ele oferece suporte a toggles de funcionalidades em tempo real, com segmentação de usuários e a possibilidade de reverter funcionalidades instantaneamente. Por isso, é uma ótima escolha para equipes que querem análise e gerenciamento de funcionalidades em uma única plataforma. Ele inclui testes A/B e testes multivariados integrados, o que permite rodar experimentos diretamente pelas feature flags e acompanhar em detalhes a adoção e as métricas de desempenho das funcionalidades. O serviço também oferece suporte a bootstrap flags, que eliminam estados de carregamento e melhoram a experiência do usuário.
 
 <BoxLink
   title="Biblioteca React Native do PostHog"
@@ -45,7 +45,7 @@ O [Statsig](https://statsig.com/) é uma plataforma de gerenciamento de funciona
 
 ### LaunchDarkly \{#launchdarkly}
 
-O [LaunchDarkly](https://launchdarkly.com/) é uma plataforma de gerenciamento de funcionalidades de nível empresarial, que permite ativar funcionalidades instantaneamente e fazer lançamentos segmentados. Ela tem controles completos no painel, segmentação avançada de usuários e ferramentas de experimentação com atualizações de flags em tempo real. O SDK inclui recursos avançados, como hooks para integração com React, identificação e modificação de contexto, logs completos, suporte a vários ambientes nos workflows de desenvolvimento, atributos privados para dados sensíveis e configuração de relay proxy para mais segurança e desempenho.
+O [LaunchDarkly](https://launchdarkly.com/) é uma plataforma de gerenciamento de funcionalidades de nível empresarial, que permite ativar funcionalidades instantaneamente e fazer lançamentos segmentados. Ela tem controles completos no painel, segmentação avançada de usuários e ferramentas de experimentação com atualizações de flags em tempo real. O SDK inclui funcionalidades avançadas, como hooks para integração com React, identificação e modificação de contexto, logs completos, suporte a vários ambientes nos workflows de desenvolvimento, atributos privados para dados sensíveis e configuração de relay proxy para mais segurança e desempenho.
 
 <BoxLink
   title="LaunchDarkly React Native SDK"

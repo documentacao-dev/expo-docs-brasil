@@ -23,10 +23,10 @@ O `jest-expo` oferece alguns presets diferentes para testar Server Components:
 
 | Executor                | Descrição                                                                                      |
 | ----------------------- | ---------------------------------------------------------------------------------------------- |
-| `jest-expo/rsc/android` | Um executor somente para Android para RSC. Usa arquivos **\*.android.js**, **\*.native.js** e **\*.js**. |
-| `jest-expo/rsc/ios`     | Um executor somente para iOS para RSC. Usa arquivos **\*.ios.js**, **\*.native.js** e **\*.js**.         |
-| `jest-expo/rsc/web`     | Um executor somente para web para RSC. Usa arquivos **\*.web.js** e **\*.js**.                             |
-| `jest-expo/rsc`         | Um executor múltiplo que combina os executores acima.                                                |
+| `jest-expo/rsc/android` | Um executor exclusivo do Android para RSC. Usa arquivos **\*.android.js**, **\*.native.js** e **\*.js**. |
+| `jest-expo/rsc/ios`     | Um executor exclusivo do iOS para RSC. Usa arquivos **\*.ios.js**, **\*.native.js** e **\*.js**.         |
+| `jest-expo/rsc/web`     | Um executor exclusivo da web para RSC. Usa arquivos **\*.web.js** e **\*.js**.                             |
+| `jest-expo/rsc`         | Um executor combinado que reúne os executores acima.                                                |
 
 Para configurar o Jest para RSC, crie um arquivo **jest-rsc.config.js** na raiz do projeto:
 
@@ -75,7 +75,7 @@ O `jest-expo` para RSC adiciona alguns matchers personalizados ao `expect` do Je
 - `toMatchFlight`: renderiza um elemento JSX usando uma pseudoimplementação da renderização do Expo CLI e compara o resultado com uma string flight.
 - `toMatchFlightSnapshot`: igual ao `toMatchFlight`, mas salva a string flight em um arquivo de snapshot.
 
-Nos bastidores, esses métodos cuidam de parte da operação do framework necessária para renderizar RSC. O stream de renderização do componente é armazenado em buffer como uma string e comparado de uma só vez. Como alternativa, você pode ler o stream manualmente para acompanhar o progresso da renderização.
+Nos bastidores, esses métodos cuidam de parte da operação do framework necessária para renderizar RSC. O stream de renderização do componente é armazenado em buffer como uma string e comparado de uma só vez. Como alternativa, você pode consumir o stream manualmente para acompanhar o progresso da renderização.
 
 Se um componente falhar ao renderizar, o matcher vai lançar um erro para fazer o teste falhar. Na prática, o renderizador de servidor gera uma linha `E:`, que é enviada ao cliente para ser lançada localmente para o usuário.
 
@@ -85,7 +85,7 @@ Você pode executar os seus testes com o script `test:rsc`:
 
 <Terminal cmd={['$ yarn test:rsc --watch']} />
 
-Se você estiver usando o executor múltiplo, pode selecionar um projeto específico com a flag `--selectProjects`. O exemplo a seguir executa somente a plataforma web:
+Se você estiver usando o executor combinado, pode selecionar um projeto específico com a flag `--selectProjects`. O exemplo a seguir executa somente a plataforma web:
 
 <Terminal cmd={['$ yarn test:rsc --watch --selectProjects rsc/web']} />
 
@@ -114,7 +114,7 @@ O RSC oferece suporte a exports de pacotes por padrão. Você pode usar a condi�
 }
 ```
 
-Ao fazer o bundling para RSC, todos os módulos são empacotados no modo React Server, e você pode optar por não fazer isso com a diretiva `"use client"`. Quando `"use client"` é encontrado, o módulo se torna uma referência assíncrona ao módulo do cliente.
+Ao gerar o bundle para RSC, todos os módulos entram no bundle no modo React Server, e você pode optar por não fazer isso com a diretiva `"use client"`. Quando `"use client"` é encontrado, o módulo se torna uma referência assíncrona ao módulo do cliente.
 
 `"use server"` não é o oposto de `"use client"`. Em vez disso, ela é usada para definir um arquivo de React Server Functions.
 

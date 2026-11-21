@@ -40,7 +40,7 @@ As ferramentas disponíveis hoje ainda estão em estágio inicial, então você 
 
 ## Ferramentas para criar apps local-first \{#tools-for-building-local-first-apps}
 
-Uma lista completa de ferramentas está disponível no [site da comunidade "Local-first software"](https://localfirstweb.dev/). A seguir, há uma lista mais curta com ferramentas com as quais nós, da Expo, já tivemos experiência direta.
+Uma lista completa de ferramentas está disponível no [site da comunidade "Local-first software"](https://localfirstweb.dev/). A seguir, há uma lista mais curta das ferramentas que nós, da Expo, já usamos diretamente.
 
 Uma forma de pensar nas ferramentas local-first é agrupá-las nas seguintes categorias: persistência, gerenciamento de estado e sincronização. Algumas ferramentas se encaixam em mais de uma categoria, se lidam com vários aspectos do problema. A sincronização pode ser dividida ainda em estruturas de dados sincronizáveis e camadas de transporte.
 
@@ -77,7 +77,7 @@ O TinyBase funciona perfeitamente com o Expo Go, o que permite desenvolver rapid
 
 ### Yjs \{#yjs}
 
-[Yjs](https://github.com/yjs/yjs) é uma [implementação de CRDT](https://github.com/yjs/yjs?tab=readme-ov-file#yjs-crdt-algorithm) que fornece tipos de dados que podem ser sincronizados entre vários clientes. Ao criar um app com o Yjs e trabalhar com dados que você quer poder sincronizar, use `Y.Array` e `Y.Map` para representar os dados, em vez de `Array` e `Object`. Você pode usar uma biblioteca como o [TinyBase](#tinybase) para o gerenciamento de estado sobre o Yjs. A persistência pode ser feita por diversas ferramentas, desde um arquivo JSON no sistema de arquivos até um banco de dados completo (como o [`y-expo-sqlite`](https://github.com/brentvatne/y-expo-sqlite)), e tudo o que existe entre eles. Veja o [repositório do Yjs no GitHub](https://github.com/yjs/yjs) para mais informações.
+[Yjs](https://github.com/yjs/yjs) é uma [implementação de CRDT](https://github.com/yjs/yjs?tab=readme-ov-file#yjs-crdt-algorithm) que fornece tipos de dados que podem ser sincronizados entre vários clientes. Ao criar um app com o Yjs e trabalhar com dados que você quer poder sincronizar, então use `Y.Array` e `Y.Map` para representar esses dados, em vez de `Array` e `Object`. Você pode usar uma biblioteca como o [TinyBase](#tinybase) para o gerenciamento de estado sobre o Yjs. A persistência pode ser feita por diversas ferramentas, desde um arquivo JSON no sistema de arquivos até um banco de dados completo (como o [`y-expo-sqlite`](https://github.com/brentvatne/y-expo-sqlite)), e tudo o que existe entre eles. Veja o [repositório do Yjs no GitHub](https://github.com/yjs/yjs) para mais informações.
 
 ### Prisma \{#prisma}
 
@@ -96,7 +96,7 @@ O [Prisma](https://prisma.io) é conhecido como o ORM mais popular para backends
 
 ### LiveStore \{#livestore}
 
-[LiveStore](https://docs.livestore.dev/getting-started/expo/) é uma camada de dados local-first centrada no cliente, para aplicações de alta performance. Ela oferece suporte de primeira classe ao Expo e é uma ótima escolha para criar apps local-first. Veja o post no blog sobre [LiveStore: camada de dados baseada em SQLite para apps local-first](https://expo.dev/blog/local-first-application-development-with-livestore).
+[LiveStore](https://docs.livestore.dev/getting-started/expo/) é uma camada de dados local-first centrada no cliente, para apps de alto desempenho. Ela oferece suporte de primeira classe ao Expo e é uma ótima escolha para criar apps local-first. Veja o post no blog sobre [LiveStore: camada de dados baseada em SQLite para apps local-first](https://expo.dev/blog/local-first-application-development-with-livestore).
 
 <VideoBoxLink
   videoId="zQIhJqYU1Qw"
@@ -127,7 +127,7 @@ O [Prisma](https://prisma.io) é conhecido como o ORM mais popular para backends
 
 ### RxDB \{#rxdb}
 
-[RxDB](https://rxdb.info/) (Reactive Database) é um banco de dados NoSQL local-first para aplicações JavaScript. Ele é altamente reativo, permitindo que você se inscreva nos resultados de consultas para que a interface seja atualizada automaticamente quando os dados mudarem. O RxDB foca em recursos offline-first para criar apps que funcionam mesmo sem internet e que sincronizam quando voltam a ficar online. O RxDB funciona com o Expo usando o [adaptador de armazenamento SQLite](https://rxdb.info/rx-storage-sqlite.html#usage-with-expo-sqlite), que encapsula o [`expo-sqlite`](/versions/latest/sdk/sqlite/). Ele também oferece vários plugins de replicação para sincronizar com o seu backend existente, seja ele HTTP, GraphQL, Supabase ou um backend personalizado.
+[RxDB](https://rxdb.info/) (Reactive Database) é um banco de dados NoSQL local-first para apps JavaScript. Ele é altamente reativo, permitindo que você se inscreva nos resultados de consultas para que a interface seja atualizada automaticamente quando os dados mudarem. O RxDB foca em recursos offline-first para criar apps que funcionam mesmo sem internet e que sincronizam quando voltam a ficar online. O RxDB funciona com o Expo usando o [adaptador de armazenamento SQLite](https://rxdb.info/rx-storage-sqlite.html#usage-with-expo-sqlite), que encapsula o [`expo-sqlite`](/versions/latest/sdk/sqlite/). Ele também oferece vários plugins de replicação para sincronizar com o seu backend existente, seja ele HTTP, GraphQL, Supabase ou um backend personalizado.
 
 ### Outras ferramentas \{#other-tools}
 

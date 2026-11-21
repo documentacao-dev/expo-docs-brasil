@@ -101,7 +101,7 @@ Esses dois pacotes são fortemente acoplados. O `react-native-reanimated` vincul
 
 **Feature flags personalizadas exigem build a partir do código-fonte.** Os valores das feature flags são incorporados ao binário pré-compilado no momento do build, então quaisquer sobrescritas de `worklets.staticFeatureFlags` ou `reanimated.staticFeatureFlags` no **package.json** são ignoradas. Para aplicá-las, desative os módulos pré-compilados com `EXPO_USE_PRECOMPILED_MODULES=0`.
 
-**Quando olhar aqui.** Erros de runtime como `Unable to recognize flag: <NAME>` no Expo Build (mas não localmente) indicam que a lista de flags do artefato pré-compilado não corresponde à versão fixada do pacote. Use o `buildFromSource` acima e [abra uma issue no GitHub](https://github.com/expo/expo/issues).
+**Quando consultar esta seção.** Erros em tempo de execução como `Unable to recognize flag: <NAME>` no Expo Build (mas não localmente) indicam que a lista de flags do artefato pré-compilado não corresponde à versão fixada do pacote. Use o `buildFromSource` acima e [abra uma issue no GitHub](https://github.com/expo/expo/issues).
 
 </Collapsible>
 
