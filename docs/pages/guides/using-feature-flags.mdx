@@ -1,77 +1,79 @@
 ---
-title: React Native feature flag services
-sidebar_title: Using feature flags
-description: An overview of feature flag services available in the Expo and React Native ecosystem.
+title: Serviços de feature flags para React Native
+sidebar_title: Usando feature flags
+description: Uma visão geral dos serviços de feature flags disponíveis no ecossistema Expo e React Native.
 ---
 
 import { BookOpen02Icon } from '@expo/styleguide-icons/outline/BookOpen02Icon';
 
 import { BoxLink } from '~/ui/components/BoxLink';
 
-A feature flag (also known as a _feature gate_) is a mechanism that enables and disables features remotely. They are a safe way to rollout new features to your app users without deploying additional code. You can use them for testing in production, A/B testing, or to ship new app features such as UI elements.
+Uma feature flag (também chamada de _feature gate_) é um mecanismo que ativa e desativa funcionalidades remotamente. É uma forma segura de liberar gradualmente novas funcionalidades para os usuários do app, sem publicar código adicional. Você pode usá-las para testar em produção, fazer testes A/B ou lançar novos recursos do app, como elementos de interface.
 
-## Feature flag services
+## Serviços de feature flags \{#feature-flag-services}
 
-The following libraries support feature flags and work out of the box with Expo apps using [Continuous Native Generation (CNG)](/workflow/continuous-native-generation/) and [config plugins](/config-plugins/introduction/) for seamless integration in your app.
+As bibliotecas a seguir oferecem suporte a feature flags e funcionam sem configuração adicional com apps Expo que usam o [Continuous Native Generation (CNG)](/workflow/continuous-native-generation/) e [config plugins](/config-plugins/introduction/), para uma integração simples no app.
 
-### PostHog
+### PostHog \{#posthog}
 
-[PostHog](https://posthog.com/) is an open-source product analytics platform that provides comprehensive feature flagging capabilities alongside analytics, session recordings, and A/B testing. It supports real-time feature toggles with user segmentation and the ability to roll back features instantly, making it an excellent choice for teams that want analytics and feature management in a single platform. It includes built-in A/B testing and multivariate testing functionality, allowing you to run experiments directly through feature flags while collecting detailed analytics on feature adoption and performance metrics. The service also supports bootstrap flags to eliminate loading states and improve user experience.
+O [PostHog](https://posthog.com/) é uma plataforma de análise de produto de código aberto que oferece um conjunto completo de feature flags, junto com análise de dados, gravações de sessão e testes A/B. Ele suporta toggles de funcionalidades em tempo real, com segmentação de usuários e a possibilidade de reverter funcionalidades instantaneamente. Por isso, é uma ótima escolha para equipes que querem análise e gerenciamento de funcionalidades em uma única plataforma. Ele inclui testes A/B e testes multivariados integrados, o que permite rodar experimentos diretamente pelas feature flags e acompanhar em detalhes a adoção e as métricas de desempenho das funcionalidades. O serviço também oferece suporte a bootstrap flags, que eliminam estados de carregamento e melhoram a experiência do usuário.
 
 <BoxLink
-  title="PostHog React Native library"
-  description="Learn how to integrate PostHog feature flags in your React Native and Expo projects."
+  title="Biblioteca React Native do PostHog"
+  description="Saiba como integrar as feature flags do PostHog nos projetos React Native e Expo."
   href="https://posthog.com/docs/libraries/react-native#feature-flags"
   Icon={BookOpen02Icon}
 />
 
 <BoxLink
-  title="PostHog feature flags tutorial"
-  description="Follow this step-by-step guide to implement feature flags with PostHog."
+  title="Tutorial de feature flags do PostHog"
+  description="Siga este guia passo a passo para implementar feature flags com o PostHog."
   href="https://posthog.com/tutorials/react-native-analytics"
   Icon={BookOpen02Icon}
 />
 
-### Statsig
+### Statsig \{#statsig}
 
-[Statsig](https://statsig.com/) is a feature management platform designed for data-driven product development that provides advanced statistical analysis, gradual rollouts, and sophisticated targeting capabilities with built-in metrics and performance monitoring for feature releases. The platform offers an SDK for React Native and Expo, with automatic event logging and dynamic configurations, making it particularly well-suited for teams focused on rigorous experimentation and data-driven decision-making.
+O [Statsig](https://statsig.com/) é uma plataforma de gerenciamento de funcionalidades voltada ao desenvolvimento orientado a dados. Ela oferece análise estatística avançada, lançamentos graduais e segmentação sofisticada, além de métricas integradas e monitoramento de desempenho para os lançamentos de funcionalidades. A plataforma tem um SDK para React Native e Expo, com registro automático de eventos e configurações dinâmicas, o que a torna especialmente adequada para equipes focadas em experimentação rigorosa e tomada de decisão baseada em dados.
 
 <BoxLink
-  title="Statsig Expo integration"
-  description="Learn how to integrate StatSig feature flags and experiments in your Expo project."
+  title="Integração do Statsig com Expo"
+  description="Saiba como integrar feature flags e experimentos do StatSig ao projeto Expo."
   href="https://docs.statsig.com/client/javascript-sdk/expo/#basics-check-gate"
   Icon={BookOpen02Icon}
 />
 
-### LaunchDarkly
+### LaunchDarkly \{#launchdarkly}
 
-[LaunchDarkly](https://launchdarkly.com/) is an enterprise-grade feature management platform that enables instant feature toggles and targeted rollouts with comprehensive dashboard controls, advanced user targeting, and experimentation tools that provide real-time flag updates. The SDK includes advanced features such as hooks for React integration, context identification and modification, comprehensive logging, support for multiple environments in development workflows, private attributes for handling sensitive data, and relay proxy configuration for enhanced security and performance.
+O [LaunchDarkly](https://launchdarkly.com/) é uma plataforma de gerenciamento de funcionalidades de nível empresarial, que permite ativar funcionalidades instantaneamente e fazer lançamentos segmentados. Ela tem controles completos no painel, segmentação avançada de usuários e ferramentas de experimentação com atualizações de flags em tempo real. O SDK inclui recursos avançados, como hooks para integração com React, identificação e modificação de contexto, logs completos, suporte a vários ambientes nos workflows de desenvolvimento, atributos privados para dados sensíveis e configuração de relay proxy para mais segurança e desempenho.
 
 <BoxLink
   title="LaunchDarkly React Native SDK"
-  description="Follow this guide to integrate LaunchDarkly feature flags in your React Native and Expo projects."
+  description="Siga este guia para integrar feature flags do LaunchDarkly nos projetos React Native e Expo."
   href="https://launchdarkly.com/docs/sdk/client-side/react/react-native"
   Icon={BookOpen02Icon}
 />
 
-### Firebase Remote Config
+### Firebase Remote Config \{#firebase-remote-config}
 
-[Firebase Remote Config](https://firebase.google.com/docs/remote-config) is a cloud service allows you to change the appearance and functionality of your app without requiring an app update. Remote Config values are managed through the Firebase Console and accessed via a JavaScript API, which gives you full control over when and how these values affect your app. The service supports conditional targeting based on user properties, app versions, custom attributes and real-time updates.
+O [Firebase Remote Config](https://firebase.google.com/docs/remote-config) é um serviço em nuvem que permite mudar a aparência e a funcionalidade do app sem exigir um update do app. Os valores do Remote Config são gerenciados pelo Firebase Console e acessados por uma API JavaScript, o que dá controle total sobre quando e como esses valores afetam o app. O serviço oferece segmentação condicional com base em propriedades do usuário, versões do app, atributos personalizados e atualizações em tempo real.
 
 <BoxLink
   title="React Native Firebase Remote Config"
-  description="Learn how to integrate Firebase Remote Config from React Native Firebase library in your React Native and Expo projects."
+  description="Saiba como integrar o Firebase Remote Config, da biblioteca React Native Firebase, nos projetos React Native e Expo."
   href="https://rnfirebase.io/remote-config/usage"
   Icon={BookOpen02Icon}
 />
 
-### Gates
+### Gates \{#gates}
 
-[Gates](https://usegates.app/) is a feature flag service built only for Expo apps. The SDK evaluates flags on the device from a snapshot saved on the last sync. Reading a flag never makes a network request, so flags keep working offline. Rules can target the platform, the app version, the `expo-updates` runtime version, and user traits, with percentage rollouts that stay stable for a device across sessions. A kill switch turns a flag off across every environment on the next sync. The SDK is JavaScript only and does not require a config plugin. Its peer dependencies `expo-application`, `expo-updates`, and `@react-native-async-storage/async-storage` are native modules, so an app that does not include them yet needs a native rebuild. The CLI links your app to a Gates project and installs the SDK with a single command.
+O [Gates](https://usegates.app/) é um serviço de feature flags feito somente para apps Expo. O SDK avalia as flags no dispositivo, a partir de um snapshot salvo na última sincronização. Ler uma flag nunca faz uma requisição de rede, então as flags continuam funcionando offline. As regras podem ser aplicadas por plataforma, versão do app, versão de runtime do `expo-updates` e atributos do usuário, com lançamentos por porcentagem que se mantêm estáveis no dispositivo entre sessões. Um kill switch desativa uma flag em todos os ambientes na próxima sincronização. O SDK é apenas JavaScript e não exige um config plugin. Suas dependências peer `expo-application`, `expo-updates` e `@react-native-async-storage/async-storage` são módulos nativos, então um app que ainda não os inclui precisa de um novo build nativo. A CLI vincula o app a um projeto do Gates e instala o SDK com um único comando.
 
 <BoxLink
-  title="Gates documentation"
-  description="Learn how to install the Gates SDK and ship your first flag in an Expo project."
+  title="Documentação do Gates"
+  description="Saiba como instalar o SDK do Gates e lançar sua primeira flag em um projeto Expo."
   href="https://usegates.app/docs/"
   Icon={BookOpen02Icon}
 />
+
+{/* ia-translate: true */}

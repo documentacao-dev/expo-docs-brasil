@@ -1,79 +1,81 @@
 ---
-title: Why Metro?
-description: Learn why Metro is the future of universal bundling in React Native and how it benefits developers.
+title: Por que Metro?
+description: Saiba por que o Metro é o futuro do bundling universal no React Native e como ele beneficia os developers.
 ---
 
-[Metro](https://metrobundler.dev/) is the official bundler for Expo and React Native. It's a central build tool in the Expo framework. Bundlers comprise thousands of opinions and trade-offs. This document outlines the key reasons why Expo is developed around Metro and how it benefits developers.
+[Metro](https://metrobundler.dev/) é o bundler oficial do Expo e do React Native. Ele é uma ferramenta de build central no framework Expo. Bundlers envolvem milhares de decisões e trade-offs. Este documento apresenta os principais motivos pelos quais o Expo é desenvolvido em torno do Metro e como isso beneficia os developers.
 
-## Official Meta bundler
+## Bundler oficial da Meta \{#official-meta-bundler}
 
-Metro is maintained by Meta, the maintainers of React, React Native, Yoga, and Hermes. It's used for developing some of the world's largest apps, ranging across all categories in the app stores.
+O Metro é mantido pela Meta, responsável pelo React, React Native, Yoga e Hermes. Ele é usado para desenvolver alguns dos maiores apps do mundo, de todas as categorias nas lojas de apps.
 
-Meta engineers actively develop Metro with the express requirement of bundling all their apps, across 400k+ source files, while remaining fast and reliable.
+Os engenheiros da Meta desenvolvem o Metro ativamente, com o requisito explícito de empacotar todos os seus apps, com mais de 400 mil arquivos de código-fonte, mantendo-o rápido e confiável.
 
-By having first-class Metro support, we ensure Expo developers have continuity across Meta's tools and get instant access to emerging features. This includes:
+Por ter suporte de primeira classe ao Metro, garantimos que os developers do Expo tenham continuidade nas ferramentas da Meta e acesso imediato a recursos emergentes. Isso inclui:
 
-- React Fast Refresh was [first introduced](https://reactnative.dev/blog/2019/09/18/version-0.61) as a Metro feature in 2019. The React web community adopted it the following year via Webpack.
-- Transforming JavaScript to Hermes bytecode for instant native startup.
-- React Native DevTools, including first-class support for [network and JS debugging](/debugging/tools/#debugging-with-react-native-devtools), is exclusively available with Metro and Hermes.
-- React Compiler was initially rolled out as a Metro-compatible Babel plugin.
+- O React Fast Refresh [foi lançado pela primeira vez](https://reactnative.dev/blog/2019/09/18/version-0.61) como um recurso do Metro em 2019. A comunidade web do React adotou o recurso no ano seguinte, via Webpack.
+- Transformação de JavaScript em bytecode Hermes para uma inicialização nativa instantânea.
+- O React Native DevTools, incluindo suporte de primeira classe a [debug de rede e de JS](/debugging/tools/#debugging-with-react-native-devtools), está disponível exclusivamente com Metro e Hermes.
+- O React Compiler foi lançado inicialmente como um plugin Babel compatível com o Metro.
 
-New and upcoming features that are planned to come to Metro include:
+Novos recursos e recursos futuros planejados para o Metro incluem:
 
-- Compiling Flow code to native machine code with Static Hermes. Learn more in the [Static Hermes](https://www.youtube.com/watch?v=GUM64b-gAGg) talk by Tzvetan Mikov.
-- Data fetching, streaming, React Suspense, server rendering, and build-time static rendering with universal React Server Components for all platforms. Learn more in the [Universal React Server Components](https://www.youtube.com/watch?v=djhEgxQf3Kw) talk at React Conf 2024.
+- Compilação de código Flow para código de máquina nativo com o Static Hermes. Saiba mais na palestra [Static Hermes](https://www.youtube.com/watch?v=GUM64b-gAGg), de Tzvetan Mikov.
+- Busca de dados, streaming, React Suspense, renderização no servidor e renderização estática em tempo de build com React Server Components universais para todas as plataformas. Saiba mais na palestra [Universal React Server Components](https://www.youtube.com/watch?v=djhEgxQf3Kw), na React Conf 2024.
 
-The Expo team collaborates with Meta to develop Metro for Expo Router, adding features like [file-based routing](/develop/app-navigation/), [web support](/guides/customizing-metro/#web-support), [bundle splitting](/guides/customizing-metro/#bundle-splitting), [tree shaking](/guides/tree-shaking/), [CSS](/versions/latest/config/metro/#css), [DOM components](/guides/dom-components/), server components, and [API routes](/router/web/api-routes/).
+A equipe do Expo colabora com a Meta para desenvolver o Metro para o Expo Router, adicionando recursos como [roteamento baseado em arquivos](/develop/app-navigation/), [suporte à web](/guides/customizing-metro/#web-support), [divisão de bundle](/guides/customizing-metro/#bundle-splitting), [tree shaking](/guides/tree-shaking/), [CSS](/versions/latest/config/metro/#css), [componentes DOM](/guides/dom-components/), server components e [rotas de API](/router/web/api-routes/).
 
-## Battle-tested at scale
+## Testado em larga escala \{#battle-tested-at-scale}
 
-Nearly every React Native app in the world uses Metro, making it a battle-tested solution optimized for large-scale projects. This makes it suitable for developers of all sizes, from hobbyists to large companies. Metro is designed specifically to handle large-scale Meta apps, which is why it has features such as delta bundling and [shared remote caches](https://metrobundler.dev/docs/caching).
+Quase todo app React Native do mundo usa o Metro, o que faz dele uma solução testada em produção e otimizada para projetos de grande escala. Isso o torna adequado para developers de todos os portes, de hobbistas a grandes empresas. O Metro foi projetado especificamente para lidar com os apps de grande escala da Meta, e por isso tem recursos como delta bundling e [caches remotos compartilhados](https://metrobundler.dev/docs/caching).
 
-## On-demand processing
+## Processamento sob demanda \{#on-demand-processing}
 
-In development, Metro doesn't perform any platform-specific work until requested. This allows developers to work on large projects without paying a performance cost for the number of platforms they support. In conjunction with aggressive caching and [async routes](/router/web/async-routes/), developers can incrementally bundle only the parts of the app that they're actively working on.
+Em desenvolvimento, o Metro não faz nenhum trabalho específico de plataforma até que seja solicitado. Isso permite que os developers trabalhem em projetos grandes sem pagar um custo de performance pelo número de plataformas que suportam. Combinado com um cache agressivo e [rotas assíncronas](/router/web/async-routes/), os developers podem fazer o bundle, de forma incremental, somente das partes do app em que estão trabalhando.
 
-## Multi-dimensional
+## Multidimensional \{#multi-dimensional}
 
-Unlike traditional bundlers, which create multiple instances to bundle server and client code, Metro maximizes resource reuse across platforms and environments (server, client, DOM components). This architecture is ideal for multiplatform and server development.
+Ao contrário dos bundlers tradicionais, que criam várias instâncias para fazer o bundle do código de servidor e de cliente, o Metro maximiza o reaproveitamento de recursos entre plataformas e ambientes (servidor, cliente, componentes DOM). Essa arquitetura é ideal para desenvolvimento multiplataforma e de servidor.
 
-## Reusable transform memoization
+## Memoização de transformações reutilizável \{#reusable-transform-memoization}
 
-Metro is incremental and can create cached transform artifacts that can be used across machines. This enables large teams to reuse work from remote builders, a technique used at Meta for all large projects.
+O Metro é incremental e pode criar artefatos de transformação em cache que podem ser usados em diferentes máquinas. Isso permite que times grandes reaproveitem trabalho de builders remotos, uma técnica usada pela Meta em todos os projetos grandes.
 
-## Optimized for custom runtimes
+## Otimizado para runtimes personalizados \{#optimized-for-custom-runtimes}
 
-While other bundlers are designed around the static specification of web browsers, Metro is optimized for the flexibility of React Native. This enables features like generating the specific set of supported language features required for Hermes bytecode compilation which enables faster app startup in production. This will also extend to Static Hermes, which will compile static type information into machine code for native apps.
+Enquanto outros bundlers são projetados em torno da especificação estática dos navegadores web, o Metro é otimizado para a flexibilidade do React Native. Isso permite recursos como gerar o conjunto específico de recursos da linguagem suportados pela compilação de bytecode Hermes, o que torna a inicialização do app em produção mais rápida. Isso também vai se estender ao Static Hermes, que vai compilar informações de tipo estáticas em código de máquina para apps nativos.
 
-## Cross-technology support
+## Suporte entre tecnologias \{#cross-technology-support}
 
-Expo leverages Metro's technology to create novel functionality like [DOM components](/guides/dom-components/). This allows a React component in a native app to be dynamically bundled as an entire website with all the same defaults as the parent app, on-demand.
+O Expo aproveita a tecnologia do Metro para criar funcionalidades inovadoras, como [componentes DOM](/guides/dom-components/). Isso permite que um componente React em um app nativo seja empacotado dinamicamente como um site inteiro, com os mesmos padrões do app pai, sob demanda.
 
-## Native asset exports
+## Exportação de assets nativos \{#native-asset-exports}
 
-Unlike traditional bundlers, where the end result is a fully hosted app, Metro's configuration options support exporting bundles to embed as native artifacts in standalone app binaries. This leverages OS-specific optimizations such as `xcassets` on Apple platforms.
+Ao contrário dos bundlers tradicionais, em que o resultado final é um app totalmente hospedado, as opções de configuração do Metro permitem exportar bundles para incorporar como artefatos nativos em binários de apps independentes. Isso aproveita otimizações específicas de cada sistema operacional, como `xcassets` nas plataformas da Apple.
 
-## Concurrent processing
+## Processamento concorrente \{#concurrent-processing}
 
-All AST transformation in Metro is performed concurrently across all available threads, maximizing the use of hardware.
+Toda a transformação de AST no Metro é feita de forma concorrente em todas as threads disponíveis, maximizando o uso do hardware.
 
-## Comparison with other approaches
+## Comparação com outras abordagens \{#comparison-with-other-approaches}
 
-While Metro is designed for universal app development, it's often compared to other web-only bundlers. Here are some key differences:
+Embora o Metro seja projetado para o desenvolvimento de apps universais, ele costuma ser comparado com bundlers voltados apenas para a web. Estas são algumas das principais diferenças:
 
-### Browser ESM versus bundling
+### ESM do navegador versus bundling \{#browser-esm-versus-bundling}
 
-While bundlers like Vite leverage built-in ESM support in the browser, this approach can lead to slower practical development times at medium to large scales due to thousands of cascading network requests. Metro performs bundling in local development, which aligns the development results much closer to the production results and is better suited for React Native's larger module count.
+Enquanto bundlers como o Vite aproveitam o suporte nativo a ESM do navegador, essa abordagem pode levar a tempos de desenvolvimento mais lentos, em projetos de médio a grande porte, por causa de milhares de requisições de rede em cascata. O Metro faz o bundling no desenvolvimento local, o que aproxima muito mais os resultados do desenvolvimento dos resultados de produção, e é mais adequado para o número maior de módulos do React Native.
 
-### JavaScript versus native languages
+### JavaScript versus linguagens nativas \{#javascript-versus-native-languages}
 
-Several bundlers are opting to write their core in Rust for performance reasons, but this comes with some trade-offs, such as more challenging contributions, patches, and development. Metro uses a mix of technologies based on the operation:
+Vários bundlers estão optando por escrever seu núcleo em Rust por motivos de performance, mas isso traz alguns trade-offs, como contribuições, patches e desenvolvimento mais difíceis. O Metro usa uma combinação de tecnologias de acordo com a operação:
 
-- The core bundler and utilities are written in JS/Flow.
-- File watching uses a JS crawler by default, and can optionally use Watchman (C++) when installed.
-- AST is parsed with Hermes parser (WebAssembly) to a Babel-compatible format.
-- AST transformation is done with Babel. This maximizes developer customization.
-- Minification uses Hermes on native platforms and Terser (with optional ESBuild support) for web.
-- CSS parsing and minification is performed with [LightningCSS](https://lightningcss.dev/) (Rust).
+- O bundler principal e os utilitários são escritos em JS/Flow.
+- A observação de arquivos usa um crawler em JS por padrão, e pode usar o Watchman (C++) quando estiver instalado.
+- A AST é analisada pelo parser Hermes (WebAssembly) em um formato compatível com o Babel.
+- A transformação da AST é feita com Babel. Isso maximiza a personalização para o developer.
+- A minificação usa o Hermes em plataformas nativas e o Terser (com suporte opcional ao ESBuild) para a web.
+- O parsing e a minificação de CSS são feitos com o [LightningCSS](https://lightningcss.dev/) (Rust).
 
-This approach matches the tools that Meta and the community use, and it makes debugging, profiling, and patching easier for developers.
+Essa abordagem acompanha as ferramentas que a Meta e a comunidade usam, e torna mais fácil fazer debug, profiling e patches para os developers.
+
+{/* ia-translate: true */}

@@ -1,6 +1,6 @@
 ---
-title: Using in-app purchases
-description: Learn about how to use in-app purchases in your Expo app.
+title: Usando compras dentro do app
+description: Saiba como usar compras dentro do app no seu projeto Expo.
 hideTOC: true
 hasVideoLink: true
 ---
@@ -12,35 +12,35 @@ import { BoxLink } from '~/ui/components/BoxLink';
 import { CODE } from '~/ui/components/Text';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-In-app purchases (IAP) are transactions within a mobile or desktop application where users can buy digital goods or additional features. This guide provides a list of popular libraries and tutorials for implementing IAP in your Expo app.
+Compras dentro do app (IAP, na sigla em inglês) são transações em um app para dispositivos móveis ou desktop nas quais o usuário compra bens digitais ou recursos adicionais. Este guia traz uma lista de bibliotecas populares e tutoriais para implementar compras dentro do app no seu app Expo.
 
-> In-app purchase libraries require configuring custom native code. Native code is not configurable when using Expo Go. Instead, create a [development build](/develop/development-builds/introduction/), which allows using a native library in your project.
+> As bibliotecas de compras dentro do app exigem a configuração de código nativo customizado. O código nativo não pode ser configurado no Expo Go. Em vez disso, crie um [development build](/develop/development-builds/introduction/), que permite usar uma biblioteca nativa no seu projeto.
 
-## Tutorial
+## Tutorial \{#tutorial}
 
 <VideoBoxLink
   videoId="R3fLKC-2Qh0"
-  title="Watch: How to Implement In-App Purchases in Expo"
-  description="Set up in-app purchases and subscriptions in your Expo app using RevenueCat."
+  title="Assista: como implementar compras dentro do app no Expo"
+  description="Configure compras dentro do app e assinaturas no seu app Expo usando o RevenueCat."
 />
 
 <br />
 
 <BoxLink
-  title="Expo In-App Purchase Tutorial"
+  title="Tutorial de compras dentro do app com Expo"
   description={
     <>
-      The getting started guide for in-app purchases and subscriptions with{' '}
-      <CODE>react-native-purchases</CODE> library and RevenueCat.
+      O guia de primeiros passos para compras dentro do app e assinaturas com a biblioteca{' '}
+      <CODE>react-native-purchases</CODE> e o RevenueCat.
     </>
   }
   href="https://www.revenuecat.com/blog/engineering/expo-in-app-purchase-tutorial/"
   Icon={BookOpen02Icon}
 />
 
-## Libraries
+## Bibliotecas \{#libraries}
 
-The following libraries support in-app purchases and work out of the box with Expo apps using [CNG](/workflow/continuous-native-generation/) and [Config Plugins](/config-plugins/introduction/) for seamless integration in your app.
+As bibliotecas a seguir oferecem suporte a compras dentro do app e funcionam direto em apps Expo que usam [CNG](/workflow/continuous-native-generation/) e [Config Plugins](/config-plugins/introduction/), para uma integração sem complicações no seu app.
 
 <BoxLink
   title={
@@ -48,7 +48,7 @@ The following libraries support in-app purchases and work out of the box with Ex
       <CODE>react-native-purchases</CODE>
     </>
   }
-  description="An open-source framework that provides a wrapper around Google Play Billing and StoreKit APIs, and integration with RevenueCat services supporting in-app purchases. It enables product management, analytics, and simplified workflows for in-app purchase requirements that may extend beyond your client code, such as validating purchases on an app's backend."
+  description="Um framework de código aberto que fornece um wrapper para as APIs do Google Play Billing e do StoreKit, e integração com os serviços do RevenueCat para compras dentro do app. Ele permite gerenciar produtos, acessar análises e simplificar workflows para requisitos de compras dentro do app que podem ir além do código do cliente, como validar compras no backend do app."
   href="https://github.com/RevenueCat/react-native-purchases"
   Icon={GithubIcon}
 />
@@ -59,7 +59,9 @@ The following libraries support in-app purchases and work out of the box with Ex
       <CODE>expo-iap</CODE>
     </>
   }
-  description="A React Native library for in-app purchases that conforms to the OpenIAP specification and works with development builds."
+  description="Uma biblioteca React Native para compras dentro do app que segue a especificação OpenIAP e funciona com development builds."
   href="https://github.com/hyodotdev/openiap/tree/main/libraries/expo-iap"
   Icon={GithubIcon}
 />
+
+{/* ia-translate: true */}

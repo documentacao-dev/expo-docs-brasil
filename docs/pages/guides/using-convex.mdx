@@ -1,6 +1,6 @@
 ---
-title: Using Convex
-description: Add a database to your app with Convex.
+title: Usando o Convex
+description: Adicione um banco de dados ao seu app com o Convex.
 ---
 
 import { BoxLink } from '~/ui/components/BoxLink';
@@ -9,33 +9,33 @@ import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-[Convex](https://www.convex.dev/) is a backend platform for building reactive apps with a realtime database, server functions, file storage, search, scheduling, and type-safe client libraries without the need for cluster management, SQL, or ORMs.
+O [Convex](https://www.convex.dev/) é uma plataforma de backend para criar apps reativos, com banco de dados em tempo real, funções de servidor, armazenamento de arquivos, busca, agendamento e bibliotecas de cliente com tipagem segura, sem precisar gerenciar clusters, SQL ou ORMs.
 
-The Expo Services integration can create and connect the Convex project for you via EAS CLI. It replaces the manual setup steps where you install the package, create a Convex team and project, copy deployment URLs, and configure Expo Services environment variables.
+A integração com o Expo Services pode criar e conectar o projeto do Convex para você, pela EAS CLI. Ela substitui as etapas manuais em que você instala o pacote, cria um time e um projeto no Convex, copia as URLs de deploy e configura as variáveis de ambiente do Expo Services.
 
 <Prerequisites>
-  <Requirement title="Expo account">
-    Sign up for an [Expo account](https://expo.dev/signup).
+  <Requirement title="Conta Expo">
+    Crie uma [conta Expo](https://expo.dev/signup).
   </Requirement>
-  <Requirement title="EAS CLI">Install EAS CLI globally with `npm install -g eas-cli`.</Requirement>
-  <Requirement title="Expo project linked to Expo Services">
-    Create an Expo project and link it to Expo Services with `eas init`.
+  <Requirement title="EAS CLI">Instale a EAS CLI globalmente com `npm install -g eas-cli`.</Requirement>
+  <Requirement title="Projeto Expo vinculado ao Expo Services">
+    Crie um projeto Expo e vincule-o ao Expo Services com `eas init`.
   </Requirement>
 </Prerequisites>
 
-## Connect Convex with Expo Services
+## Conecte o Convex ao Expo Services \{#connect-convex-with-expo-services}
 
 <Step label="1">
 
-### Run the EAS CLI integration command
+### Execute o comando de integração da EAS CLI \{#run-the-eas-cli-integration-command}
 
-From your Expo project directory, run:
+No diretório do seu projeto Expo, execute:
 
 <Terminal cmd={['$ eas integrations:convex:connect']} />
 
-The command will prompt for a Convex deployment region, project name, and team name when needed. It only asks for a team name when it needs to create a new Convex team connection.
+O comando vai pedir a região de deploy do Convex, o nome do projeto e o nome do time, quando for preciso. Ele só pede o nome do time quando precisa criar uma nova conexão de time no Convex.
 
-You can also pass values explicitly:
+Você também pode passar os valores explicitamente:
 
 <Terminal
   cmd={[
@@ -43,22 +43,22 @@ You can also pass values explicitly:
   ]}
 />
 
-The integration command:
+O comando de integração:
 
-- Installs the `convex` package with `npx expo install convex`
-- Creates a Convex team connection for your Expo account, or reuses an existing one
-- Creates a Convex project and deployment for the current Expo app
-- Writes `CONVEX_DEPLOY_KEY` and `EXPO_PUBLIC_CONVEX_URL` to **.env.local**
-- Creates or updates the `EXPO_PUBLIC_CONVEX_URL` Expo Services project environment variable for the production, preview, and development environments
-- Sends an invitation to your verified email so you can claim the Convex team and open the Convex dashboard
+- Instala o pacote `convex` com `npx expo install convex`
+- Cria uma conexão de time no Convex para sua conta Expo, ou reutiliza uma existente
+- Cria um projeto e um deployment no Convex para o app Expo atual
+- Grava `CONVEX_DEPLOY_KEY` e `EXPO_PUBLIC_CONVEX_URL` no **.env.local**
+- Cria ou atualiza a variável de ambiente `EXPO_PUBLIC_CONVEX_URL` do projeto no Expo Services para os ambientes de produção, preview e desenvolvimento
+- Envia um convite para seu e-mail verificado, para que você possa assumir o time do Convex e abrir o painel do Convex
 
 </Step>
 
 <Step label="2">
 
-### Start Convex locally
+### Inicie o Convex localmente \{#start-convex-locally}
 
-After the integration command finishes, start the Convex dev server:
+Quando o comando de integração terminar, inicie o servidor de desenvolvimento do Convex:
 
 <Terminal
   cmd={{
@@ -69,17 +69,17 @@ After the integration command finishes, start the Convex dev server:
   }}
 />
 
-This creates the local **convex** directory if your project does not have one yet, generates the typed API files, and syncs your Convex functions with your deployment while it runs.
+Isso cria a pasta local **convex**, caso seu projeto ainda não tenha uma, gera os arquivos de API tipados e sincroniza suas funções do Convex com o deployment enquanto o servidor estiver rodando.
 
 </Step>
 
 <Step label="3">
 
-### Add a Convex provider
+### Adicione o provedor do Convex \{#add-a-convex-provider}
 
-Create a Convex client with the deployment URL that the Expo Services integration wrote to **.env.local**, then wrap your app in `ConvexProvider`.
+Crie um cliente do Convex com a URL de deployment que a integração do Expo Services gravou no **.env.local** e, em seguida, envolva seu app com `ConvexProvider`.
 
-For an Expo Router project, update **src/app/\_layout.tsx**:
+Em um projeto com Expo Router, atualize o **src/app/\_layout.tsx**:
 
 ```tsx src/app/_layout.tsx
 import { ConvexProvider, ConvexReactClient } from 'convex/react';
@@ -102,9 +102,9 @@ export default function RootLayout() {
 
 <Step label="4">
 
-### Query Convex from your app
+### Consulte o Convex no seu app \{#query-convex-from-your-app}
 
-Add a query function in the **convex** directory:
+Adicione uma função de consulta na pasta **convex**:
 
 ```ts convex/tasks.ts
 import { query } from './_generated/server';
@@ -117,7 +117,7 @@ export const get = query({
 });
 ```
 
-Then call it from your app with `useQuery`:
+Depois, chame-a no seu app com `useQuery`:
 
 ```tsx src/app/index.tsx
 import { api } from '@/convex/_generated/api';
@@ -139,17 +139,17 @@ export default function Index() {
 
 </Step>
 
-To learn more about how Convex works, including database documents, functions, and client subscriptions, see the Convex overview:
+Para saber mais sobre como o Convex funciona, incluindo documentos do banco de dados, funções e assinaturas de cliente, veja a visão geral do Convex:
 
 <BoxLink
-  title="Convex overview"
-  description="Learn the core Convex concepts behind database documents, functions, and realtime client updates."
+  title="Visão geral do Convex"
+  description="Conheça os conceitos principais do Convex por trás dos documentos do banco de dados, das funções e das atualizações em tempo real no cliente."
   href="https://docs.convex.dev/understanding/"
 />
 
-## Manage the integration
+## Gerencie a integração \{#manage-the-integration}
 
-Use these commands to inspect or manage the Convex integration later:
+Use estes comandos para inspecionar ou gerenciar a integração com o Convex depois:
 
 <Terminal
   cmd={[
@@ -160,24 +160,26 @@ Use these commands to inspect or manage the Convex integration later:
   ]}
 />
 
-If you remove the link with `eas integrations:convex:project:delete` or `eas integrations:convex:team:delete`, Expo Services removes its integration metadata. These commands do not destroy resources on Convex.
+Se você remover o vínculo com `eas integrations:convex:project:delete` ou `eas integrations:convex:team:delete`, o Expo Services remove os metadados da integração. Esses comandos não apagam recursos no Convex.
 
-## Troubleshooting
+## Solução de problemas \{#troubleshooting}
 
-### Accept a team invite sent to a different email
+### Aceite um convite de time enviado para outro e-mail \{#accept-a-team-invite-sent-to-a-different-email}
 
-The Convex team invitation goes to the verified email on your Expo account, but Convex only supports signing in with Google or GitHub. If your Google or GitHub email is different, the invitation page says the invited email address has not been added to your Convex account. Navigating away from that page leaves you in a separate Convex account that does not contain your project.
+O convite para o time do Convex é enviado para o e-mail verificado da sua conta Expo, mas o Convex só permite entrar com Google ou GitHub. Se o e-mail do Google ou do GitHub for diferente, a página do convite informa que o endereço de e-mail convidado não foi adicionado à sua conta do Convex. Se você sair dessa página, ficará em outra conta do Convex, que não contém seu projeto.
 
 <ContentSpotlight
-  alt="Convex invitation page showing that the email address associated with the team invitation has not been added to your account"
+  alt="Página de convite do Convex mostrando que o endereço de e-mail associado ao convite do time não foi adicionado à sua conta"
   src="/static/images/guides/convex-invite-email-mismatch.webp"
 />
 
-To accept the invite from your existing Convex account:
+Para aceitar o convite a partir da sua conta do Convex existente:
 
-1. On the invitation page (or in the Convex dashboard's profile settings), click **Add email** and enter the invited email address.
-2. Open the verification email that Convex sends to that address and verify it.
-3. Return to the invitation link and reload the page, or sign out and open the invitation link again.
-4. Accept the invite. The team and project now appear in your Convex account.
+1. Na página do convite (ou nas configurações de perfil do painel do Convex), clique em **Add email** e informe o endereço de e-mail convidado.
+2. Abra o e-mail de verificação que o Convex envia para esse endereço e confirme-o.
+3. Volte ao link do convite e recarregue a página, ou saia da conta e abra o link do convite novamente.
+4. Aceite o convite. O time e o projeto agora aparecem na sua conta do Convex.
 
-> **info** The flow can look like it failed after verifying the email. The invitation page does not update until you reload or reopen it.
+> **info** O fluxo pode parecer ter falhado depois da verificação do e-mail. A página do convite só é atualizada depois que você a recarregar ou reabrir.
+
+{/* ia-translate: true */}

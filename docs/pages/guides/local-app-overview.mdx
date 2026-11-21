@@ -1,7 +1,7 @@
 ---
-title: 'Build locally: Overview'
-sidebar_title: Overview
-description: An overview of how to build your app locally using your own machine for Expo projects.
+title: 'Build local: visão geral'
+sidebar_title: Visão geral
+description: Visão geral de como fazer o build do app localmente, na sua própria máquina, em projetos Expo.
 searchRank: 90
 searchPosition: 1
 ---
@@ -11,74 +11,76 @@ import { CodeSquare01Icon } from '@expo/styleguide-icons/outline/CodeSquare01Ico
 import { BoxLink } from '~/ui/components/BoxLink';
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 
-You can leverage your local development environment to build your app locally by utilizing Android Studio and Xcode. This build process can be done for both debug and release builds. This page provides an overview on different ways to build your app locally using your own machine and references to other guides that might be necessary in this workflow.
+Você pode aproveitar seu ambiente de desenvolvimento local para fazer o build do app localmente, usando o Android Studio e o Xcode. Esse processo pode ser feito tanto para builds de debug quanto para builds de release. Esta página oferece uma visão geral das diferentes formas de fazer o build do app na sua própria máquina e traz links para outros guias que podem ser necessários nesse workflow.
 
-## When to build your app locally
+## Quando fazer o build do app localmente \{#when-to-build-your-app-locally}
 
-There are different scenarios when you want to build your app on your developer machine:
+Há diferentes cenários em que você quer fazer o build do app na sua máquina de desenvolvimento:
 
-- You want to iterate quickly on native code changes or test platform-specific changes in your debug build
-- You want to manually generate native code to test your debug build
-- Any scenario where you are required to create builds inside an environment where access to a network is restricted.
-- You want to locally manage your own credentials (such as upload key, and so on)
-- You want to test or integrate your own custom build cache provider
-- You want to opt out of prebuilt Expo Modules for Android and compile them from source locally once
+- Você quer fazer iterações rápidas em mudanças de código nativo ou testar mudanças específicas de plataforma no seu build de debug
+- Você quer gerar o código nativo manualmente para testar seu build de debug
+- Qualquer cenário em que você precise criar builds em um ambiente com acesso restrito à rede
+- Você quer gerenciar suas próprias credenciais localmente (como a chave de upload, entre outras)
+- Você quer testar ou integrar seu próprio provedor de cache de builds
+- Você quer desativar os Expo Modules pré-compilados para Android e compilá-los a partir do código-fonte, localmente, uma vez
 
-> **Note**: Building your app locally complements Expo Build. You can keep using the build service for cloud automation and fall back to local builds for development.
+> **Note**: fazer o build do app localmente complementa o Expo Build. Você pode continuar usando o serviço de build para automação na nuvem e recorrer aos builds locais no desenvolvimento.
 
 <Prerequisites>
   <Requirement title="Android Studio">
-    [Set up Android
+    [Configure o Android
     Studio](/get-started/set-up-your-environment/?platform=android&device=physical&mode=development-build&buildEnv=local#set-up-an-android-device-with-a-development-build)
-    to compile and run Android projects on your local machine.
+    para compilar e executar projetos Android na sua máquina local.
   </Requirement>
   <Requirement title="Xcode">
-    [Set up
+    [Configure o
     Xcode](/get-started/set-up-your-environment/?platform=ios&device=physical&mode=development-build&buildEnv=local#set-up-an-ios-device-with-a-development-build)
-    to compile and run iOS projects on your local machine.
+    para compilar e executar projetos iOS na sua máquina local.
   </Requirement>
 </Prerequisites>
 
-## Creating your debug build locally
+## Criar seu build de debug localmente \{#creating-your-debug-build-locally}
 
-To quickly build and iterate on a debug build, you can use Expo CLI's `npx expo run:[android|ios]` commands. These commands compile your project, using your locally installed Android SDK or Xcode, into a debug build of your app.
+Para fazer o build e iterar rapidamente em um build de debug, use os comandos `npx expo run:[android|ios]` da Expo CLI. Esses comandos compilam seu projeto, usando o Android SDK ou o Xcode instalados localmente, em um build de debug do app.
 
 <BoxLink
-  title="Create a debug build locally"
-  description="Learn how to create a debug build for your Expo app locally."
+  title="Crie um build de debug localmente"
+  description="Saiba como criar um build de debug do seu app Expo localmente."
   href="/guides/local-app-development/"
   Icon={CodeSquare01Icon}
 />
 
-## Creating your release build locally
+## Criar seu build de release localmente \{#creating-your-release-build-locally}
 
-To create a release build (also known as production build) of your app, you generate signing credentials by utilizing tools provided by Android Studio and Xcode. Then, you can generate a release build and follow the process of manually submitting your app to Google Play Store or Apple App Store.
+Para criar um build de release (também conhecido como build de produção) do seu app, você gera as credenciais de assinatura usando as ferramentas fornecidas pelo Android Studio e pelo Xcode. Depois, pode gerar o build de release e seguir o processo de envio manual do app para a Google Play Store ou para a Apple App Store.
 
 <BoxLink
-  title="Create a release build locally"
-  description="Generate signed Android App Bundles, archive iOS builds in Xcode, and submit them manually to app stores."
+  title="Crie um build de release localmente"
+  description="Gere Android App Bundles assinados, arquive builds de iOS no Xcode e envie-os manualmente para as lojas de apps."
   href="/guides/local-app-production/"
   Icon={CodeSquare01Icon}
 />
 
-## Reuse previous builds from a provider
+## Reutilizar builds de um provedor \{#reuse-previous-builds-from-a-provider}
 
-You can accelerate your local development by caching and reusing builds from a provider. You can use Expo Build as a build provider or create your own custom provider.
+Você pode acelerar seu desenvolvimento local armazenando em cache e reutilizando builds de um provedor. Você pode usar o Expo Build como provedor de builds ou criar seu próprio provedor personalizado.
 
 <BoxLink
-  title="Use build cache providers"
-  description="Enable build caching with Expo Build or ship a custom provider to shorten local build times."
+  title="Use provedores de cache de builds"
+  description="Ative o cache de builds com o Expo Build ou crie um provedor personalizado para reduzir o tempo dos builds locais."
   href="/guides/cache-builds-remotely/"
   Icon={CodeSquare01Icon}
 />
 
-## Prebuilt Expo Modules for Android
+## Expo Modules pré-compilados para Android \{#prebuilt-expo-modules-for-android}
 
-Expo ships prebuilt Expo Modules for Android that reduce the work Gradle performs on each build. You can continue using the defaults or selectively opt out when you need to modify a module's source code.
+O Expo distribui Expo Modules pré-compilados para Android, que reduzem o trabalho que o Gradle faz em cada build. Você pode continuar usando o padrão ou desativá-los seletivamente quando precisar modificar o código-fonte de um módulo.
 
 <BoxLink
-  title="Prebuilt Expo Modules for Android"
-  description="Understand how prebuilt modules work and learn how to opt out globally or per package."
+  title="Expo Modules pré-compilados para Android"
+  description="Entenda como os módulos pré-compilados funcionam e saiba como desativá-los globalmente ou por pacote."
   href="/guides/prebuilt-expo-modules/"
   Icon={CodeSquare01Icon}
 />
+
+{/* ia-translate: true */}

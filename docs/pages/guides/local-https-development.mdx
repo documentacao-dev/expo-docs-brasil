@@ -1,7 +1,7 @@
 ---
-title: Using local HTTPS development
-sidebar_title: Local HTTPS development
-description: Learn how to set up local HTTPS for Expo web apps.
+title: Usando HTTPS em desenvolvimento local
+sidebar_title: HTTPS em desenvolvimento local
+description: Saiba como configurar HTTPS local para apps Expo na web.
 ---
 
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
@@ -9,32 +9,32 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { CODE } from '~/ui/components/Text';
 
-When developing Expo web apps locally, you may need to use HTTPS with your local development environment for testing secure browser APIs. This guide shows you how to set up local HTTPS for Expo web apps.
+Ao desenvolver apps Expo para web localmente, você pode precisar usar HTTPS no seu ambiente de desenvolvimento local para testar APIs de navegador que exigem conexão segura. Este guia mostra como configurar HTTPS local para apps Expo na web.
 
 <Prerequisites>
   <Requirement
     title={
       <>
-        <CODE>mkcert</CODE> installed
+        <CODE>mkcert</CODE> instalado
       </>
     }>
-    `mkcert` is a tool for creating development certificates. For installation instructions, see the
-    [`mkcert` GitHub repository](https://github.com/FiloSottile/mkcert#installation).
+    `mkcert` é uma ferramenta para criar certificados de desenvolvimento. Para as instruções de instalação, veja o
+    [repositório do `mkcert` no GitHub](https://github.com/FiloSottile/mkcert#installation).
   </Requirement>
 </Prerequisites>
 
-## Benefits
+## Benefícios \{#benefits}
 
-- **Team scalability**: Same setup works for everyone
-- **Authentication support**: HTTP-Only Cookies and secure contexts
-- **Production parity**: Match your production HTTPS environment
-- **Easy sharing**: Consistent development URLs across the team
+- **Escalabilidade para o time**: a mesma configuração funciona para todos
+- **Suporte a autenticação**: cookies HTTP-Only e contextos seguros
+- **Paridade com produção**: use o mesmo ambiente HTTPS da sua produção
+- **Compartilhamento fácil**: URLs de desenvolvimento consistentes entre o time
 
-## Set up your project
+## Configure seu projeto \{#set-up-your-project}
 
 <Step label="1">
 
-Create or navigate to your Expo project:
+Crie ou acesse seu projeto Expo:
 
 <Terminal
   cmd={{
@@ -77,7 +77,7 @@ Create or navigate to your Expo project:
 
 <Step label="2">
 
-Start your Expo development server:
+Inicie o servidor de desenvolvimento do Expo:
 
 <Terminal
   cmd={{
@@ -88,25 +88,25 @@ Start your Expo development server:
   }}
 />
 
-Your app will be running on `http://localhost:8081`. Keep this terminal window open.
+Seu app vai rodar em `http://localhost:8081`. Mantenha esta janela do terminal aberta.
 
 </Step>
 
 <Step label="3">
 
-Use `mkcert` to generate a certificate for localhost. Run the following command in a new terminal window from your project's root directory:
+Use o `mkcert` para gerar um certificado para o localhost. Execute o comando a seguir em uma nova janela do terminal, a partir da raiz do seu projeto:
 
 <Terminal cmd={['$ mkcert localhost']} />
 
-> **info** **Tip**: Ensure that after installing `mkcert`, you run `mkcert -install` to install the local certificate authority (CA).
+> **info** **Tip**: depois de instalar o `mkcert`, execute `mkcert -install` para instalar a autoridade certificadora (CA) local.
 
-This will generate two signed certificate files: `localhost.pem` (certificate) and `localhost-key.pem` (private key), inside your project's root directory.
+Isso vai gerar dois arquivos de certificado assinados: `localhost.pem` (certificado) e `localhost-key.pem` (chave privada), na raiz do seu projeto.
 
 </Step>
 
 <Step label="4">
 
-Inside your project's root directory, run the following command to start the proxy:
+Na raiz do projeto, execute o comando a seguir para iniciar o proxy:
 
 <Terminal
   cmd={{
@@ -125,14 +125,16 @@ Inside your project's root directory, run the following command to start the pro
   }}
 />
 
-> **info** **Tip**: [`local-ssl-proxy`](https://github.com/cameronhunter/local-ssl-proxy) is a tool that creates a proxy server that forwards HTTPS traffic from port 443 to your Expo dev server on port 8081.
+> **info** **Tip**: o [`local-ssl-proxy`](https://github.com/cameronhunter/local-ssl-proxy) é uma ferramenta que cria um servidor proxy que encaminha o tráfego HTTPS da porta 443 para o seu servidor de desenvolvimento do Expo na porta 8081.
 
-This creates a proxy that forwards HTTPS traffic from port 443 to your Expo dev server on port 8081.
+Isso cria um proxy que encaminha o tráfego HTTPS da porta 443 para o seu servidor de desenvolvimento do Expo na porta 8081.
 
 </Step>
 
 <Step label="5">
 
-Open `https://localhost` in your browser to access your app. Your Expo app is now running with HTTPS.
+Abra `https://localhost` no navegador para acessar seu app. Agora seu app Expo está rodando com HTTPS.
 
 </Step>
+
+{/* ia-translate: true */}

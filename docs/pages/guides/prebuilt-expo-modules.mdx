@@ -1,22 +1,22 @@
 ---
-title: Precompiled Expo Modules
-description: Learn how precompiled Expo Modules reduce native build times on Android and iOS.
+title: Módulos Expo pré-compilados
+description: Saiba como os módulos Expo pré-compilados reduzem o tempo de build nativo no Android e no iOS.
 hideTOC: true
 ---
 
 import { Collapsible } from '~/ui/components/Collapsible';
 import { Terminal } from '~/ui/components/Snippet';
 
-Native build times can slow down your development workflow. Expo provides precompiled versions of its most complex modules so your project links precompiled binaries instead of recompiling them from source on every build. On Android, those binaries ship as **.aar** files linked through Gradle. On iOS, they ship as `XCFrameworks` linked through CocoaPods. Both are bundled into the regular Expo npm packages and packages that aren't yet precompiled fall back to building from source automatically — precompiled and source-built modules coexist in the same project.
+Os tempos de build nativo podem deixar o fluxo de desenvolvimento mais lento. O Expo oferece versões pré-compiladas dos seus módulos mais complexos, para que o projeto vincule binários pré-compilados em vez de recompilá-los a partir do código-fonte a cada build. No Android, esses binários vêm como arquivos **.aar** vinculados pelo Gradle. No iOS, vêm como `XCFrameworks` vinculados pelo CocoaPods. Ambos estão incluídos nos pacotes npm normais do Expo. Pacotes que ainda não têm versão pré-compilada voltam a ser compilados a partir do código-fonte automaticamente, então módulos pré-compilados e módulos compilados a partir do código-fonte coexistem no mesmo projeto.
 
-**Most projects don't need to do anything** — precompiled Expo Modules are enabled automatically in new and existing projects with a supported SDK version.
+**A maioria dos projetos não precisa fazer nada.** Os módulos Expo pré-compilados são ativados automaticamente em projetos novos e existentes com uma versão de SDK compatível.
 
-- **Android**: Enabled by default since SDK 53.
-- **iOS**: enabled by default in SDK 56 and later. In SDK 55, enabled by default only on Expo Build — set `EXPO_USE_PRECOMPILED_MODULES=1` in your shell to opt in for local builds.
+- **Android**: ativado por padrão desde o SDK 53.
+- **iOS**: ativado por padrão no SDK 56 e superiores. No SDK 55, ativado por padrão apenas no Expo Build. Defina `EXPO_USE_PRECOMPILED_MODULES=1` no shell para ativar em builds locais.
 
-<Collapsible summary="Disabling on iOS">
+<Collapsible summary="Desativando no iOS">
 
-Set the `ios.usePrecompiledModules` property of the [`expo-build-properties`](/versions/latest/sdk/build-properties/) config plugin to `false` to build every Expo Module from source. This applies to both local builds and Expo Build, and takes effect the next time you run `npx expo prebuild`:
+Defina a propriedade `ios.usePrecompiledModules` do config plugin [`expo-build-properties`](/versions/latest/sdk/build-properties/) como `false` para compilar todos os módulos Expo a partir do código-fonte. Isso vale tanto para builds locais quanto para o Expo Build, e passa a valer na próxima vez que você executar `npx expo prebuild`:
 
 ```json app.json
 {
@@ -35,23 +35,23 @@ Set the `ios.usePrecompiledModules` property of the [`expo-build-properties`](/v
 }
 ```
 
-Alternatively, you can control this directly with the `EXPO_USE_PRECOMPILED_MODULES` environment variable, which is read during `pod install`. For local builds, export it in your shell before running `pod install` (or `npx expo run:ios`):
+Como alternativa, você pode controlar isso diretamente pela variável de ambiente `EXPO_USE_PRECOMPILED_MODULES`, que é lida durante o `pod install`. Para builds locais, exporte-a no shell antes de executar `pod install` (ou `npx expo run:ios`):
 
 <Terminal cmd={['$ export EXPO_USE_PRECOMPILED_MODULES=0']} />
 
-For Expo Build, create an [Expo Services environment variable](/eas/environment-variables/manage/):
+Para o Expo Build, crie uma [variável de ambiente do Expo Services](/eas/environment-variables/manage/):
 
 <Terminal
   cmd={['$ eas env:set --name EXPO_USE_PRECOMPILED_MODULES --value 0 --visibility plaintext']}
 />
 
-The CLI will prompt you to select which environment(s) (`development`, `preview`, `production`) the variable applies to.
+A CLI vai pedir que você selecione em quais ambientes (`development`, `preview`, `production`) a variável se aplica.
 
 </Collapsible>
 
-<Collapsible summary="Disabling specific modules via Expo Autolinking">
+<Collapsible summary="Desativando módulos específicos pelo Expo Autolinking">
 
-Configure Expo Autolinking with `buildFromSource` in **package.json**. Use `".*"` to opt out of every precompiled module, or list specific package names. The same setting is available for both `android` and `ios`:
+Configure o Expo Autolinking com `buildFromSource` no **package.json**. Use `".*"` para desativar todos os módulos pré-compilados, ou liste nomes de pacotes específicos. A mesma configuração está disponível para `android` e `ios`:
 
 {/* prettier-ignore */}
 ```json package.json
@@ -70,21 +70,21 @@ Configure Expo Autolinking with `buildFromSource` in **package.json**. Use `".*"
 }
 ```
 
-This is typically only needed when you're modifying module source code yourself, or when you use a config plugin option that controls native compilation. Prebuilt artifacts ship with each module's default build options, so options that add or remove native dependencies (such as `expo-camera`'s [`barcodeScannerEnabled`](/versions/latest/sdk/camera/#configuration-in-app-config) on Android) only take effect when the module builds from source.
+Isso normalmente só é necessário quando você mesmo modifica o código-fonte de um módulo, ou quando usa uma opção de config plugin que controla a compilação nativa. Os artefatos pré-compilados vêm com as opções de build padrão de cada módulo, então opções que adicionam ou removem dependências nativas (como o [`barcodeScannerEnabled`](/versions/latest/sdk/camera/#configuration-in-app-config) do `expo-camera` no Android) só têm efeito quando o módulo é compilado a partir do código-fonte.
 
 </Collapsible>
 
-<Collapsible summary="Troubleshooting Expo Build">
+<Collapsible summary="Solução de problemas do Expo Build">
 
-### iOS
+### iOS \{#ios}
 
-On Expo Build, third-party libraries like `react-native-reanimated` and `react-native-worklets` are automatically downloaded as precompiled XCFrameworks. Local `pod install` does not fetch them by default. Those packages build from source locally and pick up any `staticFeatureFlags` overrides automatically, so flag and version mismatches surface primarily on Expo Build. Avoid enabling third-party precompiled downloads for local builds and keep this path scoped to Expo Build.
+No Expo Build, bibliotecas de terceiros como `react-native-reanimated` e `react-native-worklets` são baixadas automaticamente como XCFrameworks pré-compilados. O `pod install` local não baixa esses pacotes por padrão. Esses pacotes são compilados localmente a partir do código-fonte e aplicam automaticamente quaisquer sobrescritas de `staticFeatureFlags`, então divergências de flags e de versão aparecem principalmente no Expo Build. Evite ativar downloads pré-compilados de terceiros para builds locais e mantenha esse caminho restrito ao Expo Build.
 
-#### `react-native-reanimated` and `react-native-worklets`
+#### `react-native-reanimated` e `react-native-worklets` \{#react-native-reanimated-and-react-native-worklets}
 
-These two packages are tightly coupled. `react-native-reanimated` links `react-native-worklets` at the native level.
+Esses dois pacotes são fortemente acoplados. O `react-native-reanimated` vincula o `react-native-worklets` no nível nativo.
 
-**Opt out of both together.** If you need a source build for either package (for example to apply a patch or modify native code), list both in `buildFromSource`. Source-building only one produces a mixed precompiled/source linkage that fails to resolve the matching framework at runtime:
+**Desative os dois juntos.** Se você precisar de um build a partir do código-fonte de qualquer um dos pacotes (por exemplo, para aplicar um patch ou modificar código nativo), liste os dois em `buildFromSource`. Compilar apenas um a partir do código-fonte gera uma vinculação mista, pré-compilada e de código-fonte, que não consegue resolver o framework correspondente em tempo de execução:
 
 {/* prettier-ignore */}
 ```json package.json
@@ -99,8 +99,10 @@ These two packages are tightly coupled. `react-native-reanimated` links `react-n
 }
 ```
 
-**Custom feature flags require a source build.** Feature-flag values are baked into the precompiled binary at build time, so any `worklets.staticFeatureFlags` or `reanimated.staticFeatureFlags` overrides in **package.json** are ignored. To apply them, disable precompiled modules with `EXPO_USE_PRECOMPILED_MODULES=0`.
+**Feature flags personalizadas exigem build a partir do código-fonte.** Os valores das feature flags são incorporados ao binário pré-compilado no momento do build, então quaisquer sobrescritas de `worklets.staticFeatureFlags` ou `reanimated.staticFeatureFlags` no **package.json** são ignoradas. Para aplicá-las, desative os módulos pré-compilados com `EXPO_USE_PRECOMPILED_MODULES=0`.
 
-**When to look here.** Runtime errors like `Unable to recognize flag: <NAME>` on Expo Build (but not locally) mean the precompiled artifact's flag list doesn't match your pinned package version. Use `buildFromSource` above and [file an issue on GitHub](https://github.com/expo/expo/issues).
+**Quando olhar aqui.** Erros de runtime como `Unable to recognize flag: <NAME>` no Expo Build (mas não localmente) indicam que a lista de flags do artefato pré-compilado não corresponde à versão fixada do pacote. Use o `buildFromSource` acima e [abra uma issue no GitHub](https://github.com/expo/expo/issues).
 
 </Collapsible>
+
+{/* ia-translate: true */}

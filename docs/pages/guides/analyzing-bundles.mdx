@@ -1,7 +1,7 @@
 ---
-title: Analyzing JavaScript bundles with Expo Atlas and Lighthouse
-sidebar_title: Analyzing JavaScript bundles
-description: Learn about improving the production JavaScript bundle size of Expo apps and websites with Expo Atlas and Lighthouse.
+title: Analisando bundles JavaScript com Expo Atlas e Lighthouse
+sidebar_title: Analisando bundles JavaScript
+description: Saiba como reduzir o tamanho do bundle JavaScript de produção de apps e sites Expo com o Expo Atlas e o Lighthouse.
 searchRank: 90
 searchPosition: 1
 ---
@@ -10,19 +10,19 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-Bundle performance varies for different platforms. For example, web browsers don't support precompiled bytecode, so the JavaScript bundle size is important for improving startup time and performance. The smaller the bundle, the faster it can be downloaded and parsed.
+O desempenho do bundle varia de acordo com a plataforma. Por exemplo, navegadores web não suportam bytecode pré-compilado, então o tamanho do bundle JavaScript é importante para melhorar o tempo de inicialização e o desempenho. Quanto menor o bundle, mais rápido ele pode ser baixado e interpretado.
 
-## Analyzing bundle size with Expo Atlas
+## Analisando o tamanho do bundle com o Expo Atlas \{#analyzing-bundle-size-with-expo-atlas}
 
-<ContentSpotlight alt="Expo Atlas overview page." src="/static/images/atlas/atlas-overview.avif" />
+<ContentSpotlight alt="Página de visão geral do Expo Atlas." src="/static/images/atlas/atlas-overview.avif" />
 
-The libraries used in a project influence the size of the production JavaScript bundle. You can use [Expo Atlas](https://github.com/expo/expo-atlas#readme) to visualize the production bundle and identify which libraries contribute to the bundle size.
+As bibliotecas usadas em um projeto influenciam o tamanho do bundle JavaScript de produção. Você pode usar o [Expo Atlas](https://github.com/expo/expo-atlas#readme) para visualizar o bundle de produção e identificar quais bibliotecas contribuem para o tamanho do bundle.
 
-### Using Atlas with `npx expo start`
+### Usando o Atlas com `npx expo start` \{#using-atlas-with-npx-expo-start}
 
-You can use Expo Atlas with the local development server. This method allows Atlas to update whenever you change any code in your project.
+Você pode usar o Expo Atlas com o servidor de desenvolvimento local. Esse método permite que o Atlas seja atualizado sempre que você alterar qualquer código do projeto.
 
-Once your app is running using the local development server on Android, iOS, and/or web, you can open Atlas through the [dev tools plugin menu](/debugging/devtools-plugins/#using-a-dev-tools-plugin) using <kbd>Shift</kbd> + <kbd>M</kbd>.
+Depois que o app estiver rodando com o servidor de desenvolvimento local no Android, iOS e/ou web, você pode abrir o Atlas pelo [menu de plugins das ferramentas de desenvolvimento](/debugging/devtools-plugins/#using-a-dev-tools-plugin) usando <kbd>Shift</kbd> + <kbd>M</kbd>.
 
 <Terminal
   cmd={{
@@ -33,9 +33,9 @@ Once your app is running using the local development server on Android, iOS, and
   }}
 />
 
-#### Changing development mode to production
+#### Mudando do modo de desenvolvimento para produção \{#changing-development-mode-to-production}
 
-By default, Expo starts the local development server in [development mode](/workflow/development-mode/#development-mode). Development mode disables some optimizations that are enabled in [production mode](/workflow/development-mode/#production-mode). You can also start the local development server in production mode to get a more accurate representation of the production bundle size:
+Por padrão, o Expo inicia o servidor de desenvolvimento local no [modo de desenvolvimento](/workflow/development-mode/#development-mode). O modo de desenvolvimento desativa algumas otimizações que estão ativas no [modo de produção](/workflow/development-mode/#production-mode). Você também pode iniciar o servidor de desenvolvimento local no modo de produção para obter uma representação mais precisa do tamanho do bundle de produção:
 
 <Terminal
   cmd={{
@@ -58,9 +58,9 @@ By default, Expo starts the local development server in [development mode](/work
   }}
 />
 
-### Using Expo Atlas with `npx expo export`
+### Usando o Expo Atlas com `npx expo export` \{#using-expo-atlas-with-npx-expo-export}
 
-You can also use Expo Atlas when generating a production bundle for your app or Expo Update. Atlas generates a **.expo/atlas.jsonl** file during export, which you can share and open without having access to the project. This file contains the original and transformed source code of every bundled module, including the values of inlined [`EXPO_PUBLIC_` environment variables](/guides/environment-variables/). Treat it like your source code and only share it with people you trust.
+Você também pode usar o Expo Atlas ao gerar um bundle de produção para o app ou para um Expo Update. Durante o export, o Atlas gera um arquivo **.expo/atlas.jsonl**, que você pode compartilhar e abrir sem precisar ter acesso ao projeto. Esse arquivo contém o código-fonte original e transformado de cada módulo empacotado, incluindo os valores das [variáveis de ambiente `EXPO_PUBLIC_`](/guides/environment-variables/) que foram embutidas. Trate esse arquivo como se fosse o código-fonte e compartilhe apenas com pessoas em quem você confia.
 
 <Terminal
   cmd={{
@@ -95,23 +95,23 @@ You can also use Expo Atlas when generating a production bundle for your app or 
   }}
 />
 
-You can also specify the platforms you want to analyze using the `--platform` option. Expo Atlas will gather the data for the exported platforms only.
+Você também pode especificar as plataformas que quer analisar com a opção `--platform`. O Expo Atlas coletará os dados apenas das plataformas exportadas.
 
-### Analyzing transformed modules
+### Analisando módulos transformados \{#analyzing-transformed-modules}
 
-<ContentSpotlight alt="Expo Atlas module page." src="/static/images/atlas/atlas-module.avif" />
+<ContentSpotlight alt="Página de módulo do Expo Atlas." src="/static/images/atlas/atlas-module.avif" />
 
-Inside Atlas, you can hold <kbd>⌘ Cmd</kbd> and click on a graph node to see the transformed module details. This feature helps you understand how a module is transformed by Babel, which modules it imports, and which modules imported it. This can be used to trace the origin of a module across the dependency graph.
+No Atlas, segure <kbd>⌘ Cmd</kbd> e clique em um nó do grafo para ver os detalhes do módulo transformado. Esse recurso ajuda a entender como o módulo é transformado pelo Babel, quais módulos ele importa e quais módulos o importaram. Isso pode ser usado para rastrear a origem de um módulo ao longo do grafo de dependências.
 
-## Analyzing bundle size with source-map-explorer
+## Analisando o tamanho do bundle com o source-map-explorer \{#analyzing-bundle-size-with-source-map-explorer}
 
-> Alternative method for **SDK 50 and earlier**.
+> Método alternativo para o **SDK 50 e anteriores**.
 
-If you are using SDK 50 or below, you can use the [`source-map-explorer`](https://www.npmjs.com/package/source-map-explorer) library to visualize and analyze the production JavaScript bundle.
+Se você estiver usando o SDK 50 ou inferior, pode usar a biblioteca [`source-map-explorer`](https://www.npmjs.com/package/source-map-explorer) para visualizar e analisar o bundle JavaScript de produção.
 
 <Step label="1">
 
-To use source map explorer, run the following command to install it:
+Para usar o source map explorer, execute o comando a seguir para instalá-lo:
 
 <Terminal
   cmd={{
@@ -126,7 +126,7 @@ To use source map explorer, run the following command to install it:
 
 <Step label="2">
 
-Add a script to **package.json** to run it. You might have to adjust the input path depending on the platform or SDK you are using. For brevity, the following example assumes the project is Expo SDK 50 and does not use Expo Router `server` output.
+Adicione um script ao **package.json** para executá-lo. Talvez seja preciso ajustar o caminho de entrada de acordo com a plataforma ou o SDK que você estiver usando. Para simplificar, o exemplo a seguir considera que o projeto usa o Expo SDK 50 e não usa a saída `server` do Expo Router.
 
 ```json package.json
 {
@@ -138,7 +138,7 @@ Add a script to **package.json** to run it. You might have to adjust the input p
 }
 ```
 
-If you are using the SDK 50 `server` output for web, then use the following to map web bundles:
+Se você estiver usando a saída `server` do SDK 50 para web, use o seguinte para mapear os bundles web:
 
 <Terminal
   cmd={{
@@ -157,13 +157,13 @@ If you are using the SDK 50 `server` output for web, then use the following to m
   }}
 />
 
-Web bundles are output to the **dist/client** subdirectory to prevent exposing server code to the client.
+Os bundles web são gerados no subdiretório **dist/client** para evitar expor o código do servidor ao cliente.
 
 </Step>
 
 <Step label="3">
 
-Export your production JavaScript bundle and include the `--source-maps` flag so that the source map explorer can read the source maps. For native apps using Hermes, you can use the `--no-bytecode` option to disable bytecode generation.
+Exporte o bundle JavaScript de produção incluindo a flag `--source-maps`, para que o source map explorer consiga ler os source maps. Para apps nativos que usam Hermes, você pode usar a opção `--no-bytecode` para desativar a geração de bytecode.
 
 <Terminal
   cmd={{
@@ -194,15 +194,15 @@ Export your production JavaScript bundle and include the `--source-maps` flag so
   }}
 />
 
-This command shows the JavaScript bundle and source map paths in the output. In the next step, you will pass these paths to the source map explorer.
+Esse comando mostra no output os caminhos do bundle JavaScript e dos source maps. No próximo passo, você vai passar esses caminhos para o source map explorer.
 
-> Avoid publishing source maps to production as they can cause both security issues and performance issues (a browser will download the large maps).
+> Evite publicar source maps em produção, pois eles podem causar problemas de segurança e de desempenho (o navegador vai baixar os mapas grandes).
 
 </Step>
 
 <Step label="4">
 
-Run the script to analyze your bundle:
+Execute o script para analisar o bundle:
 
 <Terminal
   cmd={{
@@ -213,23 +213,23 @@ Run the script to analyze your bundle:
   }}
 />
 
-On running this command, you might see the following error:
+Ao executar esse comando, você pode ver o seguinte erro:
 
 ```text
 You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer
 ```
 
-This is probably due to a [known issue](https://github.com/danvk/source-map-explorer/issues/247) in `source-map-explorer` in Node.js 18 and above. To resolve this, set the environment variable `NODE_OPTIONS=--no-experimental-fetch` before running the analyze script.
+Isso provavelmente se deve a um [problema conhecido](https://github.com/danvk/source-map-explorer/issues/247) no `source-map-explorer` no Node.js 18 e superiores. Para resolver, defina a variável de ambiente `NODE_OPTIONS=--no-experimental-fetch` antes de executar o script de análise.
 
 </Step>
 
-You might encounter a warning such as `Unable to map 809/13787 bytes (5.87%)`. This occurs because source maps often exclude bundler runtime definitions (for example, `__d(() => {}, [])`). This value is consistent and not a reason for concern.
+Você pode encontrar um aviso como `Unable to map 809/13787 bytes (5.87%)`. Isso acontece porque os source maps costumam excluir as definições do runtime do bundler (por exemplo, `__d(() => {}, [])`). Esse valor é consistente e não é motivo para preocupação.
 
-## Lighthouse
+## Lighthouse \{#lighthouse}
 
-Lighthouse is a great way to see how fast, accessible, and performant your website is. You can test your project with the **Audit** tab in Chrome, or with the [Lighthouse CLI](https://github.com/GoogleChrome/lighthouse#using-the-node-cli).
+O Lighthouse é uma ótima forma de ver a velocidade, a acessibilidade e o desempenho do seu site. Você pode testar o projeto pela aba **Audit** do Chrome ou pela [CLI do Lighthouse](https://github.com/GoogleChrome/lighthouse#using-the-node-cli).
 
-After creating a production build with `npx expo export -p web` and serving it (using either `npx serve dist`, or production deployment, or custom server), run Lighthouse with the URL your site is hosted at.
+Depois de criar um build de produção com `npx expo export -p web` e servi-lo (usando `npx serve dist`, o deploy de produção ou um servidor personalizado), execute o Lighthouse com a URL em que o site está hospedado.
 
 <Terminal
   cmd={{
@@ -263,3 +263,5 @@ After creating a production build with `npx expo export -p web` and serving it (
     ],
   }}
 />
+
+{/* ia-translate: true */}

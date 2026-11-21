@@ -1,41 +1,41 @@
 ---
-title: iOS Developer Mode
-description: Learn how to enable iOS Developer Mode setting on iOS 16 and above to run internal distribution builds and local development builds.
+title: Modo de Desenvolvedor do iOS
+description: Saiba como ativar a configuração do Modo de Desenvolvedor do iOS no iOS 16 ou superior para rodar builds de distribuição interna e development builds locais.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 import { Step } from '~/ui/components/Step';
 
-> This does not apply to builds signed using enterprise provisioning or to any builds installed on an iOS Simulator.
+> Isso não se aplica a builds assinados com provisionamento empresarial nem a builds instalados em um Simulador do iOS.
 
-Devices running iOS 16 and above need to enable OS-level **Developer Mode** setting before they can run [internal distribution](/build/internal-distribution) builds (including those built with Expo Build) or local development builds after installing them on the device.
+Dispositivos com iOS 16 ou superior precisam ativar a configuração **Modo de Desenvolvedor** do sistema antes de rodar builds de [distribuição interna](/build/internal-distribution) (incluindo os feitos com o Expo Build) ou development builds locais, depois de instalá-los no dispositivo.
 
-There are two ways you can enable Developer Mode on your device:
+Há duas formas de ativar o Modo de Desenvolvedor no seu dispositivo:
 
-- Directly on an iOS device
-- By connecting an iOS device with a Mac that has Xcode installed
+- Diretamente em um dispositivo iOS
+- Conectando um dispositivo iOS a um Mac com o Xcode instalado
 
 <Prerequisites>
-  <Requirement title="A device running iOS 16 or later">
-    Developer Mode is only required on devices running iOS 16 and later.
+  <Requirement title="Um dispositivo com iOS 16 ou posterior">
+    O Modo de Desenvolvedor só é necessário em dispositivos com iOS 16 ou posterior.
   </Requirement>
 </Prerequisites>
 
-The instructions below need to be followed only once per device.
+As instruções abaixo só precisam ser seguidas uma vez por dispositivo.
 
-## Enable Developer Mode
+## Ative o Modo de Desenvolvedor \{#enable-developer-mode}
 
-### Directly on an iOS device
+### Diretamente em um dispositivo iOS \{#directly-on-an-ios-device}
 
-To follow the steps below, **install your development build on your device before enabling the Developer Mode.** When the build is created, follow the instructions on the Expo dashboard to install it on your iOS device.
+Para seguir os passos abaixo, **instale seu development build no dispositivo antes de ativar o Modo de Desenvolvedor.** Quando o build for criado, siga as instruções do painel do Expo para instalá-lo no seu dispositivo iOS.
 
 <Step label="1">
 
-Once the build is installed on your device, press the app icon. This will open an alert asking you to enable Developer Mode. Press **OK**.
+Depois que o build estiver instalado no dispositivo, toque no ícone do app. Isso vai abrir um alerta pedindo para ativar o Modo de Desenvolvedor. Toque em **OK**.
 
 <ContentSpotlight
-  alt="Navigating to the Developer Mode setting"
+  alt="Acessando a configuração do Modo de Desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-0.webp"
   className="max-w-[240px]"
 />
@@ -44,10 +44,10 @@ Once the build is installed on your device, press the app icon. This will open a
 
 <Step label="2">
 
-Go to the Settings app, and navigate to **Privacy & Security** > **Developer Mode**.
+Abra o app Ajustes e acesse **Privacidade e Segurança** > **Modo de Desenvolvedor**.
 
 <ContentSpotlight
-  alt="Navigating to the Developer Mode setting"
+  alt="Acessando a configuração do Modo de Desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-1.webp"
   className="max-w-[480px]"
 />
@@ -56,10 +56,10 @@ Go to the Settings app, and navigate to **Privacy & Security** > **Developer Mod
 
 <Step label="3">
 
-Enable the toggle. You will receive a prompt from iOS to restart your device. Press **Restart**.
+Ative a chave. O iOS vai pedir para reiniciar o dispositivo. Toque em **Reiniciar**.
 
 <ContentSpotlight
-  alt="Developer Mode restart prompt"
+  alt="Aviso de reinicialização do Modo de Desenvolvedor"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-2.webp"
   className="max-w-[480px]"
 />
@@ -68,40 +68,40 @@ Enable the toggle. You will receive a prompt from iOS to restart your device. Pr
 
 <Step label="4">
 
-After the device restarts, unlock your device. A system alert should appear. Press **Turn On** and then, when prompted, enter your device's passcode.
+Depois que o dispositivo reiniciar, desbloqueie-o. Um alerta do sistema deve aparecer. Toque em **Ativar** e, quando solicitado, digite a senha do dispositivo.
 
 <ContentSpotlight
-  alt="Alert and passcode prompt"
+  alt="Alerta e pedido de senha"
   src="/static/images/ios-dev-mode/ios-16-developer-mode-3.webp"
   className="max-w-[480px]"
 />
 
 </Step>
 
-Developer Mode is now enabled. You can now interact with your internal distribution builds and local development builds.
+O Modo de Desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
 
-You can turn off Developer Mode at any time. However, you'll need to repeat this same process to re-enable it.
+Você pode desativar o Modo de Desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
 
-### Connect an iOS device with a Mac
+### Conecte um dispositivo iOS a um Mac \{#connect-an-ios-device-with-a-mac}
 
-> **Note:** Xcode must be installed on the Mac device before following the steps below.
+> **Note:** o Xcode precisa estar instalado no Mac antes de seguir os passos abaixo.
 
-You don't need to install the development build on your iOS device first to enable Developer Mode by connecting it to a Mac. You can:
+Você não precisa instalar o development build no dispositivo iOS antes de ativar o Modo de Desenvolvedor conectando-o a um Mac. Você pode:
 
 <Step label="1">
 
-Connect your iOS device to a Mac using a USB cable. Press **Trust** on your iOS device when **Trust This Computer?** alert is prompted.
+Conecte seu dispositivo iOS a um Mac com um cabo USB. Toque em **Confiar** no dispositivo quando o alerta **Confiar neste computador?** aparecer.
 
 </Step>
 
 <Step label="2">
 
-Open Xcode, and from the menu bar, navigate to **Xcode** > **Open Developer Tool** > **Device Hub**.
+Abra o Xcode e, na barra de menus, acesse **Xcode** > **Open Developer Tool** > **Device Hub**.
 
-Select your device in the sidebar. Device Hub shows **Enable Developer Mode** with instructions for enabling it on the iOS device.
+Selecione seu dispositivo na barra lateral. O Device Hub mostra **Enable Developer Mode** com instruções para ativá-lo no dispositivo iOS.
 
 <ContentSpotlight
-  alt="Device Hub showing the Enable Developer Mode message for a connected iPhone."
+  alt="Device Hub mostrando a mensagem Enable Developer Mode para um iPhone conectado."
   src="/static/images/ios-dev-mode/with-xcode-01.webp"
   className="max-w-[640px]"
 />
@@ -110,12 +110,12 @@ Select your device in the sidebar. Device Hub shows **Enable Developer Mode** wi
 
 <Step label="3">
 
-On the iOS device, open **Settings** > **Privacy & Security** > **Developer Mode**.
+No dispositivo iOS, abra **Ajustes** > **Privacidade e Segurança** > **Modo de Desenvolvedor**.
 
-Enable the toggle. You will receive a prompt from iOS to restart your device. Press **Restart**.
+Ative a chave. O iOS vai pedir para reiniciar o dispositivo. Toque em **Reiniciar**.
 
 <ContentSpotlight
-  alt="Developer Mode restart prompt"
+  alt="Aviso de reinicialização do Modo de Desenvolvedor"
   src="/static/images/ios-dev-mode/with-xcode-02.webp"
   className="max-w-[560px]"
 />
@@ -124,16 +124,18 @@ Enable the toggle. You will receive a prompt from iOS to restart your device. Pr
 
 <Step label="4">
 
-After the device restarts, unlock your device. A system alert should appear. Press **Turn On**, and enter your device's passcode when prompted.
+Depois que o dispositivo reiniciar, desbloqueie-o. Um alerta do sistema deve aparecer. Toque em **Ativar** e digite a senha do dispositivo quando solicitado.
 
 <ContentSpotlight
-  alt="Developer Mode restart prompt"
+  alt="Aviso de reinicialização do Modo de Desenvolvedor"
   src="/static/images/ios-dev-mode/with-xcode-03.webp"
   className="max-w-[360px]"
 />
 
 </Step>
 
-Developer Mode is now enabled. You can now interact with your internal distribution builds and local development builds.
+O Modo de Desenvolvedor agora está ativado. Você já pode usar seus builds de distribuição interna e development builds locais.
 
-You can turn off Developer Mode at any time. However, you'll need to repeat this same process to re-enable it.
+Você pode desativar o Modo de Desenvolvedor a qualquer momento. Porém, para ativá-lo de novo, será preciso repetir este mesmo processo.
+
+{/* ia-translate: true */}

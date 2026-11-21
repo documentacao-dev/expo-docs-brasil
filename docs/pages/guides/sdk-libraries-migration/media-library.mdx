@@ -1,7 +1,7 @@
 ---
-title: Migrate to the new expo-media-library API
+title: Migre para a nova API do expo-media-library
 sidebar_title: expo-media-library/legacy
-description: Migrate from the legacy expo-media-library API to the new class-based expo-media-library API with Asset, Album, and Query.
+description: Migre da API legada do expo-media-library para a nova API do expo-media-library, baseada em classes, com Asset, Album e Query.
 ---
 
 import { DocsLogo } from '@expo/styleguide';
@@ -9,27 +9,27 @@ import { DocsLogo } from '@expo/styleguide';
 import { BoxLink } from '~/ui/components/BoxLink';
 import { Terminal } from '~/ui/components/Snippet';
 
-The new class-based `expo-media-library` API is now stable. The legacy API is available from `expo-media-library/legacy`. Migrate to the root `expo-media-library` import to benefit from the new API and future fixes.
+A nova API do `expo-media-library`, baseada em classes, agora é estável. A API legada está disponível em `expo-media-library/legacy`. Migre para o import da raiz `expo-media-library` para aproveitar a nova API e as correções futuras.
 
-The new API replaces the function-based `MediaLibrary.getAssetsAsync({ ... })` style with `Asset`, `Album`, and `Query` classes. Albums and assets are now represented as class instances that hold only the ID of the native asset. Asset properties are async getters instead of pre-fetched fields. `Query` replaces the `getAssetsAsync` function with a chainable builder pattern.
+A nova API substitui o estilo baseado em funções `MediaLibrary.getAssetsAsync({ ... })` pelas classes `Asset`, `Album` e `Query`. Álbuns e assets agora são representados como instâncias de classe que guardam apenas o ID do asset nativo. As propriedades do asset são getters assíncronos, em vez de campos pré-carregados. `Query` substitui a função `getAssetsAsync` por um padrão de builder encadeável.
 
-## Installation
+## Instalação \{#installation}
 
-Install the SDK-compatible package:
+Instale o pacote compatível com o SDK:
 
 <Terminal cmd={['$ npx expo install expo-media-library']} />
 
-## Importing the new API
+## Importando a nova API \{#importing-the-new-api}
 
-Import from `expo-media-library`:
+Importe de `expo-media-library`:
 
 ```ts
 import { Asset, Album, Query } from 'expo-media-library';
 ```
 
-## Assets
+## Assets \{#assets}
 
-### Create an asset from a file
+### Crie um asset a partir de um arquivo \{#create-an-asset-from-a-file}
 
 ```ts
 // Before
@@ -41,9 +41,9 @@ const asset = await MediaLibrary.createAssetAsync(localUri);
 const asset = await Asset.create(localUri);
 ```
 
-`saveToLibraryAsync` is not available in the new API. Use `Asset.create`, which saves the file to the library and returns an `Asset` instance.
+`saveToLibraryAsync` não está disponível na nova API. Use `Asset.create`, que salva o arquivo na biblioteca e retorna uma instância de `Asset`.
 
-### Query assets
+### Consulte assets \{#query-assets}
 
 ```ts
 // Before
@@ -61,9 +61,9 @@ const assets = await new Query()
   .exe();
 ```
 
-`Query` returns an array of `Asset` instances directly. There is no `assets` wrapper or `endCursor`. Pagination is handled by chaining `.limit()` and `.offset()`.
+`Query` retorna diretamente um array de instâncias de `Asset`. Não há o wrapper `assets` nem `endCursor`. A paginação é feita encadeando `.limit()` e `.offset()`.
 
-### Read asset properties
+### Leia as propriedades do asset \{#read-asset-properties}
 
 ```ts
 // Before
@@ -80,9 +80,9 @@ const mediaType = await asset.getMediaType();
 const info = await asset.getInfo();
 ```
 
-Properties are accessed through async getters instead of pre-fetched fields. Use `getInfo()` to retrieve all properties at once as an `AssetInfo` object.
+As propriedades são acessadas por getters assíncronos, em vez de campos pré-carregados. Use `getInfo()` para obter todas as propriedades de uma vez, como um objeto `AssetInfo`.
 
-### Read EXIF data
+### Leia os dados EXIF \{#read-exif-data}
 
 ```ts
 // Before
@@ -93,7 +93,7 @@ const exif = info.exif;
 const exif = await asset.getExif();
 ```
 
-### Delete assets
+### Exclua assets \{#delete-assets}
 
 ```ts
 // Before
@@ -106,11 +106,11 @@ await asset.delete();
 await Asset.delete([asset1, asset2]);
 ```
 
-### Use legacy assets alongside the new API
+### Use assets legados junto com a nova API \{#use-legacy-assets-alongside-the-new-api}
 
-> If possible, migrate your app to use the new API end-to-end. The helpers below are intended for gradual migrations where both APIs are used at the same time.
+> Se possível, migre seu app para usar a nova API do início ao fim. As funções auxiliares abaixo são destinadas a migrações graduais, em que as duas APIs são usadas ao mesmo tempo.
 
-If you have a legacy `Asset` object in memory and need a new `Asset` instance, use `asset.uri` on iOS (it is already a `ph://` URI accepted by the new API) and `getAssetContentUriAsync` on Android to convert the numeric MediaStore ID to a `content://` URI.
+Se você tem um objeto `Asset` legado na memória e precisa de uma nova instância de `Asset`, use `asset.uri` no iOS (que já é uma URI `ph://` aceita pela nova API) e `getAssetContentUriAsync` no Android, para converter o ID numérico do MediaStore em uma URI `content://`.
 
 ```ts
 import { Asset } from 'expo-media-library';
@@ -131,7 +131,7 @@ async function toNewAsset(legacyAsset: LegacyMediaLibrary.Asset): Promise<Asset>
 }
 ```
 
-If your app stores asset IDs returned by the legacy API (for example, in a database), convert them before creating `Asset` instances. On iOS, prefix the legacy ID with `ph://`. On Android, use `getAssetContentUriAsync` to resolve the numeric MediaStore ID to a `content://` URI.
+Se seu app armazena IDs de assets retornados pela API legada (por exemplo, em um banco de dados), converta-os antes de criar instâncias de `Asset`. No iOS, adicione o prefixo `ph://` ao ID legado. No Android, use `getAssetContentUriAsync` para resolver o ID numérico do MediaStore em uma URI `content://`.
 
 ```ts
 async function convertStoredId(legacyId: string): Promise<Asset> {
@@ -148,9 +148,9 @@ async function convertStoredId(legacyId: string): Promise<Asset> {
 }
 ```
 
-## Albums
+## Álbuns \{#albums}
 
-### Get an album by name
+### Obtenha um álbum pelo nome \{#get-an-album-by-name}
 
 ```ts
 // Before
@@ -163,7 +163,7 @@ if (album) {
 }
 ```
 
-### Get all albums
+### Obtenha todos os álbuns \{#get-all-albums}
 
 ```ts
 // Before
@@ -173,7 +173,7 @@ const albums = await MediaLibrary.getAlbumsAsync();
 const albums = await Album.getAll();
 ```
 
-### Create an album
+### Crie um álbum \{#create-an-album}
 
 ```ts
 // Before
@@ -183,7 +183,7 @@ const album = await MediaLibrary.createAlbumAsync('MyNewAlbum', asset, false);
 const album = await Album.create('MyNewAlbum', [asset]);
 ```
 
-### Get all assets in an album
+### Obtenha todos os assets de um álbum \{#get-all-assets-in-an-album}
 
 ```ts
 // Before
@@ -193,7 +193,7 @@ const { assets } = await MediaLibrary.getAssetsAsync({ album: album.id });
 const assets = await album.getAssets();
 ```
 
-### Get album title
+### Obtenha o título do álbum \{#get-album-title}
 
 ```ts
 // Before, title was a synchronous property but required fetching the full album object first
@@ -204,7 +204,7 @@ console.log(album.title);
 const title = await album.getTitle();
 ```
 
-### Add assets to an album
+### Adicione assets a um álbum \{#add-assets-to-an-album}
 
 ```ts
 // Before
@@ -214,7 +214,7 @@ await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
 await album.add([asset]);
 ```
 
-### Remove assets from an album (iOS only)
+### Remova assets de um álbum (somente iOS) \{#remove-assets-from-an-album-ios-only}
 
 ```ts
 // Before
@@ -224,7 +224,7 @@ await MediaLibrary.removeAssetsFromAlbumAsync(assets, album);
 await album.removeAssets(assets);
 ```
 
-### Delete an album
+### Exclua um álbum \{#delete-an-album}
 
 ```ts
 // Before
@@ -237,9 +237,9 @@ await album.delete();
 await Album.delete([album1, album2]);
 ```
 
-## Permissions
+## Permissões \{#permissions}
 
-The permission hooks and functions are available under the same names. The only change is that `presentPermissionsPickerAsync` was renamed to `presentPermissionsPicker`.
+Os hooks e funções de permissão continuam disponíveis com os mesmos nomes. A única mudança é que `presentPermissionsPickerAsync` foi renomeada para `presentPermissionsPicker`.
 
 ```ts
 // Before
@@ -249,9 +249,9 @@ await MediaLibrary.presentPermissionsPickerAsync(mediaTypes);
 await presentPermissionsPicker(mediaTypes);
 ```
 
-`requestPermissionsAsync`, `getPermissionsAsync`, and `usePermissions` are unchanged.
+`requestPermissionsAsync`, `getPermissionsAsync` e `usePermissions` não mudaram.
 
-## Listening for changes
+## Escutando alterações \{#listening-for-changes}
 
 ```ts
 // Before
@@ -266,22 +266,24 @@ subscription.remove();
 removeAllListeners();
 ```
 
-The listener event shape is unchanged.
+O formato do evento do listener não mudou.
 
-## Breaking semantic changes
+## Mudanças incompatíveis de comportamento \{#breaking-semantic-changes}
 
-- Asset properties are now async getters (`getFilename()`, `getWidth()`, ...) instead of synchronous fields on a result object. Use `asset.getInfo()` to retrieve all properties at once.
-- The `Async` suffix is dropped. The entire library is asynchronous.
-- `Query` replaces the `getAssetsAsync` options bag. There is no `endCursor`/`hasNextPage`. Use `.limit()` and `.offset()` for pagination.
-- Operations on albums and assets are now methods on `Album` and `Asset` instances instead of free functions that accept an ID or reference.
-- `saveToLibraryAsync` is replaced by `Asset.create`, which returns an `Asset` instance.
-- `getMomentsAsync`, `albumNeedsMigrationAsync`, and `migrateAlbumIfNeededAsync` are removed with no replacement. You can safely delete any calls to these functions.
+- As propriedades do asset agora são getters assíncronos (`getFilename()`, `getWidth()`, ...), em vez de campos síncronos em um objeto de resultado. Use `asset.getInfo()` para obter todas as propriedades de uma vez.
+- O sufixo `Async` foi removido. A biblioteca inteira é assíncrona.
+- `Query` substitui o objeto de opções de `getAssetsAsync`. Não existem mais `endCursor` nem `hasNextPage`. Use `.limit()` e `.offset()` para paginação.
+- As operações em álbuns e assets agora são métodos das instâncias de `Album` e `Asset`, em vez de funções avulsas que recebem um ID ou uma referência.
+- `saveToLibraryAsync` foi substituída por `Asset.create`, que retorna uma instância de `Asset`.
+- `getMomentsAsync`, `albumNeedsMigrationAsync` e `migrateAlbumIfNeededAsync` foram removidas, sem substituto. Você pode apagar com segurança as chamadas a essas funções.
 
-## Reference
+## Referência \{#reference}
 
 <BoxLink
   title="MediaLibrary"
-  description="See the full API reference for expo-media-library."
+  description="Veja a referência completa da API do expo-media-library."
   href="/versions/latest/sdk/media-library/"
   Icon={DocsLogo}
 />
+
+{/* ia-translate: true */}

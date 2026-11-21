@@ -1,19 +1,19 @@
 ---
-title: Use build cache providers
-sidebar_title: Cache builds remotely
-description: Accelerate local development by caching and reusing builds from a provider.
+title: Usar provedores de cache de build
+sidebar_title: Fazer cache de builds remotamente
+description: Acelere o desenvolvimento local armazenando em cache e reutilizando builds de um provedor.
 ---
 
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 
-Build caching is a feature that speeds up `npx expo run:[android|ios]` by caching builds remotely, based on the project [fingerprint](/versions/latest/sdk/fingerprint/).
-When you run `npx expo run:[android|ios]`, it checks if a build with a matching fingerprint exists, then downloads and launches it rather than compiling it again. Otherwise, the project is compiled as usual and then the resulting binary is uploaded to the remote cache for future runs.
+O cache de build é um recurso que acelera o `npx expo run:[android|ios]` ao armazenar builds remotamente em cache, com base no [fingerprint](/versions/latest/sdk/fingerprint/) do projeto.
+Ao executar `npx expo run:[android|ios]`, o comando verifica se existe um build com um fingerprint correspondente. Se existir, ele baixa e abre esse build em vez de compilá-lo de novo. Caso contrário, o projeto é compilado normalmente e o binário resultante é enviado para o cache remoto para as próximas execuções.
 
-## Using Expo Build as a build provider
+## Usando o Expo Build como provedor de build \{#using-expo-build-as-a-build-provider}
 
-To use the Expo Build provider plugin, start by installing the `eas-build-cache-provider` package as a developer dependency:
+Para usar o plugin de provedor do Expo Build, comece instalando o pacote `eas-build-cache-provider` como dependência de desenvolvimento:
 
 <Tabs>
 
@@ -45,7 +45,7 @@ To use the Expo Build provider plugin, start by installing the `eas-build-cache-
 
 </Tabs>
 
-Then, update your **app.json** to include the `buildCacheProvider` property and its provider:
+Depois, atualize o **app.json** para incluir a propriedade `buildCacheProvider` e o provedor:
 
 ```json app.json
 {
@@ -56,7 +56,7 @@ Then, update your **app.json** to include the `buildCacheProvider` property and 
 }
 ```
 
-You can roll your own cache provider by exporting a plugin that implements the following methods:
+Você pode criar seu próprio provedor de cache exportando um plugin que implemente os seguintes métodos:
 
 ```ts
 type BuildCacheProviderPlugin<T = any> = {
@@ -99,24 +99,24 @@ type CalculateFingerprintHashProps = {
 };
 ```
 
-A reference implementation using GitHub Releases to cache builds can be found in the [Build Cache Provider Example](https://github.com/expo/examples/tree/master/with-github-remote-build-cache-provider).
+Uma implementação de referência que usa GitHub Releases para armazenar builds em cache está disponível no [exemplo de provedor de cache de build](https://github.com/expo/examples/tree/master/with-github-remote-build-cache-provider).
 
-## Limitations
+## Limitações \{#limitations}
 
-The build cache provider is consulted only by local `npx expo run:[android|ios]` commands. Builds triggered with `eas build` are not affected. They always produce fresh artifacts and never invoke the cache provider plugin.
+O provedor de cache de build é consultado apenas pelos comandos `npx expo run:[android|ios]` locais. Builds disparados com `eas build` não são afetados. Eles sempre geram artefatos novos e nunca acionam o plugin de provedor de cache.
 
-Some local builds are also skipped:
+Alguns builds locais também são ignorados:
 
-- **iOS physical device builds.** A device build is only valid on devices that match its provisioning profile, so reusing one across machines or devices is unsafe. `npx expo run:ios` therefore skips both the cache lookup and the post-build upload when the target is a physical device. Only iOS Simulator builds participate in caching.
+- **Builds para dispositivo físico iOS.** Um build para dispositivo só é válido em aparelhos que correspondam ao seu provisioning profile, então reutilizá-lo entre máquinas ou dispositivos não é seguro. Por isso, o `npx expo run:ios` ignora tanto a busca no cache quanto o envio após o build quando o destino é um dispositivo físico. Apenas builds para o Simulador do iOS participam do cache.
 
-If you're using `appVersionSource: "remote"` in **eas.json**, note that the `versionCode` (Android) and `buildNumber` (iOS) live on Expo servers rather than in your project source, so they are not part of the fingerprint inputs. This is fine for normal development iteration. Local `npx expo run:*` invocations don't auto-increment those values, but be aware that a cached artifact retains whatever build number was embedded when it was originally built.
+Se você usa `appVersionSource: "remote"` no **eas.json**, lembre-se de que o `versionCode` (Android) e o `buildNumber` (iOS) ficam nos servidores da Expo, e não no código-fonte do projeto. Por isso, eles não fazem parte das entradas do fingerprint. Isso é adequado para o ciclo normal de desenvolvimento. As execuções locais de `npx expo run:*` não incrementam esses valores automaticamente, mas fique atento: um artefato em cache mantém o número de build que estava incorporado quando foi gerado originalmente.
 
-## Creating a custom build provider
+## Criando um provedor de build personalizado \{#creating-a-custom-build-provider}
 
-Start by creating a **provider** directory for writing the provider plugin in TypeScript and add a **provider.plugin.js** file in the project root, which will be the plugin's entry point.
+Comece criando um diretório **provider** para escrever o plugin de provedor em TypeScript e adicione um arquivo **provider.plugin.js** na raiz do projeto, que será o ponto de entrada do plugin.
 
 <Step label="1">
-### Create a `provider/tsconfig.json` file
+### Crie o arquivo `provider/tsconfig.json` \{#create-a-providertsconfigjson-file}
 
 ```json provider/tsconfig.json
 {
@@ -133,7 +133,7 @@ Start by creating a **provider** directory for writing the provider plugin in Ty
 </Step>
 
 <Step label="2">
-### Create a `provider/src/index.ts` file for your plugin
+### Crie o arquivo `provider/src/index.ts` para o plugin \{#create-a-providersrcindexts-file-for-your-plugin}
 
 ```ts provider/src/index.ts
 import { type BuildCacheProviderPlugin } from '@expo/config';
@@ -155,7 +155,7 @@ export default plugin;
 </Step>
 
 <Step label="3">
-### Create an `provider.plugin.js` file in the root directory
+### Crie o arquivo `provider.plugin.js` no diretório raiz \{#create-an-providerpluginjs-file-in-the-root-directory}
 
 ```js provider.plugin.js
 // This file configures the entry file for your plugin.
@@ -165,14 +165,14 @@ module.exports = require('./provider/build');
 </Step>
 
 <Step label="4">
-### Build your provider plugin
+### Compile o plugin de provedor \{#build-your-provider-plugin}
 
-At the root of your project, run `npm run build provider` to start the TypeScript compiler in watch mode.
+Na raiz do projeto, execute `npm run build provider` para iniciar o compilador TypeScript no modo watch.
 
 </Step>
 
 <Step label="5">
-### Configure your example project to use your plugin by adding the following line to the `example/app.json` file:
+### Configure o projeto de exemplo para usar o plugin adicionando a seguinte linha ao arquivo `example/app.json`: \{#configure-your-example-project-to-use-your-plugin-by-adding-the-following-line-to-the-exampleappjson-file}
 
 ```json example/app.json
 {
@@ -188,8 +188,8 @@ At the root of your project, run `npm run build provider` to start the TypeScrip
 </Step>
 
 <Step label="6">
-### Test your provider
-When you run the `npx expo run` command inside your **example** directory, you should see your plugin's console statements in the logs.
+### Teste o provedor \{#test-your-provider}
+Ao executar o comando `npx expo run` dentro do diretório **example**, você deve ver no log as mensagens do console do plugin.
 
 <Terminal
   cmd={[
@@ -204,13 +204,13 @@ When you run the `npx expo run` command inside your **example** directory, you s
   ]}
 />
 
-That's it! You now have a remote build cache provider to speed up your builds.
+Pronto! Agora você tem um provedor de cache remoto de build para acelerar seus builds.
 
 </Step>
 
-### Passing custom options
+### Passando opções personalizadas \{#passing-custom-options}
 
-To inject custom options to your plugin you can use the `options` field and it will be forwarded as the second parameter of your custom functions. To do so modify the `buildCacheProvider` field in **example/app.json** as shown below:
+Para passar opções personalizadas ao plugin, use o campo `options`, que será repassado como segundo parâmetro das suas funções. Para isso, modifique o campo `buildCacheProvider` no **example/app.json**, como mostrado abaixo:
 
 ```json example/app.json
 {
@@ -225,3 +225,5 @@ To inject custom options to your plugin you can use the `options` field and it w
   }
 }
 ```
+
+{/* ia-translate: true */}

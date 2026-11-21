@@ -1,21 +1,21 @@
 ---
-title: Expo Vector Icons
-description: Learn how to use various types of icons in your Expo app, including react native vector icons, custom icon fonts, icon images, and icon buttons.
+title: Ícones vetoriais do Expo
+description: Saiba como usar diferentes tipos de ícones no app Expo, incluindo ícones vetoriais do React Native, fontes de ícones personalizadas, imagens de ícones e botões com ícones.
 ---
 
 import { SnackInline } from '~/ui/components/Snippet';
 
-You can use popular icon sets through icon fonts such as FontAwesome, Glyphicons, or Ionicons, or choose PNGs from [The Noun Project](https://thenounproject.com/). This guide explains various ways to use icons in your Expo app.
+Você pode usar conjuntos de ícones populares por meio de fontes de ícones, como FontAwesome, Glyphicons ou Ionicons, ou escolher PNGs no [The Noun Project](https://thenounproject.com/). Este guia explica as várias formas de usar ícones no app Expo.
 
-## `@expo/vector-icons`
+## `@expo/vector-icons` \{#expovector-icons}
 
-> **warning** `@expo/vector-icons` will be deprecated and is not recommended. [Learn more about migrating to `@react-native-vector-icons`](https://expo.dev/blog/moving-away-from-expo-vector-icons).
+> **warning** O `@expo/vector-icons` será descontinuado e não é recomendado. [Saiba mais sobre a migração para o `@react-native-vector-icons`](https://expo.dev/blog/moving-away-from-expo-vector-icons).
 
-The `@expo/vector-icons` library is built on top of [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons) and uses a similar API. It includes popular icon sets you can browse at [icons.expo.fyi](https://icons.expo.fyi).
+A biblioteca `@expo/vector-icons` é construída sobre a [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons) e usa uma API semelhante. Ela inclui conjuntos de ícones populares, que você pode consultar em [icons.expo.fyi](https://icons.expo.fyi).
 
-The component loads the `Ionicons` font and renders a checkmark icon in the following example:
+No exemplo a seguir, o componente carrega a fonte `Ionicons` e renderiza um ícone de check:
 
-<SnackInline label='Vector icons' dependencies={['@expo/vector-icons']}>
+<SnackInline label='Ícones vetoriais' dependencies={['@expo/vector-icons']}>
 
 ```jsx collapseHeight=350
 import { View, StyleSheet } from 'react-native';
@@ -42,19 +42,19 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-> As with [any custom font](/develop/user-interface/fonts/#use-a-local-font-file) in Expo, you can preload icon fonts before rendering your app. The font object is available as a static property on the font component. So, in the case above, it is `Ionicons.font`, which evaluates to `{ionicons: require('path/to/ionicons.ttf')}`.
+> Assim como [qualquer fonte personalizada](/develop/user-interface/fonts/#use-a-local-font-file) no Expo, você pode pré-carregar as fontes de ícones antes de renderizar o app. O objeto da fonte está disponível como propriedade estática do componente de fonte. Assim, no exemplo acima, ele é `Ionicons.font`, que resulta em `{ionicons: require('path/to/ionicons.ttf')}`.
 
-## Custom icon fonts
+## Fontes de ícones personalizadas \{#custom-icon-fonts}
 
-To use a custom icon font, first import it into your project. Only after the font has loaded, can you create an Icon set. [Learn more about loading custom fonts](/develop/user-interface/fonts/#handle-expovector-icons-initial-load).
+Para usar uma fonte de ícones personalizada, primeiro importe-a para o projeto. Só depois que a fonte tiver sido carregada você pode criar um conjunto de ícones. [Saiba mais sobre como carregar fontes personalizadas](/develop/user-interface/fonts/#handle-expovector-icons-initial-load).
 
-`@expo/vector-icons` exposes three methods to help you create an icon set:
+O `@expo/vector-icons` expõe três métodos para ajudar a criar um conjunto de ícones:
 
-### `createIconSet`
+### `createIconSet` \{#createiconset}
 
-The `createIconSet` method returns a custom font based on the `glyphMap` where the key is the icon name and the value is either a UTF-8 character or its character code.
+O método `createIconSet` retorna uma fonte personalizada com base no `glyphMap`, em que a chave é o nome do ícone e o valor é um caractere UTF-8 ou o código do caractere.
 
-In the example below, the `glyphMap` object is defined and then passed as the first argument to the `createIconSet` method. The second argument `fontFamily` is the name of the font (not the filename). Optionally, you can pass the third argument for Android support, which is the custom font file name.
+No exemplo abaixo, o objeto `glyphMap` é definido e depois passado como primeiro argumento para o método `createIconSet`. O segundo argumento, `fontFamily`, é o nome da fonte (não o nome do arquivo). Opcionalmente, você pode passar o terceiro argumento para suporte no Android, que é o nome do arquivo da fonte personalizada.
 
 ```jsx createIconSet example
 import createIconSet from '@expo/vector-icons/createIconSet';
@@ -67,16 +67,16 @@ export default function CustomIconExample() {
 }
 ```
 
-### `createIconSetFromIcoMoon`
+### `createIconSetFromIcoMoon` \{#createiconsetfromicomoon}
 
-The `createIconSetFromIcoMoon` method is used to create a custom font based on an [IcoMoon](https://icomoon.io/) config file. You have to save the **selection.json** and **.ttf** in your project, preferably in the **assets** directory, and then load the font using either `useFonts` hook or `Font.loadAsync` method from `expo-font`.
+O método `createIconSetFromIcoMoon` é usado para criar uma fonte personalizada com base em um arquivo de configuração do [IcoMoon](https://icomoon.io/). Salve o **selection.json** e o **.ttf** no projeto, de preferência no diretório **assets**, e depois carregue a fonte usando o hook `useFonts` ou o método `Font.loadAsync` do `expo-font`.
 
-> **IcoMoon app versions:** The [new IcoMoon app](https://icomoon.io/new-app) exports a different JSON format than the [old IcoMoon app](https://icomoon.io/app). The current `createIconSetFromIcoMoon` function only supports the old app's output. See the [Pull Request on GitHub](https://github.com/expo/vector-icons/pull/356), which adds support for the new format. This support will work once released in `@expo/vector-icons`.
+> **Versões do app IcoMoon:** O [novo app IcoMoon](https://icomoon.io/new-app) exporta um formato JSON diferente do [app IcoMoon antigo](https://icomoon.io/app). A função `createIconSetFromIcoMoon` atual só oferece suporte à saída do app antigo. Veja o [Pull Request no GitHub](https://github.com/expo/vector-icons/pull/356), que adiciona suporte ao novo formato. Esse suporte vai funcionar quando for lançado no `@expo/vector-icons`.
 
-See the example below that uses the `useFonts` hook to load the font:
+Veja o exemplo abaixo, que usa o hook `useFonts` para carregar a fonte:
 
 <SnackInline
-label='Icomoon icons'
+label='Ícones Icomoon'
 files={{
     'assets/icomoon/icomoon.ttf': 'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/71ce651cbddbee5366aef87c456a80bb',
     'assets/icomoon/selection.json': 'https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/a06aa5b6e7eb1df1fa1c8d06d4ab8463'
@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-### `createIconSetFromFontello`
+### `createIconSetFromFontello` \{#createiconsetfromfontello}
 
-The `createIconSetFromFontello` method is used to create a custom font based on a [Fontello](https://fontello.com/) config file. You have to save the **config.json** and **.ttf** somewhere convenient in your project, preferably in the **assets** directory, and then load the font using either `useFonts` hook or `Font.loadAsync` method from `expo-font`.
+O método `createIconSetFromFontello` é usado para criar uma fonte personalizada com base em um arquivo de configuração do [Fontello](https://fontello.com/). Salve o **config.json** e o **.ttf** em um lugar conveniente do projeto, de preferência no diretório **assets**, e depois carregue a fonte usando o hook `useFonts` ou o método `Font.loadAsync` do `expo-font`.
 
-It follows a similar configuration as `createIconSetFromIcoMoon` as shown in the example:
+Ele segue uma configuração semelhante à de `createIconSetFromIcoMoon`, como mostrado no exemplo:
 
 ```js Fontello Icons
 // Import the createIconSetFromFontello method
@@ -147,13 +147,13 @@ import fontelloConfig from './config.json';
 const Icon = createIconSetFromFontello(fontelloConfig, 'fontello', 'fontello.ttf');
 ```
 
-## Button component
+## Componente de botão \{#button-component}
 
-You can create an Icon Button using the `Font.Button` syntax where the `Font` is the icon set that you import from `@expo/vector-icons`.
+Você pode criar um botão com ícone usando a sintaxe `Font.Button`, em que `Font` é o conjunto de ícones importado de `@expo/vector-icons`.
 
-In the example below, a login button uses the `FontAwesome` icon set. Notice that the `FontAwesome.Button` component accepts props to handle action when a button is pressed and can wrap the text of the button.
+No exemplo abaixo, um botão de login usa o conjunto de ícones `FontAwesome`. Repare que o componente `FontAwesome.Button` aceita props para tratar a ação quando o botão é pressionado e pode quebrar o texto do botão em linhas.
 
-<SnackInline label='Icon button component' dependencies={['@expo/vector-icons']}>
+<SnackInline label='Componente de botão com ícone' dependencies={['@expo/vector-icons']}>
 
 ```jsx
 import React from 'react';
@@ -185,15 +185,17 @@ const styles = StyleSheet.create({
 
 </SnackInline>
 
-### Properties
+### Propriedades \{#properties}
 
-Any [`Text`](https://reactnative.dev/docs/text), [`TouchableHighlight`](https://reactnative.dev/docs/touchablehighlight), or [`TouchableWithoutFeedback`](https://reactnative.dev/docs/touchablewithoutfeedback) property in addition to these:
+Qualquer propriedade de [`Text`](https://reactnative.dev/docs/text), [`TouchableHighlight`](https://reactnative.dev/docs/touchablehighlight) ou [`TouchableWithoutFeedback`](https://reactnative.dev/docs/touchablewithoutfeedback), além destas:
 
-| Prop              | Description                                                                                                                                      | Default             |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
-| `color`           | Text and icon color, use `iconStyle` or nest a `Text` component if you need different colors.                                                    | `white`             |
-| `size`            | Icon size.                                                                                                                                       | `20`                |
-| `iconStyle`       | Styles applied to the icon only, good for setting margins or a different color. _Note: use `iconStyle` for margins or expect unstable behavior._ | `{marginRight: 10}` |
-| `backgroundColor` | Background color of the button.                                                                                                                  | `#007AFF`           |
-| `borderRadius`    | Border radius of the button, set to `0` to disable.                                                                                              | `5`                 |
-| `onPress`         | A function called when the button is pressed.                                                                                                    | _None_              |
+| Prop              | Descrição                                                                                                                                              | Padrão              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| `color`           | Cor do texto e do ícone. Use `iconStyle` ou aninhe um componente `Text` se precisar de cores diferentes.                                               | `white`             |
+| `size`            | Tamanho do ícone.                                                                                                                                      | `20`                |
+| `iconStyle`       | Estilos aplicados somente ao ícone, úteis para definir margens ou uma cor diferente. _Observação: use `iconStyle` para margens, ou o comportamento pode ficar instável._ | `{marginRight: 10}` |
+| `backgroundColor` | Cor de fundo do botão.                                                                                                                                 | `#007AFF`           |
+| `borderRadius`    | Raio da borda do botão. Defina como `0` para desativar.                                                                                                | `5`                 |
+| `onPress`         | Função chamada quando o botão é pressionado.                                                                                                           | _Nenhum_            |
+
+{/* ia-translate: true */}
