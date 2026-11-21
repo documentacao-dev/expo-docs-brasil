@@ -1,21 +1,21 @@
 ---
-title: Permissions
-description: Learn about configuring and adding permissions in an app config file.
+title: Permissões
+description: Saiba como configurar e adicionar permissões em um arquivo de app config.
 ---
 
 import { ConfigReactNative } from '~/ui/components/ConfigSection';
 
-When developing a native app that requires access to potentially sensitive information on a user's device, such as their location or contacts, the app must request the user's permission first. For example, to access the user's media library, the app will need to run [`MediaLibrary.requestPermissionsAsync()`](/versions/latest/sdk/media-library#medialibraryrequestpermissionsasyncwriteonly-granularpermissions).
+Quando você desenvolve um app nativo que precisa acessar informações potencialmente sensíveis do dispositivo do usuário, como localização ou contatos, o app precisa pedir a permissão do usuário antes. Por exemplo, para acessar a biblioteca de mídia do usuário, o app precisa executar [`MediaLibrary.requestPermissionsAsync()`](/versions/latest/sdk/media-library#medialibraryrequestpermissionsasyncwriteonly-granularpermissions).
 
-Permissions in standalone and [development builds](/develop/development-builds/introduction/) require native build-time configuration before they can be requested using runtime JavaScript code. This is not required when testing projects in the [Expo Go](https://expo.dev/go) app.
+Permissões em apps standalone e em [development builds](/develop/development-builds/introduction/) exigem configuração nativa no momento do build antes de poderem ser solicitadas pelo código JavaScript em tempo de execução. Isso não é necessário ao testar projetos no app [Expo Go](https://expo.dev/go).
 
-> If you don't configure or explain the native permissions properly **it may result in your app getting rejected or pulled from the stores**.
+> Se você não configurar nem explicar as permissões nativas corretamente, **seu app pode ser rejeitado ou removido das lojas**.
 
-## Android
+## Android \{#android}
 
-Permissions are configured with the [`android.permissions`](/versions/latest/config/app/#permissions) and [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions) keys in your [app config](/workflow/configuration/).
+As permissões são configuradas com as chaves [`android.permissions`](/versions/latest/config/app/#permissions) e [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions) no seu [app config](/workflow/configuration/).
 
-Most permissions are added automatically by libraries that you use in your app either with [config plugins](/config-plugins/plugins/#creating-a-config-plugin) or with a package-level **AndroidManifest.xml**. You only need to use `android.permissions` to add additional permissions that are not included by default in a library.
+A maioria das permissões é adicionada automaticamente pelas bibliotecas que você usa, seja com [config plugins](/config-plugins/plugins/#creating-a-config-plugin), seja com um **AndroidManifest.xml** no nível do pacote. Você só precisa usar `android.permissions` para adicionar permissões extras que não vêm por padrão em uma biblioteca.
 
 ```json app.json
 {
@@ -25,7 +25,7 @@ Most permissions are added automatically by libraries that you use in your app e
 }
 ```
 
-The only way to remove permissions that are added by package-level **AndroidManifest.xml** files is to block them with the [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions) property. To do this, specify the **full permission name**. For example, if you want to remove the audio recording permissions added by `expo-camera`:
+A única forma de remover permissões adicionadas por arquivos **AndroidManifest.xml** no nível do pacote é bloqueá-las com a propriedade [`android.blockedPermissions`](/versions/latest/config/app/#blockedpermissions). Para isso, informe o **nome completo da permissão**. Por exemplo, se você quiser remover a permissão de gravação de áudio adicionada pelo `expo-camera`:
 
 ```json app.json
 {
@@ -35,13 +35,13 @@ The only way to remove permissions that are added by package-level **AndroidMani
 }
 ```
 
-- See [`android.permissions`](/versions/latest/config/app/#permissions) to learn about which permissions are included in the default [prebuild template](/workflow/continuous-native-generation#templates).
-- Apps using _dangerous_ or _signature_ permissions without valid reasons **may be rejected by Google**. Ensure you follow the [Android permissions best practices](https://developer.android.com/training/permissions/usage-notes) when submitting your app.
-- [All available Android `Manifest.permissions`](https://developer.android.com/reference/android/Manifest.permission).
+- Veja [`android.permissions`](/versions/latest/config/app/#permissions) para saber quais permissões estão incluídas no [template de prebuild](/workflow/continuous-native-generation#templates) padrão.
+- Apps que usam permissões _dangerous_ ou _signature_ sem motivos válidos **podem ser rejeitados pelo Google**. Siga as [boas práticas de permissões do Android](https://developer.android.com/training/permissions/usage-notes) ao enviar o seu app.
+- [Todas as `Manifest.permissions` do Android disponíveis](https://developer.android.com/reference/android/Manifest.permission).
 
 <ConfigReactNative>
 
-Modify **AndroidManifest.xml** to exclude specific permissions: add the `tools:node="remove"` attribute to a `<use-permission>` tag to ensure it is removed, even if it's included in a library's **AndroidManifest.xml**.
+Modifique o **AndroidManifest.xml** para excluir permissões específicas: adicione o atributo `tools:node="remove"` a uma tag `<use-permission>` para garantir que ela seja removida, mesmo que esteja incluída no **AndroidManifest.xml** de uma biblioteca.
 
 ```xml
 <manifest xmlns:tools="http://schemas.android.com/tools">
@@ -49,15 +49,15 @@ Modify **AndroidManifest.xml** to exclude specific permissions: add the `tools:n
 </manifest>
 ```
 
-> You have to define the `xmlns:tools` attribute on `<manifest>` before you can use the `tools:node` attribute on permissions.
+> Você precisa definir o atributo `xmlns:tools` em `<manifest>` antes de usar o atributo `tools:node` nas permissões.
 
 </ConfigReactNative>
 
-## iOS
+## iOS \{#ios}
 
-Your iOS app can ask for system permissions from the user. For example, to use the device's camera or access photos, Apple requires an explanation for how your app makes use of that data. Most packages will automatically provide a boilerplate reason for a given permission with [config plugins](/config-plugins/introduction/). These default messages will most likely need to be tailored to your specific use case for your app to be accepted by the App Store.
+O seu app iOS pode pedir permissões do sistema ao usuário. Por exemplo, para usar a câmera do dispositivo ou acessar as fotos, a Apple exige uma explicação de como o seu app usa esses dados. A maioria dos pacotes fornece automaticamente um texto padrão para uma determinada permissão, com [config plugins](/config-plugins/introduction/). Essas mensagens padrão provavelmente precisarão ser adaptadas ao seu caso de uso para que o app seja aceito na App Store.
 
-To set permission messages, use the [`ios.infoPlist`](/versions/latest/config/app/#infoplist) key in your [app config](/workflow/configuration/), for example:
+Para definir as mensagens de permissão, use a chave [`ios.infoPlist`](/versions/latest/config/app/#infoplist) no seu [app config](/workflow/configuration/), por exemplo:
 
 ```json app.json
 {
@@ -69,7 +69,7 @@ To set permission messages, use the [`ios.infoPlist`](/versions/latest/config/ap
 }
 ```
 
-Many of these properties are also directly configurable using the [config plugin](/config-plugins/introduction/) properties associated with the library that adds them. For example, with [`expo-media-library`](/versions/latest/sdk/media-library) you can configure photo permission messages like this:
+Muitas dessas propriedades também podem ser configuradas diretamente pelas propriedades do [config plugin](/config-plugins/introduction/) da biblioteca que as adiciona. Por exemplo, com o [`expo-media-library`](/versions/latest/sdk/media-library) você pode configurar as mensagens de permissão de fotos assim:
 
 ```json app.json
 {
@@ -85,24 +85,26 @@ Many of these properties are also directly configurable using the [config plugin
 }
 ```
 
-To show a permission message in the user's language, add the matching usage description key, such as `NSCameraUsageDescription`, to the `ios` object in each locale file. See [Translating app metadata](/guides/localization/#translating-app-metadata) for the setup and an example.
+Para mostrar a mensagem de permissão no idioma do usuário, adicione a chave de descrição de uso correspondente, como `NSCameraUsageDescription`, no objeto `ios` de cada arquivo de locale. Veja [Traduzindo metadados do app](/guides/localization/#translating-app-metadata) para a configuração e um exemplo.
 
-- Changes to the **Info.plist** cannot be updated over-the-air, they will only be deployed when you submit a new native binary. For example, with [`eas build`](/build/introduction).
-- Apple's official [permission message recommendations](https://developer.apple.com/design/human-interface-guidelines/privacy#Requesting-permission).
-- [All available **Info.plist** properties](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html).
+- Alterações no **Info.plist** não podem ser enviadas por OTA. Elas só são publicadas quando você envia um novo binário nativo, por exemplo, com o [`eas build`](/build/introduction).
+- As [recomendações oficiais da Apple para mensagens de permissão](https://developer.apple.com/design/human-interface-guidelines/privacy#Requesting-permission).
+- [Todas as propriedades disponíveis do **Info.plist**](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html).
 
 <ConfigReactNative>
 
-Add and modify the permission message values in **Info.plist** file directly. We recommend doing this directly in Xcode for autocompletion.
+Adicione e altere os valores das mensagens de permissão diretamente no arquivo **Info.plist**. Recomendamos fazer isso diretamente no Xcode, para ter o autocompletar.
 
 </ConfigReactNative>
 
-## Web
+## Web \{#web}
 
-On the web, permissions like the `Camera` and `Location` can only be requested from a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts#When_is_a_context_considered_secure). For example, using `https://` or `http://localhost`. This limitation is similar to Android's manifest permissions and iOS's **Info.plist** usage messages and is enforced to increase privacy.
+Na web, permissões como `Camera` e `Location` só podem ser solicitadas em um [contexto seguro](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts#When_is_a_context_considered_secure), por exemplo, usando `https://` ou `http://localhost`. Essa limitação é semelhante às permissões do manifest do Android e às mensagens de uso do **Info.plist** no iOS, e existe para aumentar a privacidade.
 
-## Resetting permissions
+## Redefinir permissões \{#resetting-permissions}
 
-Often you want to be able to test what happens when a user rejects permissions, to ensure your app reacts gracefully. An operating-system level restriction on both Android and iOS prohibits an app from asking for the same permission more than once (you can imagine how this could be annoying for the user to be repeatedly prompted for permissions after rejecting them). To test different flows involving permissions in development, you may need to uninstall and reinstall the native app.
+Muitas vezes, você quer testar o que acontece quando o usuário recusa uma permissão, para garantir que o app reaja com elegância. Uma restrição do sistema operacional, tanto no Android quanto no iOS, impede que o app peça a mesma permissão mais de uma vez (imagine como seria irritante para o usuário ser solicitado repetidamente depois de recusar). Para testar diferentes fluxos envolvendo permissões durante o desenvolvimento, pode ser necessário desinstalar e reinstalar o app nativo.
 
-When testing in [Expo Go](https://expo.dev/go), you can delete the app and reinstall it by running `npx expo start` and pressing <kbd>I</kbd> or <kbd>A</kbd> in the [Expo CLI](/more/expo-cli/) Terminal UI.
+Ao testar no [Expo Go](https://expo.dev/go), você pode excluir o app e instalá-lo de novo executando `npx expo start` e pressionando <kbd>I</kbd> ou <kbd>A</kbd> na interface de terminal da [Expo CLI](/more/expo-cli/).
+
+{/* ia-translate: true */}

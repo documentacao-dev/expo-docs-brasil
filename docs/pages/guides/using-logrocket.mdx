@@ -1,17 +1,17 @@
 ---
-title: Using LogRocket
+title: Usando o LogRocket
 maxHeadingDepth: 4
-description: A guide on installing and configuring LogRocket for session replays and error monitoring.
+description: Guia para instalar e configurar o LogRocket para replays de sessão e monitoramento de erros.
 ---
 
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 
-[LogRocket](https://logrocket.com) records user sessions and identifies bugs as your users use your app. You can filter sessions by update IDs and also connect to your LogRocket account on the Expo dashboard to get quick access to your app's session data.
+O [LogRocket](https://logrocket.com) grava as sessões dos usuários e identifica bugs enquanto eles usam o seu app. Você pode filtrar as sessões por IDs de update e também conectar a sua conta do LogRocket no dashboard do Expo para ter acesso rápido aos dados de sessão do seu app.
 
-## Install and configure LogRocket
+## Instalar e configurar o LogRocket \{#install-and-configure-logrocket}
 
-You can install the LogRocket SDK with the following command:
+Você pode instalar o SDK do LogRocket com o comando a seguir:
 
 <Terminal
   cmd={{
@@ -22,7 +22,7 @@ You can install the LogRocket SDK with the following command:
   }}
 />
 
-Then, in your [app config](/workflow/configuration/), include the LogRocket config plugin:
+Depois, no seu [app config](/workflow/configuration/), inclua o config plugin do LogRocket:
 
 ```json app.json
 {
@@ -40,7 +40,7 @@ Then, in your [app config](/workflow/configuration/), include the LogRocket conf
 }
 ```
 
-Finally, initialize LogRocket in your app in a top-level file, like **src/app/\_layout.tsx**:
+Por fim, inicialize o LogRocket no seu app, em um arquivo de nível superior, como **src/app/\_layout.tsx**:
 
 ```tsx src/app/_layout.tsx
 import { useEffect } from 'react';
@@ -57,33 +57,35 @@ const App = () => {
 };
 ```
 
-In the code above, replace `<App ID>` with your [LogRocket App ID](https://app.logrocket.com/r/settings/setup).
+No código acima, substitua `<App ID>` pelo seu [App ID do LogRocket](https://app.logrocket.com/r/settings/setup).
 
-## Connecting LogRocket on the Expo dashboard
+## Conectar o LogRocket no dashboard do Expo \{#connecting-logrocket-on-the-expo-dashboard}
 
-You can link your LogRocket account and project to your Expo account and project on Expo's dashboard, so that you can see the last few sessions from your app in the deployments and updates dashboards.
+Você pode vincular a sua conta e o seu projeto do LogRocket à sua conta e ao seu projeto do Expo no dashboard do Expo, para ver as últimas sessões do seu app nos dashboards de deployments e updates.
 
-Go to your **Account settings** > [**Overview**](https://expo.dev/accounts/%5Baccount%5D/settings) > **Connections** and click **Connect** to authenticate with LogRocket:
+Acesse **Account settings** > [**Overview**](https://expo.dev/accounts/%5Baccount%5D/settings) > **Connections** e clique em **Connect** para autenticar com o LogRocket:
 
 <ContentSpotlight
-  alt="Connect LogRocket account to Expo account."
+  alt="Conecte a conta do LogRocket à conta do Expo."
   src="/static/images/monitoring/monitor-your-app/logrocket-connect-account.webp"
 />
 
-Then, go to your project, under **Project settings** > [**General**](https://expo.dev/accounts/%5Baccount%5D/projects/%5BprojectName%5D/settings) and click **Connect** to link your LogRocket project with your project on Expo:
+Depois, acesse o seu projeto, em **Project settings** > [**General**](https://expo.dev/accounts/%5Baccount%5D/projects/%5BprojectName%5D/settings), e clique em **Connect** para vincular o seu projeto do LogRocket ao seu projeto no Expo:
 
 <ContentSpotlight
-  alt="Connect LogRocket project to Expo project."
+  alt="Conecte o projeto do LogRocket ao projeto do Expo."
   src="/static/images/monitoring/monitor-your-app/logrocket-connect-project.webp"
 />
 
-Then, you'll start to see **View on LogRocket** buttons in the Expo dashboard in the Native Deployments and Updates dashboards, along with the last few sessions from your app.
+Então você vai ver os botões **View on LogRocket** no dashboard do Expo, nos dashboards de Native Deployments e Updates, junto com as últimas sessões do seu app.
 
 <ContentSpotlight
-  alt="View on LogRocket button and sessions in the deployment dashboard."
+  alt="Botão View on LogRocket e sessões no dashboard de deployments."
   src="/static/images/monitoring/monitor-your-app/logrocket-view-on-logrocket.webp"
 />
 
-## Learn more about LogRocket
+## Saiba mais sobre o LogRocket \{#learn-more-about-logrocket}
 
-To learn more about how to use LogRocket with Expo, check out the [LogRocket documentation](https://docs.logrocket.com/reference/react-native-expo-adding-the-sdk).
+Para saber mais sobre como usar o LogRocket com o Expo, confira a [documentação do LogRocket](https://docs.logrocket.com/reference/react-native-expo-adding-the-sdk).
+
+{/* ia-translate: true */}

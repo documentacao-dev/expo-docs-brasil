@@ -1,25 +1,25 @@
 ---
-title: Privacy manifests
-description: Learn about configuring iOS privacy manifests for your mobile app.
+title: Manifestos de privacidade
+description: Saiba como configurar manifestos de privacidade do iOS para o seu app mobile.
 ---
 
 import { ConfigReactNative } from '~/ui/components/ConfigSection';
 
-If you're using a native iOS library that uses a "restricted reason" APIs, you'll need to configure an iOS privacy manifest to declare why you're including native code to call those APIs.
+Se você usa uma biblioteca nativa do iOS que utiliza APIs de "restricted reason", vai precisar configurar um manifesto de privacidade do iOS para declarar por que está incluindo código nativo que chama essas APIs.
 
-More details and a list of "required reason" APIs can be found in the [Apple Developer Documentation](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files).
+Você encontra mais detalhes e uma lista das APIs de "required reason" na [documentação para desenvolvedores da Apple](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files).
 
-> **info** The information and steps included in this guide are still in development and may change due to new tools built for this purpose or new requirements from Apple.
+> **info** As informações e os passos deste guia ainda estão em desenvolvimento e podem mudar, por causa de novas ferramentas criadas para esse fim ou de novos requisitos da Apple.
 
-## What is a privacy manifest?
+## O que é um manifesto de privacidade? \{#what-is-a-privacy-manifest}
 
-A privacy manifest is a file named **PrivacyInfo.xcprivacy** that is included in your iOS native project. This file is used to declare why the app includes native code that calls into certain APIs that Apple considers sensitive.
+Um manifesto de privacidade é um arquivo chamado **PrivacyInfo.xcprivacy** incluído no seu projeto nativo do iOS. Esse arquivo serve para declarar por que o app inclui código nativo que chama certas APIs que a Apple considera sensíveis.
 
-These APIs currently include accessing UserDefaults, file timestamp, system boot time, disk space, and active keyboard. Apple considers it an open list that can be expanded in the future.
+Atualmente, essas APIs incluem o acesso ao UserDefaults, ao timestamp de arquivos, ao horário de inicialização do sistema, ao espaço em disco e ao teclado ativo. A Apple considera essa uma lista aberta, que pode ser expandida no futuro.
 
-## Configuration in app config
+## Configuração no app config \{#configuration-in-app-config}
 
-You can include an iOS privacy manifest by using the `privacyManifests` field under `expo.ios` in your app config.
+Você pode incluir um manifesto de privacidade do iOS usando o campo `privacyManifests` em `expo.ios` no seu app config.
 
 ```json app.json
 {
@@ -41,27 +41,29 @@ You can include an iOS privacy manifest by using the `privacyManifests` field un
 }
 ```
 
-Make sure you have updated your Expo SDK libraries to the latest versions for your SDK version using `npx expo install --fix`.
+Confirme que você atualizou as bibliotecas do Expo SDK para as versões mais recentes da sua SDK, usando `npx expo install --fix`.
 
 <ConfigReactNative>
 
-You can include an iOS privacy manifest in an [existing React Native project](/bare/overview/) by creating a **PrivacyInfo.xcprivacy** file using Xcode and adding it to your iOS app target.
-Follow [Apple's Privacy manifest files](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) guide to create a **PrivacyInfo.xcprivacy** file.
+Você pode incluir um manifesto de privacidade do iOS em um [projeto React Native já existente](/bare/overview/) criando um arquivo **PrivacyInfo.xcprivacy** no Xcode e adicionando-o ao target do seu app iOS.
+Siga o guia [Arquivos de manifesto de privacidade da Apple](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) para criar o arquivo **PrivacyInfo.xcprivacy**.
 
 </ConfigReactNative>
 
-You can identify the `NSPrivacyAccessedAPITypes` and `NSPrivacyAccessedAPITypeReasons` values by looking at the [Apple Developer documentation](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api).
+Você pode identificar os valores de `NSPrivacyAccessedAPITypes` e `NSPrivacyAccessedAPITypeReasons` consultando a [documentação para desenvolvedores da Apple](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api).
 
-### Including required reasons for Expo SDK packages and other third-party libraries
+### Incluir os motivos exigidos para pacotes do Expo SDK e outras bibliotecas de terceiros \{#including-required-reasons-for-expo-sdk-packages-and-other-third-party-libraries}
 
-As of now, Apple does not correctly parse all the **PrivacyInfo** files included by static CocoaPods dependencies (such as Expo SDK packages and other ecosystem libraries). You may need to include the required reasons for the APIs used by those dependencies in your app's **PrivacyInfo.xcprivacy** file or the configuration in the **app.json**.
+Até o momento, a Apple não interpreta corretamente todos os arquivos **PrivacyInfo** incluídos por dependências estáticas do CocoaPods (como os pacotes do Expo SDK e outras bibliotecas do ecossistema). Talvez você precise incluir os motivos exigidos para as APIs usadas por essas dependências no arquivo **PrivacyInfo.xcprivacy** do seu app ou na configuração do **app.json**.
 
-All Expo SDK packages that use "required reason" APIs file have a **PrivacyInfo** file included in the package directory. Here's [an example file](https://github.com/expo/expo/blob/main/packages/expo-application/ios/PrivacyInfo.xcprivacy) included with the `expo-application` library.
+Todos os pacotes do Expo SDK que usam APIs de "required reason" têm um arquivo **PrivacyInfo** incluído no diretório do pacote. Aqui está [um arquivo de exemplo](https://github.com/expo/expo/blob/main/packages/expo-application/ios/PrivacyInfo.xcprivacy) incluído na biblioteca `expo-application`.
 
-You can usually identify the required reasons for the APIs used by other third-party libraries by checking if the library you intend to use has a **PrivacyInfo.xcprivacy** file in the **node_modules/package_name/ios** directory. If it does, you can check the `NSPrivacyAccessedAPITypes` and `NSPrivacyAccessedAPITypeReasons` values in that file and copy those values to your configuration.
+Normalmente, você consegue identificar os motivos exigidos para as APIs usadas por outras bibliotecas de terceiros verificando se a biblioteca que você pretende usar tem um arquivo **PrivacyInfo.xcprivacy** no diretório **node_modules/nome_do_pacote/ios**. Se tiver, confira os valores de `NSPrivacyAccessedAPITypes` e `NSPrivacyAccessedAPITypeReasons` nesse arquivo e copie esses valores para a sua configuração.
 
-As an alternative, Apple notifies developers after they submit a build with missing privacy manifest files or specific reasons. You can wait until you receive a notification email from Apple and then include the required reasons listed in the email in your app's **PrivacyInfo.xcprivacy** file (if you don't use [CNG](/workflow/continuous-native-generation/)) or the configuration in your **app.json** file.
+Como alternativa, a Apple avisa os desenvolvedores depois que eles enviam um build com arquivos de manifesto de privacidade ou motivos específicos ausentes. Você pode esperar o e-mail de notificação da Apple e, então, incluir os motivos exigidos listados no e-mail no arquivo **PrivacyInfo.xcprivacy** do seu app (se você não usa o [CNG](/workflow/continuous-native-generation/)) ou na configuração do arquivo **app.json**.
 
-## Testing the privacy manifest
+## Testar o manifesto de privacidade \{#testing-the-privacy-manifest}
 
-You can test the privacy manifest by building your app and submitting it, either through App Store review process or to TestFlight's external review. Apple will email you within a few minutes of submitting if your app is missing any required reasons for the APIs used.
+Você pode testar o manifesto de privacidade gerando o build do seu app e enviando-o, seja pelo processo de revisão da App Store, seja para a revisão externa do TestFlight. A Apple envia um e-mail em poucos minutos após o envio se o seu app estiver sem algum dos motivos exigidos para as APIs usadas.
+
+{/* ia-translate: true */}

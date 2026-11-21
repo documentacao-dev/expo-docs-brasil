@@ -1,18 +1,18 @@
 ---
-title: Using Hermes engine
-sidebar_title: Using Hermes
-description: A guide on configuring Hermes for both Android and iOS in an Expo project.
+title: Usando o motor Hermes
+sidebar_title: Usando o Hermes
+description: Guia para configurar o Hermes para Android e iOS em um projeto Expo.
 ---
 
-[Hermes](https://hermesengine.dev/) is a JavaScript engine optimized for React Native. By compiling JavaScript into bytecode ahead of time, Hermes can improve your app start-up time. The binary size of Hermes is also smaller than other JavaScript engines, such as JavaScriptCore (JSC). It also uses less memory at runtime, which is particularly valuable on lower-end Android devices.
+O [Hermes](https://hermesengine.dev/) é um motor JavaScript otimizado para React Native. Ao compilar o JavaScript em bytecode antecipadamente, o Hermes pode melhorar o tempo de inicialização do seu app. O tamanho do binário do Hermes também é menor do que o de outros motores JavaScript, como o JavaScriptCore (JSC). Ele também usa menos memória em tempo de execução, o que é especialmente valioso em dispositivos Android mais simples.
 
-## Support
+## Suporte \{#support}
 
-The Hermes engine is the default JavaScript engine used by Expo and it is fully supported across all Expo tooling.
+O motor Hermes é o motor JavaScript padrão usado pelo Expo e tem suporte completo em todas as ferramentas do Expo.
 
-### Switch JavaScript engine on a specific platform
+### Trocar o motor JavaScript em uma plataforma específica \{#switch-javascript-engine-on-a-specific-platform}
 
-You may want to use Hermes on one platform and JSC on another. One way to do this is to set the `"jsEngine"` to `"hermes"` at the top level in app config and then override it with `"jsc"` under the `"ios"` key. You may alternatively prefer to explicitly set `"hermes"` on just the `"android"` key in this case.
+Você pode querer usar o Hermes em uma plataforma e o JSC em outra. Uma forma de fazer isso é definir `"jsEngine"` como `"hermes"` no nível superior do app config e depois sobrescrever com `"jsc"` na chave `"ios"`. Como alternativa, você pode preferir definir explicitamente `"hermes"` apenas na chave `"android"`.
 
 {/* prettier-ignore */}
 ```json app.json
@@ -28,27 +28,27 @@ You may want to use Hermes on one platform and JSC on another. One way to do thi
 }
 ```
 
-## Publish updates
+## Publicar updates \{#publish-updates}
 
-Publishing updates with `eas update` and `npx expo export` will generate Hermes bytecode bundles and their source maps.
+Publicar updates com `eas update` e `npx expo export` vai gerar bundles em bytecode Hermes e os respectivos source maps.
 
-Note that the Hermes bytecode format may change between different Hermes versions — an update produced for a specific version of Hermes will not run on a different version of Hermes. Starting from Expo SDK 46 (React Native 0.69), [Hermes is bundled within React Native](https://reactnative.dev/architecture/bundled-hermes). Updating React Native version or Hermes version can be thought of in the same way as updating any other native module. So if you update the `react-native` version you should also update the `runtimeVersion` in **app.json**. If you don't do this, your app may crash on launch because the update may be loaded by an existing binary that uses an older Hermes version that is incompatible with the updated bytecode format. See [`runtimeVersion`](/eas-update/runtime-versions/) for more information.
+Observe que o formato do bytecode do Hermes pode mudar entre versões diferentes do Hermes: um update gerado para uma versão específica do Hermes não vai rodar em outra versão. A partir da Expo SDK 46 (React Native 0.69), o [Hermes vem incluído no React Native](https://reactnative.dev/architecture/bundled-hermes). Atualizar a versão do React Native ou a versão do Hermes deve ser tratado da mesma forma que atualizar qualquer outro módulo nativo. Por isso, se você atualizar a versão do `react-native`, também deve atualizar o `runtimeVersion` no **app.json**. Se não fizer isso, seu app pode travar ao iniciar, porque o update pode ser carregado por um binário existente que usa uma versão mais antiga do Hermes, incompatível com o bytecode atualizado. Veja [`runtimeVersion`](/eas-update/runtime-versions/) para mais informações.
 
-## JavaScript debugger
+## Depurador JavaScript \{#javascript-debugger}
 
-To debug JavaScript code running with Hermes, you can start your project with `npx expo start` then press <kbd>J</kbd> to open the debugger in Google Chrome or Microsoft Edge. The developer menu of development builds and Expo Go also have the **Open DevTools** (formerly **Open JS Debugger**) option to do the same.
+Para depurar o código JavaScript executado com o Hermes, você pode iniciar o projeto com `npx expo start` e pressionar <kbd>J</kbd> para abrir o depurador no Google Chrome ou no Microsoft Edge. O menu do desenvolvedor dos development builds e do Expo Go também tem a opção **Open DevTools** (antes chamada **Open JS Debugger**) para fazer o mesmo.
 
-Alternatively, you can use the JavaScript inspector by opening [Google Chrome DevTools manually](https://reactnative.dev/docs/other-debugging-methods#remote-javascript-debugging-deprecated)
+Como alternativa, você pode usar o inspetor JavaScript abrindo manualmente o [Google Chrome DevTools](https://reactnative.dev/docs/other-debugging-methods#remote-javascript-debugging-deprecated)
 
-### Troubleshooting
+### Solução de problemas \{#troubleshooting}
 
-> **warning** `No compatible apps connected. JavaScript Debugging can only be used with the Hermes engine.` when opening the debugger.
+> **warning** `No compatible apps connected. JavaScript Debugging can only be used with the Hermes engine.` ao abrir o depurador.
 
-- Make sure you [set up Hermes in the `jsEngine` field](#switch-javascript-engine-on-a-specific-platform).
-- If your app is built by `eas build`, `npx expo run:android` or `npx expo run:ios`, make sure it is a debug build.
-- Internally, the app will establish a WebSocket connection, make sure your app is connected to the development server.
-  - Try to reload the app by pressing <kbd>R</kbd> in the Expo CLI Terminal UI.
-  - Test debugging availability by running the command: `curl http://127.0.0.1:8081/json/list` (adjust the `127.0.0.1:8081` to match your dev server URL). The HTTP response should be an array, as shown below. If it is an empty response, add either the `--localhost` or `--tunnel` flag to the `npx expo start` command.
+- Confirme que você [configurou o Hermes no campo `jsEngine`](#switch-javascript-engine-on-a-specific-platform).
+- Se o seu app foi gerado com `eas build`, `npx expo run:android` ou `npx expo run:ios`, confirme que se trata de um debug build.
+- Internamente, o app estabelece uma conexão WebSocket. Confirme que o seu app está conectado ao servidor de desenvolvimento.
+  - Tente recarregar o app pressionando <kbd>R</kbd> na interface de terminal da Expo CLI.
+  - Teste se a depuração está disponível executando o comando: `curl http://127.0.0.1:8081/json/list` (ajuste `127.0.0.1:8081` para corresponder à URL do seu servidor de desenvolvimento). A resposta HTTP deve ser um array, como mostrado abaixo. Se a resposta estiver vazia, adicione a flag `--localhost` ou `--tunnel` ao comando `npx expo start`.
 
   ```json
   [
@@ -75,8 +75,10 @@ Alternatively, you can use the JavaScript inspector by opening [Google Chrome De
   ]
   ```
 
-### Can I use Remote Debugging with Hermes?
+### Posso usar o Remote Debugging com o Hermes? \{#can-i-use-remote-debugging-with-hermes}
 
-One of the many limitations of [remote debugging](/more/glossary-of-terms/#remote-debugging) is that it does not work with modules built on top of [JSI](https://github.com/react-native-community/discussions-and-proposals/issues/91), such as [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) version 2 or higher.
+Uma das muitas limitações do [remote debugging](/more/glossary-of-terms/#remote-debugging) é que ele não funciona com módulos construídos sobre o [JSI](https://github.com/react-native-community/discussions-and-proposals/issues/91), como o [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) na versão 2 ou superior.
 
-Hermes supports [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/v8/) to debug JavaScript in place by connecting to the engine running on the device, as opposed to remote debugging, which executes JavaScript within a desktop Chrome tab. Hermes apps use this debugging technique automatically when you open the debugger in Expo Go or a development build.
+O Hermes oferece suporte ao [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/v8/) para depurar o JavaScript no próprio local, conectando-se ao motor que roda no dispositivo. Isso é diferente do remote debugging, que executa o JavaScript em uma aba do Chrome no desktop. Apps com Hermes usam essa técnica de depuração automaticamente quando você abre o depurador no Expo Go ou em um development build.
+
+{/* ia-translate: true */}

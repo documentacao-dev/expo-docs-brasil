@@ -1,7 +1,7 @@
 ---
-title: Using Sentry
+title: Usando o Sentry
 maxHeadingDepth: 4
-description: A guide on installing and configuring Sentry for crash reporting.
+description: Guia para instalar e configurar o Sentry para relatório de falhas.
 platforms: ['android', 'ios', 'web']
 ---
 
@@ -10,59 +10,59 @@ import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-[Sentry](https://getsentry.com/) is a crash reporting platform that provides you with **real-time insight into production deployments with info to reproduce and fix crashes**.
+O [Sentry](https://getsentry.com/) é uma plataforma de relatório de falhas que oferece **visibilidade em tempo real sobre os deploys de produção, com informações para reproduzir e corrigir as falhas**.
 
-It notifies you of exceptions or errors that your users run into while using your app and organizes them for you on a web dashboard. Reported exceptions include stacktraces, device info, version, and other relevant context automatically. You can also provide additional context that is specific to your application such as the current route and user id.
+Ele avisa sobre as exceções e os erros que os usuários encontram ao usar seu app e os organiza em um painel web. As exceções reportadas incluem stacktraces, informações do dispositivo, versão e outros contextos relevantes, automaticamente. Você também pode fornecer contexto adicional específico do seu app, como a rota atual e o ID do usuário.
 
-## What you'll learn
+## O que você vai aprender \{#what-youll-learn}
 
-This guide covers three main aspects of integrating Sentry with your Expo projects:
+Este guia cobre três aspectos principais da integração do Sentry com seus projetos Expo:
 
-- [Install and configure Sentry](#install-and-configure-sentry) in your React Native app
+- [Instalar e configurar o Sentry](#install-and-configure-sentry) no seu app React Native
 
-- Using Sentry with Expo Services:
-  - [Expo Build](#usage-with-expo-build) for building your app
-  - [Expo Update](#usage-with-expo-update) for over-the-air updates
+- Usando o Sentry com os Expo Services:
+  - [Expo Build](#usage-with-expo-build) para gerar o seu app
+  - [Expo Update](#usage-with-expo-update) para updates over-the-air (OTA)
 
-- [Setting up the Sentry-Expo integration](#sentry-integration-with-expo-dashboard) to view crash reports and session replays directly in your Expo dashboard
+- [Configurar a integração Sentry-Expo](#sentry-integration-with-expo-dashboard) para ver relatórios de falhas e Session Replays diretamente no seu dashboard do Expo
 
-## Install and configure Sentry
+## Instalar e configurar o Sentry \{#install-and-configure-sentry}
 
 <Step label="1">
 
-### Sign up for a Sentry account and create a project
+### Crie uma conta no Sentry e um projeto \{#sign-up-for-a-sentry-account-and-create-a-project}
 
-Before proceeding with installing Sentry, you'll need to make sure you have created a Sentry account and project:
+Antes de instalar o Sentry, você precisa ter uma conta e um projeto no Sentry:
 
 <Step label="1.1">
 
-[Sign up for Sentry](https://sentry.io/signup/) (the free tier supports up to 5,000 events per month), and create a project in your
-Dashboard. Take note of your **organization slug**, **project name**, and **DSN** as you'll need
-them later:
+[Crie uma conta no Sentry](https://sentry.io/signup/) (o plano gratuito suporta até 5.000 eventos por mês) e crie um projeto no seu
+Dashboard. Anote o seu **organization slug**, o **nome do projeto** e o **DSN**, pois você vai
+precisar deles depois:
 
-- **organization slug** is available in your **Organization settings** tab
-- **project name** is available in your project's **Settings** > **Projects** tab (find it in the list)
-- **DSN** is available in your project's **Settings** > **Projects** > **Project name** > Under **SDK Setup** section > **Client Keys (DSN)** tab.
+- O **organization slug** fica na aba **Organization settings**
+- O **nome do projeto** fica em **Settings** > **Projects** nas configurações do seu projeto (procure-o na lista)
+- O **DSN** fica em **Settings** > **Projects** > **Nome do projeto** > na seção **SDK Setup**, na aba **Client Keys (DSN)**.
 
 </Step>
 
 <Step label="1.2">
 
-Go to the [Developer Settings > Auth Tokens](https://sentry.io/settings/auth-tokens/) page and create a new [Organization Auth Token](https://docs.sentry.io/account/auth-tokens/#organization-auth-tokens). The token is automatically scoped for Source Map Upload and Release Creation. Save it.
+Acesse a página [Developer Settings > Auth Tokens](https://sentry.io/settings/auth-tokens/) e crie um novo [Organization Auth Token](https://docs.sentry.io/account/auth-tokens/#organization-auth-tokens). O token já vem com escopo para upload de source maps e criação de releases. Salve-o.
 
 </Step>
 
-Once you have each of these: **organization slug**, **project name**, **DSN**, and **auth token**, you're all set to proceed.
+Quando você tiver todos estes itens: **organization slug**, **nome do projeto**, **DSN** e **auth token**, está tudo pronto para continuar.
 
 </Step>
 
 <Step label="2">
 
-### Use the Sentry wizard to set up your project
+### Use o assistente do Sentry para configurar o projeto \{#use-the-sentry-wizard-to-set-up-your-project}
 
-The easiest way to set up Sentry in your Expo project is to use the Sentry wizard. This tool will automatically configure your project with the right settings.
+A forma mais fácil de configurar o Sentry no seu projeto Expo é usar o assistente do Sentry. Essa ferramenta configura o seu projeto automaticamente com as definições certas.
 
-Run the following command in your project directory:
+Execute o comando a seguir no diretório do seu projeto:
 
 <Terminal
   cmd={{
@@ -73,22 +73,22 @@ Run the following command in your project directory:
   }}
 />
 
-The wizard will:
+O assistente vai:
 
-- Install the required dependencies
-- Configure your project to use Sentry
-- Set up the Metro configuration automatically
-- Add the necessary initialization code to your app
+- Instalar as dependências necessárias
+- Configurar o seu projeto para usar o Sentry
+- Configurar o Metro automaticamente
+- Adicionar o código de inicialização necessário ao seu app
 
-Follow the prompts in the wizard to complete the setup process. The wizard will guide you to log in to your Sentry account and fetch all the correct information regarding your project.
+Siga as instruções do assistente para concluir a configuração. Ele vai orientar você a fazer login na sua conta do Sentry e buscar todas as informações corretas sobre o seu projeto.
 
 </Step>
 
 <Step label="3">
 
-### Verify the configuration
+### Verifique a configuração \{#verify-the-configuration}
 
-Create a new release build of your app and verify that it uploads source maps correctly. You may want to add a button in your app to test that it is working and sourcemaps are wired up as expected, for example:
+Crie um novo release build do seu app e confirme que ele envia os source maps corretamente. Talvez você queira adicionar um botão no app para testar se tudo está funcionando e se os sourcemaps estão configurados como esperado, por exemplo:
 
 {/* prettier-ignore */}
 ```jsx
@@ -100,15 +100,15 @@ import { Button } from 'react-native';
 
 </Step>
 
-## Usage with Expo Build
+## Uso com o Expo Build \{#usage-with-expo-build}
 
-Ensure that `SENTRY_AUTH_TOKEN` is set in your build environment with [sensitive visibility](/eas/environment-variables/#visibility-settings-for-environment-variables). Sentry will automatically upload source maps for you. If you use environment variables rather than properties in your app config, ensure that those are set as well.
+Garanta que `SENTRY_AUTH_TOKEN` esteja definido no ambiente de build com [visibilidade sensível](/eas/environment-variables/#visibility-settings-for-environment-variables). O Sentry vai enviar os source maps automaticamente. Se você usa variáveis de ambiente em vez de propriedades no app config, confirme que elas também estão definidas.
 
-Using the above instructions, no additional work is needed to integrate Sentry into your project when using Expo Build.
+Seguindo as instruções acima, nenhum trabalho adicional é necessário para integrar o Sentry ao seu projeto ao usar o Expo Build.
 
-## Usage with Expo Update
+## Uso com o Expo Update \{#usage-with-expo-update}
 
-After running `eas update`, upload the source maps to Sentry:
+Depois de executar `eas update`, envie os source maps para o Sentry:
 
 <Terminal
   cmd={{
@@ -131,23 +131,23 @@ After running `eas update`, upload the source maps to Sentry:
   }}
 />
 
-The upload script reads your organization slug and project name from the `organization` and `project` properties of the `@sentry/react-native/expo` plugin in your app config, or from the `SENTRY_ORG` and `SENTRY_PROJECT` environment variables. It also needs `SENTRY_AUTH_TOKEN`. When you run it in Expo Workflows or another CI, make sure these values are available there.
+O script de upload lê o slug da organização e o nome do projeto das propriedades `organization` e `project` do plugin `@sentry/react-native/expo` no seu app config, ou das variáveis de ambiente `SENTRY_ORG` e `SENTRY_PROJECT`. Ele também precisa de `SENTRY_AUTH_TOKEN`. Ao executá-lo no Expo Workflows ou em outro CI, confirme que esses valores estão disponíveis por lá.
 
-That's it! Errors for your updates will now be properly symbolicated in Sentry.
+Pronto! Os erros dos seus updates agora vão aparecer com os nomes de arquivo e de linha originais no Sentry.
 
-<Collapsible summary="Do you want to publish an update and the sourcemaps in one command?">
+<Collapsible summary="Quer publicar um update e os source maps em um único comando?">
 
-You can chain the commands together with `&&` to publish an update and upload the sourcemaps in one step:
+Você pode encadear os comandos com `&&` para publicar um update e enviar os source maps em um só passo:
 
 <Terminal cmd={['$ eas update --branch <branch> && npx sentry-expo-upload-sourcemaps dist']} />
 
 </Collapsible>
 
-<Collapsible summary="Do you want to append additional update-related metadata to error reports?">
+<Collapsible summary="Quer adicionar metadados do update aos relatórios de erro?">
 
-Configuring Sentry to tag your scope with information about your update allows you to see errors happening on certain updates in the Sentry dashboard.
+Configurar o Sentry para marcar o escopo com informações sobre o seu update permite ver os erros que acontecem em determinados updates no dashboard do Sentry.
 
-Add the following snippet in the global scope as early as possible in your application's lifecycle.
+Adicione o trecho a seguir no escopo global, o mais cedo possível no ciclo de vida do seu app.
 
 ```js
 import * as Sentry from '@sentry/react-native';
@@ -182,42 +182,44 @@ if (typeof updateGroup === 'string') {
 }
 ```
 
-Once configured, information about the associated update will show up in an error's tag section:
+Depois de configurado, as informações sobre o update associado aparecem na seção de tags do erro:
 
-<ContentSpotlight alt="Sentry update tags" src="/static/images/guides/sentry-tags.webp" />
+<ContentSpotlight alt="Tags de update no Sentry" src="/static/images/guides/sentry-tags.webp" />
 
 </Collapsible>
 
-## Sentry integration with Expo dashboard
+## Integração do Sentry com o dashboard do Expo \{#sentry-integration-with-expo-dashboard}
 
-The Sentry integration with Expo allows you to view crash reports and Session Replays for your Expo app deployments directly within your Expo dashboard. This integration provides a direct link to Sentry stack traces with full context, session replays, and debugging capabilities.
+A integração do Sentry com o Expo permite ver relatórios de falhas e Session Replays das implantações do seu app Expo diretamente no dashboard do Expo. Essa integração oferece um link direto para os stack traces do Sentry, com contexto completo, Session Replays e recursos de debug.
 
-### Install
+### Instalar \{#install}
 
-> **info** Sentry owner, manager, or admin permissions are required to install this integration.
+> **info** É necessário ter permissões de owner, manager ou admin no Sentry para instalar esta integração.
 
-1. Log in to you Expo account and open [**Account settings > Overview**](https://expo.dev/accounts/[your-account]/settings).
-2. Under **Connections** and click **Connect** next to Sentry.
-3. Log in to your Sentry account and accept the integration into your organization. You will be redirected back to **Account settings**.
+1. Faça login na sua conta do Expo e abra [**Account settings > Overview**](https://expo.dev/accounts/[your-account]/settings).
+2. Em **Connections**, clique em **Connect** ao lado de Sentry.
+3. Faça login na sua conta do Sentry e aceite a integração na sua organização. Você será redirecionado de volta para **Account settings**.
 
-### Link your project
+### Vincular o seu projeto \{#link-your-project}
 
-After connecting your accounts, you need to link your Expo Services Project to your Sentry Project:
+Depois de conectar suas contas, você precisa vincular o seu projeto dos Expo Services ao seu projeto no Sentry:
 
-1. Open **Projects > [Your Project] > Configuration > Project settings** in the Expo dashboard.
-2. Click **Link** and select your Sentry Project from the dropdown.
+1. Abra **Projects > [Seu projeto] > Configuration > Project settings** no dashboard do Expo.
+2. Clique em **Link** e selecione o seu projeto do Sentry na lista suspensa.
 
-### Usage
+### Uso \{#usage}
 
-To see your Sentry data in Expo dashboard, open **Projects > [Your Project] > Updates > Deployments > [Deployment]** to view Sentry data from a Release.
+Para ver os seus dados do Sentry no dashboard do Expo, abra **Projects > [Seu projeto] > Updates > Deployments > [Deployment]** para ver os dados do Sentry de uma release.
 
-With this integration, you can:
+Com essa integração, você pode:
 
-- View crash reports directly in your Expo dashboard
-- Access Session Replays to see exactly what happened before an error occurred
-- Get detailed stack traces with full context
-- Navigate seamlessly between the Expo dashboard and Sentry for debugging
+- Ver relatórios de falhas diretamente no dashboard do Expo
+- Acessar Session Replays para ver exatamente o que aconteceu antes de um erro
+- Obter stack traces detalhados com contexto completo
+- Navegar facilmente entre o dashboard do Expo e o Sentry para fazer debug
 
-## Learn more about Sentry
+## Saiba mais sobre o Sentry \{#learn-more-about-sentry}
 
-Sentry does more than just catch fatal errors, learn more about how to use Sentry from their [JavaScript usage](https://docs.sentry.io/platforms/javascript/) documentation.
+O Sentry faz mais do que apenas capturar erros fatais. Saiba mais sobre como usar o Sentry na documentação de [uso com JavaScript](https://docs.sentry.io/platforms/javascript/).
+
+{/* ia-translate: true */}

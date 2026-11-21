@@ -1,38 +1,38 @@
 ---
-title: Minifying JavaScript
-sidebar_title: Minification
-description: Learn about customizing the JavaScript minification process in Expo CLI with Metro bundler.
+title: Minificar JavaScript
+sidebar_title: Minificação
+description: Saiba como personalizar o processo de minificação de JavaScript na Expo CLI com o Metro bundler.
 ---
 
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 
-Minification is an optimization build step. It removes unnecessary characters such as collapses whitespace, removes comments, and shortens static operations, from the source code. This process reduces the final size and improves load times.
+A minificação é uma etapa de otimização do build. Ela remove caracteres desnecessários do código-fonte, como espaços em branco excedentes e comentários, e encurta operações estáticas. Esse processo reduz o tamanho final e melhora o tempo de carregamento.
 
-## Minification in Expo CLI
+## Minificação na Expo CLI \{#minification-in-expo-cli}
 
-In Expo CLI, minification is performed on JavaScript files during the production export (when `npx expo export`, `npx expo export:embed`, `eas build`, and so on, commands run).
+Na Expo CLI, a minificação é feita nos arquivos JavaScript durante o export de produção (quando você executa `npx expo export`, `npx expo export:embed`, `eas build` e comandos semelhantes).
 
-For example, consider following code snippet in a project:
+Por exemplo, considere o trecho de código a seguir em um projeto:
 
 ```js Input
 // This comment will be stripped
 console.log('a' + ' ' + 'long' + ' string' + ' to ' + 'collapse');
 ```
 
-This will be minified by the Expo CLI:
+A Expo CLI vai minificar o código assim:
 
 ```js Output
 console.log('a long string to collapse');
 ```
 
-> **info** **Tip:** Comments can be preserved by using the `/** @preserve */` directive.
+> **info** **Dica:** Você pode preservar comentários usando a diretiva `/** @preserve */`.
 
-The default minification of Expo CLI is sufficient for most projects. However, you can customize the minifier to optimize for speed or remove additional features like logs.
+A minificação padrão da Expo CLI atende à maioria dos projetos. No entanto, você pode personalizar o minificador para otimizar a velocidade ou remover recursos extras, como logs.
 
-## Remove console logs
+## Remover logs do console \{#remove-console-logs}
 
-You can remove console logs from your production build. Use the `drop_console` option in the Terser minifier config.
+Você pode remover os logs do console do seu build de produção. Use a opção `drop_console` na configuração do minificador Terser.
 
 ```js metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
@@ -49,19 +49,19 @@ config.transformer.minifierConfig = {
 module.exports = config;
 ```
 
-You can also pass an array of console types to drop if you want to preserve certain logs. For example: `drop_console: ['log', 'info']` will remove `console.log` and `console.info` but preserve `console.warn` and `console.error`.
+Você também pode passar um array com os tipos de console a remover, se quiser preservar alguns logs. Por exemplo: `drop_console: ['log', 'info']` remove `console.log` e `console.info`, mas preserva `console.warn` e `console.error`.
 
-## Customizing the minifier
+## Personalizar o minificador \{#customizing-the-minifier}
 
-Different minifiers have tradeoffs between speed and compression. You can customize the minifier used by Expo CLI by modifying the **metro.config.js** file in your project.
+Cada minificador tem trade-offs entre velocidade e compressão. Você pode personalizar o minificador usado pela Expo CLI alterando o arquivo **metro.config.js** do seu projeto.
 
-### Terser
+### Terser \{#terser}
 
-> [`terser`](https://github.com/terser/terser) is the default minifier ([Metro@0.73.0 changelog](https://github.com/facebook/metro/releases/tag/v0.73.0)).
+> [`terser`](https://github.com/terser/terser) é o minificador padrão ([changelog do Metro@0.73.0](https://github.com/facebook/metro/releases/tag/v0.73.0)).
 
 <Step label="1">
 
-To install Terser in a project, run the command:
+Para instalar o Terser no projeto, execute o comando:
 
 <Terminal
   cmd={{
@@ -76,7 +76,7 @@ To install Terser in a project, run the command:
 
 <Step label="2">
 
-Set Terser as a minifier with `transformer.minifierPath`, and pass in [`terser` options](https://github.com/terser/terser#compress-options) to `transformer.minifierConfig`.
+Defina o Terser como minificador com `transformer.minifierPath` e passe as [opções do `terser`](https://github.com/terser/terser#compress-options) para `transformer.minifierConfig`.
 
 ```js metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
@@ -93,9 +93,9 @@ module.exports = config;
 
 </Step>
 
-### Unsafe Terser options
+### Opções unsafe do Terser \{#unsafe-terser-options}
 
-For additional compression that may not work in all JavaScript engines, enable the [`unsafe` `compress` options](https://terser.org/docs/miscellaneous/#the-unsafe-compress-option):
+Para obter compressão adicional, que pode não funcionar em todas as engines de JavaScript, ative as opções [`unsafe` do `compress`](https://terser.org/docs/miscellaneous/#the-unsafe-compress-option):
 
 ```js metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
@@ -124,17 +124,17 @@ config.transformer.minifierConfig = {
 module.exports = config;
 ```
 
-### esbuild
+### esbuild \{#esbuild}
 
-[`esbuild`](https://esbuild.github.io/) is used to minify exponentially faster than `uglify-es` and `terser`. For more information, see [`metro-minify-esbuild`](https://github.com/EvanBacon/metro-minify-esbuild#usage) usage.
+O [`esbuild`](https://esbuild.github.io/) minifica código muito mais rápido do que o `uglify-es` e o `terser`. Para mais informações, veja o uso do [`metro-minify-esbuild`](https://github.com/EvanBacon/metro-minify-esbuild#usage).
 
-### Uglify
+### Uglify \{#uglify}
 
-You can use [`uglify-es`](https://github.com/mishoo/UglifyJS) by following the steps below:
+Você pode usar o [`uglify-es`](https://github.com/mishoo/UglifyJS) seguindo os passos abaixo:
 
 <Step label="1">
 
-To install Uglify in a project, run the command:
+Para instalar o Uglify no projeto, execute o comando:
 
 <Terminal
   cmd={{
@@ -145,13 +145,13 @@ To install Uglify in a project, run the command:
   }}
 />
 
-> Make sure the version of `metro-minify-uglify` matches the version of `metro` in your project.
+> Garanta que a versão do `metro-minify-uglify` seja a mesma do `metro` no seu projeto.
 
 </Step>
 
 <Step label="2">
 
-Set Uglify as a minifier with `transformer.minifierPath`, and pass in [options](https://github.com/mishoo/UglifyJS#compress-options) to `transformer.minifierConfig`.
+Defina o Uglify como minificador com `transformer.minifierPath` e passe as [opções](https://github.com/mishoo/UglifyJS#compress-options) para `transformer.minifierConfig`.
 
 ```js metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
@@ -167,3 +167,5 @@ module.exports = config;
 ```
 
 </Step>
+
+{/* ia-translate: true */}
