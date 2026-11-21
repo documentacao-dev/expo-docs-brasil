@@ -1,26 +1,26 @@
 ---
-title: Environment variables in Expo
-sidebar_title: Environment variables
-description: Learn how to use environment variables in an Expo project.
+title: Variáveis de ambiente no Expo
+sidebar_title: Variáveis de ambiente
+description: Aprenda a usar variáveis de ambiente em um projeto Expo.
 searchRank: 10
 ---
 
 import { YesIcon, NoIcon } from '~/ui/components/DocIcons';
 
-Environment variables are key-value pairs configured outside your source code that allow your app to behave differently depending on the environment. For example, you can enable or disable certain features when building a test version of your app, or switch to a different API endpoint when building for production.
+Variáveis de ambiente são pares de chave e valor configurados fora do seu código-fonte que permitem que o app se comporte de maneira diferente de acordo com o ambiente. Por exemplo, você pode ativar ou desativar determinados recursos ao gerar uma versão de teste do app, ou trocar para um endpoint de API diferente ao gerar a versão de produção.
 
-The Expo CLI will automatically load environment variables with an `EXPO_PUBLIC_` prefix from **.env** files for use within your JavaScript code whenever you use the Expo CLI, such as when running `npx expo start` to start your app in local development mode.
+O Expo CLI carrega automaticamente as variáveis de ambiente com o prefixo `EXPO_PUBLIC_` a partir de arquivos **.env** para uso no seu código JavaScript sempre que você usa o Expo CLI, como ao executar `npx expo start` para iniciar o app no modo de desenvolvimento local.
 
-## Reading environment variables from .env files
+## Lendo variáveis de ambiente de arquivos .env \{#reading-environment-variables-from-env-files}
 
-Create a **.env** file in the root of your project directory and add environment-specific variables on new lines in the form of `EXPO_PUBLIC_[NAME]=VALUE`:
+Crie um arquivo **.env** na raiz do diretório do projeto e adicione as variáveis específicas de cada ambiente, uma por linha, no formato `EXPO_PUBLIC_[NAME]=VALUE`:
 
 ```bash .env
 EXPO_PUBLIC_API_URL=https://staging.example.com
 EXPO_PUBLIC_API_KEY=abc123
 ```
 
-Now you can use environment variables directly in your source code:
+Agora você pode usar as variáveis de ambiente diretamente no seu código-fonte:
 
 ```tsx
 import { Button } from 'react-native';
@@ -36,94 +36,94 @@ function Post() {
 }
 ```
 
-When you run `npx expo start`, `process.env.EXPO_PUBLIC_API_URL` will be replaced with `https://staging.example.com` in your app bundle. Variables can be updated as you edit your code without restarting the Expo CLI or clearing the cache. You will need to perform a full reload (for example, shake gesture and then Reload in Expo Go or your development build) to see the updated value.
+Quando você executa `npx expo start`, `process.env.EXPO_PUBLIC_API_URL` é substituído por `https://staging.example.com` no bundle do app. As variáveis podem ser atualizadas enquanto você edita o código, sem reiniciar o Expo CLI nem limpar o cache. Você precisará fazer um recarregamento completo (por exemplo, sacudir o dispositivo e depois selecionar Reload no Expo Go ou no seu development build) para ver o valor atualizado.
 
-> **warning** Do not store sensitive info, such as private keys, in `EXPO_PUBLIC_` variables. These variables will be visible in plain-text in your compiled application.
+> **warning** Não armazene informações sensíveis, como chaves privadas, em variáveis `EXPO_PUBLIC_`. Essas variáveis ficam visíveis em texto puro no seu app compilado.
 
-### How variables are loaded
+### Como as variáveis são carregadas \{#how-variables-are-loaded}
 
-Expo CLI loads **.env** files according to the [standard **.env** file resolution](#using-multiple-env-files-to-define-separate-environments) and then replaces all references in your code to `process.env.EXPO_PUBLIC_[VARNAME]` with the corresponding value set in the **.env** files. Code inside **node_modules** is not affected for security purposes.
+O Expo CLI carrega os arquivos **.env** de acordo com a [resolução padrão de arquivos **.env**](#using-multiple-env-files-to-define-separate-environments) e, em seguida, substitui todas as referências no seu código a `process.env.EXPO_PUBLIC_[VARNAME]` pelo valor correspondente definido nos arquivos **.env**. O código dentro de **node_modules** não é afetado, por motivos de segurança.
 
-### How to read from environment variables
+### Como ler variáveis de ambiente \{#how-to-read-from-environment-variables}
 
-- <YesIcon small /> **Every environment variable must be statically referenced as a property of
-  `process.env` using JavaScript's dot notation for it to be inlined.** For example, the expression
-  `process.env.EXPO_PUBLIC_KEY` is valid and will be inlined.
+- <YesIcon small /> **Cada variável de ambiente deve ser referenciada estaticamente como uma propriedade de
+  `process.env`, usando a notação de ponto do JavaScript, para ser incorporada ao código.** Por exemplo,
+  a expressão `process.env.EXPO_PUBLIC_KEY` é válida e será incorporada.
 
-- <NoIcon small /> **Alternative versions of the expression are not supported**. For example,
-  `process.env['EXPO_PUBLIC_KEY']` or `const {EXPO_PUBLIC_X} = process.env` is invalid and will not
-  be inlined.
+- <NoIcon small /> **Versões alternativas da expressão não são compatíveis**. Por exemplo,
+  `process.env['EXPO_PUBLIC_KEY']` ou `const {EXPO_PUBLIC_X} = process.env` são inválidas e não serão
+  incorporadas.
 
-### Using multiple .env files to define separate environments
+### Usando vários arquivos .env para definir ambientes separados \{#using-multiple-env-files-to-define-separate-environments}
 
-Each Expo command runs in development or production mode. The mode determines which **.env** files load, and files listed first take priority:
+Cada comando do Expo é executado no modo de desenvolvimento ou de produção. O modo determina quais arquivos **.env** são carregados, e os arquivos listados primeiro têm prioridade:
 
-| Mode        | Files                                                                      |
+| Modo        | Arquivos                                                                   |
 | ----------- | -------------------------------------------------------------------------- |
 | Development | **.env.development.local**, **.env.local**, **.env.development**, **.env** |
 | Production  | **.env.production.local**, **.env.local**, **.env.production**, **.env**   |
 
-In SDK 58 and later, Expo commands don't load other **.env** files, such as **.env.staging** or **.env.test**.
+No SDK 58 e versões posteriores, os comandos do Expo não carregam outros arquivos **.env**, como **.env.staging** ou **.env.test**.
 
-You may choose to commit the default **.env** file or other standard configurations, but generally **.env.local** files should be added to your **.gitignore**, because they are used to specify environment configuration specific to your local machine (such as, for example, your network IP address if you need it to make a request against a local server).
+Você pode fazer commit do arquivo **.env** padrão ou de outras configurações padrão, mas os arquivos **.env.local** geralmente devem ser adicionados ao seu **.gitignore**, porque são usados para definir configurações de ambiente específicas da sua máquina local (como o endereço IP da sua rede, caso precise dele para fazer uma requisição a um servidor local).
 
 ```bash .gitignore
 .env*.local
 ```
 
-#### Environment variables and `NODE_ENV`
+#### Variáveis de ambiente e `NODE_ENV` \{#environment-variables-and-node_env}
 
-`NODE_ENV` is the standard Node.js variable that identifies which mode your code is running in (typically `development`, `production`, or `test`). Tools like module resolvers, bundlers, and test runners read it to decide how to build, install, or run your code.
+`NODE_ENV` é a variável padrão do Node.js que identifica em qual modo o código está sendo executado (normalmente `development`, `production` ou `test`). Ferramentas como resolvedores de módulos, bundlers e executores de testes leem essa variável para decidir como compilar, instalar ou executar o código.
 
-In SDK 58 and later, each command sets `NODE_ENV` to its mode and replaces any value you set. For example, `NODE_ENV=production npx expo start` runs in development mode and loads **.env.development**.
+No SDK 58 e versões posteriores, cada comando define `NODE_ENV` com o seu modo e substitui qualquer valor que você tenha definido. Por exemplo, `NODE_ENV=production npx expo start` é executado no modo de desenvolvimento e carrega **.env.development**.
 
-| Command                                                   | Mode                                                                             |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `npx expo start`                                          | Development. Production with `--no-dev`.                                         |
-| `npx expo export`                                         | Production. Development with `--dev`.                                            |
-| `npx expo run:android`                                    | Development for the `debug` and `debugOptimized` variants. Production otherwise. |
-| `npx expo run:ios`                                        | Development for configurations with `Debug` in their name. Production otherwise. |
-| `npx expo config`, `npx expo prebuild`, `npx expo-doctor` | Development. Production on Expo Build.                                           |
+| Comando                                                   | Modo                                                                                      |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `npx expo start`                                          | Desenvolvimento. Produção com `--no-dev`.                                                 |
+| `npx expo export`                                         | Produção. Desenvolvimento com `--dev`.                                                    |
+| `npx expo run:android`                                    | Desenvolvimento para as variantes `debug` e `debugOptimized`. Produção nos demais casos.  |
+| `npx expo run:ios`                                        | Desenvolvimento para configurações com `Debug` no nome. Produção nos demais casos.        |
+| `npx expo config`, `npx expo prebuild`, `npx expo-doctor` | Desenvolvimento. Produção no Expo Build.                                                  |
 
-Custom configurations, variants, and flavors still work and follow the same rules.
+Configurações personalizadas, variantes e flavors continuam funcionando e seguem as mesmas regras.
 
-Other tools that build on top of Expo CLI commands will exhibit the same behavior — for example, `eas update` calls into `npx expo export` and, as a result, `NODE_ENV=test eas update` will similarly not run with the `NODE_ENV` set to `test` (it will be `production`). The `NODE_ENV` environment variable is used by many tools in different ways (for example, if you run `NODE_ENV=production npm install` then your `devDependencies` will not be installed) and we have found that for React Native projects, it's best not to overload it further to switch between **.env** files.
+Outras ferramentas que se baseiam nos comandos do Expo CLI apresentam o mesmo comportamento. Por exemplo, `eas update` chama `npx expo export` e, por isso, `NODE_ENV=test eas update` também não será executado com `NODE_ENV` definido como `test` (ele será `production`). A variável `NODE_ENV` é usada por muitas ferramentas de formas diferentes (por exemplo, se você executar `NODE_ENV=production npm install`, as suas `devDependencies` não serão instaladas). Por isso, em projetos React Native, é melhor não sobrecarregá-la para alternar entre arquivos **.env**.
 
-If you use Expo Services, consider using `eas env:pull` instead. This will swap your **.env.local** with an environment of your choice, rather than depending on `NODE_ENV`. You can accomplish a similar behavior without Expo Services by writing a script to overwrite **.env.local** or **.env** with the appropriate contents for the environment you wish to work with.
+Se você usa o Expo Services, considere usar `eas env:pull`. Esse comando troca o seu **.env.local** por um ambiente de sua escolha, em vez de depender do `NODE_ENV`. Você pode obter um comportamento semelhante sem o Expo Services escrevendo um script que sobrescreva o **.env.local** ou o **.env** com o conteúdo adequado para o ambiente com o qual deseja trabalhar.
 
-### Disabling environment variables
+### Desativando variáveis de ambiente \{#disabling-environment-variables}
 
-Environment variables in Expo CLI have two parts and both can be disabled:
+As variáveis de ambiente no Expo CLI têm duas partes, e ambas podem ser desativadas:
 
-1. Expo CLI automatically loads the **.env** files into the global process. To disable this behavior, set the environment variable `EXPO_NO_DOTENV` to `1` before running any Expo CLI command: `EXPO_NO_DOTENV=1`.
-2. Expo's Metro config includes the inline serialization of environment variables in the client JavaScript bundle. To disable this behavior, you can use `EXPO_NO_CLIENT_ENV_VARS=1`.
+1. O Expo CLI carrega automaticamente os arquivos **.env** no processo global. Para desativar esse comportamento, defina a variável de ambiente `EXPO_NO_DOTENV` como `1` antes de executar qualquer comando do Expo CLI: `EXPO_NO_DOTENV=1`.
+2. A configuração do Metro do Expo inclui a serialização embutida das variáveis de ambiente no bundle JavaScript do cliente. Para desativar esse comportamento, use `EXPO_NO_CLIENT_ENV_VARS=1`.
 
-If you're experiencing issues with environment variables, you can try disabling one or both of these features.
+Se você estiver tendo problemas com variáveis de ambiente, pode tentar desativar um ou os dois recursos.
 
-## Environment variables in Expo Services
+## Variáveis de ambiente no Expo Services \{#environment-variables-in-expo-services}
 
-### Expo Build
+### Expo Build \{#expo-build}
 
-[Expo Build](/build/introduction/) uses Metro Bundler to build the JavaScript bundle embedded within your app binary, so it will use **.env** files uploaded with your build job to inline `EXPO_PUBLIC_` variables into your code. Expo Build also lets you define environment variables within build profiles in **eas.json** and in Expo Services. Check out the Expo Build documentation on [environment variables and build secrets](/eas/environment-variables) for more information.
+O [Expo Build](/build/introduction/) usa o Metro Bundler para compilar o bundle JavaScript incorporado ao binário do seu app. Por isso, ele usará os arquivos **.env** enviados com o seu job de build para incorporar as variáveis `EXPO_PUBLIC_` ao seu código. O Expo Build também permite definir variáveis de ambiente dentro dos perfis de build no **eas.json** e no Expo Services. Confira a documentação do Expo Build sobre [variáveis de ambiente e secrets de build](/eas/environment-variables) para mais informações.
 
-### Expo Update
+### Expo Update \{#expo-update}
 
-[Expo Update](/eas-update/introduction) uses Metro Bundler in your local environment or CI to build your app bundle, so it will use available **.env** files to inline `EXPO_PUBLIC_` variables into your code. Check out the Expo Update documentation on [environment variables](/eas/environment-variables/usage/#using-environment-variables-with-expo-update) for more information.
+O [Expo Update](/eas-update/introduction) usa o Metro Bundler no seu ambiente local ou no CI para compilar o bundle do app. Por isso, ele usará os arquivos **.env** disponíveis para incorporar as variáveis `EXPO_PUBLIC_` ao seu código. Confira a documentação do Expo Update sobre [variáveis de ambiente](/eas/environment-variables/usage/#using-environment-variables-with-expo-update) para mais informações.
 
-## Migrating to Expo environment variables
+## Migrando para as variáveis de ambiente do Expo \{#migrating-to-expo-environment-variables}
 
-### From react-native-config
+### Do react-native-config \{#from-react-native-config}
 
-Update your **.env** files to prefix any variables used within your JavaScript code with `EXPO_PUBLIC_`:
+Atualize os seus arquivos **.env** para adicionar o prefixo `EXPO_PUBLIC_` a todas as variáveis usadas no código JavaScript:
 
 ```diff .env
 - API_URL=https://myapi.com
 + EXPO_PUBLIC_API_URL=https://myapi.com
 ```
 
-> If you have any non-standard **.env** files (for example, **.env.staging**), migrate them to one of the [standard **.env** files](#using-multiple-env-files-to-define-separate-environments).
+> Se você tiver arquivos **.env** fora do padrão (por exemplo, **.env.staging**), migre-os para um dos [arquivos **.env** padrão](#using-multiple-env-files-to-define-separate-environments).
 
-Then update your code to use `process.env.EXPO_PUBLIC_[VARNAME]`:
+Depois, atualize o seu código para usar `process.env.EXPO_PUBLIC_[VARNAME]`:
 
 ```diff
 - import Config from 'react-native-config';
@@ -132,16 +132,16 @@ Then update your code to use `process.env.EXPO_PUBLIC_[VARNAME]`:
 + const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 ```
 
-### From babel-plugin-transform-inline-environment-variables
+### Do babel-plugin-transform-inline-environment-variables \{#from-babel-plugin-transform-inline-environment-variables}
 
-Using a Babel plugin to transform your environment variable references in your code is similar to how Expo environment variables work. Set your variables inside a **.env** file and update your variable names to use the `EXPO_PUBLIC_` prefix:
+Usar um plugin do Babel para transformar as referências às variáveis de ambiente no código é parecido com o funcionamento das variáveis de ambiente do Expo. Defina as suas variáveis dentro de um arquivo **.env** e atualize os nomes delas para usar o prefixo `EXPO_PUBLIC_`:
 
 ```diff
 - const apiUrl = process.env.API_URL;
 + const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 ```
 
-Then you can remove the plugin from your [Babel config](/versions/latest/config/babel/):
+Depois, você pode remover o plugin da sua [configuração do Babel](/versions/latest/config/babel/):
 
 ```diff babel.config.js
 module.exports = function (api) {
@@ -153,13 +153,13 @@ module.exports = function (api) {
 };
 ```
 
-After updating your Babel config file, be sure to clear your cache with `npx expo start --clear`.
+Depois de atualizar o arquivo de configuração do Babel, não deixe de limpar o cache com `npx expo start --clear`.
 
-### From direnv
+### Do direnv \{#from-direnv}
 
-Move any environment variables used in your JavaScript from their **.envrc** file to a **.env** file and prefix it with `EXPO_PUBLIC_`.
+Mova as variáveis de ambiente usadas no seu JavaScript do arquivo **.envrc** para um arquivo **.env** e adicione o prefixo `EXPO_PUBLIC_` a elas.
 
-Previously with `direnv`, you would need to use a [dynamic app config](/workflow/configuration/#dynamic-configuration) that reads from [`process.env`](https://nodejs.org/dist/latest/docs/api/process.html#process_process_env) to set environment variables on the `extra` field so they can be used in your JavaScript code via [`expo-constants`](/versions/latest/sdk/constants). Move those references directly into your code, adding the `EXPO_PUBLIC_` prefix:
+Antes, com o `direnv`, você precisava usar uma [app config dinâmica](/workflow/configuration/#dynamic-configuration) que lia de [`process.env`](https://nodejs.org/dist/latest/docs/api/process.html#process_process_env) para definir variáveis de ambiente no campo `extra` e, assim, usá-las no código JavaScript por meio do [`expo-constants`](/versions/latest/sdk/constants). Mova essas referências diretamente para o seu código, adicionando o prefixo `EXPO_PUBLIC_`:
 
 ```diff
 - import Constants from 'expo-constants';
@@ -168,8 +168,10 @@ Previously with `direnv`, you would need to use a [dynamic app config](/workflow
 + const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 ```
 
-> [`direnv`](https://direnv.net/) automatically loads and unloads environment variables in your shell depending on your current directory, meaning it can affect the environment for any process running in that directly, not just the Expo CLI. You will likely want to continue using `direnv` for other environment variables that are not used in your JavaScript code.
+> [`direnv`](https://direnv.net/) carrega e descarrega automaticamente variáveis de ambiente no seu shell de acordo com o diretório atual. Isso significa que ele pode afetar o ambiente de qualquer processo executado nesse diretório, e não apenas o Expo CLI. Você provavelmente vai querer continuar usando o `direnv` para outras variáveis de ambiente que não são usadas no seu código JavaScript.
 
-## Security considerations
+## Considerações de segurança \{#security-considerations}
 
-Never store sensitive secrets in environment variables that are prefixed with `EXPO_PUBLIC_`. When an end-user runs your app, they have access to all of the code and embedded environment variables in your app. Read more about [storing sensitive info](https://reactnative.dev/docs/security#storing-sensitive-info).
+Nunca armazene segredos sensíveis em variáveis de ambiente com o prefixo `EXPO_PUBLIC_`. Quando um usuário final executa o seu app, ele tem acesso a todo o código e às variáveis de ambiente incorporadas no app. Leia mais sobre [como armazenar informações sensíveis](https://reactnative.dev/docs/security#storing-sensitive-info).
+
+{/* ia-translate: true */}

@@ -1,6 +1,6 @@
 ---
-title: Using push notifications
-description: Learn about push notification services that are compatible with Expo and React Native apps.
+title: Usando notificações push
+description: Saiba mais sobre os serviços de notificações push compatíveis com apps Expo e React Native.
 ---
 
 import { BookOpen02Icon } from '@expo/styleguide-icons/outline/BookOpen02Icon';
@@ -8,101 +8,103 @@ import { NotificationBoxIcon } from '@expo/styleguide-icons/outline/Notification
 
 import { BoxLink } from '~/ui/components/BoxLink';
 
-Expo apps can work with any notification service or any of the notification capabilities offered by the Android and iOS operating systems. Even if a package doesn't yet exist for a feature, native code can be written to access it via the [Expo Modules API](/modules/overview/), and native project configurations can be automated using [config plugins](/config-plugins/introduction/). The following options provide purpose-built Expo integrations, including config plugins where necessary, for implementing push notifications in your app:
+Apps Expo podem funcionar com qualquer serviço de notificações ou com qualquer um dos recursos de notificação oferecidos pelos sistemas operacionais Android e iOS. Mesmo que ainda não exista um pacote para determinado recurso, é possível escrever código nativo para acessá-lo pela [Expo Modules API](/modules/overview/), e as configurações nativas do projeto podem ser automatizadas com [config plugins](/config-plugins/introduction/). As opções a seguir oferecem integrações específicas para o Expo, incluindo config plugins quando necessário, para implementar notificações push no seu app:
 
-> The [`expo-notifications`](/versions/latest/sdk/notifications/) library is designed and tested to work with Expo's push notification service and notifications sent directly from FCM and APNS. Some advanced features may not be compatible with third-party providers, as they often have their own native and React Native SDKs optimized for their services.
+> A biblioteca [`expo-notifications`](/versions/latest/sdk/notifications/) foi projetada e testada para funcionar com o serviço de notificações push do Expo e com notificações enviadas diretamente pelo FCM e pelo APNs. Alguns recursos avançados podem não ser compatíveis com provedores terceiros, pois eles geralmente têm seus próprios SDKs nativos e para React Native, otimizados para os seus serviços.
 
-## Expo push notifications
+## Notificações push do Expo \{#expo-push-notifications}
 
-[Expo Notifications](/versions/latest/sdk/notifications/) provides a unified API for handling push notifications across Android and iOS. It integrates seamlessly with your Expo account and is free to use.
+O [Expo Notifications](/versions/latest/sdk/notifications/) oferece uma API unificada para lidar com notificações push no Android e no iOS. Ele se integra facilmente à sua conta Expo e é gratuito.
 
-### Key capabilities
+### Principais recursos \{#key-capabilities}
 
-- Fully compatible with the [`expo-notifications`](/versions/latest/sdk/notifications/) library
-- Includes an Expo dashboard to track notification delivery to FCM and APNs
-- Supports testing notifications with the [Expo Notifications Tool](https://expo.dev/notifications)
+- Totalmente compatível com a biblioteca [`expo-notifications`](/versions/latest/sdk/notifications/)
+- Inclui um painel do Expo para acompanhar a entrega de notificações ao FCM e ao APNs
+- Permite testar notificações com a [Expo Notifications Tool](https://expo.dev/notifications)
 
-### Considerations and limitations
+### Considerações e limitações \{#considerations-and-limitations}
 
-- iOS Notification Service Extension for adding additional content to notifications, such as images, is not formally included, but you can add it using a config plugin with custom native code and configuration ([example](https://github.com/expo/expo/pull/36202)).
-- Volumes are limited to 600 notifications per second per project.
+- A iOS Notification Service Extension, usada para adicionar conteúdo extra às notificações, como imagens, não está incluída formalmente. Mesmo assim, você pode adicioná-la usando um config plugin com código nativo e configuração personalizados ([exemplo](https://github.com/expo/expo/pull/36202)).
+- Os volumes são limitados a 600 notificações por segundo por projeto.
 
-For implementation details, see the following guides:
+Para detalhes de implementação, veja os guias a seguir:
 
 <BoxLink
-  title="Expo push notifications overview"
-  description="Learn more about Expo push notifications."
+  title="Visão geral das notificações push do Expo"
+  description="Saiba mais sobre as notificações push do Expo."
   href="/push-notifications/overview"
   Icon={NotificationBoxIcon}
 />
 
 <BoxLink
-  title="Expo Notifications server-side SDK options"
-  description="Learn more about sending push notifications using a server."
+  title="Opções do SDK de servidor do Expo Notifications"
+  description="Saiba mais sobre como enviar notificações push usando um servidor."
   href="/push-notifications/sending-notifications/#send-push-notifications-using-a-server"
   Icon={NotificationBoxIcon}
 />
 
-## OneSignal
+## OneSignal \{#onesignal}
 
-[OneSignal](https://onesignal.com/) is a customer engagement platform that provides push notifications, in-app messaging, SMS, and email services for web and mobile apps. OneSignal supports rich media in notifications and engagement analytics. It includes an [Expo config plugin](https://github.com/OneSignal/onesignal-expo-plugin) for direct integration into your Expo project.
+[OneSignal](https://onesignal.com/) é uma plataforma de engajamento de clientes que oferece notificações push, mensagens dentro do app, SMS e serviços de e-mail para apps web e mobile. O OneSignal oferece suporte a mídia rica nas notificações e análise de engajamento. Ele inclui um [config plugin para Expo](https://github.com/OneSignal/onesignal-expo-plugin) para integração direta ao seu projeto Expo.
 
 <BoxLink
-  title="OneSignal Expo SDK Setup"
-  description="Follow this guide for a step-by-step setup on how to integrate OneSignal in your Expo project."
+  title="Configuração do SDK do OneSignal para Expo"
+  description="Siga este guia para uma configuração passo a passo de como integrar o OneSignal ao seu projeto Expo."
   href="https://documentation.onesignal.com/docs/react-native-expo-sdk-setup"
   Icon={BookOpen02Icon}
 />
 
-## Braze
+## Braze \{#braze}
 
-[Braze](https://www.braze.com/) is a customer engagement platform that delivers personalized, cross-channel messaging through push notifications, in-app messaging, email, SMS, and web. Braze supports rich notification content, push notification campaigns, and support for resending notifications after failed deliveries on Android. It provides a [React Native SDK](https://github.com/braze-inc/braze-react-native-sdk) and a [config plugin](https://github.com/braze-inc/braze-expo-plugin/tree/main). Check out the [Expo example app](https://github.com/braze-inc/braze-expo-plugin/tree/main/example) for more details.
+[Braze](https://www.braze.com/) é uma plataforma de engajamento de clientes que entrega mensagens personalizadas e multicanal por meio de notificações push, mensagens dentro do app, e-mail, SMS e web. O Braze oferece suporte a conteúdo rico em notificações, campanhas de notificações push e reenvio de notificações após falhas de entrega no Android. Ele fornece um [SDK para React Native](https://github.com/braze-inc/braze-react-native-sdk) e um [config plugin](https://github.com/braze-inc/braze-expo-plugin/tree/main). Confira o [app de exemplo para Expo](https://github.com/braze-inc/braze-expo-plugin/tree/main/example) para mais detalhes.
 
 <BoxLink
-  title="Braze Expo Setup"
-  description="Follow this guide for a step-by-step setup on how to integrate Braze in your Expo project."
+  title="Configuração do Braze para Expo"
+  description="Siga este guia para uma configuração passo a passo de como integrar o Braze ao seu projeto Expo."
   href="https://www.braze.com/docs/developer_guide/sdk_integration?sdktab=react%20native"
   Icon={BookOpen02Icon}
 />
 
-## Customer.io
+## Customer.io \{#customerio}
 
-[Customer.io](https://customer.io/) is a customer engagement platform that allows you to design powerful automated workflows utilizing push notifications, in-app messaging, email, SMS capabilities, and more. Its visual workflow builder allows you to automate complex, data-driven campaigns across multiple channels. Customer.io supports device-side metrics collection that can be used to customize push notifications tailored to user behaviors and preferences. Customer.io provides an [Expo plugin](https://github.com/customerio/customerio-expo-plugin) for direct integration with your Expo project and documentation for using Customer.io push notifications alongside other providers.
+[Customer.io](https://customer.io/) é uma plataforma de engajamento de clientes que permite criar workflows automatizados poderosos com notificações push, mensagens dentro do app, e-mail, SMS e outros canais. Seu construtor visual de workflows permite automatizar campanhas complexas e orientadas por dados em vários canais. O Customer.io oferece coleta de métricas no dispositivo, que pode ser usada para personalizar notificações push de acordo com o comportamento e as preferências dos usuários. Ele fornece um [plugin para Expo](https://github.com/customerio/customerio-expo-plugin) para integração direta com o seu projeto Expo, além de documentação para usar as notificações push do Customer.io junto com outros provedores.
 
 <BoxLink
-  title="Customer.io Expo Quick Start Guide"
-  description="Follow this guide for a step-by-step setup on how to integrate Customer.io in your Expo project."
+  title="Guia de início rápido do Customer.io para Expo"
+  description="Siga este guia para uma configuração passo a passo de como integrar o Customer.io ao seu projeto Expo."
   href="https://docs.customer.io/sdk/expo/quick-start-guide/"
   Icon={BookOpen02Icon}
 />
 
-## CleverTap
+## CleverTap \{#clevertap}
 
-[CleverTap](https://clevertap.com/) is an all-in-one customer engagement platform that helps you deliver personalized, real-time, omnichannel messaging across push notifications, in-app messages, email, and more. It offers advanced segmentation, analytics, and campaign automation — built to scale with your business. The [CleverTap React Native SDK](https://developer.clevertap.com/docs/react-native) and [Expo config plugin](https://github.com/CleverTap/clevertap-expo-plugin) make it easy to integrate CleverTap into your Expo projects. The config plugin handles all the native module setup during the prebuild process, allowing you to configure CleverTap through your app config without having to manually modify native code. For more information, check out the [CleverTap Example Plugin](https://github.com/CleverTap/clevertap-expo-plugin/tree/main/CTExample).
+[CleverTap](https://clevertap.com/) é uma plataforma completa de engajamento de clientes que ajuda você a entregar mensagens personalizadas, em tempo real e omnicanal, por meio de notificações push, mensagens dentro do app, e-mail e outros canais. Ela oferece segmentação avançada, análises e automação de campanhas, pensadas para crescer junto com o seu negócio. O [SDK do CleverTap para React Native](https://developer.clevertap.com/docs/react-native) e o [config plugin para Expo](https://github.com/CleverTap/clevertap-expo-plugin) facilitam a integração do CleverTap aos seus projetos Expo. O config plugin cuida de toda a configuração do módulo nativo durante o prebuild, permitindo configurar o CleverTap pela sua app config sem modificar o código nativo manualmente. Para mais informações, confira o [CleverTap Example Plugin](https://github.com/CleverTap/clevertap-expo-plugin/tree/main/CTExample).
 
 <BoxLink
-  title="CleverTap Expo Plugin Docs"
-  description="Follow this guide to set up CleverTap in your Expo or React Native project."
+  title="Documentação do plugin do CleverTap para Expo"
+  description="Siga este guia para configurar o CleverTap no seu projeto Expo ou React Native."
   href="https://developer.clevertap.com/docs/clevertap-expo-plugin"
   Icon={BookOpen02Icon}
 />
 
-## Send notifications directly via FCM and APNs
+## Envie notificações diretamente pelo FCM e pelo APNs \{#send-notifications-directly-via-fcm-and-apns}
 
-You may choose to send directly to platform push API's from your backend. In this case, you can still use [`expo-notifications`](/versions/latest/sdk/notifications/) to retrieve the native push token and configure notifications separately for each platform.
+Você pode optar por enviar notificações diretamente para as APIs de push das plataformas a partir do seu backend. Nesse caso, ainda é possível usar o [`expo-notifications`](/versions/latest/sdk/notifications/) para obter o token de push nativo e configurar as notificações separadamente para cada plataforma.
 
-Although the client-side code remains cross-platform with [`expo-notifications`](/versions/latest/sdk/notifications/), you will need to implement server-side logic to interact with the [FCM](https://firebase.google.com/docs/cloud-messaging) and [APNs](https://developer.apple.com/documentation/usernotifications) APIs individually.
+Embora o código do lado do cliente continue multiplataforma com o [`expo-notifications`](/versions/latest/sdk/notifications/), você precisará implementar a lógica do lado do servidor para interagir individualmente com as APIs do [FCM](https://firebase.google.com/docs/cloud-messaging) e do [APNs](https://developer.apple.com/documentation/usernotifications).
 
-## React Native Firebase messaging
+## Mensageria com React Native Firebase \{#react-native-firebase-messaging}
 
-[React Native Firebase](https://rnfirebase.io/) provides a messaging module that lets you use [Firebase Cloud Messaging (FCM)](https://firebase.google.com/docs/cloud-messaging) as a unified push notification service for both Android and iOS. While FCM is often associated with Android notifications, it also supports iOS by routing messages through Apple Push Notification service (APNs) behind the scenes.
+O [React Native Firebase](https://rnfirebase.io/) oferece um módulo de mensageria que permite usar o [Firebase Cloud Messaging (FCM)](https://firebase.google.com/docs/cloud-messaging) como um serviço unificado de notificações push para Android e iOS. Embora o FCM seja frequentemente associado a notificações Android, ele também oferece suporte ao iOS, roteando as mensagens pelo Apple Push Notification service (APNs) nos bastidores.
 
-This approach differs from using FCM solely for Android notifications. Instead, Firebase's cross-platform SDK handles notifications for both platforms through a single service.
+Essa abordagem é diferente de usar o FCM somente para notificações Android. Em vez disso, o SDK multiplataforma do Firebase cuida das notificações das duas plataformas por meio de um único serviço.
 
-> Even though FCM handles notifications for both platforms, iOS notifications still go through APNs. Firebase automatically manages this routing. Learn more in the [React Native Firebase messaging documentation](https://rnfirebase.io/messaging/usage).
+> Mesmo que o FCM trate as notificações das duas plataformas, as notificações do iOS ainda passam pelo APNs. O Firebase gerencia esse roteamento automaticamente. Saiba mais na [documentação de mensageria do React Native Firebase](https://rnfirebase.io/messaging/usage).
 
-## Tips and important considerations
+## Dicas e considerações importantes \{#tips-and-important-considerations}
 
-- **Avoid mixing client-side implementations**: Different notification services may have conflicting client-side implementations. Use a consistent approach to prevent potential issues.
-- **Web notifications**: Expo notifications do not support web notifications. However, some third-party solutions may offer this capability. Consider your app's requirements when choosing a service.
-- **Token management**: Track both Expo push tokens and native device tokens in your database. This provides flexibility for future integrations, especially with marketing tools that send notifications directly via FCM or APNs.
+- **Evite misturar implementações do lado do cliente**: serviços de notificação diferentes podem ter implementações conflitantes do lado do cliente. Use uma abordagem consistente para evitar possíveis problemas.
+- **Notificações web**: as notificações do Expo não oferecem suporte a notificações web. No entanto, algumas soluções de terceiros podem oferecer esse recurso. Considere os requisitos do seu app ao escolher um serviço.
+- **Gerenciamento de tokens**: registre tanto os tokens de push do Expo quanto os tokens nativos dos dispositivos no seu banco de dados. Isso oferece flexibilidade para integrações futuras, especialmente com ferramentas de marketing que enviam notificações diretamente pelo FCM ou pelo APNs.
+
+{/* ia-translate: true */}

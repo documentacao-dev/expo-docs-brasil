@@ -1,6 +1,6 @@
 ---
-title: Using Resend
-description: Learn how to integrate Resend in your Expo and React Native app to programmatically send emails with Expo Router's API Routes.
+title: Usando o Resend
+description: Aprenda a integrar o Resend ao seu app Expo e React Native para enviar e-mails de forma programática com as API Routes do Expo Router.
 ---
 
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
@@ -8,53 +8,53 @@ import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-[Resend](https://resend.com/) is an email API platform designed for developers. It allows you to send, receive, and manage emails programmatically through an API. You can use it to send transactional emails for use cases like newsletters, marketing emails, and more. The API also allows you to set up webhooks for email events, manage domains for deliverability, and receive emails via webhooks.
+[Resend](https://resend.com/) é uma plataforma de API de e-mail criada para desenvolvedores. Ela permite enviar, receber e gerenciar e-mails de forma programática por meio de uma API. Você pode usá-la para enviar e-mails transacionais em casos como newsletters, e-mails de marketing e outros. A API também permite configurar webhooks para eventos de e-mail, gerenciar domínios para entregabilidade e receber e-mails por meio de webhooks.
 
-This guide demonstrates the **essential steps to integrate Resend with your Expo and React Native project**.
+Este guia mostra os **passos essenciais para integrar o Resend ao seu projeto Expo e React Native**.
 
 <VideoBoxLink
   videoId="8sPD8SNcUFA"
-  title="How to send emails with Resend from your Expo app"
-  description="Integrate Resend with Expo Router API routes to send emails programmatically and deploy to Expo Hosting."
+  title="Como enviar e-mails com o Resend no seu app Expo"
+  description="Integre o Resend às API Routes do Expo Router para enviar e-mails de forma programática e fazer o deploy no Expo Hosting."
 />
 
 ---
 
 <Prerequisites>
-  <Requirement title="A project using Expo Router">
-    See [Expo Router installation](/router/installation/) if you don't have one yet.
+  <Requirement title="Um projeto usando o Expo Router">
+    Veja a [instalação do Expo Router](/router/installation/) se você ainda não tiver um.
   </Requirement>
-  <Requirement title="An Expo account">
-    An [Expo account](https://expo.dev/signup) is required to deploy the API route using Expo
-    Hosting.
+  <Requirement title="Uma conta Expo">
+    Uma [conta Expo](https://expo.dev/signup) é necessária para fazer o deploy da API route usando o
+    Expo Hosting.
   </Requirement>
-  <Requirement title="EAS CLI installed globally">
-    Install [EAS CLI](/eas/cli/) with `npm install -g eas-cli`.
+  <Requirement title="EAS CLI instalado globalmente">
+    Instale a [EAS CLI](/eas/cli/) com `npm install -g eas-cli`.
   </Requirement>
-  <Requirement title="A Resend account">Sign up at [resend.com](https://resend.com/).</Requirement>
+  <Requirement title="Uma conta no Resend">Cadastre-se em [resend.com](https://resend.com/).</Requirement>
 </Prerequisites>
 
 <Step label="1">
 
-## Create a Resend API key
+## Crie uma chave de API do Resend \{#create-a-resend-api-key}
 
-Go to the [Resend dashboard](https://resend.com/api-keys) > **API Keys** and click on **Create API Key** to generate an API key.
+Acesse o [painel do Resend](https://resend.com/api-keys) > **API Keys** e clique em **Create API Key** para gerar uma chave de API.
 
-Once you have generated the API key, save it to **.env.local** file in your Expo project:
+Depois de gerar a chave de API, salve-a no arquivo **.env.local** do seu projeto Expo:
 
 ```shell .env.local
 RESEND_API_KEY=YOUR_RESEND_API_KEY
 ```
 
-> **Note:** Do not commit **.env.local** file to your Version Control System (VCS) like Git. The API key is sensitive and should not be exposed to the public. You must add the file to your **.gitignore** file to ignore it.
+> **Note:** Não faça commit do arquivo **.env.local** no seu Sistema de Controle de Versão (VCS), como o Git. A chave de API é sensível e não deve ser exposta ao público. Você precisa adicionar o arquivo ao seu **.gitignore** para ignorá-lo.
 
 </Step>
 
 <Step label="2">
 
-## Install Resend SDK
+## Instale o SDK do Resend \{#install-resend-sdk}
 
-In your Expo project, install the Resend SDK using the following command:
+No seu projeto Expo, instale o SDK do Resend com o comando a seguir:
 
 <Terminal
   cmd={{
@@ -65,15 +65,15 @@ In your Expo project, install the Resend SDK using the following command:
   }}
 />
 
-The resend SDK library is a server-only library. It allows you to send emails from the server-side code of your app. Since this guide uses [API Routes](/router/web/api-routes/) to handle email submissions, you need to install the resend as part of your Expo project.
+O SDK do Resend é uma biblioteca exclusiva para servidor. Ela permite enviar e-mails a partir do código do lado do servidor do seu app. Como este guia usa [API Routes](/router/web/api-routes/) para processar os envios de e-mail, você precisa instalar o resend como parte do seu projeto Expo.
 
 </Step>
 
 <Step label="3">
 
-## Enable and create an API route
+## Ative e crie uma API route \{#enable-and-create-an-api-route}
 
-To enable using API Routes in your Expo project, you need to set the web.output to server in your [app config](/workflow/configuration/) file:
+Para usar API Routes no seu projeto Expo, defina `web.output` como `server` no arquivo de [app config](/workflow/configuration/):
 
 ```json app.json
 {
@@ -83,7 +83,7 @@ To enable using API Routes in your Expo project, you need to set the web.output 
 }
 ```
 
-Then, [create an API route](/router/web/api-routes/#create-an-api-route) to handle email submissions. Inside the **src/app** directory, create a new file called **api/audience+api.ts**. The `+api.ts` extension is used by Expo Router to identify the file as an API Route. To test the integration, you can add the minimal code below to send an email to a recipient using Resend SDK:
+Em seguida, [crie uma API route](/router/web/api-routes/#create-an-api-route) para processar os envios de e-mail. Dentro do diretório **src/app**, crie um arquivo novo chamado **api/audience+api.ts**. A extensão `+api.ts` é usada pelo Expo Router para identificar o arquivo como uma API Route. Para testar a integração, você pode adicionar o código mínimo abaixo, que envia um e-mail para um destinatário usando o SDK do Resend:
 
 ```tsx src/app/api/audience+api.ts
 import { Resend } from 'resend';
@@ -110,32 +110,32 @@ export async function POST(request: Request) {
 }
 ```
 
-In the above code snippet, the `POST` [request function](/router/web/api-routes/#request-body) is executed when the `/api/audience` route is matched. The function receives a `Request` object as an argument, which contains the HTTP request body. Then, the function extracts the `email` from the request body and sends it to the Resend API to add it to the audience.
+No trecho de código acima, a [função de requisição](/router/web/api-routes/#request-body) `POST` é executada quando a rota `/api/audience` é encontrada. A função recebe um objeto `Request` como argumento, que contém o corpo da requisição HTTP. Em seguida, a função extrai o `email` do corpo da requisição e o envia para a API do Resend para adicioná-lo à audiência.
 
 </Step>
 
 <Step label="4">
 
-## Add a base URL
+## Adicione uma URL base \{#add-a-base-url}
 
-To make the API route accessible from your Expo app, you need to add the base URL as an environment variable in your Expo project. Add the following code to your **.env.local** file:
+Para que a API route fique acessível pelo seu app Expo, adicione a URL base como uma variável de ambiente no seu projeto Expo. Inclua o código a seguir no seu arquivo **.env.local**:
 
 ```shell .env.local
 EXPO_PUBLIC_BASE_URL=https://example-resend.expo.app # Deployed URL via Expo Hosting
 EXPO_PUBLIC_BASE_URL_LOCAL=http://localhost:8081 # Only required for testing locally
 ```
 
-To test Resend integration locally, you can use `EXPO_PUBLIC_BASE_URL_LOCAL` to point to your local development server, whose URL is provided when you run `npx expo start`. Later in this guide, when you deploy your app to Expo Hosting, ensure to update the `EXPO_PUBLIC_BASE_URL` to the deployed URL.
+Para testar a integração do Resend localmente, use `EXPO_PUBLIC_BASE_URL_LOCAL` para apontar para o seu servidor de desenvolvimento local, cuja URL é exibida quando você executa `npx expo start`. Mais adiante neste guia, quando você fizer o deploy do app no Expo Hosting, atualize `EXPO_PUBLIC_BASE_URL` para a URL publicada.
 
-Note that only variables prefixed with `EXPO_PUBLIC_` can be used in the frontend code, so you can have the above as well as the Resend API key in the same **.env** file, but the `RESEND_API_KEY` will only be accessible from the server-side code (that is, files ending with **+api**).
+Observe que apenas variáveis com o prefixo `EXPO_PUBLIC_` podem ser usadas no código do frontend. Assim, você pode ter as variáveis acima e a chave de API do Resend no mesmo arquivo **.env**, mas `RESEND_API_KEY` só fica acessível no código do lado do servidor (ou seja, nos arquivos que terminam em **+api**).
 
 </Step>
 
 <Step label="5">
 
-## Add a form to your Expo project
+## Adicione um formulário ao seu projeto Expo \{#add-a-form-to-your-expo-project}
 
-The following example code shows a simple form to collect email addresses from app users. In a real-world scenario, you would want to add validation and error handling to the form. For example, the following code is added to the **src/app/index.tsx** file:
+O exemplo a seguir mostra um formulário simples para coletar endereços de e-mail dos usuários do app. Em um cenário real, você deve adicionar validação e tratamento de erros ao formulário. Por exemplo, o código a seguir é adicionado ao arquivo **src/app/index.tsx**:
 
 ```tsx src/app/index.tsx
 import { useRef, useState } from 'react';
@@ -229,11 +229,11 @@ const styles = StyleSheet.create({
 
 <Step label="6">
 
-## Deploy the API route to Expo Hosting
+## Faça o deploy da API route no Expo Hosting \{#deploy-the-api-route-to-expo-hosting}
 
-To make the API route (`/api/audience`) accessible from a URL, you can deploy it to [Expo Hosting](/eas/hosting/get-started/).
+Para tornar a API route (`/api/audience`) acessível por uma URL, você pode fazer o deploy dela no [Expo Hosting](/eas/hosting/get-started/).
 
-1. Run the following command to export the web and API assets. The exported files are saved inside a **dist** directory and the API route file is part of this directory:
+1. Execute o comando a seguir para exportar os assets da web e da API. Os arquivos exportados são salvos dentro de um diretório **dist**, e a API route faz parte desse diretório:
 
 <Terminal
   cmd={{
@@ -244,19 +244,21 @@ To make the API route (`/api/audience`) accessible from a URL, you can deploy it
   }}
 />
 
-2. Run the following to create a production deployment via Expo Hosting:
+2. Execute o comando a seguir para criar um deploy de produção no Expo Hosting:
 
 <Terminal cmd={['$ eas deploy --prod']} />
 
-The `eas deploy --prod` command will:
+O comando `eas deploy --prod` vai:
 
-- Automatically create an Expo Services project if you haven't already
-- Prompt you to choose the preview URL for your project. Ensure that this URL is the same as the value of `EXPO_PUBLIC_BASE_URL` in your **.env.local** file. This will make the API route accessible from your Expo app while deployed in production
+- Criar automaticamente um projeto do Expo Services, caso você ainda não tenha um
+- Pedir que você escolha a URL de preview do seu projeto. Confira se essa URL é a mesma do valor de `EXPO_PUBLIC_BASE_URL` no seu arquivo **.env.local**. Isso fará a API route ficar acessível pelo seu app Expo quando estiver publicado em produção
 
-> **Note:** Before deployment, you need to use the `EXPO_PUBLIC_BASE_URL` as your hosted domain in your form screen (**src/app/index.tsx**).
+> **Note:** Antes do deploy, você precisa usar `EXPO_PUBLIC_BASE_URL` como o domínio hospedado no seu formulário (**src/app/index.tsx**).
 
 </Step>
 
-## Learn more about Resend
+## Saiba mais sobre o Resend \{#learn-more-about-resend}
 
-For more information about Resend's API and usage, see [Resend's official documentation](https://resend.com/docs/introduction).
+Para mais informações sobre a API e o uso do Resend, veja a [documentação oficial do Resend](https://resend.com/docs/introduction).
+
+{/* ia-translate: true */}
