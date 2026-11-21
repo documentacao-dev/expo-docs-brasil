@@ -1,32 +1,32 @@
 ---
-title: Edit rich text
-description: Learn about current approaches to preview and edit rich text in React Native.
+title: Editar texto rico
+description: Saiba sobre as abordagens atuais para visualizar e editar texto rico no React Native.
 hasVideoLink: true
 ---
 
 import { VideoBoxLink } from '~/ui/components/VideoBoxLink';
 
-A lot of applications need to allow users to type in text. For example, if you want to build a messaging or social media app, you will probably rely heavily on text inputs. React Native has a built-in `<TextInput>` component to implement this without much effort for many simple cases.
+Muitos apps precisam permitir que os usuários digitem texto. Por exemplo, se você quer criar um app de mensagens ou de rede social, provavelmente vai depender bastante de campos de texto. O React Native tem um componente `<TextInput>` integrado para isso, que resolve muitos casos simples sem muito esforço.
 
-However, sometimes you need to be more flexible. Think of long social media posts, note apps, or document editors. Ideally, you need to allow different text styles, lists, headings, embedded images, and more. This is called a rich text editor, and it's a difficult problem to solve everywhere, including in React Native.
+No entanto, às vezes você precisa de mais flexibilidade. Pense em posts longos de redes sociais, apps de anotações ou editores de documentos. O ideal é permitir estilos de texto diferentes, listas, títulos, imagens incorporadas e muito mais. Isso se chama editor de texto rico, e é um problema difícil de resolver em qualquer lugar, inclusive no React Native.
 
-There is currently no default solution for that in the React Native ecosystem. This guide explores the available approaches and their tradeoffs. For most apps, start with a native editor from Software Mansion: [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown) for markdown output or [`react-native-enriched-html`](https://github.com/software-mansion/react-native-enriched-html) for HTML output.
+Não existe uma solução padrão para isso no ecossistema do React Native. Este guia explora as abordagens disponíveis e suas vantagens e desvantagens. Para a maioria dos apps, comece com um editor nativo da Software Mansion: [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown) para saída em markdown ou [`react-native-enriched-html`](https://github.com/software-mansion/react-native-enriched-html) para saída em HTML.
 
 <VideoBoxLink
   videoId="CxORa1tXMjw"
-  title="Watch: How to implement a Rich Text Editor using DOM components"
-  description="Build a rich text editor in React Native using Expo DOM components to render a web-based editor inside a native app."
+  title="Assista: como implementar um editor de texto rico usando componentes DOM"
+  description="Crie um editor de texto rico no React Native usando componentes DOM do Expo para renderizar um editor baseado na web dentro de um app nativo."
 />
 
-## Render rich text
+## Renderizar texto rico \{#render-rich-text}
 
-There are a lot of good options to display rich text:
+Há muitas boas opções para exibir texto rico:
 
-- For markdown content, you can use a markdown renderer such as [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown).
+- Para conteúdo em markdown, você pode usar um renderizador de markdown, como o [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown).
 
-- For HTML content, you can use [`@expo/html-elements`](https://www.npmjs.com/package/@expo/html-elements) or a webview ([`react-native-webview`](/versions/latest/sdk/webview/)).
+- Para conteúdo em HTML, você pode usar o [`@expo/html-elements`](https://www.npmjs.com/package/@expo/html-elements) ou uma webview ([`react-native-webview`](/versions/latest/sdk/webview/)).
 
-- To have a custom format and more control, you can take advantage of nesting `<Text>` components to render styles and layouts.
+- Para ter um formato personalizado e mais controle, você pode aproveitar componentes `<Text>` aninhados para renderizar estilos e layouts.
 
   ```jsx
   <TextInput>
@@ -36,58 +36,58 @@ There are a lot of good options to display rich text:
   </TextInput>
   ```
 
-- You can also use [Expo Modules API](/modules/overview/) to write a custom renderer component with native platform primitives using third-party libraries such as [Markwon](https://github.com/noties/Markwon) on Android and `AttributedString` on iOS.
+- Você também pode usar a [API de módulos do Expo](/modules/overview/) para escrever um componente renderizador personalizado com primitivas nativas da plataforma, usando bibliotecas de terceiros como o [Markwon](https://github.com/noties/Markwon) no Android e o `AttributedString` no iOS.
 
-## Approaches to edit rich text
+## Abordagens para editar texto rico \{#approaches-to-edit-rich-text}
 
-There are a few approaches to get rich text rendering to work. However, all have different limitations.
+Há algumas abordagens para fazer a renderização de texto rico funcionar. No entanto, todas têm limitações diferentes.
 
-### Native editors
+### Editores nativos \{#native-editors}
 
-A native editor renders and edits text with the platform's text APIs instead of a webview. It gives you native performance and text behavior that matches the rest of your app. Software Mansion maintains two libraries that take this approach:
+Um editor nativo renderiza e edita texto usando as APIs de texto da plataforma, em vez de uma webview. Ele oferece desempenho nativo e um comportamento de texto que combina com o restante do app. A Software Mansion mantém duas bibliotecas que seguem essa abordagem:
 
-- [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown) edits rich text with markdown output on Android, iOS, macOS, and Web. It also provides standalone native SDKs for Android (Kotlin) and iOS (Swift).
-- [`react-native-enriched-html`](https://github.com/software-mansion/react-native-enriched-html) provides native input and display components with HTML output on Android, iOS, and web. It requires the [New Architecture](/guides/new-architecture/).
+- [`react-native-enriched-markdown`](https://github.com/software-mansion/enriched-markdown) edita texto rico com saída em markdown no Android, iOS, macOS e Web. Ele também oferece SDKs nativos independentes para Android (Kotlin) e iOS (Swift).
+- [`react-native-enriched-html`](https://github.com/software-mansion/react-native-enriched-html) oferece componentes nativos de entrada e exibição com saída em HTML no Android, iOS e web. Ele exige a [New Architecture](/guides/new-architecture/).
 
-[`react-native-live-markdown`](https://github.com/Expensify/react-native-live-markdown) is another native option. It is a drop-in replacement for `<TextInput>` that applies live formatting to markdown on every keystroke.
+[`react-native-live-markdown`](https://github.com/Expensify/react-native-live-markdown) é outra opção nativa. É um substituto direto do `<TextInput>` que aplica formatação ao vivo em markdown a cada tecla digitada.
 
-You can also wrap any native rich text editor using [Expo Modules API](/modules/overview/), but if you use different ones on each platform, you need to unify their APIs and input formats.
+Você também pode envolver qualquer editor nativo de texto rico usando a [API de módulos do Expo](/modules/overview/), mas, se usar editores diferentes em cada plataforma, precisará unificar as APIs e os formatos de entrada.
 
-> Rich text is usually represented using [abstract syntax trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree). For example, a bullet list can be a node of type `bulleted-list` with several children of type `list-item`. You can convert both HTML and markdown to a suitable AST format.
+> O texto rico costuma ser representado com [árvores de sintaxe abstrata](https://en.wikipedia.org/wiki/Abstract_syntax_tree). Por exemplo, uma lista com marcadores pode ser um nó do tipo `bulleted-list` com vários filhos do tipo `list-item`. Você pode converter HTML e markdown para um formato de AST adequado.
 
-There is also an effort to port the lexical editor to Android and iOS and provide a React Native wrapper. To follow its progress, see the [lexical discussion about React Native support](https://github.com/facebook/lexical/discussions/2410).
+Também há um esforço para portar o editor lexical para Android e iOS e oferecer um wrapper para React Native. Para acompanhar o progresso, veja a [discussão do lexical sobre suporte ao React Native](https://github.com/facebook/lexical/discussions/2410).
 
-### Webview-based editors
+### Editores baseados em webview \{#webview-based-editors}
 
-While most React Native UI components wrap native platform primitives and are fast, performant, and **native feeling** as a result, the webview-based rich text editors use a different approach.
+Enquanto a maioria dos componentes de UI do React Native envolve primitivas nativas da plataforma, e por isso é rápida, performática e tem **sensação nativa**, os editores de texto rico baseados em webview seguem outra abordagem.
 
-They wrap an existing rich text editor built for web with JavaScript inside a [`react-native-webview`](/versions/latest/sdk/webview/). It works on all platforms (Android, iOS, Web) and can take advantage of popular rich text editors available for the Web platform, but it has a performance and UX penalty.
+Eles envolvem um editor de texto rico feito para web, escrito em JavaScript, dentro de uma [`react-native-webview`](/versions/latest/sdk/webview/). Funciona em todas as plataformas (Android, iOS, Web) e pode aproveitar editores de texto rico populares disponíveis para a web, mas tem um custo de desempenho e de UX.
 
-You will not be able to use native UI components inside the editor. Any implementation of features like mentions or image embedding will duplicate features and require significant effort to implement.
+Você não vai conseguir usar componentes de UI nativos dentro do editor. Qualquer implementação de recursos como menções ou incorporação de imagens vai precisar duplicar funcionalidades e exigir um esforço significativo.
 
-### Existing webview-based React Native libraries
+### Bibliotecas React Native existentes baseadas em webview \{#existing-webview-based-react-native-libraries}
 
-For a ready-made webview-based editor, use [`@10play/tentap-editor`](https://github.com/10play/10tap-editor). It is a good fit when you need a basic rich text editor with limited configuration and don't have strict performance or UX requirements.
+Para um editor baseado em webview pronto, use o [`@10play/tentap-editor`](https://github.com/10play/10tap-editor). Ele é uma boa opção quando você precisa de um editor de texto rico básico, com configuração limitada, e não tem requisitos rígidos de desempenho ou de UX.
 
-### Custom webview-based editor
+### Editor personalizado baseado em webview \{#custom-webview-based-editor}
 
-If you need more configurability, you can build a similar library with an existing web-only editor. However, you have to handle the message passing and web implementation yourself. This gives you all the options that the underlying editor offers and lets you implement more features.
+Se você precisar de mais configurabilidade, pode criar uma biblioteca semelhante com um editor existente só para web. No entanto, você mesmo precisa cuidar da troca de mensagens e da implementação para a web. Isso dá acesso a todas as opções que o editor oferece e permite implementar mais recursos.
 
 - [Quill](https://quilljs.com/)
 - [lexical](https://github.com/facebook/lexical)
 - [slate](https://github.com/ianstormtaylor/slate)
 
-You will need to use message passing to pass text and `onChange` events to and from the webview. Since rich texts often end up long, it's better to model it as an uncontrolled component to prevent lag on each keystroke. Also, if you can avoid serializing and sending the entire state on each keystroke that also improves performance.
+Você vai precisar usar troca de mensagens para passar texto e eventos `onChange` para a webview e dela. Como textos ricos costumam ficar longos, é melhor modelá-lo como um componente não controlado, para evitar lag a cada tecla digitada. Além disso, se você conseguir evitar serializar e enviar o estado inteiro a cada tecla, o desempenho também melhora.
 
-## Building on top of React Native TextInput
+## Construindo sobre o TextInput do React Native \{#building-on-top-of-react-native-textinput}
 
-In this section, let's discuss if it is possible to have a feature complete rich text input for general purposes.
+Nesta seção, vamos discutir se é possível ter um campo de entrada de texto rico completo para uso geral.
 
-React Native allows nested `<Text>` components and allows them to be used as children of `<TextInput>` to render and edit styled text. It is synchronous with the new React Native architecture (the `onChange` event fires immediately after a new character is typed into the text input field).
+O React Native permite componentes `<Text>` aninhados e aceita que sejam usados como filhos de `<TextInput>` para renderizar e editar texto estilizado. Ele é síncrono com a nova arquitetura do React Native (o evento `onChange` dispara imediatamente após um novo caractere ser digitado no campo de texto).
 
-Unfortunately, the `<TextInput>` component is built toward working with regular text, and it only returns a string in it's `onTextChange` callback. This is a significant limitation.
+Infelizmente, o componente `<TextInput>` foi feito para trabalhar com texto simples, e ele só retorna uma string no callback `onTextChange`. Essa é uma limitação significativa.
 
-Here is a quick example. Let's start by rendering a text input with the following bold text:
+Veja um exemplo rápido. Vamos começar renderizando um campo de texto com o seguinte texto em negrito:
 
 ```jsx
 <TextInput>
@@ -98,20 +98,22 @@ Here is a quick example. Let's start by rendering a text input with the followin
 </TextInput>
 ```
 
-Then, let's append a fifth letter `a` to the text input. The position of your cursor should determine if the new letter is a part of the bold string or not. Unfortunately, the callback only returns `aaaaa`.
+Em seguida, vamos acrescentar uma quinta letra `a` ao campo de texto. A posição do cursor deveria determinar se a nova letra faz parte da parte em negrito ou não. Infelizmente, o callback retorna apenas `aaaaa`.
 
-There is an additional `onSelectionChange` prop that can be used to get that information. However, it makes the task significantly harder. Inserting additional characters (such as newlines for lists or bullet points) also desynchronizes the selection.
+Existe uma prop adicional, `onSelectionChange`, que pode ser usada para obter essa informação. No entanto, ela torna a tarefa bem mais difícil. Inserir caracteres adicionais (como quebras de linha para listas ou marcadores) também dessincroniza a seleção.
 
-There are some attempts to build such an editor, such as [`markdown-editor`](https://github.com/shakogegia/markdown-editor) (not actively maintained) and [`rn-text-editor`](https://github.com/amjadbouhouch/rn-text-editor) (in beta), but no widely used packages exist.
+Existem algumas tentativas de criar esse tipo de editor, como o [`markdown-editor`](https://github.com/shakogegia/markdown-editor) (sem manutenção ativa) e o [`rn-text-editor`](https://github.com/amjadbouhouch/rn-text-editor) (em beta), mas não existe nenhum pacote amplamente usado.
 
-## Markdown editors with visible styling markers
+## Editores de markdown com marcadores de estilo visíveis \{#markdown-editors-with-visible-styling-markers}
 
-If using markdown to style text fulfills your requirement, you can render the markdown in a separate, non-editable view while editing. It is not complex to build on your own using any markdown renderer.
+Se usar markdown para estilizar o texto atende ao seu requisito, você pode renderizar o markdown em uma view separada, não editável, enquanto o usuário edita. Não é complexo criar isso por conta própria usando qualquer renderizador de markdown.
 
-This editing experience suits power users or programming/tech applications. You can also explore rendering rich text while showing markdown only in the selected chunk of text or other hybrid approaches.
+Essa experiência de edição atende bem a usuários avançados ou a apps de programação e tecnologia. Você também pode explorar a renderização de texto rico mostrando o markdown apenas no trecho de texto selecionado, ou outras abordagens híbridas.
 
-## Summary
+## Resumo \{#summary}
 
-While there are many options for showing rich text, there is no one-size-fits-all solution for rich text editing in React Native. For most apps, start with one of the [native editors](#native-editors) from Software Mansion.
+Embora existam muitas opções para exibir texto rico, não há uma solução única para edição de texto rico no React Native. Para a maioria dos apps, comece com um dos [editores nativos](#native-editors) da Software Mansion.
 
-Choose a webview-based editor when you need a feature that only a web editor offers. Build on top of React Native primitives only when your requirements are minimal, since you have to handle selection and formatting yourself.
+Escolha um editor baseado em webview quando precisar de um recurso que só um editor web oferece. Construa sobre as primitivas do React Native apenas quando seus requisitos forem mínimos, pois você mesmo precisará lidar com seleção e formatação.
+
+{/* ia-translate: true */}

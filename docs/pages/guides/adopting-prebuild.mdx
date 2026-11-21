@@ -1,20 +1,20 @@
 ---
-title: Adopt Prebuild in an existing React Native project
-sidebar_title: Adopt Prebuild
-description: Learn how to adopt Expo Prebuild in a project that was bootstrapped with React Native CLI.
+title: Adotar o Prebuild em um projeto React Native existente
+sidebar_title: Adotar o Prebuild
+description: Saiba como adotar o Expo Prebuild em um projeto criado com o React Native CLI.
 ---
 
 import { DiffBlock, Terminal } from '~/ui/components/Snippet';
 
-This guide shows how to adopt Expo Prebuild in a project that you created with `npx @react-native-community/cli@latest init`. To learn what Expo Prebuild does and when to use it, see [Continuous Native Generation (CNG)](/workflow/continuous-native-generation/). The amount of time it will take to convert your project depends on the amount of custom native changes that you have made to your Android and iOS native projects. This may take a minute or two on a brand new project, and on a large project, it will be much longer.
+Este guia mostra como adotar o Expo Prebuild em um projeto criado com `npx @react-native-community/cli@latest init`. Para saber o que o Expo Prebuild faz e quando usá-lo, veja [Continuous Native Generation (CNG)](/workflow/continuous-native-generation/). O tempo necessário para converter o projeto depende da quantidade de alterações nativas personalizadas que você fez nos projetos Android e iOS. Em um projeto novo, isso pode levar um ou dois minutos. Em um projeto grande, vai levar bem mais.
 
-Adopting prebuild will automatically add support for developing modules with the [Expo native module API][expo-modules-core] by linking `expo-modules-core` natively. You can also use any command from [Expo CLI][cli] in your project.
+Adotar o prebuild adiciona automaticamente suporte ao desenvolvimento de módulos com a [API de módulos nativos do Expo][expo-modules-core], ao vincular o `expo-modules-core` nativamente. Você também pode usar qualquer comando da [Expo CLI][cli] no projeto.
 
-> **warning** [Not all versions of `react-native` are explicitly supported](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version). Make sure to use a version of `react-native` that has a corresponding Expo SDK version.
+> **warning** [Nem todas as versões do `react-native` são explicitamente suportadas](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version). Use uma versão do `react-native` que tenha uma versão correspondente do SDK do Expo.
 
-## Install the `expo` package
+## Instalar o pacote `expo` \{#install-the-expo-package}
 
-The `expo` package contains the [`npx expo prebuild`](/more/expo-cli/#prebuild) command and indicates which [prebuild template](/workflow/continuous-native-generation#templates) to use:
+O pacote `expo` contém o comando [`npx expo prebuild`](/more/expo-cli/#prebuild) e indica qual [template de prebuild](/workflow/continuous-native-generation#templates) usar:
 
 <Terminal
   cmd={{
@@ -25,11 +25,11 @@ The `expo` package contains the [`npx expo prebuild`](/more/expo-cli/#prebuild) 
   }}
 />
 
-Ensure you install the version of `expo` that works for your currently installed [version of `react-native`](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version).
+Instale a versão do `expo` compatível com a [versão do `react-native`](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version) que já está instalada no projeto.
 
-## Update the entry file
+## Atualizar o arquivo de entrada \{#update-the-entry-file}
 
-Modify the entry file to use [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent) instead of `AppRegistry.registerComponent`:
+Altere o arquivo de entrada para usar o [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent) em vez de `AppRegistry.registerComponent`:
 
 <DiffBlock
   raw={`diff --git a/index.js b/index.js
@@ -46,15 +46,15 @@ index 0000000..1111111 100644
 +registerRootComponent(App);`}
 />
 
-> Learn more about [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent).
+> Saiba mais sobre o [`registerRootComponent`](/versions/latest/sdk/expo/#registerrootcomponentcomponent).
 
-## Prebuild
+## Prebuild \{#prebuild}
 
-> **warning** Make sure you have committed your changes in case you want to revert, the command will warn you about this too!
+> **warning** Se quiser reverter alterações, faça commit delas antes. O comando também avisa sobre isso!
 
-If you're migrating an existing project, then you may want to refer to [**migrating native customizations**](#migrate-native-customizations) first.
+Se você estiver migrando um projeto existente, veja antes [**como migrar as personalizações nativas**](#migrate-native-customizations).
 
-Run the following command to regenerate the **android** and **ios** directories based on the app config (**app.json/app.config.js**) configuration:
+Execute o comando a seguir para regenerar os diretórios **android** e **ios** com base na configuração do app config (**app.json/app.config.js**):
 
 <Terminal
   cmd={{
@@ -65,7 +65,7 @@ Run the following command to regenerate the **android** and **ios** directories 
   }}
 />
 
-You can test that everything worked by building the projects locally:
+Você pode testar se tudo funcionou gerando os projetos localmente:
 
 <Terminal
   cmd={{
@@ -100,21 +100,21 @@ You can test that everything worked by building the projects locally:
   }}
 />
 
-> Learn more about [compiling native apps](/more/expo-cli/#compiling).
+> Saiba mais sobre [como compilar apps nativos](/more/expo-cli/#compiling).
 
-## Extra changes
+## Alterações extras \{#extra-changes}
 
-The following changes are optional but recommended.
+As alterações a seguir são opcionais, mas recomendadas.
 
 **.gitignore**
 
-You can add **.expo** to your **.gitignore** to prevent generated values from Expo CLI from being committed. These [values are unique to your project](/more/expo-cli/#expo-directory) on your local computer.
+Você pode adicionar **.expo** ao seu **.gitignore** para evitar que valores gerados pela Expo CLI sejam versionados. Esses [valores são exclusivos do projeto](/more/expo-cli/#expo-directory) no seu computador local.
 
-The **android** and **ios** directories are automatically added to **.gitignore** when you create a new project, ensuring they are not committed between prebuilds.
+Os diretórios **android** e **ios** são adicionados automaticamente ao **.gitignore** quando você cria um novo projeto, o que evita que sejam versionados entre um prebuild e outro.
 
 **app.json**
 
-Remove all fields that are outside the top-level `expo` object as these will not be used in `npx expo prebuild`.
+Remova todos os campos que estão fora do objeto `expo` de nível superior, pois eles não serão usados em `npx expo prebuild`.
 
 <DiffBlock
   raw={`diff --git a/app.json b/app.json
@@ -133,11 +133,11 @@ index 0000000..1111111 100644
 
 **metro.config.js**
 
-See [Customizing Metro](/guides/customizing-metro/).
+Veja [Personalizando o Metro](/guides/customizing-metro/).
 
 **package.json**
 
-You may want to change the scripts to use the [Expo CLI](/more/expo-cli/#compiling) run commands:
+Vale trocar os scripts pelos comandos de execução da [Expo CLI](/more/expo-cli/#compiling):
 
 <DiffBlock
   raw={`diff --git a/package.json b/package.json
@@ -154,29 +154,31 @@ index 0000000..1111111 100644
    },`}
 />
 
-These commands have better logging, auto code signing, better simulator handling, and they ensure you run `npx expo start` to serve files.
+Esses comandos têm logs melhores, assinatura de código automática, melhor tratamento de simuladores e garantem que você execute `npx expo start` para servir os arquivos.
 
-## Migrate native customizations
+## Migrar personalizações nativas \{#migrate-native-customizations}
 
-If your project has any native modifications (changes to the **android** or **ios** directories, such as app icon configuration or splash screen) then you'll need to configure your app config (**app.json**) to reflect those native changes.
+Se o projeto tiver alguma personalização nativa (alterações nas pastas **android** ou **ios**, como a configuração do ícone do app ou da splash screen), você precisará configurar o app config (**app.json**) para refletir essas alterações.
 
-- Check to see if your changes overlap with the built-in [app config fields](/versions/latest/config/app/). For example, if you have an app icon, be sure to define it as `expo.icon` in the **app.json** then re-run `npx expo prebuild`.
-- Look up if any of the packages you are using require an [Expo config plugin][config-plugins]. If a package in your project requires additional changes inside the **android** or **ios** directories, then you will probably need a Config Plugin. Some plugins can be automatically added by running `npx expo install` with all of the packages in your **package.json** dependencies. If a package requires a plugin but doesn't supply one, then you can try checking the community plugins at [`expo/config-plugins`](https://github.com/expo/config-plugins) to see if one already exists.
-- You can use the [VS Code Expo extension][vs-code-expo] to introspect your changes and debug if prebuild is generating the native code you expect. Just press <kbd>Cmd ⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, type "Expo: Preview Modifier", and select the native file you wish to introspect.
-- Additionally, you can develop local config plugins to fit your needs. See [how to develop a config plugin](/config-plugins/development-and-debugging/#plugin-development).
+- Verifique se suas alterações se sobrepõem aos [campos do app config](/versions/latest/config/app/) já existentes. Por exemplo, se você tem um ícone de app, defina-o como `expo.icon` no **app.json** e execute `npx expo prebuild` novamente.
+- Veja se algum dos pacotes que você usa exige um [config plugin do Expo][config-plugins]. Se um pacote precisar de alterações adicionais dentro das pastas **android** ou **ios**, provavelmente você vai precisar de um config plugin. Alguns plugins podem ser adicionados automaticamente executando `npx expo install` com todos os pacotes das dependências do **package.json**. Se um pacote exigir um plugin, mas não fornecer um, confira os plugins da comunidade em [`expo/config-plugins`](https://github.com/expo/config-plugins) para ver se já existe algum.
+- Você pode usar a [extensão Expo para VS Code][vs-code-expo] para inspecionar as alterações e fazer debug caso o prebuild não esteja gerando o código nativo esperado. Basta pressionar <kbd>Cmd ⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, digitar "Expo: Preview Modifier" e selecionar o arquivo nativo que você quer inspecionar.
+- Além disso, você pode desenvolver config plugins locais para atender às suas necessidades. Veja [como desenvolver um config plugin](/config-plugins/development-and-debugging/#plugin-development).
 
-## Add more features
+## Adicionar mais recursos \{#add-more-features}
 
-Prebuild is the tip of the automation iceberg, here are some features you can adopt next:
+O prebuild é só a ponta do iceberg da automação. Estes são alguns recursos que você pode adotar em seguida:
 
-- [Expo Build](/build/setup): Code signing and cloud building.
-- [Expo Update](/build/updates): Send over-the-air updates instantly.
-- [Expo for web](/workflow/web): Run your app in the browser.
-- [Expo Dev Client][dev-client]: Create your own personal "Expo Go" type app around your native runtime.
-- [Expo native module API][expo-modules-core]: Write modules with Swift and Kotlin. This is automatically supported when using `npx expo prebuild`.
+- [Expo Build](/build/setup): assinatura de código e build na nuvem.
+- [Expo Update](/build/updates): envie updates OTA instantaneamente.
+- [Expo para web](/workflow/web): rode seu app no navegador.
+- [Expo Dev Client][dev-client]: crie um app próprio no estilo "Expo Go" em torno do seu runtime nativo.
+- [API de módulos nativos do Expo][expo-modules-core]: escreva módulos com Swift e Kotlin. Isso é suportado automaticamente ao usar `npx expo prebuild`.
 
 [vs-code-expo]: https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools
 [expo-modules-core]: /modules/module-api/
 [dev-client]: /develop/development-builds/introduction/
 [config-plugins]: /config-plugins/introduction/
 [cli]: /more/expo-cli/
+
+{/* ia-translate: true */}

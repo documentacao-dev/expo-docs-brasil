@@ -1,19 +1,19 @@
 ---
 title: React Compiler
-description: Learn how to enable and use the React Compiler in Expo apps.
+description: Saiba como ativar e usar o React Compiler em apps Expo.
 ---
 
 import { Terminal } from '~/ui/components/Snippet';
 import { Step } from '~/ui/components/Step';
 import { Tabs, Tab } from '~/ui/components/Tabs';
 
-The new [React Compiler](https://react.dev/learn/react-compiler) automatically memoizes components and hooks to enable fine-grained reactivity. This can lead to significant performance improvements in your app. You can enable it in your app by following the instructions below.
+O novo [React Compiler](https://react.dev/learn/react-compiler) memoiza automaticamente componentes e hooks para habilitar uma reatividade refinada. Isso pode trazer melhorias significativas de desempenho no app. Para ativá-lo, siga as instruções abaixo.
 
-## Enabling React Compiler
+## Ativando o React Compiler \{#enabling-react-compiler}
 
 <Step label="1">
 
-[Check how compatible](https://react.dev/learn/react-compiler#checking-compatibility) your project is with the React Compiler.
+[Verifique a compatibilidade](https://react.dev/learn/react-compiler#checking-compatibility) do projeto com o React Compiler.
 
 <Terminal
   cmd={{
@@ -24,18 +24,18 @@ The new [React Compiler](https://react.dev/learn/react-compiler) automatically m
   }}
 />
 
-This will generally verify if your app is following the [**rules of React**](https://react.dev/reference/rules).
+Em geral, essa verificação confirma se o app segue as [**regras do React**](https://react.dev/reference/rules).
 
 </Step>
 
 <Step label="2">
 
-Install `babel-plugin-react-compiler` and the React compiler runtime in your project:
+Instale o `babel-plugin-react-compiler` e o runtime do React Compiler no projeto:
 
 <Tabs tabs={['SDK 54 and later', 'SDK 53', 'SDK 52 and earlier']}>
   <Tab>
 
-    Babel is automatically configured in Expo SDK 54 and later.
+    O Babel é configurado automaticamente no Expo SDK 54 e versões posteriores.
 
   </Tab>
   <Tab>
@@ -64,7 +64,7 @@ Install `babel-plugin-react-compiler` and the React compiler runtime in your pro
 
 <Step label="3">
 
-Toggle on the React Compiler experiment in your app config file:
+Ative o experimento do React Compiler no arquivo de configuração do app:
 
 ```json app.json
 {
@@ -78,21 +78,21 @@ Toggle on the React Compiler experiment in your app config file:
 
 </Step>
 
-### Enabling the linter
+### Ativando o linter \{#enabling-the-linter}
 
-Run [`npx expo lint`](/guides/using-eslint/#eslint) to set up ESLint in your app, then follow the instructions for your SDK version:
+Execute o [`npx expo lint`](/guides/using-eslint/#eslint) para configurar o ESLint no app e, depois, siga as instruções da sua versão do SDK:
 
 <Tabs tabs={['SDK 55 and later', 'SDK 54 and earlier']}>
   <Tab>
 
-    React Compiler lint rules are included by default with `eslint-config-expo` in SDK 55 and later.
+    As regras de lint do React Compiler já vêm incluídas por padrão no `eslint-config-expo` a partir do SDK 55.
 
-    If you previously installed `eslint-plugin-react-compiler`, you can uninstall it and remove it from your ESLint configuration.
+    Se você instalou antes o `eslint-plugin-react-compiler`, pode desinstalá-lo e removê-lo da configuração do ESLint.
 
   </Tab>
   <Tab>
 
-    Install the ESLint plugin for React Compiler:
+    Instale o plugin do ESLint para o React Compiler:
 
     <Terminal
       cmd={{
@@ -103,7 +103,7 @@ Run [`npx expo lint`](/guides/using-eslint/#eslint) to set up ESLint in your app
       }}
     />
 
-    Update your [ESLint configuration](/guides/using-eslint/) to include the plugin:
+    Atualize a [configuração do ESLint](/guides/using-eslint/) para incluir o plugin:
 
     ```js eslint.config.js
     // https://docs.expo.dev/guides/using-eslint/
@@ -123,16 +123,16 @@ Run [`npx expo lint`](/guides/using-eslint/#eslint) to set up ESLint in your app
   </Tab>
 </Tabs>
 
-## Incremental adoption
+## Adoção incremental \{#incremental-adoption}
 
-You can incrementally adopt the React Compiler in your app using a few strategies:
+Você pode adotar o React Compiler de forma incremental no app usando algumas estratégias:
 
 <Step label="1">
 
-Configure the Babel plugin to only run on specific files or components. To do this:
+Configure o plugin do Babel para rodar apenas em arquivos ou componentes específicos. Para isso:
 
-1. If your project doesn't have [**babel.config.js**](/versions/latest/config/babel/), create one by running `npx expo customize babel.config.js`.
-2. Add the following configuration to **babel.config.js**:
+1. Se o projeto não tiver um [**babel.config.js**](/versions/latest/config/babel/), crie um executando `npx expo customize babel.config.js`.
+2. Adicione a seguinte configuração ao **babel.config.js**:
 
 ```js babel.config.js
 module.exports = function (api) {
@@ -156,7 +156,7 @@ module.exports = function (api) {
 };
 ```
 
-Whenever you change your **babel.config.js** file, you need to restart the Metro bundler to apply the changes:
+Sempre que você alterar o **babel.config.js**, reinicie o bundler Metro para aplicar as mudanças:
 
 <Terminal
   cmd={{
@@ -171,7 +171,7 @@ Whenever you change your **babel.config.js** file, you need to restart the Metro
 
 <Step label="2">
 
-Use the `"use no memo"` directive to opt out of the React Compiler for specific components or files.
+Use a diretiva `"use no memo"` para desativar o React Compiler em componentes ou arquivos específicos.
 
 ```jsx
 function MyComponent() {
@@ -183,17 +183,17 @@ function MyComponent() {
 
 </Step>
 
-## Usage
+## Uso \{#usage}
 
-> To better understand how React Compiler works, check out the [React Playground](https://playground.react.dev/).
+> Para entender melhor como o React Compiler funciona, confira o [React Playground](https://playground.react.dev/).
 
-Improvements are primarily automatic. You can remove instances of `useCallback`, `useMemo`, and `React.memo` in favor of the automatic memoization. Class components will not be optimized. Instead, migrate to function components.
+As melhorias são, em sua maioria, automáticas. Você pode remover instâncias de `useCallback`, `useMemo` e `React.memo` em favor da memoização automática. Componentes de classe não são otimizados. Em vez disso, migre para componentes de função.
 
-Expo's implementation of the React Compiler will only run on application code (no node modules), and only when bundling for the client (disabled in server rendering).
+A implementação do React Compiler no Expo roda apenas no código do app (sem node modules) e apenas ao fazer o bundle para o cliente (desativada na renderização no servidor).
 
-## Configuration
+## Configuração \{#configuration}
 
-You can pass additional settings to the React Compiler Babel plugin by using the `react-compiler` object in the Babel configuration:
+Você pode passar configurações adicionais para o plugin do Babel do React Compiler usando o objeto `react-compiler` na configuração do Babel:
 
 ```js babel.config.js
 module.exports = function (api) {
@@ -220,3 +220,5 @@ module.exports = function (api) {
   };
 };
 ```
+
+{/* ia-translate: true */}

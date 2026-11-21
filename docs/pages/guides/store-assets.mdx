@@ -1,7 +1,7 @@
 ---
-title: Create app store assets
-description: Learn how to create screenshots and previews for your app's store pages.
-sidebar_title: App store assets
+title: Criar assets para a loja de apps
+description: Saiba como criar screenshots e prévias para as páginas do seu app nas lojas.
+sidebar_title: Assets da loja de apps
 ---
 
 import { FigmaIcon } from '@expo/styleguide-icons/outline/FigmaIcon';
@@ -9,137 +9,139 @@ import { FigmaIcon } from '@expo/styleguide-icons/outline/FigmaIcon';
 import { BoxLink } from '~/ui/components/BoxLink';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 
-Before submitting your app to the Google Play Store and Apple App Store, you need to provide some assets for your store listing page. The goal of these images and videos is to give your prospective users an idea of what your app experience is going to be like.
+Antes de enviar seu app para a Google Play Store e para a Apple App Store, você precisa fornecer alguns assets para a página da listagem na loja. O objetivo dessas imagens e vídeos é dar aos possíveis usuários uma ideia de como será a experiência do app.
 
-You will need to upload app screenshots for both app stores. Even though they are called "app screenshots" on both stores, they _do_ have to include accurate visuals of your app. There is no rule citing that these images have to be screenshots taken on specific devices.
+Você vai precisar enviar screenshots do app para as duas lojas. Mesmo que as duas as chamem de "app screenshots", elas _precisam_ mostrar visuais fiéis do app. Não há regra que exija que essas imagens sejam capturas de tela de dispositivos específicos.
 
-Both app stores have requirements on image format and size. However, within these restrictions, you can be creative. For example, a common approach is to design the assets using a design tool such as Figma and incorporate actual app screenshots (or designs) with supplementary messaging.
+As duas lojas têm requisitos de formato e tamanho de imagem. Dentro dessas restrições, você pode ser criativo. Por exemplo, uma abordagem comum é criar os assets em uma ferramenta de design, como o Figma, e incorporar screenshots reais do app (ou designs) com mensagens complementares.
 
-## Different approaches for creating "screenshots"
+## Abordagens diferentes para criar "screenshots" \{#different-approaches-for-creating-screenshots}
 
-There are three commonly used approaches to creating your store screenshots. You can choose whichever approach works best for your app's needs and resources.
+Existem três abordagens comuns para criar os screenshots da loja. Escolha a que funciona melhor para as necessidades e os recursos do seu app.
 
-### Option 1: actual screenshots
+### Opção 1: screenshots reais \{#option-1-actual-screenshots}
 
-The most straightforward option — open up your app on a real device and take screenshots.
+A opção mais direta: abra o app em um dispositivo real e tire os screenshots.
 
-**Pros**: Straightforward to do. Most accurate representation of your app.
+**Prós**: simples de fazer. É a representação mais fiel do app.
 
-**Cons**: Need to load the app on different devices for a full range of screenshots.
+**Contras**: é preciso instalar o app em dispositivos diferentes para cobrir a gama completa de screenshots.
 
 <ContentSpotlight
-  alt="Screenshots of the Expo Go Apple App Store listing page"
-  caption="Screenshots of the Expo Go Apple App Store listing page."
+  alt="Screenshots da página do Expo Go na Apple App Store"
+  caption="Screenshots da página do Expo Go na Apple App Store."
   src="/static/images/guides/expo-go-screenshots.webp"
   className="max-w-[720px]"
 />
 
-### Option 2: screenshots within a design
+### Opção 2: screenshots dentro de um design \{#option-2-screenshots-within-a-design}
 
-The majority of apps use this approach. It involves taking screenshots of the app (or in some cases, using existing designs instead of actual screenshots) and embedding them in the store assets along with appropriate messaging.
+A maioria dos apps usa essa abordagem. Ela consiste em tirar screenshots do app (ou, em alguns casos, usar designs existentes no lugar de screenshots reais) e incorporá-los aos assets da loja, junto com mensagens apropriadas.
 
-**Pros:** Allows to convey additional messaging within the assets.
+**Prós:** permite transmitir mensagens adicionais dentro dos assets.
 
-**Cons:** The assets need to be created using a design program.
+**Contras:** os assets precisam ser criados em um programa de design.
 
 <ContentSpotlight
-  alt="Screenshots of the Brex Apple App Store listing page"
-  caption="Screenshots of the Brex Apple App Store listing page."
+  alt="Screenshots da página do Brex na Apple App Store"
+  caption="Screenshots da página do Brex na Apple App Store."
   src="/static/images/guides/brex-screenshots.webp"
   className="max-w-[720px]"
 />
 
-### Option 3: make it fancy
+### Opção 3: capriche no visual \{#option-3-make-it-fancy}
 
-In this option, on the app store pages, you can incorporate elements of your app design and creative messaging to highlight your product.
+Nesta opção, nas páginas da loja, você pode incorporar elementos do design do app e mensagens criativas para destacar o produto.
 
-**Pros:** You can make your store page creative and fun.
+**Prós:** você pode deixar a página da loja criativa e divertida.
 
-**Cons:** Need an experienced designer to create and maintain the assets.
+**Contras:** é preciso um designer experiente para criar e manter os assets.
 
 <ContentSpotlight
-  alt="Screenshots of the MS Office Apple Store listing page"
-  caption="Screenshots of the MS Office Apple Store listing page."
+  alt="Screenshots da página do MS Office na Apple Store"
+  caption="Screenshots da página do MS Office na Apple Store."
   src="/static/images/guides/office-screenshots.webp"
   className="max-w-[720px]"
 />
 
-## Google Play Store asset requirements
+## Requisitos de assets da Google Play Store \{#google-play-store-asset-requirements}
 
-Google has specific requirements for the store asset format and dimensions, which are different from Apple's. For the most up-to-date specifications, see [official documentation](https://support.google.com/googleplay/android-developer/answer/9866151) for detailed requirements for your Google Play Store assets.
-
-<BoxLink
-  Icon={FigmaIcon}
-  title="Store assets Figma template"
-  description="See our template for a summary of the minimum asset requirements."
-  href="https://www.figma.com/community/file/1352686667495694112"
-/>
-
-### App icon
-
-Unlike on the Apple App Store, where the app icon is always taken automatically from the app bundle, on the Google Play Store, you must also upload a separate App Icon for your store listing.
-
-### Feature graphic
-
-A feature graphic must be provided to publish your Store Listing. It is a banner that is displayed at the top of your store listing page.
-
-### Screenshots
-
-You need to upload at least four screenshots to publish your app.
-
-### Video (optional)
-
-You can add one preview video to your Store Listing. The video needs to be uploaded to YouTube, and you can add it by entering a YouTube URL in the **preview video** field.
-
-## iOS App Store asset requirements
-
-For the iOS App Store, you can upload screenshots (images) and previews (videos). For each, Apple requires specific widths and heights. Make sure to reference the [Screenshot specifications from Apple](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/) for the exact sizing. Even a single pixel-off will mean you cannot submit the images.
+O Google tem requisitos específicos de formato e dimensões para os assets da loja, diferentes dos da Apple. Para as especificações mais atualizadas, consulte a [documentação oficial](https://support.google.com/googleplay/android-developer/answer/9866151) com os requisitos detalhados dos assets da Google Play Store.
 
 <BoxLink
   Icon={FigmaIcon}
-  title="Store assets Figma template"
-  description="See our template for a summary of the minimum asset requirements."
+  title="Template do Figma com os assets da loja"
+  description="Veja nosso template com um resumo dos requisitos mínimos dos assets."
   href="https://www.figma.com/community/file/1352686667495694112"
 />
 
-### Screenshots
+### Ícone do app \{#app-icon}
 
-At a minimum, Apple requires you to upload screenshots for iPhone with the dynamic island (6.9 inch). You can optionally upload additional screenshots for other screen sizes. If specific screenshots are not provided, scaled down screenshots from the closest uploaded size will be used instead.
+Diferentemente da Apple App Store, em que o ícone do app é sempre retirado automaticamente do bundle do app, na Google Play Store você também precisa enviar um ícone separado para a listagem.
 
-If your app runs on iPad, you must also provide one set of iPad screenshots (13 inch).
+### Imagem de destaque \{#feature-graphic}
 
-You can upload up to ten screenshots per localization. If your app is available in multiple languages and your screenshots include text, you should upload screenshots with the appropriate language for each localization.
+É preciso fornecer uma imagem de destaque para publicar a listagem na loja. Trata-se de um banner exibido no topo da página da listagem.
 
-Screenshots can be portrait or landscape.
+### Screenshots \{#screenshots}
 
-### Preview (optional)
+Você precisa enviar pelo menos quatro screenshots para publicar o app.
 
-You can include An app preview video to demonstrate how your app works. You can add up to three app previews for each screen size.
+### Vídeo (opcional) \{#video-optional}
 
-See [App Preview Specifications](https://developer.apple.com/help/app-store-connect/reference/app-preview-specifications/) from Apple documentation for a summary of video size and format.
+Você pode adicionar um vídeo de prévia à sua listagem na loja. O vídeo precisa ser enviado ao YouTube, e você pode adicioná-lo informando uma URL do YouTube no campo **preview video**.
 
-## Bare minimum
+## Requisitos de assets da App Store para iOS \{#ios-app-store-asset-requirements}
 
-Below is the bare minimum needed to publish your apps.
+Na App Store para iOS, você pode enviar screenshots (imagens) e prévias (vídeos). Para cada um, a Apple exige larguras e alturas específicas. Confira as [especificações de screenshots da Apple](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/) para o tamanho exato. Até um pixel de diferença impede o envio das imagens.
 
-### Play Store - Android
+<BoxLink
+  Icon={FigmaIcon}
+  title="Template do Figma com os assets da loja"
+  description="Veja nosso template com um resumo dos requisitos mínimos dos assets."
+  href="https://www.figma.com/community/file/1352686667495694112"
+/>
 
-| Type            | Amount | Dimensions                                                          | Requirements                                        |
-| --------------- | ------ | ------------------------------------------------------------------- | --------------------------------------------------- |
-| App Icon        | 1      | 512 × 512                                                           | 32-bit PNG (with alpha); Maximum file size: 1024 KB |
-| Feature Graphic | 1      | 1024 × 500                                                          | JPEG or 24-bit PNG (no alpha)                       |
-| Screenshots     | 4-10   | minimum: 1024 × 500<br/>maximum width: 3840px<br/>9:16 aspect ratio | JPEG or 24-bit PNG (no alpha)                       |
+### Screenshots \{#screenshots-1}
 
-### App Store - iPhone
+No mínimo, a Apple exige que você envie screenshots para iPhone com a Dynamic Island (6,9 polegadas). Você pode enviar, opcionalmente, screenshots de outros tamanhos de tela. Se não houver screenshots para um tamanho específico, serão usados screenshots reduzidos a partir do tamanho mais próximo enviado.
 
-| Type                                         | Amount | Dimensions (choose one)     | Requirements          |
-| -------------------------------------------- | ------ | --------------------------- | --------------------- |
-| Screenshots (iPhone with the dynamic island) | 2-10   | 1320 × 2868<br/>1290 × 2796 | JPG or PNG (no alpha) |
+Se o app rodar em iPad, você também precisa fornecer um conjunto de screenshots para iPad (13 polegadas).
 
-### App Store - iPad
+Você pode enviar até dez screenshots por localização. Se o app estiver disponível em vários idiomas e os screenshots tiverem texto, envie screenshots no idioma adequado para cada localização.
 
-If your app also runs on an iPad, you need to supply additional screenshots.
+Os screenshots podem estar em retrato ou em paisagem.
 
-| Type        | Amount | Dimensions (choose one)     | Requirements          |
-| ----------- | ------ | --------------------------- | --------------------- |
-| Screenshots | 2-10   | 2064 × 2752<br/>2048 × 2732 | JPG or PNG (no alpha) |
+### Prévia (opcional) \{#preview-optional}
+
+Você pode incluir um vídeo de prévia do app para demonstrar como ele funciona. Pode adicionar até três prévias para cada tamanho de tela.
+
+Veja as [Especificações de prévia de app](https://developer.apple.com/help/app-store-connect/reference/app-preview-specifications/) na documentação da Apple para um resumo do tamanho e do formato do vídeo.
+
+## Mínimo necessário \{#bare-minimum}
+
+Abaixo está o mínimo necessário para publicar seus apps.
+
+### Play Store - Android \{#play-store---android}
+
+| Tipo            | Quantidade | Dimensões                                                           | Requisitos                                          |
+| --------------- | ---------- | ------------------------------------------------------------------- | --------------------------------------------------- |
+| Ícone do app    | 1          | 512 × 512                                                           | PNG de 32 bits (com alpha); tamanho máximo: 1024 KB |
+| Imagem de destaque | 1       | 1024 × 500                                                          | JPEG ou PNG de 24 bits (sem alpha)                  |
+| Screenshots     | 4-10       | mínimo: 1024 × 500<br/>largura máxima: 3840px<br/>proporção 9:16    | JPEG ou PNG de 24 bits (sem alpha)                  |
+
+### App Store - iPhone \{#app-store---iphone}
+
+| Tipo                                              | Quantidade | Dimensões (escolha uma)     | Requisitos            |
+| ------------------------------------------------- | ---------- | --------------------------- | --------------------- |
+| Screenshots (iPhone com Dynamic Island)           | 2-10       | 1320 × 2868<br/>1290 × 2796 | JPG ou PNG (sem alpha) |
+
+### App Store - iPad \{#app-store---ipad}
+
+Se o app também rodar em iPad, você precisa fornecer screenshots adicionais.
+
+| Tipo        | Quantidade | Dimensões (escolha uma)     | Requisitos            |
+| ----------- | ---------- | --------------------------- | --------------------- |
+| Screenshots | 2-10       | 2064 × 2752<br/>2048 × 2732 | JPG ou PNG (sem alpha) |
+
+{/* ia-translate: true */}

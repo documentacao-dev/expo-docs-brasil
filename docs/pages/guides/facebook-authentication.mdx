@@ -1,6 +1,6 @@
 ---
-title: Using Facebook authentication
-description: A guide on using react-native-fbsdk-next library to integrate Facebook authentication in your Expo project.
+title: Usar a autenticação do Facebook
+description: Um guia para usar a biblioteca react-native-fbsdk-next e integrar a autenticação do Facebook ao seu projeto Expo.
 ---
 
 import { EasSubmitIcon } from '@expo/styleguide-icons/custom/EasSubmitIcon';
@@ -10,63 +10,64 @@ import { BoxLink } from '~/ui/components/BoxLink';
 import { ContentSpotlight } from '~/ui/components/ContentSpotlight';
 import { Prerequisites, Requirement } from '~/ui/components/Prerequisites';
 
-The [`react-native-fbsdk-next`](https://github.com/thebergamo/react-native-fbsdk-next/) library provides a wrapper around Facebook's Android and iOS SDKs. It allows integrating Facebook authentication into your Expo project and provide access to native components.
+A biblioteca [`react-native-fbsdk-next`](https://github.com/thebergamo/react-native-fbsdk-next/) oferece um wrapper para os SDKs nativos do Facebook para Android e iOS. Ela permite integrar a autenticação do Facebook ao projeto Expo e acessar componentes nativos.
 
-This guide provides additional information on configuring the library with Expo for Android.
+Este guia traz informações adicionais sobre como configurar a biblioteca com o Expo para Android.
 
 <Prerequisites>
-  <Requirement title="A development build">
-    The `react-native-fbsdk-next` library can't be used in Expo Go because it requires custom native
-    code. Learn more about [adding custom native code to your app](/workflow/customizing/).
+  <Requirement title="Um development build">
+    A biblioteca `react-native-fbsdk-next` não pode ser usada no Expo Go porque exige código nativo personalizado. Saiba mais sobre [como adicionar código nativo personalizado ao seu app](/workflow/customizing/).
   </Requirement>
 </Prerequisites>
 
-## Installation
+## Instalação \{#installation}
 
-See `react-native-fbsdk-next` documentation for instructions on how to install and configure the library:
+Consulte a documentação da `react-native-fbsdk-next` para instruções de instalação e configuração da biblioteca:
 
 <BoxLink
-  title="React Native FBSDK Next: Expo installation instructions"
+  title="React Native FBSDK Next: instruções de instalação do Expo"
   href="https://github.com/thebergamo/react-native-fbsdk-next/#expo-installation"
 />
 
-## Configuration for Android
+## Configuração para Android \{#configuration-for-android}
 
-Adding Android as a platform in your Facebook project requires you to have your app approved by Google Play Store so that it has a valid Play Store URL, and the [`package`](/versions/latest/config/app/#package) name associated with your app. Otherwise, you'll run into the following error:
+Para adicionar o Android como plataforma no seu projeto do Facebook, é preciso que o app tenha sido aprovado pela Google Play Store, para ter uma URL válida da loja e o [`package`](/versions/latest/config/app/#package) associado ao app. Caso contrário, você vai encontrar o seguinte erro:
 
 <ContentSpotlight
-  alt="Facebook project not recognizing unpublished Android app's package that doesn't have a valid Google Play Store URL."
+  alt="Projeto do Facebook não reconhece o package de um app Android não publicado, que não tem uma URL válida da Google Play Store."
   src="/static/images/guides/android-package-error.webp"
   className="max-w-[720px]"
 />
 
-See the following guides for more information on how to build your project for app stores:
+Veja os guias a seguir para saber mais sobre como gerar o build do projeto para as lojas de apps:
 
 <BoxLink
-  title="Build your project for app stores"
+  title="Gere o build do projeto para as lojas de apps"
   href="/deploy/build-project/"
   Icon={Rocket01Icon}
 />
 
 <BoxLink
-  title="Submit to the Google Play Store with Expo Submit"
+  title="Envie para a Google Play Store com o Expo Submit"
   href="/submit/android/"
   Icon={EasSubmitIcon}
 />
 
-Once you have uploaded the app to the Play Store you can submit your app review. When it is approved the Facebook project will be able to access it at a Play Store URL.
+Depois de enviar o app para a Play Store, você pode enviar a revisão dele. Quando ela for aprovada, o projeto do Facebook poderá acessá-lo em uma URL da Play Store.
 
-After that, go to your Facebook project's **Settings** > **Basic** and add the **Android** platform. You'll need to provide the Key hash, Package name and Class name.
+Depois disso, vá em **Settings** > **Basic** do seu projeto do Facebook e adicione a plataforma **Android**. Você vai precisar informar o Key hash, o Package name e o Class name.
 
 <ContentSpotlight
-  alt="Required fields to add Android platform in the Facebook project."
+  alt="Campos obrigatórios para adicionar a plataforma Android no projeto do Facebook."
   src="/static/images/guides/android-required-fields.webp"
   className="max-w-[720px]"
 />
 
-- To add Key hash, go to your Play Store Console to obtain the SHA-1 certificate fingerprint from **Release** > **Setup** > **App Integrity** > **App signing key certificate**. Then, [convert the value of the Hex value of the certificate to Base64](https://base64.guru/converter/encode/hex) and add it under the **Android** > **Key hashes** in your Facebook project.
-- You can find the Package name in your [app config](/versions/latest/config/app) under the [`android.package`](/versions/latest/config/app/#package) field.
-- The Class name is `MainActivity` by default, and you can use `package.MainActivity` where `package` is the `android.package` in your project's app config. For example, `com.myapp.example.MainActivity`, where `com.myapp.example` is the `package` name of your app.
-- Then, click **Save changes** to save the configuration.
+- Para adicionar o Key hash, acesse o console da Play Store para obter a impressão digital do certificado SHA-1 em **Release** > **Setup** > **App Integrity** > **App signing key certificate**. Depois, [converta o valor hexadecimal do certificado para Base64](https://base64.guru/converter/encode/hex) e adicione-o em **Android** > **Key hashes** no seu projeto do Facebook.
+- Você pode encontrar o Package name no seu [app config](/versions/latest/config/app) no campo [`android.package`](/versions/latest/config/app/#package).
+- O Class name é `MainActivity` por padrão, e você pode usar `package.MainActivity`, em que `package` é o `android.package` no app config do projeto. Por exemplo, `com.myapp.example.MainActivity`, em que `com.myapp.example` é o `package` do seu app.
+- Depois, clique em **Save changes** para salvar a configuração.
 
-Now, you can use your Facebook project for development or release builds and production apps.
+Agora você pode usar o projeto do Facebook em development builds, release builds e apps em produção.
+
+{/* ia-translate: true */}
