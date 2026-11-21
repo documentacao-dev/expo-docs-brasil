@@ -49,7 +49,11 @@ open class JavaScriptRuntime: Equatable, Identifiable, @unchecked Sendable {
   /// ``JavaScriptRuntimeHandle`` for why.
   public let handle: JavaScriptRuntimeHandle
 
-  internal let scheduler: Scheduler
+  /// Runs work on the JavaScript thread of this runtime. Keep it instead of the runtime to schedule
+  /// work from another thread later. It's a helper for `expo-modules-core`, so it isn't part of the
+  /// public API.
+  @_spi(Internal)
+  public let scheduler: Scheduler
 
   /// Whether this wrapper owns the underlying `jsi::Runtime` and must destroy it on `deinit`. True
   /// only for the standalone `init()`, which creates the runtime via `createHermesRuntime()`. The
@@ -534,8 +538,8 @@ open class JavaScriptRuntime: Equatable, Identifiable, @unchecked Sendable {
   /// rather than an owning ``JavaScriptValue``. The borrowed value carries the raw `facebook.jsi.IRuntime`
   /// and points straight at the `this` slot the C++ caller owns, so the trampoline neither allocates an
   /// owning value nor forms the `weak` runtime reference that profiling showed on every host call. Use it
-  /// when the callee usually ignores `this` (e.g. module-level `@JS` functions); the closure can still
-  /// promote it with ``JavaScriptUnownedValue/copied(in:)`` on the paths that need an owning value.
+  /// when the callee usually ignores `this`; the closure can still promote it with
+  /// ``JavaScriptUnownedValue/copied(in:)`` on the paths that need an owning value.
   public typealias UnownedThisSyncFunctionClosure =
     @JavaScriptActor (
       _ this: borrowing JavaScriptUnownedValue,
@@ -547,9 +551,9 @@ open class JavaScriptRuntime: Equatable, Identifiable, @unchecked Sendable {
   ///
   /// `@_disfavoredOverload` so a closure that leaves `this` untyped (the common `_,` or `this,` form)
   /// still resolves to the owning-``JavaScriptValue`` overload; only a closure that *explicitly* types
-  /// its first parameter as `borrowing JavaScriptUnownedValue` (as the `@JS` macro emits) selects this
-  /// one, since an exact type match outranks the disfavored status. Without it, an untyped closure
-  /// matches both overloads and the call is ambiguous.
+  /// its first parameter as `borrowing JavaScriptUnownedValue` selects this one, since an exact type
+  /// match outranks the disfavored status. Without it, an untyped closure matches both overloads and
+  /// the call is ambiguous.
   /// - Returns: A JavaScript function represented as a `JavaScriptFunction`.
   @_disfavoredOverload
   @JavaScriptActor
@@ -616,7 +620,7 @@ open class JavaScriptRuntime: Equatable, Identifiable, @unchecked Sendable {
   /// Creates a host function from a ``HostFunctionClosure``, which every other closure type is adapted
   /// to. A function without a name gets an empty one.
   @JavaScriptActor
-  private func createHostFunction(_ name: String?, _ function: sending @escaping HostFunctionClosure)
+  internal func createHostFunction(_ name: String?, _ function: sending @escaping HostFunctionClosure)
     -> JavaScriptFunction
   {
     let closure = createFunctionClosure(runtime: self, function)
