@@ -1,6 +1,6 @@
 ---
 title: Editar texto rico
-description: Saiba sobre as abordagens atuais para visualizar e editar texto rico no React Native.
+description: Conheça as abordagens atuais para visualizar e editar texto rico no React Native.
 hasVideoLink: true
 ---
 
@@ -59,7 +59,7 @@ Também há um esforço para portar o editor lexical para Android e iOS e oferec
 
 ### Editores baseados em webview \{#webview-based-editors}
 
-Enquanto a maioria dos componentes de UI do React Native envolve primitivas nativas da plataforma, e por isso é rápida, performática e tem **sensação nativa**, os editores de texto rico baseados em webview seguem outra abordagem.
+Embora a maioria dos componentes de UI do React Native envolva primitivas nativas da plataforma, e por isso seja rápida, performática e tenha **sensação nativa**, os editores de texto rico baseados em webview sigam outra abordagem.
 
 Eles envolvem um editor de texto rico feito para web, escrito em JavaScript, dentro de uma [`react-native-webview`](/versions/latest/sdk/webview/). Funciona em todas as plataformas (Android, iOS, Web) e pode aproveitar editores de texto rico populares disponíveis para a web, mas tem um custo de desempenho e de UX.
 
@@ -81,9 +81,9 @@ Você vai precisar usar troca de mensagens para passar texto e eventos `onChange
 
 ## Construindo sobre o TextInput do React Native \{#building-on-top-of-react-native-textinput}
 
-Nesta seção, vamos discutir se é possível ter um campo de entrada de texto rico completo para uso geral.
+Nesta seção, vamos discutir se é possível ter um campo de entrada de texto rico com todos os recursos para uso geral.
 
-O React Native permite componentes `<Text>` aninhados e aceita que sejam usados como filhos de `<TextInput>` para renderizar e editar texto estilizado. Ele é síncrono com a nova arquitetura do React Native (o evento `onChange` dispara imediatamente após um novo caractere ser digitado no campo de texto).
+O React Native permite componentes `<Text>` aninhados e aceita que sejam usados como filhos de `<TextInput>` para renderizar e editar texto estilizado. Ele é síncrono com a New Architecture do React Native (o evento `onChange` dispara imediatamente após um novo caractere ser digitado no campo de texto).
 
 Infelizmente, o componente `<TextInput>` foi feito para trabalhar com texto simples, e ele só retorna uma string no callback `onTextChange`. Essa é uma limitação significativa.
 
@@ -98,7 +98,7 @@ Veja um exemplo rápido. Vamos começar renderizando um campo de texto com o seg
 </TextInput>
 ```
 
-Em seguida, vamos acrescentar uma quinta letra `a` ao campo de texto. A posição do cursor deveria determinar se a nova letra faz parte da parte em negrito ou não. Infelizmente, o callback retorna apenas `aaaaa`.
+Em seguida, vamos acrescentar uma quinta letra `a` ao campo de texto. A posição do cursor deveria determinar se a nova letra faz parte do trecho em negrito ou não. Infelizmente, o callback retorna apenas `aaaaa`.
 
 Existe uma prop adicional, `onSelectionChange`, que pode ser usada para obter essa informação. No entanto, ela torna a tarefa bem mais difícil. Inserir caracteres adicionais (como quebras de linha para listas ou marcadores) também dessincroniza a seleção.
 

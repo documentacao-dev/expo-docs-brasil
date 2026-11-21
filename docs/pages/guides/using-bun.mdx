@@ -34,7 +34,7 @@ Para instalar qualquer biblioteca do Expo, use `bun expo install`:
 
 ## Usar o Bun com o Expo Build \{#use-bun-with-expo-build}
 
-O Expo Build decide qual gerenciador de pacotes usar com base no lockfile do código. Se quiser que o Expo Build use o Bun, execute `bun install` no código. Isso cria um lockfile do Bun: **bun.lock** nas versões 1.2 e mais recentes, ou **bun.lockb** em versões mais antigas. Enquanto um desses lockfiles estiver no código, o Bun será usado como gerenciador de pacotes nos seus builds. Apague qualquer lockfile gerado por outros gerenciadores de pacotes.
+O Expo Build decide qual gerenciador de pacotes usar com base no lockfile do repositório. Se quiser que o Expo Build use o Bun, execute `bun install` no repositório. Isso cria um lockfile do Bun: **bun.lock** nas versões 1.2 e mais recentes, ou **bun.lockb** em versões mais antigas. Enquanto um desses lockfiles estiver no repositório, o Bun será usado como gerenciador de pacotes nos seus builds. Apague qualquer lockfile gerado por outros gerenciadores de pacotes.
 
 ### Personalizar a versão do Bun no Expo Build \{#customize-bun-version-on-expo-build}
 
@@ -92,7 +92,7 @@ Para resolver, adicione `@sentry/cli` ao array de [dependências confiáveis](#t
 
 Quando o Bun instala um pacote que tem um patch em [`patchedDependencies`](https://bun.sh/docs/pm/cli/patch), ele grava um arquivo de tag vazio chamado **.bun-tag-&lt;hash&gt;** no diretório do pacote. O nome do arquivo de tag depende da versão do Bun, então duas versões diferentes do Bun gravam nomes diferentes para o mesmo patch.
 
-A [fingerprint](/versions/latest/sdk/fingerprint/) inclui o arquivo de tag quando o pacote com patch é um módulo nativo ou um config plugin, no SDK 57 e anteriores, ou com o `strict` [preset](/versions/latest/sdk/fingerprint/#fingerprintpreset) no SDK 58 e posteriores. Se a fingerprint incluir o arquivo de tag e o Expo Build usar uma versão do Bun diferente da sua máquina, as duas fingerprints serão diferentes. Com a [política de runtime version](/versions/latest/sdk/updates/#automatic-configuration-using-runtime-version-policies) `fingerprint`, o build então falha na fase **Configure expo-updates** com este erro:
+A [fingerprint](/versions/latest/sdk/fingerprint/) inclui o arquivo de tag quando o pacote com patch é um módulo nativo ou um config plugin, no SDK 57 e anteriores, ou com o `strict` [preset](/versions/latest/sdk/fingerprint/#fingerprintpreset) no SDK 58 e posteriores. Se a fingerprint incluir o arquivo de tag e o Expo Build usar uma versão do Bun diferente da usada na sua máquina, as duas fingerprints serão diferentes. Com a [política de runtime version](/versions/latest/sdk/updates/#automatic-configuration-using-runtime-version-policies) `fingerprint`, o build então falha na fase **Configure expo-updates** com este erro:
 
 ```text
 Runtime version calculated on local machine not equal to runtime version calculated during build.

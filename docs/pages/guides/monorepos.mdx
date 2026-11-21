@@ -179,7 +179,7 @@ export default function App() {
 
 ## Problemas comuns \{#common-issues}
 
-Monorepos podem causar problemas de resolução e de dependências que um projeto comum não teria. Eles exigem conhecimento mais aprofundado e configuração específica das ferramentas. Você aceita mais complexidade e vai precisar resolver problemas que não existiriam sem workspaces. Veja alguns problemas comuns que você pode encontrar.
+Monorepos podem causar problemas de resolução e de dependências que um projeto comum não teria. Eles exigem conhecimento mais aprofundado e configuração específica das ferramentas. Você assume mais complexidade e vai precisar resolver problemas que não existiriam sem workspaces. Veja alguns problemas comuns que você pode encontrar.
 
 ### Gerenciadores de pacotes com dependências isoladas \{#package-managers-with-isolated-dependencies}
 
@@ -202,7 +202,7 @@ nodeLinker: hoisted
 
 O Expo tem suporte aprimorado a padrões mais completos de **node_modules**, como módulos isolados. Infelizmente, se o app tiver dependências duplicadas, problemas ainda podem ocorrer:
 
-- Versões duplicadas do React Native em um mesmo monorepo não são suportadas
+- Versões duplicadas do React Native em um mesmo monorepo não têm suporte
 - Versões duplicadas do React em um mesmo app causam erros de runtime
 - Versões duplicadas dos módulos Turbo e Expo podem causar erros de runtime ou de build
 
@@ -222,7 +222,7 @@ A saída desses comandos varia bastante de um gerenciador de pacotes para outro,
 
 #### Adicionar resoluções para dependências peer \{#adding-dependency-resolutions-for-peer-dependencies}
 
-Se a dependência duplicada não puder ser resolvida alterando as suas próprias dependências, pode ser necessário adicionar uma resolução. Por exemplo, nem todos os pacotes atualizaram seus **peerDependencies** para oferecer suporte ao React 19. Para contornar isso, você pode criar uma resolução que force a instalação de uma única versão do `react`.
+Se a dependência duplicada não puder ser resolvida alterando as dependências do projeto, pode ser necessário adicionar uma resolução. Por exemplo, nem todos os pacotes atualizaram seus **peerDependencies** para oferecer suporte ao React 19. Para contornar isso, você pode criar uma resolução que force a instalação de uma única versão do `react`.
 
 ```json package.json
 {

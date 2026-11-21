@@ -10,7 +10,7 @@ Este guia mostra como adotar o Expo Prebuild em um projeto criado com `npx @reac
 
 Adotar o prebuild adiciona automaticamente suporte ao desenvolvimento de módulos com a [API de módulos nativos do Expo][expo-modules-core], ao vincular o `expo-modules-core` nativamente. Você também pode usar qualquer comando da [Expo CLI][cli] no projeto.
 
-> **warning** [Nem todas as versões do `react-native` são explicitamente suportadas](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version). Use uma versão do `react-native` que tenha uma versão correspondente do SDK do Expo.
+> **warning** [Nem todas as versões do `react-native` têm suporte explícito](/versions/latest/#each-expo-sdk-version-depends-on-a-react-native-version). Use uma versão do `react-native` que tenha uma versão correspondente do SDK do Expo.
 
 ## Instalar o pacote `expo` \{#install-the-expo-package}
 
@@ -54,7 +54,7 @@ index 0000000..1111111 100644
 
 Se você estiver migrando um projeto existente, veja antes [**como migrar as personalizações nativas**](#migrate-native-customizations).
 
-Execute o comando a seguir para regenerar os diretórios **android** e **ios** com base na configuração do app config (**app.json/app.config.js**):
+Execute o comando a seguir para regenerar os diretórios **android** e **ios** com base no app config (**app.json/app.config.js**):
 
 <Terminal
   cmd={{
@@ -65,7 +65,7 @@ Execute o comando a seguir para regenerar os diretórios **android** e **ios** c
   }}
 />
 
-Você pode testar se tudo funcionou gerando os projetos localmente:
+Você pode testar se tudo funcionou fazendo o build dos projetos localmente:
 
 <Terminal
   cmd={{
@@ -158,10 +158,10 @@ Esses comandos têm logs melhores, assinatura de código automática, melhor tra
 
 ## Migrar personalizações nativas \{#migrate-native-customizations}
 
-Se o projeto tiver alguma personalização nativa (alterações nas pastas **android** ou **ios**, como a configuração do ícone do app ou da splash screen), você precisará configurar o app config (**app.json**) para refletir essas alterações.
+Se o projeto tiver alguma personalização nativa (alterações nos diretórios **android** ou **ios**, como a configuração do ícone do app ou da splash screen), você precisará configurar o app config (**app.json**) para refletir essas alterações.
 
 - Verifique se suas alterações se sobrepõem aos [campos do app config](/versions/latest/config/app/) já existentes. Por exemplo, se você tem um ícone de app, defina-o como `expo.icon` no **app.json** e execute `npx expo prebuild` novamente.
-- Veja se algum dos pacotes que você usa exige um [config plugin do Expo][config-plugins]. Se um pacote precisar de alterações adicionais dentro das pastas **android** ou **ios**, provavelmente você vai precisar de um config plugin. Alguns plugins podem ser adicionados automaticamente executando `npx expo install` com todos os pacotes das dependências do **package.json**. Se um pacote exigir um plugin, mas não fornecer um, confira os plugins da comunidade em [`expo/config-plugins`](https://github.com/expo/config-plugins) para ver se já existe algum.
+- Veja se algum dos pacotes que você usa exige um [config plugin do Expo][config-plugins]. Se um pacote precisar de alterações adicionais dentro dos diretórios **android** ou **ios**, provavelmente você vai precisar de um config plugin. Alguns plugins podem ser adicionados automaticamente executando `npx expo install` com todos os pacotes das dependências do **package.json**. Se um pacote exigir um plugin, mas não fornecer um, confira os plugins da comunidade em [`expo/config-plugins`](https://github.com/expo/config-plugins) para ver se já existe algum.
 - Você pode usar a [extensão Expo para VS Code][vs-code-expo] para inspecionar as alterações e fazer debug caso o prebuild não esteja gerando o código nativo esperado. Basta pressionar <kbd>Cmd ⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, digitar "Expo: Preview Modifier" e selecionar o arquivo nativo que você quer inspecionar.
 - Além disso, você pode desenvolver config plugins locais para atender às suas necessidades. Veja [como desenvolver um config plugin](/config-plugins/development-and-debugging/#plugin-development).
 
